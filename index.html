@@ -1,396 +1,274 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arindam Sanyal — Product Design Manager</title>
-    <meta name="description" content="Product Design Manager with 14+ years building digital financial products for millions of users worldwide.">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        :root { --bg:#080808;--s1:#111111;--border:rgba(255,255,255,.09);--t1:rgba(255,255,255,.95);--t2:rgba(255,255,255,.5);--t3:rgba(255,255,255,.25);--accent:#818CF8;--green:#2ecc71;--ease:cubic-bezier(.16,1,.3,1); }
-        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-        html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:rgba(129,140,248,.2) transparent}
-        ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:rgba(129,140,248,.25);border-radius:2px}
-        body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--t1);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-        a{text-decoration:none;color:inherit}
-    </style>
-    <style>
-        /* NAV */
-        nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;padding:0 48px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid transparent;transition:background .3s,border-color .3s}
-        nav.stuck{background:rgba(8,8,8,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom-color:var(--border)}
-        .nav-logo{font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px}
-        .nav-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);flex-shrink:0}
-        .nav-links{display:flex;align-items:center;gap:6px}
-        .nav-link{font-size:13px;font-weight:500;color:var(--t2);padding:7px 14px;border-radius:8px;transition:color .2s,background .2s}
-        .nav-link:hover{color:var(--t1);background:rgba(255,255,255,.05)}
-        .nav-btn{font-size:12px;font-weight:700;padding:8px 18px;border:1px solid var(--border);border-radius:100px;color:var(--t1);transition:border-color .2s,color .2s}
-        .nav-btn:hover{border-color:var(--accent);color:var(--accent)}
-
-        /* HERO */
-        .hero{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding-top:60px}
-        .hero-inner{max-width:1296px;margin:0 auto;padding:0 48px;width:100%}
-        .hero-status{display:inline-flex;align-items:center;gap:10px;font-size:12px;color:var(--t2);font-weight:500;padding:56px 0 36px}
-        .hero-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(46,204,113,.15);animation:blink 2.5s ease infinite;flex-shrink:0}
-        @keyframes blink{0%,100%{box-shadow:0 0 0 3px rgba(46,204,113,.15)}50%{box-shadow:0 0 0 6px rgba(46,204,113,.06)}}
-        .hero-hl{font-size:clamp(36px,5.2vw,68px);font-weight:700;letter-spacing:-2.5px;line-height:1.05;max-width:900px}
-        .hero-hl em{font-style:normal;color:var(--t3)}
-        .hero-meta{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--border);margin-top:56px}
-        .hm-cell{padding:20px 24px;border-right:1px solid var(--border)}
-        .hm-cell:first-child{padding-left:0}.hm-cell:last-child{border-right:none}
-        .hm-key{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--t3);margin-bottom:6px}
-        .hm-val{font-size:14px;font-weight:600;color:var(--t1);line-height:1.3}
-        .hm-sub{font-size:11px;color:var(--t3);margin-top:3px}
-
-        /* DIVIDER */
-        .div{height:1px;background:var(--border)}
-
-        /* SECTION */
-        .sec{padding:80px 48px;max-width:1296px;margin:0 auto}
-        .sec-hd{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:48px}
-        .sec-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--t3)}
-        .sec-lnk{font-size:13px;color:var(--t2);transition:color .2s}.sec-lnk:hover{color:var(--t1)}
-
-        /* WORK GRID */
-        .work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px}
-        .wk{display:flex;flex-direction:column;gap:14px}
-        .wk-img{position:relative;overflow:hidden;border-radius:14px;background:var(--s1);aspect-ratio:4/3}
-        .wk-img img{width:100%;height:100%;object-fit:cover;object-position:top left;display:block;transition:transform .6s var(--ease)}
-        .wk:hover .wk-img img{transform:scale(1.04)}
-        .wk-shade{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 55%,rgba(8,8,8,.3) 100%)}
-        .wk-cat{display:flex;align-items:center;gap:8px}
-        .wk-tag{font-size:12px;color:var(--t3);font-weight:500}
-        .wk-sep{font-size:8px;color:var(--t3)}
-        .wk-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
-        .wk-title{font-size:clamp(17px,2vw,21px);font-weight:700;letter-spacing:-.4px;line-height:1.25;transition:color .2s}
-        .wk:hover .wk-title{color:var(--accent)}
-        .wk-arrow{font-size:14px;color:var(--t3);flex-shrink:0;margin-top:3px;transition:color .2s,transform .25s var(--ease)}
-        .wk:hover .wk-arrow{color:var(--accent);transform:translate(3px,-3px)}
-        /* Featured */
-        .wk--feat{grid-column:span 2;flex-direction:row;align-items:stretch;gap:40px}
-        .wk--feat .wk-img{flex:1.6;aspect-ratio:auto;min-height:320px;border-radius:16px}
-        .wk--feat .wk-content{flex:1;display:flex;flex-direction:column;justify-content:space-between;padding:8px 0}
-        .wk--feat .wk-title{font-size:clamp(20px,2.2vw,28px)}
-        .wk-desc{font-size:14px;color:var(--t2);line-height:1.7;margin-top:12px}
-        .wk-feat-tag{display:inline-flex;align-items:center;position:absolute;top:16px;left:16px;background:var(--accent);color:#fff;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;padding:5px 12px;border-radius:100px}
-
-        /* CAPABILITIES */
-        .caps{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--border)}
-        .cap{font-size:16px;font-weight:500;color:var(--t2);padding:18px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;transition:color .2s,padding-left .2s}
-        .cap:hover{color:var(--t1);padding-left:8px}
-        .cap:nth-child(odd){padding-right:40px;border-right:1px solid var(--border)}
-        .cap:nth-child(even){padding-left:40px}
-        .cap:nth-child(even):hover{padding-left:48px}
-        .cap-arr{font-size:13px;color:var(--t3);flex-shrink:0;transition:color .2s}.cap:hover .cap-arr{color:var(--accent)}
-
-        /* COMPANIES */
-        .cos{display:flex;align-items:stretch;border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;margin:0 48px}
-        .cos-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--t3);padding:20px 36px 20px 0;border-right:1px solid var(--border);white-space:nowrap;display:flex;align-items:center}
-        .co{font-size:14px;font-weight:600;color:var(--t3);padding:20px 32px;border-right:1px solid var(--border);white-space:nowrap;transition:color .2s;display:flex;align-items:center}
-        .co:hover{color:var(--t1)}.co:last-child{border-right:none}
-
-        /* TESTIMONIALS */
-        .testi-outer{overflow:hidden;display:flex;flex-direction:column;gap:14px}
-        .testi-row{display:flex;gap:14px;width:max-content}
-        .testi-row--a{animation:tL 50s linear infinite}
-        .testi-row--b{animation:tR 50s linear infinite}
-        .testi-outer:hover .testi-row{animation-play-state:paused}
-        @keyframes tL{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-        @keyframes tR{from{transform:translateX(-50%)}to{transform:translateX(0)}}
-        .tc{min-width:320px;max-width:380px;flex-shrink:0;border:1px solid var(--border);border-radius:14px;padding:24px 26px;background:var(--s1);display:flex;flex-direction:column;gap:18px}
-        .tc--ph{border-style:dashed;border-color:rgba(129,140,248,.2);background:rgba(129,140,248,.03)}
-        .tc-q{font-size:13px;line-height:1.75;color:var(--t2)}
-        .tc-q--ph{color:var(--t3)}
-        .tc-who{font-size:12px;color:var(--t3)}
-        .tc-who strong{color:var(--t2);font-weight:600}
-
-        /* CONTACT */
-        .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
-        .contact-hl{font-size:clamp(32px,4vw,52px);font-weight:700;letter-spacing:-2px;line-height:1.08}
-        .contact-hl em{font-style:normal;color:var(--t3)}
-        .contact-sub{font-size:15px;color:var(--t2);margin-top:20px;line-height:1.7}
-        .cls{border-top:1px solid var(--border)}
-        .cl{display:flex;align-items:center;justify-content:space-between;padding:20px 0;border-bottom:1px solid var(--border);transition:padding-left .2s}
-        .cl:hover{padding-left:8px}
-        .cl-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--t3);margin-bottom:4px}
-        .cl-val{font-size:15px;font-weight:600;color:var(--t1)}
-        .cl-arr{font-size:16px;color:var(--t3);transition:color .2s,transform .25s var(--ease);flex-shrink:0}
-        .cl:hover .cl-lbl{color:var(--accent)}.cl:hover .cl-arr{color:var(--accent);transform:translate(3px,-3px)}
-
-        /* FOOTER */
-        footer{padding:24px 48px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-        .foot-l,.foot-r{font-size:12px;color:var(--t3)}
-
-        /* REVEAL */
-        .rv{opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
-        .rv.in{opacity:1;transform:none}
-        .rv-d1{transition-delay:.07s}.rv-d2{transition-delay:.14s}.rv-d3{transition-delay:.21s}
-
-        /* RESPONSIVE */
-        @media(max-width:960px){
-            nav{padding:0 24px}
-            .nav-link{display:none}
-            .hero-inner,.sec{padding-left:24px;padding-right:24px}
-            .hero-hl{letter-spacing:-1.5px}
-            .hero-meta{grid-template-columns:repeat(2,1fr)}
-            .hm-cell:nth-child(5){border-right:none}
-            .work-grid{grid-template-columns:1fr;gap:28px}
-            .wk--feat{grid-column:span 1;flex-direction:column}
-            .wk--feat .wk-img{aspect-ratio:16/10;min-height:auto}
-            .caps{grid-template-columns:1fr}
-            .cap:nth-child(odd){border-right:none;padding-right:0}
-            .cap:nth-child(even){padding-left:0}
-            .cos{margin:0 24px;flex-wrap:wrap}
-            .cos-lbl{width:100%;padding:16px 0;border-right:none;border-bottom:1px solid var(--border)}
-            .co{border-right:none;border-bottom:1px solid var(--border);padding:16px 0}
-            .contact-grid{grid-template-columns:1fr;gap:48px}
-            footer{flex-direction:column;gap:4px;text-align:center}
-        }
-    </style>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Arindam Sanyal — Product Design Manager</title>
+<meta name="description" content="Product Design Manager with 14+ years building fintech products for millions worldwide.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0c0c0c;--s:#161616;--b:rgba(255,255,255,.07);--t1:rgba(255,255,255,.92);--t2:rgba(255,255,255,.48);--t3:rgba(255,255,255,.22);--a:#818CF8;--g:#22c55e;--e:cubic-bezier(.16,1,.3,1);--mw:1100px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+/* NAV */
+nav{position:fixed;inset:0 0 auto;z-index:99;height:56px;padding:0 48px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid transparent;transition:background .3s,border-color .3s}
+nav.s{background:rgba(12,12,12,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom-color:var(--b)}
+.nl{font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px}
+.nd{width:7px;height:7px;border-radius:50%;background:var(--a)}
+.nr{display:flex;align-items:center;gap:4px}
+.na{font-size:13px;font-weight:500;color:var(--t2);padding:8px 14px;border-radius:8px;transition:color .2s,background .2s}
+.na:hover{color:var(--t1);background:rgba(255,255,255,.05)}
+.nb{font-size:12px;font-weight:700;color:var(--t1);padding:8px 18px;border:1px solid var(--b);border-radius:100px;margin-left:6px;transition:border-color .2s,color .2s}
+.nb:hover{border-color:var(--a);color:var(--a)}
+/* HERO */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding-top:56px}
+.hi{max-width:calc(var(--mw)+96px);margin:0 auto;padding:0 48px;width:100%}
+.av{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--t2);padding:52px 0 28px}
+.avd{width:8px;height:8px;border-radius:50%;background:var(--g);flex-shrink:0;box-shadow:0 0 0 3px rgba(34,197,94,.15);animation:av 2.5s ease infinite}
+@keyframes av{0%,100%{box-shadow:0 0 0 3px rgba(34,197,94,.15)}50%{box-shadow:0 0 0 6px rgba(34,197,94,.05)}}
+.hh{font-size:clamp(38px,5.8vw,72px);font-weight:700;letter-spacing:-2.5px;line-height:1.06;max-width:860px;padding-bottom:48px}
+.hh em{font-style:normal;color:var(--t3)}
+.hm{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--b)}
+.hmc{padding:18px 20px;border-right:1px solid var(--b)}
+.hmc:first-child{padding-left:0}.hmc:last-child{border-right:none}
+.hmk{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--t3);margin-bottom:5px}
+.hmv{font-size:13px;font-weight:600;color:var(--t1);line-height:1.35}
+.hms{font-size:11px;color:var(--t3);margin-top:2px}
+/* DIVIDER */
+.dv{height:1px;background:var(--b)}
+/* SECTION */
+.sec{padding:80px 48px;max-width:calc(var(--mw)+96px);margin:0 auto}
+.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:40px}
+.sl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--t3)}
+.sv{font-size:13px;color:var(--t2);transition:color .2s}.sv:hover{color:var(--t1)}
+/* WORK */
+.wg{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.wc{display:flex;flex-direction:column;gap:12px}
+.wcv{position:relative;overflow:hidden;border-radius:12px;background:var(--s);aspect-ratio:16/10}
+.wcv img{width:100%;height:100%;object-fit:cover;object-position:top left;display:block;transition:transform .6s var(--e)}
+.wc:hover .wcv img{transform:scale(1.04)}
+.wcvs{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(12,12,12,.3))}
+.wct{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.wctt{font-size:12px;color:var(--t3);font-weight:500}
+.wcd{font-size:8px;color:var(--t3)}
+.wcr{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.wcti{font-size:clamp(16px,1.8vw,20px);font-weight:700;letter-spacing:-.3px;line-height:1.3;transition:color .2s}
+.wc:hover .wcti{color:var(--a)}
+.wca{font-size:14px;color:var(--t3);flex-shrink:0;margin-top:3px;transition:color .2s,transform .25s var(--e)}
+.wc:hover .wca{color:var(--a);transform:translate(3px,-3px)}
+.wc--f{grid-column:span 2;flex-direction:row;gap:36px;align-items:stretch}
+.wc--f .wcv{flex:1.5;aspect-ratio:auto;min-height:280px;border-radius:14px}
+.wcc{flex:1;display:flex;flex-direction:column;justify-content:space-between;padding:4px 0}
+.wc--f .wcti{font-size:clamp(20px,2.2vw,28px)}
+.wcdesc{font-size:14px;color:var(--t2);line-height:1.7;margin-top:10px}
+.wcft{display:inline-flex;align-items:center;background:var(--a);color:#fff;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;padding:5px 12px;border-radius:100px;position:absolute;top:14px;left:14px}
+/* CAPS */
+.cg{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--b)}
+.ci{font-size:16px;font-weight:500;color:var(--t2);padding:16px 0;border-bottom:1px solid var(--b);display:flex;align-items:center;justify-content:space-between;transition:color .2s,padding-left .2s}
+.ci:hover{color:var(--t1);padding-left:8px}
+.ci:nth-child(odd){padding-right:40px;border-right:1px solid var(--b)}
+.ci:nth-child(even){padding-left:40px}
+.ci:nth-child(even):hover{padding-left:48px}
+.cia{font-size:13px;color:var(--t3);flex-shrink:0;transition:color .2s}.ci:hover .cia{color:var(--a)}
+/* COMPANIES */
+.cos{display:flex;align-items:stretch;border-top:1px solid var(--b);border-bottom:1px solid var(--b);padding:0 48px;max-width:calc(var(--mw)+96px);margin:0 auto}
+.cosl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--t3);display:flex;align-items:center;padding-right:32px;border-right:1px solid var(--b);white-space:nowrap;flex-shrink:0}
+.co{font-size:14px;font-weight:600;color:var(--t3);padding:18px 28px;border-right:1px solid var(--b);white-space:nowrap;transition:color .2s}
+.co:hover{color:var(--t1)}.co:last-child{border-right:none}
+/* TESTI */
+.tw{overflow:hidden;display:flex;flex-direction:column;gap:12px}
+.tr{display:flex;gap:12px;width:max-content}
+.tr--a{animation:tla 48s linear infinite}.tr--b{animation:tlb 48s linear infinite}
+.tw:hover .tr{animation-play-state:paused}
+@keyframes tla{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes tlb{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.tc{min-width:300px;max-width:360px;flex-shrink:0;border:1px solid var(--b);border-radius:12px;padding:22px 24px;background:var(--s);display:flex;flex-direction:column;gap:14px}
+.tc--ph{border-style:dashed;border-color:rgba(129,140,248,.18);background:rgba(129,140,248,.03)}
+.tcq{font-size:13px;line-height:1.75;color:var(--t2)}
+.tcq--ph{color:var(--t3)}
+.tcw{font-size:12px;color:var(--t3)}.tcw strong{color:var(--t2);font-weight:600}
+/* CONTACT */
+.cin{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.ch{font-size:clamp(32px,4vw,52px);font-weight:700;letter-spacing:-2px;line-height:1.08}
+.ch em{font-style:normal;color:var(--t3)}
+.cs{font-size:15px;color:var(--t2);margin-top:18px;line-height:1.7}
+.cls{border-top:1px solid var(--b)}
+.cl{display:flex;align-items:center;justify-content:space-between;padding:20px 0;border-bottom:1px solid var(--b);transition:padding-left .2s}
+.cl:hover{padding-left:8px}
+.cll{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--t3);margin-bottom:3px}
+.clv{font-size:15px;font-weight:600}
+.cla{font-size:16px;color:var(--t3);transition:color .2s,transform .25s var(--e)}
+.cl:hover .cll{color:var(--a)}.cl:hover .cla{color:var(--a);transform:translate(3px,-3px)}
+/* FOOTER */
+footer{padding:22px 48px;border-top:1px solid var(--b);display:flex;align-items:center;justify-content:space-between}
+.fl,.fr{font-size:12px;color:var(--t3)}
+/* REVEAL */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .7s var(--e),transform .7s var(--e)}
+.rv.in{opacity:1;transform:none}
+.r1{transition-delay:.06s}.r2{transition-delay:.12s}.r3{transition-delay:.18s}
+/* RESPONSIVE */
+@media(max-width:880px){
+  nav,.sec,.cos,footer{padding-left:24px;padding-right:24px}
+  .hi{padding-left:24px;padding-right:24px}
+  .hh{letter-spacing:-1.5px}
+  .hm{grid-template-columns:repeat(2,1fr)}
+  .hmc:nth-child(5){display:none}
+  .wg{grid-template-columns:1fr}
+  .wc--f{grid-column:span 1;flex-direction:column}
+  .wc--f .wcv{aspect-ratio:16/10;min-height:auto}
+  .cg{grid-template-columns:1fr}
+  .ci:nth-child(odd){border-right:none;padding-right:0}
+  .ci:nth-child(even){padding-left:0}
+  .ci:nth-child(even):hover{padding-left:8px}
+  .cos{flex-wrap:wrap}
+  .cosl{width:100%;padding:14px 0;border-right:none;border-bottom:1px solid var(--b)}
+  .co{padding:14px 0;border-right:none;border-bottom:1px solid var(--b)}
+  .cin{grid-template-columns:1fr;gap:40px}
+  footer{flex-direction:column;gap:4px;text-align:center}
+  .nr .na{display:none}
+}
+</style>
 </head>
 <body>
-
 <nav id="nav">
-    <a href="#" class="nav-logo"><span class="nav-dot"></span>Arindam Sanyal</a>
-    <div class="nav-links">
-        <a href="#work" class="nav-link">Work</a>
-        <a href="#about" class="nav-link">About</a>
-        <a href="#testimonials" class="nav-link">Testimonials</a>
-        <a href="#contact" class="nav-link">Contact</a>
-        <a href="mailto:asanyal88@gmail.com" class="nav-btn">Book an Intro</a>
-    </div>
+  <a href="#" class="nl"><span class="nd"></span>Arindam Sanyal</a>
+  <div class="nr">
+    <a href="#work" class="na">Work</a>
+    <a href="#about" class="na">About</a>
+    <a href="#testimonials" class="na">Testimonials</a>
+    <a href="#contact" class="na">Contact</a>
+    <a href="mailto:asanyal88@gmail.com" class="nb">Book an Intro</a>
+  </div>
 </nav>
 
 <section class="hero" id="hero">
-    <div class="hero-inner">
-        <div class="hero-status">
-            <span class="hero-dot"></span>
-            Available &mdash; Open to Senior Design Leadership Roles
-        </div>
-        <h1 class="hero-hl">
-            Product Design Manager<br>
-            building digital financial products<br>
-            for <em>millions worldwide.</em>
-        </h1>
-        <div class="hero-meta">
-            <div class="hm-cell">
-                <div class="hm-key">Availability</div>
-                <div class="hm-val">Open to Roles</div>
-                <div class="hm-sub">Remote / Hybrid</div>
-            </div>
-            <div class="hm-cell">
-                <div class="hm-key">Experience</div>
-                <div class="hm-val">14+ Years</div>
-                <div class="hm-sub">Design Manager</div>
-            </div>
-            <div class="hm-cell">
-                <div class="hm-key">Industry</div>
-                <div class="hm-val">Fintech</div>
-                <div class="hm-sub">Enterprise Products</div>
-            </div>
-            <div class="hm-cell">
-                <div class="hm-key">Location</div>
-                <div class="hm-val">Pune, IN</div>
-                <div class="hm-sub" id="local-time">&mdash;</div>
-            </div>
-            <div class="hm-cell">
-                <div class="hm-key">Currently</div>
-                <div class="hm-val">Western Union</div>
-                <div class="hm-sub">Sep 2023 &ndash; Present</div>
-            </div>
-        </div>
+  <div class="hi">
+    <div class="av"><span class="avd"></span>Available &mdash; Open to Senior Design Leadership Roles</div>
+    <h1 class="hh">Product Design Manager building<br>digital financial products for<br><em>millions worldwide.</em></h1>
+    <div class="hm">
+      <div class="hmc"><div class="hmk">Availability</div><div class="hmv">Open to Roles</div><div class="hms">Remote / Hybrid</div></div>
+      <div class="hmc"><div class="hmk">Experience</div><div class="hmv">14+ Years</div><div class="hms">Design Manager</div></div>
+      <div class="hmc"><div class="hmk">Industry</div><div class="hmv">Fintech</div><div class="hms">Enterprise Products</div></div>
+      <div class="hmc"><div class="hmk">Location</div><div class="hmv">Pune, IN</div><div class="hms" id="t">&mdash;</div></div>
+      <div class="hmc"><div class="hmk">Currently</div><div class="hmv">Western Union</div><div class="hms">Sep 2023 &ndash; Present</div></div>
     </div>
+  </div>
 </section>
 
-<div class="div"></div>
+<div class="dv"></div>
 
 <section class="sec" id="work">
-    <div class="sec-hd rv">
-        <span class="sec-lbl">Featured Work</span>
-        <a href="wu-redesign-case-study.html" class="sec-lnk">All case studies &rarr;</a>
-    </div>
-    <div class="work-grid">
-
-        <a href="wu-redesign-case-study.html" class="wk wk--feat rv">
-            <div class="wk-img">
-                <img src="case-study-assets/08-bank-account-flow.png" alt="WU E1 Redesign">
-                <div class="wk-shade"></div>
-                <span class="wk-feat-tag">&#9733; Featured</span>
-            </div>
-            <div class="wk-content">
-                <div>
-                    <div class="wk-cat" style="margin-bottom:16px;">
-                        <span class="wk-tag">Design Manager</span><span class="wk-sep">&middot;</span>
-                        <span class="wk-tag">Fintech</span><span class="wk-sep">&middot;</span>
-                        <span class="wk-tag">2023&ndash;Present</span>
-                    </div>
-                    <div class="wk-title">Biggest Overhaul in Western Union&rsquo;s History</div>
-                    <p class="wk-desc">Led 11 designers to redesign the entire WU platform &mdash; collapsing 5 fragmented apps into one unified, wallet-based experience across iOS, Android &amp; web.</p>
-                </div>
-                <div class="wk-row" style="margin-top:32px;">
-                    <span style="font-size:13px;color:var(--t3)">142+ screens &middot; 40+ engineers</span>
-                    <span class="wk-arrow">&nearr;</span>
-                </div>
-            </div>
-        </a>
-
-        <a href="ux-baseline-case-study.html" class="wk rv rv-d1">
-            <div class="wk-img">
-                <img src="case-study-assets/03-payments-hub.png" alt="UX Baseline">
-                <div class="wk-shade"></div>
-            </div>
-            <div class="wk-cat">
-                <span class="wk-tag">UX Strategy</span><span class="wk-sep">&middot;</span>
-                <span class="wk-tag">Design Ops</span><span class="wk-sep">&middot;</span>
-                <span class="wk-tag">Global Scale</span>
-            </div>
-            <div class="wk-row">
-                <div class="wk-title">The Case for a UX Baseline</div>
-                <span class="wk-arrow">&nearr;</span>
-            </div>
-        </a>
-
-        <a href="send-money-imt-case-study.html" class="wk rv rv-d2">
-            <div class="wk-img">
-                <img src="case-study-assets/05-send-with-contacts.png" alt="Send Money IMT">
-                <div class="wk-shade"></div>
-            </div>
-            <div class="wk-cat">
-                <span class="wk-tag">Interaction Design</span><span class="wk-sep">&middot;</span>
-                <span class="wk-tag">Mobile</span><span class="wk-sep">&middot;</span>
-                <span class="wk-tag">Accessibility</span>
-            </div>
-            <div class="wk-row">
-                <div class="wk-title">Send Money &mdash; International Money Transfer</div>
-                <span class="wk-arrow">&nearr;</span>
-            </div>
-        </a>
-
-        <a href="content-network-case-study.html" class="wk rv rv-d3">
-            <div class="wk-img">
-                <img src="case-study-assets/06-send-to.png" alt="Content Network">
-                <div class="wk-shade"></div>
-            </div>
-            <div class="wk-cat">
-                <span class="wk-tag">Product Strategy</span><span class="wk-sep">&middot;</span>
-                <span class="wk-tag">Personalisation</span><span class="wk-sep">&middot;</span>
-                <span class="wk-tag">2024</span>
-            </div>
-            <div class="wk-row">
-                <div class="wk-title">Content Network Product Strategy</div>
-                <span class="wk-arrow">&nearr;</span>
-            </div>
-        </a>
-
-    </div>
+  <div class="sh rv"><span class="sl">Featured Work</span><a href="wu-redesign-case-study.html" class="sv">All case studies &rarr;</a></div>
+  <div class="wg">
+    <a href="wu-redesign-case-study.html" class="wc wc--f rv">
+      <div class="wcv"><img src="case-study-assets/08-bank-account-flow.png" alt="WU E1 Redesign"><div class="wcvs"></div><span class="wcft">&#9733; Featured</span></div>
+      <div class="wcc">
+        <div>
+          <div class="wct" style="margin-bottom:14px"><span class="wctt">Design Manager</span><span class="wcd">&middot;</span><span class="wctt">Fintech</span><span class="wcd">&middot;</span><span class="wctt">2023&ndash;Present</span></div>
+          <div class="wcti">Biggest Overhaul in Western Union&rsquo;s History</div>
+          <p class="wcdesc">Led 11 designers to redesign the entire WU platform &mdash; collapsing 5 fragmented apps into one unified, wallet-based experience across iOS, Android &amp; web.</p>
+        </div>
+        <div class="wcr" style="margin-top:28px"><span style="font-size:13px;color:var(--t3)">142+ screens &middot; 40+ engineers</span><span class="wca">&nearr;</span></div>
+      </div>
+    </a>
+    <a href="ux-baseline-case-study.html" class="wc rv r1">
+      <div class="wcv"><img src="case-study-assets/03-payments-hub.png" alt="UX Baseline"><div class="wcvs"></div></div>
+      <div class="wct"><span class="wctt">UX Strategy</span><span class="wcd">&middot;</span><span class="wctt">Design Ops</span><span class="wcd">&middot;</span><span class="wctt">Global Scale</span></div>
+      <div class="wcr"><div class="wcti">The Case for a UX Baseline</div><span class="wca">&nearr;</span></div>
+    </a>
+    <a href="send-money-imt-case-study.html" class="wc rv r2">
+      <div class="wcv"><img src="case-study-assets/05-send-with-contacts.png" alt="Send Money IMT"><div class="wcvs"></div></div>
+      <div class="wct"><span class="wctt">Interaction Design</span><span class="wcd">&middot;</span><span class="wctt">Mobile</span><span class="wcd">&middot;</span><span class="wctt">Accessibility</span></div>
+      <div class="wcr"><div class="wcti">Send Money &mdash; International Money Transfer</div><span class="wca">&nearr;</span></div>
+    </a>
+    <a href="content-network-case-study.html" class="wc rv r3">
+      <div class="wcv"><img src="case-study-assets/06-send-to.png" alt="Content Network"><div class="wcvs"></div></div>
+      <div class="wct"><span class="wctt">Product Strategy</span><span class="wcd">&middot;</span><span class="wctt">Personalisation</span><span class="wcd">&middot;</span><span class="wctt">2024</span></div>
+      <div class="wcr"><div class="wcti">Content Network Product Strategy</div><span class="wca">&nearr;</span></div>
+    </a>
+  </div>
 </section>
 
-<div class="div"></div>
+<div class="dv"></div>
 
 <section class="sec" id="about">
-    <div class="sec-hd rv"><span class="sec-lbl">What I Lead</span></div>
-    <div class="caps">
-        <div class="cap rv">Product Design <span class="cap-arr">&nearr;</span></div>
-        <div class="cap rv">Design Systems <span class="cap-arr">&nearr;</span></div>
-        <div class="cap rv">UX Strategy <span class="cap-arr">&nearr;</span></div>
-        <div class="cap rv">Team Leadership &mdash; 8 Designers <span class="cap-arr">&nearr;</span></div>
-        <div class="cap rv">Interaction Design <span class="cap-arr">&nearr;</span></div>
-        <div class="cap rv">Accessibility (WCAG 2.1) <span class="cap-arr">&nearr;</span></div>
-        <div class="cap rv">Design Operations <span class="cap-arr">&nearr;</span></div>
-        <div class="cap rv">Fintech Products <span class="cap-arr">&nearr;</span></div>
-        <div class="cap rv">Stakeholder Alignment <span class="cap-arr">&nearr;</span></div>
-        <div class="cap rv">Product Discovery <span class="cap-arr">&nearr;</span></div>
-    </div>
+  <div class="sh rv"><span class="sl">What I Lead</span></div>
+  <div class="cg">
+    <div class="ci rv">Product Design <span class="cia">&nearr;</span></div>
+    <div class="ci rv">Design Systems <span class="cia">&nearr;</span></div>
+    <div class="ci rv">UX Strategy <span class="cia">&nearr;</span></div>
+    <div class="ci rv">Team Leadership &mdash; 8 Designers <span class="cia">&nearr;</span></div>
+    <div class="ci rv">Interaction Design <span class="cia">&nearr;</span></div>
+    <div class="ci rv">Accessibility (WCAG 2.1) <span class="cia">&nearr;</span></div>
+    <div class="ci rv">Design Operations <span class="cia">&nearr;</span></div>
+    <div class="ci rv">Fintech Products <span class="cia">&nearr;</span></div>
+    <div class="ci rv">Stakeholder Alignment <span class="cia">&nearr;</span></div>
+    <div class="ci rv">Product Discovery <span class="cia">&nearr;</span></div>
+  </div>
 </section>
 
 <div class="cos rv">
-    <span class="cos-lbl">Companies &amp; Teams</span>
-    <span class="co">Western Union</span>
-    <span class="co">EY (Ernst &amp; Young)</span>
-    <span class="co">Searce Inc</span>
-    <span class="co">Mobikon</span>
-    <span class="co">Fab.com</span>
+  <span class="cosl">Companies &amp; Teams</span>
+  <span class="co">Western Union</span><span class="co">EY (Ernst &amp; Young)</span><span class="co">Searce Inc</span><span class="co">Mobikon</span><span class="co">Fab.com</span>
 </div>
 
-<div class="div"></div>
+<div class="dv"></div>
 
 <section class="sec" id="testimonials">
-    <div class="sec-hd rv">
-        <span class="sec-lbl">Testimonials</span>
-        <span style="font-size:12px;color:var(--t3)">Placeholder &mdash; replace with real quotes from colleagues</span>
+  <div class="sh rv"><span class="sl">Testimonials</span><span style="font-size:12px;color:var(--t3)">Placeholder &mdash; replace with real quotes</span></div>
+  <div class="tw">
+    <div class="tr tr--a">
+      <div class="tc tc--ph"><p class="tcq tcq--ph">[Placeholder] Add a quote from a Product Manager at Western Union about your cross-functional leadership on the E1 Redesign &mdash; how you aligned design, engineering and compliance across the biggest redesign in the company&rsquo;s history.</p><div class="tcw"><strong>[Name]</strong> &mdash; Product Manager &middot; Western Union</div></div>
+      <div class="tc tc--ph"><p class="tcq tcq--ph">[Placeholder] A quote from an Engineering Lead about how your dual-track agile approach, design QA rituals, and clear specs improved delivery velocity and reduced rework by 40%.</p><div class="tcw"><strong>[Name]</strong> &mdash; Engineering Lead &middot; Western Union</div></div>
+      <div class="tc tc--ph"><p class="tcq tcq--ph">[Placeholder] A testimonial from a designer you mentored &mdash; about your 1:1s, critique sessions, and how you helped them grow in craft and career decision-making.</p><div class="tcw"><strong>[Name]</strong> &mdash; Senior UX Designer &middot; Western Union</div></div>
+      <div class="tc tc--ph"><p class="tcq tcq--ph">[Placeholder] A quote from Searce Inc about your UX strategy, product discovery, and contributions to HappierWork&rsquo;s roadmap and engineering collaboration.</p><div class="tcw"><strong>[Name]</strong> &mdash; Product Director &middot; Searce Inc</div></div>
+      <div class="tc tc--ph"><p class="tcq tcq--ph">[Placeholder] Add a quote from a Product Manager at Western Union about your cross-functional leadership on the E1 Redesign &mdash; how you aligned design, engineering and compliance across the biggest redesign in the company&rsquo;s history.</p><div class="tcw"><strong>[Name]</strong> &mdash; Product Manager &middot; Western Union</div></div>
+      <div class="tc tc--ph"><p class="tcq tcq--ph">[Placeholder] A quote from an Engineering Lead about how your dual-track agile approach, design QA rituals, and clear specs improved delivery velocity and reduced rework by 40%.</p><div class="tcw"><strong>[Name]</strong> &mdash; Engineering Lead &middot; Western Union</div></div>
+      <div class="tc tc--ph"><p class="tcq tcq--ph">[Placeholder] A testimonial from a designer you mentored &mdash; about your 1:1s, critique sessions, and how you helped them grow in craft and career decision-making.</p><div class="tcw"><strong>[Name]</strong> &mdash; Senior UX Designer &middot; Western Union</div></div>
+      <div class="tc tc--ph"><p class="tcq tcq--ph">[Placeholder] A quote from Searce Inc about your UX strategy, product discovery, and contributions to HappierWork&rsquo;s roadmap and engineering collaboration.</p><div class="tcw"><strong>[Name]</strong> &mdash; Product Director &middot; Searce Inc</div></div>
     </div>
-    <div class="testi-outer">
-        <div class="testi-row testi-row--a">
-            <div class="tc tc--ph"><p class="tc-q tc-q--ph">[Placeholder] Add a quote from a Product Manager at Western Union about your cross-functional leadership on the E1 Redesign &mdash; how you aligned design, engineering and compliance teams.</p><div class="tc-who"><strong>[Name]</strong> &mdash; Product Manager &middot; Western Union</div></div>
-            <div class="tc tc--ph"><p class="tc-q tc-q--ph">[Placeholder] A quote from an Engineering Lead about how your dual-track agile approach, design QA rituals, and clear specs improved delivery velocity and reduced rework by 40%.</p><div class="tc-who"><strong>[Name]</strong> &mdash; Engineering Lead &middot; Western Union</div></div>
-            <div class="tc tc--ph"><p class="tc-q tc-q--ph">[Placeholder] A testimonial from a designer you mentored about your 1:1s, critique sessions, and how your feedback helped them grow in their craft and decision-making.</p><div class="tc-who"><strong>[Name]</strong> &mdash; Senior UX Designer &middot; Western Union</div></div>
-            <div class="tc tc--ph"><p class="tc-q tc-q--ph">[Placeholder] A quote from Searce Inc about your UX strategy, product discovery approach, and contributions to the HappierWork roadmap and engineering collaboration.</p><div class="tc-who"><strong>[Name]</strong> &mdash; Product Director &middot; Searce Inc</div></div>
-            <div class="tc tc--ph"><p class="tc-q tc-q--ph">[Placeholder] Add a quote from a Product Manager at Western Union about your cross-functional leadership on the E1 Redesign &mdash; how you aligned design, engineering and compliance teams.</p><div class="tc-who"><strong>[Name]</strong> &mdash; Product Manager &middot; Western Union</div></div>
-            <div class="tc tc--ph"><p class="tc-q tc-q--ph">[Placeholder] A quote from an Engineering Lead about how your dual-track agile approach, design QA rituals, and clear specs improved delivery velocity and reduced rework by 40%.</p><div class="tc-who"><strong>[Name]</strong> &mdash; Engineering Lead &middot; Western Union</div></div>
-            <div class="tc tc--ph"><p class="tc-q tc-q--ph">[Placeholder] A testimonial from a designer you mentored about your 1:1s, critique sessions, and how your feedback helped them grow in their craft and decision-making.</p><div class="tc-who"><strong>[Name]</strong> &mdash; Senior UX Designer &middot; Western Union</div></div>
-            <div class="tc tc--ph"><p class="tc-q tc-q--ph">[Placeholder] A quote from Searce Inc about your UX strategy, product discovery approach, and contributions to the HappierWork roadmap and engineering collaboration.</p><div class="tc-who"><strong>[Name]</strong> &mdash; Product Director &middot; Searce Inc</div></div>
-        </div>
-        <div class="testi-row testi-row--b">
-            <div class="tc tc--ph"><p class="tc-q tc-q--ph">[Placeholder] A quote from an EY colleague about your enterprise UX engagements, design thinking workshops, or how you managed stakeholder alignment on complex transformation projects.</p><div class="tc-who"><strong>[Name]</strong> &mdash; Senior Manager &middot; EY</div></div>
-            <div class="tc tc--ph"><p class="tc-q tc-q--ph">[Placeholder] A LinkedIn recommendation from a peer design leader or Director who can speak to your strategic design thinking, leadership philosophy, and long-term impact on the organisations you&rsquo;ve worked in.</p><div class="tc-who"><strong>[Name]</strong> &mdash; Design Director &middot; [Company]</div></div>
-            <div class="tc tc--ph"><p class="tc-q tc-q--ph">[Placeholder] A quote from an Accessibility or Compliance partner at WU about how you made heavy regulatory requirements feel transparent and trustworthy for users without adding friction to the core flow.</p><div class="tc-who"><strong>[Name]</strong> &mdash; Compliance Lead &middot; Western Union</div></div>
-            <div class="tc tc--ph"><p class="tc-q tc-q--ph">[Placeholder] A quote from a senior product or technology leader about how your design QA rituals and structured handoff process built engineering confidence and measurably improved the quality of shipped products.</p><div class="tc-who"><strong>[Name]</strong> &mdash; VP Product &middot; [Company]</div></div>
-            <div class="tc tc--ph"><p class="tc-q tc-q--ph">[Placeholder] A quote from an EY colleague about your enterprise UX engagements, design thinking workshops, or how you managed stakeholder alignment on complex transformation projects.</p><div class="tc-who"><strong>[Name]</strong> &mdash; Senior Manager &middot; EY</div></div>
-            <div class="tc tc--ph"><p class="tc-q tc-q--ph">[Placeholder] A LinkedIn recommendation from a peer design leader or Director who can speak to your strategic design thinking, leadership philosophy, and long-term impact on the organisations you&rsquo;ve worked in.</p><div class="tc-who"><strong>[Name]</strong> &mdash; Design Director &middot; [Company]</div></div>
-            <div class="tc tc--ph"><p class="tc-q tc-q--ph">[Placeholder] A quote from an Accessibility or Compliance partner at WU about how you made heavy regulatory requirements feel transparent and trustworthy for users without adding friction to the core flow.</p><div class="tc-who"><strong>[Name]</strong> &mdash; Compliance Lead &middot; Western Union</div></div>
-            <div class="tc tc--ph"><p class="tc-q tc-q--ph">[Placeholder] A quote from a senior product or technology leader about how your design QA rituals and structured handoff process built engineering confidence and measurably improved the quality of shipped products.</p><div class="tc-who"><strong>[Name]</strong> &mdash; VP Product &middot; [Company]</div></div>
-        </div>
+    <div class="tr tr--b">
+      <div class="tc tc--ph"><p class="tcq tcq--ph">[Placeholder] A quote from an EY colleague about your enterprise UX engagements, design thinking workshops, and how you drove alignment across complex stakeholder groups on transformation projects.</p><div class="tcw"><strong>[Name]</strong> &mdash; Senior Manager &middot; EY</div></div>
+      <div class="tc tc--ph"><p class="tcq tcq--ph">[Placeholder] A LinkedIn recommendation from a peer design leader who can speak to your strategic thinking, leadership philosophy, and long-term impact on the organisations you&rsquo;ve worked in.</p><div class="tcw"><strong>[Name]</strong> &mdash; Design Director &middot; [Company]</div></div>
+      <div class="tc tc--ph"><p class="tcq tcq--ph">[Placeholder] A quote from a Compliance partner at WU about how you made regulatory requirements feel transparent and trustworthy without adding friction to the core transfer flow.</p><div class="tcw"><strong>[Name]</strong> &mdash; Compliance Lead &middot; Western Union</div></div>
+      <div class="tc tc--ph"><p class="tcq tcq--ph">[Placeholder] A quote from a senior product leader about how your design QA rituals and structured handoff measurably improved the quality and shipping confidence of the team.</p><div class="tcw"><strong>[Name]</strong> &mdash; VP Product &middot; [Company]</div></div>
+      <div class="tc tc--ph"><p class="tcq tcq--ph">[Placeholder] A quote from an EY colleague about your enterprise UX engagements, design thinking workshops, and how you drove alignment across complex stakeholder groups on transformation projects.</p><div class="tcw"><strong>[Name]</strong> &mdash; Senior Manager &middot; EY</div></div>
+      <div class="tc tc--ph"><p class="tcq tcq--ph">[Placeholder] A LinkedIn recommendation from a peer design leader who can speak to your strategic thinking, leadership philosophy, and long-term impact on the organisations you&rsquo;ve worked in.</p><div class="tcw"><strong>[Name]</strong> &mdash; Design Director &middot; [Company]</div></div>
+      <div class="tc tc--ph"><p class="tcq tcq--ph">[Placeholder] A quote from a Compliance partner at WU about how you made regulatory requirements feel transparent and trustworthy without adding friction to the core transfer flow.</p><div class="tcw"><strong>[Name]</strong> &mdash; Compliance Lead &middot; Western Union</div></div>
+      <div class="tc tc--ph"><p class="tcq tcq--ph">[Placeholder] A quote from a senior product leader about how your design QA rituals and structured handoff measurably improved the quality and shipping confidence of the team.</p><div class="tcw"><strong>[Name]</strong> &mdash; VP Product &middot; [Company]</div></div>
     </div>
+  </div>
 </section>
 
-<div class="div"></div>
+<div class="dv"></div>
 
 <section class="sec" id="contact" style="padding-bottom:96px">
-    <div class="contact-grid">
-        <div class="rv">
-            <div class="contact-hl">Let&rsquo;s build<br>something<br><em>meaningful.</em></div>
-            <p class="contact-sub">Open to senior design leadership roles, consulting engagements, and collaborations on complex product challenges.</p>
-        </div>
-        <div class="rv rv-d1">
-            <div class="cls">
-                <a href="mailto:asanyal88@gmail.com" class="cl">
-                    <div><div class="cl-lbl">Book an Intro / Email</div><div class="cl-val">asanyal88@gmail.com</div></div>
-                    <span class="cl-arr">&nearr;</span>
-                </a>
-                <a href="https://linkedin.com/in/arindam-sanyal" target="_blank" rel="noopener" class="cl">
-                    <div><div class="cl-lbl">LinkedIn</div><div class="cl-val">linkedin.com/in/arindam-sanyal</div></div>
-                    <span class="cl-arr">&nearr;</span>
-                </a>
-                <a href="tel:+919096580834" class="cl">
-                    <div><div class="cl-lbl">Phone</div><div class="cl-val">+91 90965 80834</div></div>
-                    <span class="cl-arr">&nearr;</span>
-                </a>
-            </div>
-        </div>
+  <div class="cin">
+    <div class="rv">
+      <div class="ch">Let&rsquo;s build<br>something<br><em>meaningful.</em></div>
+      <p class="cs">Open to senior design leadership roles, consulting engagements, and collaborations on complex product challenges.</p>
     </div>
+    <div class="rv r1">
+      <div class="cls">
+        <a href="mailto:asanyal88@gmail.com" class="cl"><div><div class="cll">Book an Intro / Email</div><div class="clv">asanyal88@gmail.com</div></div><span class="cla">&nearr;</span></a>
+        <a href="https://linkedin.com/in/arindam-sanyal" target="_blank" rel="noopener" class="cl"><div><div class="cll">LinkedIn</div><div class="clv">linkedin.com/in/arindam-sanyal</div></div><span class="cla">&nearr;</span></a>
+        <a href="tel:+919096580834" class="cl"><div><div class="cll">Phone</div><div class="clv">+91 90965 80834</div></div><span class="cla">&nearr;</span></a>
+      </div>
+    </div>
+  </div>
 </section>
 
-<footer id="footer">
-    <span class="foot-l">Arindam Sanyal &mdash; Product Design Manager</span>
-    <span class="foot-r">Pune, India &middot; &copy; 2026</span>
-</footer>
+<footer id="footer"><span class="fl">Arindam Sanyal &mdash; Product Design Manager</span><span class="fr">Pune, India &middot; &copy; 2026</span></footer>
 
 <script>
 (function(){
-    var nav=document.getElementById('nav');
-    window.addEventListener('scroll',function(){nav.classList.toggle('stuck',window.scrollY>50)},{passive:true});
-    function tick(){
-        var el=document.getElementById('local-time');
-        if(!el)return;
-        var now=new Date(),ist=new Date(now.getTime()+5.5*3600000);
-        var h=ist.getUTCHours(),m=ist.getUTCMinutes(),ap=h>=12?'PM':'AM';
-        h=h%12||12;
-        el.textContent=h+':'+(m<10?'0':'')+m+' '+ap+' IST';
-    }
-    tick();setInterval(tick,30000);
-    var obs=new IntersectionObserver(function(entries){
-        entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});
-    },{threshold:0.07,rootMargin:'0px 0px -24px 0px'});
-    document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
+  var n=document.getElementById('nav');
+  window.addEventListener('scroll',function(){n.classList.toggle('s',window.scrollY>40)},{passive:true});
+  function tick(){var el=document.getElementById('t');if(!el)return;var d=new Date(),ist=new Date(d.getTime()+5.5*3600000);var h=ist.getUTCHours(),m=ist.getUTCMinutes(),ap=h>=12?'PM':'AM';h=h%12||12;el.textContent=h+':'+(m<10?'0':'')+m+' '+ap+' IST';}
+  tick();setInterval(tick,30000);
+  var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');o.unobserve(e.target);}});},{threshold:.07,rootMargin:'0px 0px -20px 0px'});
+  document.querySelectorAll('.rv').forEach(function(el){o.observe(el);});
 })();
 </script>
 </body>

@@ -1,888 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biggest Overhaul in WU History — E1 Redesign | Arindam Sanyal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --accent:      #818CF8;
-            --accent-dark: #6366F1;
-            --accent-lt:   #A5B4FC;
-            --accent-glow: rgba(129,140,248,0.18);
-            --accent-dim:  rgba(129,140,248,0.07);
-            --bg:          #080808;
-            --s1:          #101010;
-            --s2:          #161616;
-            --border:      rgba(255,255,255,0.07);
-            --t1:          rgba(255,255,255,0.92);
-            --t2:          rgba(255,255,255,0.5);
-            --t3:          rgba(255,255,255,0.25);
-            --success:     #10B981;
-            --warning:     #F59E0B;
-            --r-sm:8px; --r-md:16px; --r-lg:24px;
-            --ease:cubic-bezier(0.16,1,0.3,1);
-        }
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: rgba(129,140,248,.2) transparent; }
-        ::-webkit-scrollbar { width: 3px; }
-        ::-webkit-scrollbar-thumb { background: rgba(129,140,248,.25); border-radius: 2px; }
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg); color: var(--t1); line-height: 1.6;
-            overflow-x: hidden; -webkit-font-smoothing: antialiased;
-            padding-bottom: 60px;
-        }
-        .wrap { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
-
-        /* ─── COVER ─── */
-        .cover {
-            min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end;
-            padding: 80px 48px; position: relative; overflow: hidden;
-        }
-        .cover::before {
-            content: ''; position: absolute; inset: 0;
-            background:
-                radial-gradient(ellipse 80% 60% at 75% 15%, rgba(129,140,248,.1) 0%, transparent 55%),
-                radial-gradient(ellipse 50% 50% at 15% 80%, rgba(99,102,241,.05) 0%, transparent 55%);
-        }
-        .cover-grid {
-            position: absolute; inset: 0; pointer-events: none;
-            background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-            background-size: 64px 64px;
-            -webkit-mask-image: radial-gradient(ellipse at 70% 25%, black 15%, transparent 70%);
-            mask-image: radial-gradient(ellipse at 70% 25%, black 15%, transparent 70%);
-        }
-        .cover-content { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; width: 100%; }
-        .cover-featured {
-            display: inline-flex; align-items: center; gap: 8px;
-            background: var(--accent); color: #fff;
-            border-radius: 100px; padding: 6px 16px;
-            font-size: 10px; font-weight: 800; text-transform: uppercase;
-            letter-spacing: 2.5px; margin-bottom: 20px;
-            animation: slideUp .7s var(--ease) .05s both;
-        }
-        .cover-eyebrow {
-            display: inline-flex; align-items: center; gap: 12px;
-            font-size: 10px; font-weight: 800; text-transform: uppercase;
-            letter-spacing: 3px; color: var(--accent); margin-bottom: 24px;
-            animation: slideUp .8s var(--ease) .15s both;
-        }
-        .cover-eyebrow-line { width: 32px; height: 1.5px; background: var(--accent); }
-        .cover-title {
-            font-size: clamp(44px, 6.5vw, 88px); font-weight: 900;
-            letter-spacing: -3px; line-height: .92; margin-bottom: 36px;
-            animation: slideUp .9s var(--ease) .28s both;
-        }
-        .cover-title em { font-style: normal; color: transparent; -webkit-text-stroke: 1.5px rgba(255,255,255,.18); }
-        .cover-meta {
-            display: flex; gap: 48px; flex-wrap: wrap;
-            animation: slideUp .9s var(--ease) .4s both;
-        }
-        .cover-meta-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--t3); margin-bottom: 4px; }
-        .cover-meta-value { font-size: 14px; font-weight: 600; color: var(--t1); }
-
-        /* ─── ROLE BAR ─── */
-        .role-bar { background: #0c0c0c; border-bottom: 1px solid var(--border); }
-        .role-inner { max-width: 1200px; margin: 0 auto; padding: 36px 48px; display: grid; grid-template-columns: repeat(4,1fr); gap: 48px; }
-        .ri-lbl { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; color: var(--t3); margin-bottom: 8px; }
-        .ri-val { font-size: 14px; font-weight: 700; color: var(--t1); line-height: 1.4; }
-        /* ─ THITI-STYLE IMPACT BLOCK ─ */
-        .ib { border-bottom: 1px solid var(--border); padding: 40px 48px; background: #0c0c0c; }
-        .ib-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 120px 1fr 1fr 1fr; gap: 48px; }
-        .ib-lbl { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 2.5px; color: var(--t3); margin-bottom: 10px; }
-        .ib-val { font-size: 14px; font-weight: 600; color: var(--t1); }
-        .ib-items { display: flex; flex-direction: column; gap: 6px; }
-        .ib-item { font-size: 13px; color: var(--t2); display: flex; gap: 8px; line-height: 1.5; }
-        .ib-item::before { content: '\2937'; color: rgba(129,140,248,.6); flex-shrink: 0; font-size: 12px; }
-        @media(max-width:900px){ .ib { padding: 32px 24px; } .ib-grid { grid-template-columns: 1fr 1fr; gap: 28px; } }
-
-        .ri-sub { font-size: 12px; color: var(--t2); font-weight: 400; display: block; margin-top: 3px; }
-
-        /* ─── LEADERSHIP VIEW ─── */
-        .lv { background: #0c0c0c; border-bottom: 1px solid var(--border); padding: 80px 0; }
-        .lv-inner { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
-        .lv-hd { display: flex; align-items: center; justify-content: space-between; margin-bottom: 48px; flex-wrap: wrap; gap: 12px; }
-        .lv-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--accent-dim); border: 1px solid rgba(129,140,248,.2); border-radius: 100px; padding: 6px 16px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 2.5px; color: var(--accent); }
-        .lv-subtitle { font-size: 12px; color: var(--t3); font-weight: 500; }
-        .lv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 2px; }
-        .lv-cell { background: var(--s2); border-radius: 16px; padding: 36px 32px; }
-        .lv-cell-lbl { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; color: var(--t3); margin-bottom: 14px; }
-        .lv-cell-title { font-size: 18px; font-weight: 800; color: var(--t1); line-height: 1.3; margin-bottom: 12px; letter-spacing: -.3px; }
-        .lv-cell-body { font-size: 14px; color: var(--t2); line-height: 1.7; }
-        .lv-decisions { display: flex; flex-direction: column; gap: 14px; }
-        .lv-d { display: flex; gap: 14px; align-items: flex-start; }
-        .lv-d-n { width: 24px; height: 24px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 900; color: #fff; flex-shrink: 0; margin-top: 1px; }
-        .lv-d-t { font-size: 13px; color: var(--t2); line-height: 1.65; }
-        .lv-d-t strong { color: rgba(255,255,255,.85); font-weight: 700; }
-        .lv-metrics { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; margin-top: 2px; margin-bottom: 40px; }
-        .lv-m { background: var(--s2); border-radius: 12px; padding: 24px 20px; text-align: center; }
-        .lv-m-n { font-size: 28px; font-weight: 900; color: var(--accent); letter-spacing: -1px; margin-bottom: 6px; line-height: 1; }
-        .lv-m-l { font-size: 11px; color: var(--t3); line-height: 1.5; }
-        .lv-toggle { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); border-radius: 100px; padding: 14px 28px; font-size: 13px; font-weight: 700; color: var(--t2); cursor: pointer; font-family: inherit; transition: all .2s; }
-        .lv-toggle:hover { background: var(--accent-dim); border-color: rgba(129,140,248,.25); color: var(--accent); }
-        .lv-toggle-ic { transition: transform .3s; display: inline-block; }
-        .lv-toggle.open .lv-toggle-ic { transform: rotate(180deg); }
-        #full-cs { display: none; }
-        #full-cs.open { display: block; }
-
-        /* ─── SECTION BASE ─── */
-        .section { padding: 100px 0; }
-        .section-dark { background: #0a0a0a; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 100px 0; }
-        .section-alt { background: var(--s1); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 100px 0; }
-        .sec-ey {
-            display: inline-flex; align-items: center; gap: 10px;
-            font-size: 10px; font-weight: 800; text-transform: uppercase;
-            letter-spacing: 3px; color: var(--accent); margin-bottom: 20px;
-        }
-        .sec-ey::after { content:''; width:28px; height:1.5px; background:var(--accent); display:block; }
-        .sec-title { font-size: clamp(28px,3.5vw,44px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; color: var(--t1); margin-bottom: 16px; }
-        .sec-lead { font-size: 16px; color: var(--t2); max-width: 640px; line-height: 1.75; }
-        .sec-header { margin-bottom: 64px; }
-
-        /* ─── CHALLENGE CARDS ─── */
-        .challenge-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-top: 56px; border-radius: var(--r-lg); overflow: hidden; }
-        .ch-card { background: var(--s2); padding: 36px 32px; }
-        .ch-num { font-size: 32px; font-weight: 900; color: var(--accent); opacity: .2; letter-spacing: -2px; line-height: 1; margin-bottom: 14px; }
-        .ch-title { font-size: 16px; font-weight: 800; color: var(--t1); margin-bottom: 10px; }
-        .ch-body { font-size: 13px; color: var(--t2); line-height: 1.7; }
-
-        /* ─── OBJECTIVES ─── */
-        .obj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 56px; }
-        .obj-col { background: var(--s2); border-radius: var(--r-lg); padding: 40px; }
-        .obj-col-title { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; color: var(--accent); margin-bottom: 20px; }
-        .obj-items { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-        .obj-items li { display: flex; gap: 12px; align-items: flex-start; font-size: 14px; color: var(--t2); line-height: 1.6; }
-        .obj-items li::before { content: '→'; color: var(--accent); flex-shrink: 0; font-weight: 700; }
-
-        /* ─── ROLE DETAIL ─── */
-        .role-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-top: 56px; border-radius: var(--r-lg); overflow: hidden; }
-        .role-card { background: var(--s2); padding: 40px; }
-        .role-card-icon { font-size: 28px; margin-bottom: 16px; }
-        .role-card-title { font-size: 16px; font-weight: 800; color: var(--t1); margin-bottom: 14px; }
-        .role-card-items { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-        .role-card-items li { font-size: 13px; color: var(--t2); display: flex; gap: 8px; line-height: 1.55; }
-        .role-card-items li::before { content: '·'; color: var(--accent); flex-shrink: 0; font-weight: 900; font-size: 16px; line-height: 1.1; }
-
-        /* ─── PROCESS TIMELINE ─── */
-        .process-list { display: flex; flex-direction: column; gap: 2px; margin-top: 56px; }
-        .proc-item { display: grid; grid-template-columns: 60px 1fr; gap: 32px; align-items: start; background: var(--s2); padding: 28px 36px; }
-        .proc-item:first-child { border-radius: var(--r-lg) var(--r-lg) 0 0; }
-        .proc-item:last-child { border-radius: 0 0 var(--r-lg) var(--r-lg); }
-        .proc-n { font-size: 32px; font-weight: 900; color: var(--accent); opacity: .2; letter-spacing: -2px; line-height: 1.1; }
-        .proc-title { font-size: 16px; font-weight: 700; color: var(--t1); margin-bottom: 5px; }
-        .proc-body { font-size: 13px; color: var(--t2); line-height: 1.7; }
-
-        /* ─── EVIDENCE SCROLL ─── */
-        .evidence-wrap { overflow: hidden; }
-        .evidence-scroll { display: flex; gap: 20px; overflow-x: auto; padding: 4px 4px 16px; scroll-snap-type: x mandatory; scrollbar-width: none; }
-        .evidence-scroll::-webkit-scrollbar { display: none; }
-        .ev-card { min-width: 360px; background: var(--s2); border-radius: var(--r-lg); overflow: hidden; scroll-snap-align: start; flex-shrink: 0; }
-        .ev-img { width: 100%; height: 240px; object-fit: cover; object-position: top left; opacity: .75; display: block; }
-        .ev-body { padding: 24px 28px; }
-        .ev-tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); margin-bottom: 6px; }
-        .ev-title { font-size: 15px; font-weight: 700; color: var(--t1); margin-bottom: 6px; }
-        .ev-desc { font-size: 13px; color: var(--t2); line-height: 1.6; }
-        .scroll-hint { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--t3); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-top: 20px; }
-
-        /* ─── DESIGN DIRECTION ─── */
-        .dir-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 56px; border-radius: var(--r-lg); overflow: hidden; }
-        .dir-card { background: var(--s2); padding: 40px; }
-        .dir-n { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; color: var(--t3); margin-bottom: 12px; }
-        .dir-title { font-size: 18px; font-weight: 800; color: var(--t1); margin-bottom: 10px; }
-        .dir-body { font-size: 14px; color: var(--t2); line-height: 1.7; }
-        .dir-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--accent); color: #fff; border-radius: 100px; padding: 5px 14px; font-size: 10px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 14px; }
-
-        /* ─── OUTCOMES ─── */
-        .outcomes-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; margin-top: 56px; }
-        .oc-card { background: var(--s2); border-radius: var(--r-md); padding: 36px 28px; text-align: center; }
-        .oc-n { font-size: 52px; font-weight: 900; color: var(--accent); letter-spacing: -3px; line-height: 1; margin-bottom: 10px; }
-        .oc-title { font-size: 14px; font-weight: 700; color: var(--t1); margin-bottom: 8px; }
-        .oc-body { font-size: 12px; color: var(--t3); line-height: 1.6; }
-
-        /* ─── WHAT'S NEXT ─── */
-        .next-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-top: 56px; border-radius: var(--r-lg); overflow: hidden; }
-        .next-card { background: var(--s2); padding: 36px 32px; }
-        .next-step { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 2.5px; color: var(--accent); margin-bottom: 12px; }
-        .next-title { font-size: 16px; font-weight: 700; color: var(--t1); margin-bottom: 10px; }
-        .next-body { font-size: 13px; color: var(--t2); line-height: 1.7; }
-
-        /* ─── CLOSING ─── */
-        .closing { background: #060606; padding: 120px 48px; text-align: center; border-top: 1px solid var(--border); }
-        .closing-quote { font-size: clamp(20px,2.5vw,32px); font-weight: 300; color: var(--t1); max-width: 760px; margin: 0 auto 36px; line-height: 1.55; }
-        .closing-quote strong { color: var(--accent-lt); font-weight: 600; }
-        .closing-sub { font-size: 14px; color: var(--t3); margin-bottom: 48px; }
-        .closing-cta { display: inline-flex; align-items: center; gap: 10px; background: var(--accent); color: #fff; font-size: 13px; font-weight: 700; padding: 14px 28px; border-radius: 100px; text-decoration: none; transition: opacity .2s, transform .2s; }
-        .closing-cta:hover { opacity: .85; transform: translateY(-2px); }
-
-        /* ─── FOOTER ─── */
-        .footer { background: #040404; padding: 48px; text-align: center; border-top: 1px solid var(--border); }
-        .footer-brand { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 10px; }
-        .footer-text { font-size: 12px; color: var(--t3); line-height: 1.8; }
-
-        /* ─── PROGRESS + SECTION NAV ─── */
-        #cs-pb { position: fixed; top: 0; left: 0; height: 2px; background: var(--accent); z-index: 600; width: 0; transition: width .08s linear; box-shadow: 0 0 8px var(--accent-glow); }
-        .csn { position: fixed; right: 28px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 10px; z-index: 100; align-items: flex-end; }
-        .csn-item { display: flex; align-items: center; gap: 10px; justify-content: flex-end; cursor: pointer; text-decoration: none; }
-        .csn-lbl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,.22); opacity: 0; transform: translateX(8px); transition: opacity .2s, transform .2s, color .2s; white-space: nowrap; }
-        .csn-dot { width: 5px; height: 5px; border-radius: 3px; background: rgba(255,255,255,.15); flex-shrink: 0; transition: all .28s cubic-bezier(.16,1,.3,1); }
-        .csn:hover .csn-lbl { opacity: 1; transform: translateX(0); }
-        .csn-item.active .csn-dot { background: var(--accent); height: 14px; box-shadow: 0 0 6px var(--accent-glow); }
-        .csn-item.active .csn-lbl { opacity: 1; transform: translateX(0); color: var(--accent); }
-        @media(max-width:1100px){ .csn { display: none; } }
-
-        /* ─── CASE NAV ─── */
-        .cs-nav { position: fixed; bottom: 0; left: 0; right: 0; z-index: 200; background: rgba(8,8,8,.93); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-top: 1px solid var(--border); height: 60px; display: flex; align-items: center; padding: 0 48px; justify-content: space-between; }
-        .cs-nav a { font-size: 12px; font-weight: 600; color: rgba(255,255,255,.4); text-decoration: none; display: flex; align-items: center; gap: 8px; transition: color .2s; }
-        .cs-nav a:hover { color: var(--accent); }
-        .cs-nav-home { color: rgba(255,255,255,.22) !important; font-size: 11px !important; }
-        .cs-nav-home:hover { color: rgba(255,255,255,.55) !important; }
-        .cs-nav-mid { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: rgba(255,255,255,.18); }
-
-        /* ─── SCROLL REVEAL ─── */
-        .rv { opacity: 0; transform: translateY(22px); transition: opacity .65s cubic-bezier(.16,1,.3,1), transform .65s cubic-bezier(.16,1,.3,1); }
-        .rv.in { opacity: 1; transform: none; }
-
-        @keyframes slideUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-
-        @media (max-width: 900px) {
-            .wrap { padding: 0 24px; }
-            .cover { padding: 64px 24px 56px; }
-            .role-inner, .lv-inner { padding: 28px 24px; }
-            .role-inner { grid-template-columns: 1fr 1fr; }
-            .lv-grid { grid-template-columns: 1fr; }
-            .lv-metrics { grid-template-columns: repeat(2,1fr); }
-            .section, .section-dark, .section-alt { padding: 64px 0; }
-            .challenge-grid, .role-grid, .next-grid { grid-template-columns: 1fr; }
-            .obj-grid, .dir-grid { grid-template-columns: 1fr; }
-            .outcomes-grid { grid-template-columns: repeat(2,1fr); }
-            .closing { padding: 80px 24px; }
-            .cs-nav { padding: 0 24px; }
-        }
-    </style>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WU E1 Redesign &mdash; Arindam Sanyal</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0c0c0c;--s:#161616;--b:rgba(255,255,255,.07);--t1:rgba(255,255,255,.92);--t2:rgba(255,255,255,.48);--t3:rgba(255,255,255,.22);--a:#818CF8;--g:#22c55e;--e:cubic-bezier(.16,1,.3,1);--mw:1100px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+nav{position:fixed;inset:0 0 auto;z-index:99;height:56px;padding:0 48px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid transparent;transition:background .3s,border-color .3s}
+nav.s{background:rgba(12,12,12,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom-color:var(--b)}
+.nl{font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px}
+.nd{width:7px;height:7px;border-radius:50%;background:var(--a)}
+.nr{display:flex;align-items:center;gap:4px}
+.na{font-size:13px;font-weight:500;color:var(--t2);padding:8px 14px;border-radius:8px;transition:color .2s,background .2s}
+.na:hover{color:var(--t1);background:rgba(255,255,255,.05)}
+.nb{font-size:12px;font-weight:700;color:var(--t1);padding:8px 18px;border:1px solid var(--b);border-radius:100px;margin-left:6px;transition:border-color .2s,color .2s}
+.nb:hover{border-color:var(--a);color:var(--a)}
+.wrap{max-width:calc(var(--mw)+96px);margin:0 auto;padding:0 48px}
+/* CS LAYOUT */
+.cs-hero{padding:120px 0 64px;border-bottom:1px solid var(--b)}
+.cs-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--t3);margin-bottom:24px}
+.cs-title{font-size:clamp(42px,6vw,80px);font-weight:700;letter-spacing:-3px;line-height:1;margin-bottom:24px}
+.cs-website{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--t2);border:1px solid var(--b);padding:8px 16px;border-radius:100px;transition:border-color .2s,color .2s}
+.cs-website:hover{border-color:var(--a);color:var(--a)}
+/* ABOUT */
+.cs-about{padding:64px 0;border-bottom:1px solid var(--b)}
+.cs-about-text{font-size:clamp(18px,2.2vw,24px);font-weight:500;font-style:italic;line-height:1.55;color:var(--t1);max-width:820px}
+/* IMPACT BLOCK */
+.cs-impact{display:grid;grid-template-columns:120px 1fr 1fr 1fr;gap:48px;padding:48px 0;border-bottom:1px solid var(--b)}
+.ci-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--t3);margin-bottom:10px}
+.ci-val{font-size:14px;font-weight:600;color:var(--t1);line-height:1.4}
+.ci-items{display:flex;flex-direction:column;gap:8px}
+.ci-item{font-size:13px;color:var(--t2);display:flex;gap:8px;line-height:1.5}
+.ci-item::before{content:'\2937';color:rgba(129,140,248,.6);flex-shrink:0;font-size:12px;margin-top:1px}
+/* CONTENT */
+.cs-content{padding:80px 0}
+.cs-section{margin-bottom:80px}
+.cs-sec-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--t3);margin-bottom:20px}
+.cs-section img{width:100%;border-radius:12px;display:block;background:var(--s)}
+.cs-caption{font-size:14px;color:var(--t2);line-height:1.7;margin-top:16px;max-width:680px}
+.cs-img-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.cs-img-grid img{width:100%;border-radius:10px;display:block;background:var(--s);aspect-ratio:16/10;object-fit:cover;object-position:top left}
+/* PROCESS */
+.cs-process{padding:64px 0;border-top:1px solid var(--b)}
+.cs-process-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--t3);margin-bottom:24px}
+.cs-process-text{font-size:16px;color:var(--t2);line-height:1.8;max-width:720px}
+.cs-process-text p{margin-bottom:16px}
+.cs-process-text p:last-child{margin-bottom:0}
+/* NAV */
+.cs-nav{display:flex;align-items:center;justify-content:space-between;padding:40px 0;border-top:1px solid var(--b)}
+.cs-nav a{font-size:13px;color:var(--t2);font-weight:500;display:flex;align-items:center;gap:6px;transition:color .2s}
+.cs-nav a:hover{color:var(--t1)}
+/* FOOTER */
+footer{padding:22px 48px;border-top:1px solid var(--b);display:flex;align-items:center;justify-content:space-between}
+.fl,.fr{font-size:12px;color:var(--t3)}
+@media(max-width:880px){
+  nav,footer{padding-left:24px;padding-right:24px}
+  .wrap{padding:0 24px}
+  .cs-title{letter-spacing:-2px}
+  .cs-impact{grid-template-columns:1fr 1fr;gap:28px}
+  .cs-img-grid{grid-template-columns:1fr}
+  .nr .na{display:none}
+}
+</style>
 </head>
 <body>
-
-<div id="cs-pb"></div>
-<nav class="csn" id="csn" aria-label="Section navigation"></nav>
-
-<!-- ═══════════════════════════════════════════
-     COVER
-═══════════════════════════════════════════ -->
-<section class="cover">
-    <div class="cover-grid"></div>
-    <div class="cover-content">
-        <div class="cover-featured">★ Featured Case Study</div>
-        <div class="cover-eyebrow"><div class="cover-eyebrow-line"></div>Product Design Leadership · E1 Global Redesign</div>
-        <h1 class="cover-title">Biggest overhaul<br>in the history of<br><em>Western Union.</em></h1>
-        <div class="cover-meta">
-            <div>
-                <div class="cover-meta-label">Project</div>
-                <div class="cover-meta-value">E1 — Unified Digital Platform</div>
-            </div>
-            <div>
-                <div class="cover-meta-label">Company</div>
-                <div class="cover-meta-value">Western Union</div>
-            </div>
-            <div>
-                <div class="cover-meta-label">Platforms</div>
-                <div class="cover-meta-value">iOS · Android · Web</div>
-            </div>
-            <div>
-                <div class="cover-meta-label">Team</div>
-                <div class="cover-meta-value">11 Designers · 40+ Engineers</div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══════════════════════════════════════════
-     MY ROLE BAR
-═══════════════════════════════════════════ -->
-<!-- IMPACT BLOCK (thiti.design style) -->
-<div class="ib">
-    <div class="ib-grid">
-        <div>
-            <div class="ib-lbl">Year</div>
-            <div class="ib-val">2023&nbsp;&mdash;&nbsp;Present</div>
-        </div>
-        <div>
-            <div class="ib-lbl">Impact</div>
-            <div class="ib-items">
-                <span class="ib-item">~5% drop-off reduction across key user journeys</span>
-                <span class="ib-item">~25% fewer late-stage design changes</span>
-                <span class="ib-item">~20% design-to-engineering handoff time saved</span>
-                <span class="ib-item">40% rework reduction through design QA rituals</span>
-            </div>
-        </div>
-        <div>
-            <div class="ib-lbl">Collaborators</div>
-            <div class="ib-items">
-                <span class="ib-item">Product Management</span>
-                <span class="ib-item">Engineering &mdash; 40+ engineers</span>
-                <span class="ib-item">Compliance &amp; Accessibility</span>
-                <span class="ib-item">Content &amp; Brand</span>
-            </div>
-        </div>
-        <div>
-            <div class="ib-lbl">My Role</div>
-            <div class="ib-items">
-                <span class="ib-item">Design Manager</span>
-                <span class="ib-item">UX Strategy</span>
-                <span class="ib-item">Design Systems</span>
-                <span class="ib-item">Delivery &amp; Operations</span>
-            </div>
-        </div>
-    </div>
+<nav id="nav">
+  <a href="index.html" class="nl"><span class="nd"></span>Arindam Sanyal</a>
+  <div class="nr">
+    <a href="index.html#work" class="na">Work</a>
+    <a href="index.html#about" class="na">About</a>
+    <a href="index.html#contact" class="na">Contact</a>
+    <a href="mailto:asanyal88@gmail.com" class="nb">Book an Intro</a>
+  </div>
+</nav>
+<main>
+<div class="wrap">
+<div class="cs-hero">
+  <div class="cs-label">Case Study</div>
+  <h1 class="cs-title">WU E1 Redesign</h1>
+  
 </div>
-
-<!-- ═══════════════════════════════════════════
-     LEADERSHIP SUMMARY
-═══════════════════════════════════════════ -->
-<section class="lv">
-    <div class="lv-inner">
-        <div class="lv-hd">
-            <div class="lv-badge">★ Leadership Summary</div>
-            <div class="lv-subtitle">The strategic view — key decisions, contribution &amp; outcomes</div>
-        </div>
-        <div class="lv-grid">
-            <div class="lv-cell">
-                <div class="lv-cell-lbl">The Problem</div>
-                <div class="lv-cell-title">Western Union had 5+ disconnected apps with duplicate efforts, legacy debt, and no unified customer model</div>
-                <p class="lv-cell-body">R3, R4, US Wallet, EU Banking App — each market built and maintained separately, creating duplicated engineering effort, inconsistent user experiences, and no path to scale. Customers couldn't build a relationship with WU because every touchpoint felt like a different product.</p>
-            </div>
-            <div class="lv-cell">
-                <div class="lv-cell-lbl">My Role &amp; Contribution</div>
-                <div class="lv-cell-title">Design Manager — led 11 designers across the biggest redesign in WU's history</div>
-                <p class="lv-cell-body">Full end-to-end ownership from 2-day strategy workshop through UX QA and launch. Single design authority across a cross-functional team of 40+ engineers. Balanced global brand consistency, Canada-specific localisation (EN/FR), and KYC/AML compliance across every screen.</p>
-            </div>
-        </div>
-        <div class="lv-cell" style="border-radius:16px; margin-top:2px;">
-            <div class="lv-cell-lbl">Three Key Design Decisions</div>
-            <div class="lv-decisions">
-                <div class="lv-d">
-                    <div class="lv-d-n">1</div>
-                    <div class="lv-d-t"><strong>Account-based model over transaction model:</strong> Shifted WU's fundamental product paradigm from "send a transfer" to "manage your financial life." This is what made loyalty, wallets, and cross-sell structurally possible — a transaction model cannot support them.</div>
-                </div>
-                <div class="lv-d">
-                    <div class="lv-d-n">2</div>
-                    <div class="lv-d-t"><strong>Design system as prerequisite, not a parallel track:</strong> Insisted on building Nexus DS before designing production screens. This was the non-negotiable decision that made 142 screens across 7 payment methods ship at consistent quality — without it, the redesign would have fragmented under its own scale.</div>
-                </div>
-                <div class="lv-d">
-                    <div class="lv-d-n">3</div>
-                    <div class="lv-d-t"><strong>Dual-track agile with embedded designers:</strong> Championed running discovery ahead of delivery so engineers always had validated, build-ready designs. Embedded designers directly into agile squads — eliminating the handoff bottleneck that had caused delays in every previous WU project.</div>
-                </div>
-            </div>
-        </div>
-        <div class="lv-metrics">
-            <div class="lv-m"><div class="lv-m-n">~5%</div><div class="lv-m-l">Drop-off reduction across key journeys post-launch</div></div>
-            <div class="lv-m"><div class="lv-m-n">~25%</div><div class="lv-m-l">Late-stage design changes cut through earlier alignment</div></div>
-            <div class="lv-m"><div class="lv-m-n">~20%</div><div class="lv-m-l">Design-to-engineering handoff time saved</div></div>
-            <div class="lv-m"><div class="lv-m-n">40%</div><div class="lv-m-l">Rework reduced through design QA rituals</div></div>
-        </div>
-        <button class="lv-toggle" id="lv-toggle" onclick="toggleFull()">
-            <span id="lv-btn-txt">Read Full Case Study</span>
-            <span class="lv-toggle-ic">↓</span>
-        </button>
-    </div>
-</section>
-
-<!-- ═══════════════════════════════════════════
-     FULL CASE STUDY
-═══════════════════════════════════════════ -->
-<div id="full-cs">
-
-<!-- 01 — THE CHALLENGE -->
-<section class="section">
-    <div class="wrap">
-        <div class="sec-header rv">
-            <div class="sec-ey">01 — The Challenge</div>
-            <h2 class="sec-title">Seven Forces Working Against Us</h2>
-            <p class="sec-lead">Redesigning the entire Western Union digital product from the ground up — while the business kept running — meant navigating seven simultaneous constraints.</p>
-        </div>
-        <div class="challenge-grid">
-            <div class="ch-card rv">
-                <div class="ch-num">01</div>
-                <div class="ch-title">Legacy Systems &amp; Technical Debt</div>
-                <p class="ch-body">Getting buy-in from senior leadership to challenge the technical limitations that had been accepted as fixed constraints for years. The design had to prove a better experience was worth the engineering investment to unlock it.</p>
-            </div>
-            <div class="ch-card rv">
-                <div class="ch-num">02</div>
-                <div class="ch-title">Cross-Functional Alignment</div>
-                <p class="ch-body">Product, Engineering, and Business teams had never worked this tightly together. Being embedded in grooming sessions as the design voice — not just a delivery resource — was new territory that required earning trust at every step.</p>
-            </div>
-            <div class="ch-card rv">
-                <div class="ch-num">03</div>
-                <div class="ch-title">Resource Constraints</div>
-                <p class="ch-body">Prioritising work with a lean team at the pace the delivery required — and decisively guiding junior designers to stay on track — without sacrificing quality or design intent in the process.</p>
-            </div>
-            <div class="ch-card rv">
-                <div class="ch-num">04</div>
-                <div class="ch-title">Limited Access to Real Users</div>
-                <p class="ch-body">Partnered with local research agencies and remote usability testing tools (UserTesting) to build evidence-based design decisions despite the access constraints that enterprise compliance environments create.</p>
-            </div>
-            <div class="ch-card rv">
-                <div class="ch-num">05</div>
-                <div class="ch-title">Design–Engineering Collaboration Gaps</div>
-                <p class="ch-body">Hosted daily/weekly design–engineering syncs to align on feasibility and timelines. Created interactive prototypes to eliminate ambiguity around animations, transitions, and edge-case interactions.</p>
-            </div>
-            <div class="ch-card rv">
-                <div class="ch-num">06</div>
-                <div class="ch-title">Internal Feedback Overload</div>
-                <p class="ch-body">Structured feedback rounds with a designated final decision-maker for each phase. Without this, the volume of stakeholder opinions would have created an endless revision cycle that no deadline could survive.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- 02 — OBJECTIVES -->
-<section class="section-dark">
-    <div class="wrap">
-        <div class="sec-header rv">
-            <div class="sec-ey">02 — Objectives</div>
-            <h2 class="sec-title">Strategic Imperatives &amp; Operational Goals</h2>
-            <p class="sec-lead">The redesign served two sets of objectives simultaneously — long-term strategic ambition and near-term operational efficiency.</p>
-        </div>
-        <div class="obj-grid">
-            <div class="obj-col rv">
-                <div class="obj-col-title">Strategic Imperatives</div>
-                <ul class="obj-items">
-                    <li>Engage receivers and elevate their status as core drivers of revenue and user acquisition — breaking WU's sender-only model</li>
-                    <li>Expand the product suite beyond money transfer — loyalty, digital wallets, and financial services built into the platform</li>
-                    <li>Move to an account-based model: users manage financial life, not just individual transactions</li>
-                    <li>Deliver an integrated omni-channel experience that connects digital and retail through a unified wallet</li>
-                    <li>Modernise front-end platforms to improve customer experience through better company alignment and faster global delivery</li>
-                </ul>
-            </div>
-            <div class="obj-col rv">
-                <div class="obj-col-title">Operational Drivers</div>
-                <ul class="obj-items">
-                    <li>Eliminate duplication across R3 (web/mobile), R4 (web/mobile), US Wallet, and EU Banking App — one platform replaces all</li>
-                    <li>Unify the technology stack, streamline teams, and increase organisational alignment to lower cost and boost speed</li>
-                    <li>Trim licensing, maintenance, and infrastructure deployment costs through consolidation</li>
-                    <li>Simplify architecture through decoupling of services and creating modular, reusable components and systems</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- 03 — MY ROLE & TEAM -->
-<section class="section">
-    <div class="wrap">
-        <div class="sec-header rv">
-            <div class="sec-ey">03 — Team &amp; My Role</div>
-            <h2 class="sec-title">Design Manager Across Every Dimension</h2>
-            <p class="sec-lead">My responsibilities extended beyond UX delivery into cross-functional leadership, people management, and delivery alignment — across a team of 11 designers and 40+ engineers.</p>
-        </div>
-        <div class="role-grid">
-            <div class="role-card rv">
-                <div class="role-card-icon">🎯</div>
-                <div class="role-card-title">Design Leadership</div>
-                <ul class="role-card-items">
-                    <li>Led end-to-end UX process from discovery to delivery</li>
-                    <li>Balanced global brand consistency with Canada-specific localisation (EN/FR, cultural nuance)</li>
-                    <li>Ensured KYC/AML compliance flows were usable, transparent, and trustworthy despite heavy regulatory constraints</li>
-                </ul>
-            </div>
-            <div class="role-card rv">
-                <div class="role-card-icon">👥</div>
-                <div class="role-card-title">Team Management &amp; Mentorship</div>
-                <ul class="role-card-items">
-                    <li>Managed 11-person multi-disciplinary design team</li>
-                    <li>Held weekly 1:1s and design critique sessions to foster growth and collaboration</li>
-                    <li>Mentored junior designers on prioritisation and aligning UX decisions with business and delivery goals</li>
-                </ul>
-            </div>
-            <div class="role-card rv">
-                <div class="role-card-icon">🔗</div>
-                <div class="role-card-title">Cross-Functional &amp; Stakeholder</div>
-                <ul class="role-card-items">
-                    <li>Bridge between design, engineering, and product management</li>
-                    <li>Partnered with 40+ engineers ensuring feasibility within delivery constraints</li>
-                    <li>Negotiated scope trade-offs with PMs and Engineering Leads, protecting core UX outcomes while maintaining velocity</li>
-                </ul>
-            </div>
-            <div class="role-card rv">
-                <div class="role-card-icon">⚙️</div>
-                <div class="role-card-title">Delivery &amp; Operations</div>
-                <ul class="role-card-items">
-                    <li>Embedded designers directly into agile squads with engineers — enabling continuous feedback loops</li>
-                    <li>Introduced design QA rituals, reducing rework and speeding handoff by 40%</li>
-                    <li>Championed dual-track agile, allowing discovery to run ahead of delivery and prevent engineering bottlenecks</li>
-                </ul>
-            </div>
-            <div class="role-card rv">
-                <div class="role-card-icon">📐</div>
-                <div class="role-card-title">Content &amp; Brand Alignment</div>
-                <ul class="role-card-items">
-                    <li>Collaborated closely with content and branding teams to align messaging and visual language</li>
-                    <li>Ensured the redesign felt premium and modern without breaking brand recognition for existing customers</li>
-                </ul>
-            </div>
-            <div class="role-card rv">
-                <div class="role-card-icon">📊</div>
-                <div class="role-card-title">Research &amp; Validation</div>
-                <ul class="role-card-items">
-                    <li>Partnered with local research agencies for qualitative insights</li>
-                    <li>Used UserTesting for remote usability testing across key flows</li>
-                    <li>Card sorting and IA testing to validate information architecture before production design</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- 04 — PROCESS -->
-<section class="section-alt">
-    <div class="wrap">
-        <div class="sec-header rv">
-            <div class="sec-ey">04 — Process &amp; Roadmap</div>
-            <h2 class="sec-title">From Strategy Workshop to Launch</h2>
-            <p class="sec-lead">A deliberate, phased process across 12 steps — ensuring discovery led delivery and design decisions were validated before any engineering investment was committed.</p>
-        </div>
-        <div class="process-list">
-            <div class="proc-item rv">
-                <div class="proc-n">01</div>
-                <div>
-                    <div class="proc-title">2-Day Product Strategy Workshop</div>
-                    <p class="proc-body">Brought together Product, Business, and Engineering leadership to align on vision, constraints, and priorities before any design work began. Set the shared understanding that made cross-functional trust possible throughout the project.</p>
-                </div>
-            </div>
-            <div class="proc-item rv">
-                <div class="proc-n">02</div>
-                <div>
-                    <div class="proc-title">Competitor IA Analysis</div>
-                    <p class="proc-body">Deep analysis of information architectures across Wise, Remitly, and the existing WU R4 app. Identified what competitors were doing well, what gaps existed, and where WU had an opportunity to differentiate through structure and hierarchy.</p>
-                </div>
-            </div>
-            <div class="proc-item rv">
-                <div class="proc-n">03</div>
-                <div>
-                    <div class="proc-title">Card Sorting &amp; IA Validation</div>
-                    <p class="proc-body">Created multiple IA options and tested them with a limited audience. Card sorting revealed the user's mental model of how financial features should be organised — the results informed the master IA that became the structural foundation of E1.</p>
-                </div>
-            </div>
-            <div class="proc-item rv">
-                <div class="proc-n">04</div>
-                <div>
-                    <div class="proc-title">Master User Flow &amp; Service Blueprint</div>
-                    <p class="proc-body">Mapped the complete sender journey end-to-end in a service blueprint — covering touchpoints, systems, backend dependencies, and failure states. This became the single source of truth for engineering planning and design prioritisation.</p>
-                </div>
-            </div>
-            <div class="proc-item rv">
-                <div class="proc-n">05</div>
-                <div>
-                    <div class="proc-title">Epic Prioritisation (RICE Framework)</div>
-                    <p class="proc-body">In collaboration with Product, used RICE (Reach, Impact, Confidence, Effort) to create a clear roadmap of feature delivery. Each Epic spanned two sprints, with design dependencies mapped explicitly to prevent engineering bottlenecks.</p>
-                </div>
-            </div>
-            <div class="proc-item rv">
-                <div class="proc-n">06</div>
-                <div>
-                    <div class="proc-title">Nexus Design System</div>
-                    <p class="proc-body">Built a robust, scalable design system to serve well into the future — making the case for dedicated resources to unite all WU digital assets under one roof. This was the non-negotiable prerequisite that made consistent quality possible at scale.</p>
-                </div>
-            </div>
-            <div class="proc-item rv">
-                <div class="proc-n">07</div>
-                <div>
-                    <div class="proc-title">UX Jam Sessions</div>
-                    <p class="proc-body">Cross-functional ideation sessions that brought designers, engineers, and product managers together to rapidly explore solutions before committing to a direction. Built shared ownership of the design decisions across the team.</p>
-                </div>
-            </div>
-            <div class="proc-item rv">
-                <div class="proc-n">08</div>
-                <div>
-                    <div class="proc-title">Wireframes &amp; Master Flows</div>
-                    <p class="proc-body">Created master flows and screen wires in parallel with design system component development — ensuring every screen was buildable from components that already existed or were in progress.</p>
-                </div>
-            </div>
-            <div class="proc-item rv">
-                <div class="proc-n">09</div>
-                <div>
-                    <div class="proc-title">4 Design Style Directions</div>
-                    <p class="proc-body">Created four distinct design directions for senior leadership to evaluate and select from. Direction 1 received the most votes and aligned most strongly with the core aesthetics of Western Union — becoming the visual foundation for all production screens.</p>
-                </div>
-            </div>
-            <div class="proc-item rv">
-                <div class="proc-n">10</div>
-                <div>
-                    <div class="proc-title">Production Design &amp; Handoff</div>
-                    <p class="proc-body">Full high-fidelity design of 142+ screens across all states, variants, and platforms (iOS, Android, Web). Delivered via Figma Dev Mode with annotated specs and interactive prototypes for complex interactions.</p>
-                </div>
-            </div>
-            <div class="proc-item rv">
-                <div class="proc-n">11</div>
-                <div>
-                    <div class="proc-title">UX Review Before Launch</div>
-                    <p class="proc-body">As the most critical quality measure — a comprehensive UX evaluation of the complete application before release. Provided inputs to make the shipped experience as close to the original design intent as possible.</p>
-                </div>
-            </div>
-            <div class="proc-item rv">
-                <div class="proc-n">12</div>
-                <div>
-                    <div class="proc-title">Launch &amp; Monitor</div>
-                    <p class="proc-body">Launched with a squad of designers dedicated to weekly hot-fix optimisations based on Amplitude and Quantum Metrics data, user feedback, and behaviour patterns — while a second squad moved forward on adaptation for additional regions.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- 05 — EVIDENCE -->
-<section class="section">
-    <div class="wrap">
-        <div class="sec-header rv">
-            <div class="sec-ey">05 — The Work</div>
-            <h2 class="sec-title">Validated Patterns at Every Step</h2>
-            <p class="sec-lead">Every screen below is a validated, production-ready reference from the E1 redesign — built from the Nexus Design System and tested with real users before shipping.</p>
-        </div>
-        <div class="scroll-hint rv"><span>Scroll to explore</span><span>→</span></div>
-        <div class="evidence-wrap rv">
-            <div class="evidence-scroll">
-                <div class="ev-card">
-                    <img src="case-study-assets/03-payments-hub.png" class="ev-img" alt="Payments Hub">
-                    <div class="ev-body">
-                        <div class="ev-tag">Entry Point</div>
-                        <div class="ev-title">Payments Hub — Contact-Centric Navigation</div>
-                        <p class="ev-desc">The new entry point built around the user's mental model: "I'm sending to Maria" — not corridor selection. Recent contacts, quick actions, and payment history as the primary interface.</p>
-                    </div>
-                </div>
-                <div class="ev-card">
-                    <img src="case-study-assets/02-new-recipient-flow.png" class="ev-img" alt="New Recipient Flow">
-                    <div class="ev-body">
-                        <div class="ev-tag">Onboarding Pattern</div>
-                        <div class="ev-title">Country &amp; Currency Selection — 4-State Baseline</div>
-                        <p class="ev-desc">Default, typing/search, selected, and error states — all validated for accessibility (keyboard nav, screen reader labels, 44pt touch targets). The first pattern in the Nexus baseline.</p>
-                    </div>
-                </div>
-                <div class="ev-card">
-                    <img src="case-study-assets/05-send-with-contacts.png" class="ev-img" alt="Estimate Screen">
-                    <div class="ev-body">
-                        <div class="ev-tag">Core Innovation</div>
-                        <div class="ev-title">Estimate Screen — Progressive Disclosure</div>
-                        <p class="ev-desc">Single screen for amount entry with live conversion, payment/delivery options, and persistent fee transparency. Reduced perceived steps from 7 to 3 — the biggest driver of drop-off improvement.</p>
-                    </div>
-                </div>
-                <div class="ev-card">
-                    <img src="case-study-assets/04-send-methods.png" class="ev-img" alt="Send Methods">
-                    <div class="ev-body">
-                        <div class="ev-tag">Variant Pattern</div>
-                        <div class="ev-title">Payment Methods — 7 Validated Variants</div>
-                        <p class="ev-desc">Bank account, PayID, debit card, in-store, and retail variants — each with consistent pricing container, CTA placement, and error handling from the Nexus DS.</p>
-                    </div>
-                </div>
-                <div class="ev-card">
-                    <img src="case-study-assets/06-send-to.png" class="ev-img" alt="Send To">
-                    <div class="ev-body">
-                        <div class="ev-tag">Decision Pattern</div>
-                        <div class="ev-title">Delivery Method — Saved vs. New Toggle</div>
-                        <p class="ev-desc">Tab pattern for saved/new accounts, card-based options with fee and speed comparison, consistent information hierarchy across all delivery types.</p>
-                    </div>
-                </div>
-                <div class="ev-card">
-                    <img src="case-study-assets/08-bank-account-flow.png" class="ev-img" alt="Complete Flow">
-                    <div class="ev-body">
-                        <div class="ev-tag">Complete Journey</div>
-                        <div class="ev-title">End-to-End Bank Account Transfer — 19 Screens</div>
-                        <p class="ev-desc">The full validated flow: security notices, additional information, review, confirmation, error states. The definitive E1 baseline reference for engineering handoff and market adaptation.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- 06 — DESIGN DIRECTIONS -->
-<section class="section-dark">
-    <div class="wrap">
-        <div class="sec-header rv">
-            <div class="sec-ey">06 — Design Directions</div>
-            <h2 class="sec-title">Four Directions. One Decision.</h2>
-            <p class="sec-lead">To align senior leadership on the visual direction without endless iteration, four distinct design styles were created and put to a structured vote.</p>
-        </div>
-        <div class="dir-grid">
-            <div class="dir-card rv">
-                <div class="dir-n">Direction 01</div>
-                <div class="dir-title">Modern Premium</div>
-                <p class="dir-body">Clean, bold typography with the WU yellow used as a high-contrast accent. Influenced by premium fintech brands like Revolut — confident, trustworthy, and clearly digital-native. This direction most strongly aligned with the core aesthetics of Western Union's brand vision.</p>
-                <div class="dir-badge">★ Selected by Leadership</div>
-            </div>
-            <div class="dir-card rv">
-                <div class="dir-n">Direction 02</div>
-                <div class="dir-title">Warm &amp; Human</div>
-                <p class="dir-body">Softer colour palette with lifestyle photography as a central visual device. Emphasised emotional connection with the diaspora community. Rejected because it risked reducing clarity in the transfer flow.</p>
-            </div>
-            <div class="dir-card rv">
-                <div class="dir-n">Direction 03</div>
-                <div class="dir-title">Functional Clarity</div>
-                <p class="dir-body">Data-forward, utility-first. Minimal visual decoration, maximum information density. Closely inspired by Wise's design language. Rejected as too clinical — didn't convey the loyalty and engagement dimension of the new platform.</p>
-            </div>
-            <div class="dir-card rv">
-                <div class="dir-n">Direction 04</div>
-                <div class="dir-title">Heritage Evolved</div>
-                <p class="dir-body">Grounded in WU's 170-year heritage — warmer, more traditional. Tested well with older demographics but scored lowest on modernity. The brand evolution it implied was too conservative for the scale of the redesign ambition.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- 07 — OUTCOMES -->
-<section class="section">
-    <div class="wrap">
-        <div class="sec-header rv">
-            <div class="sec-ey">07 — Outcomes</div>
-            <h2 class="sec-title">Measurable Impact</h2>
-            <p class="sec-lead">Post-launch results across the four key performance areas that the redesign was designed to move.</p>
-        </div>
-        <div class="outcomes-grid">
-            <div class="oc-card rv">
-                <div class="oc-n">~5%</div>
-                <div class="oc-title">Drop-off Reduction</div>
-                <p class="oc-body">Early-stage drop-offs reduced through simplified user journeys and identity verification flows.</p>
-            </div>
-            <div class="oc-card rv">
-                <div class="oc-n">~25%</div>
-                <div class="oc-title">Fewer Late Changes</div>
-                <p class="oc-body">Late-stage design changes cut through structured design critiques and earlier stakeholder alignment.</p>
-            </div>
-            <div class="oc-card rv">
-                <div class="oc-n">~20%</div>
-                <div class="oc-title">Handoff Time Saved</div>
-                <p class="oc-body">Optimised design-to-development handoff through stronger engineering collaboration and clearer specs.</p>
-            </div>
-            <div class="oc-card rv">
-                <div class="oc-n">40%</div>
-                <div class="oc-title">Rework Reduced</div>
-                <p class="oc-body">Design QA rituals introduced and embedded, reducing rework through the handoff process.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- 08 — WHAT'S NEXT -->
-<section class="section-alt">
-    <div class="wrap">
-        <div class="sec-header rv">
-            <div class="sec-ey">08 — What's Next</div>
-            <h2 class="sec-title">From Launch to Global Scale</h2>
-            <p class="sec-lead">The E1 Canada launch was the foundation — a validated platform ready to scale across every WU market.</p>
-        </div>
-        <div class="next-grid">
-            <div class="next-card rv">
-                <div class="next-step">Step 01</div>
-                <div class="next-title">Monitor &amp; Measure</div>
-                <p class="next-body">Study user activity, feedback, behaviour, and concerns through Amplitude and Quantum Metrics — combined with Voice of Customer data — to create a real-time feedback loop between user behaviour and design decisions.</p>
-            </div>
-            <div class="next-card rv">
-                <div class="next-step">Step 02</div>
-                <div class="next-title">Weekly Hot-Fix Cycle</div>
-                <p class="next-body">A dedicated squad of designers continuously addressing issues identified from analytics and user feedback through weekly hot-fix releases — maintaining quality while keeping delivery velocity high.</p>
-            </div>
-            <div class="next-card rv">
-                <div class="next-step">Step 03</div>
-                <div class="next-title">Global Market Adaptation</div>
-                <p class="next-body">A second squad moves forward creating experiences for additional regions — applying the E1 baseline and Nexus design system to each new market, adapting for local payment methods, regulatory requirements, and cultural context.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-</div><!-- /#full-cs -->
-
-<!-- CLOSING -->
-<section class="closing">
-    <p class="closing-quote">
-        "E1 wasn't a redesign. It was a <strong>platform shift</strong> — from a company that sends money to a company that manages financial lives. Every design decision had to carry that ambition, at global scale, without breaking trust."
-    </p>
-    <p class="closing-sub">Western Union E1 Global Redesign · Design Manager · 2023–Present</p>
-    <a href="index.html" class="closing-cta">View Portfolio →</a>
-</section>
-
-<footer class="footer">
-    <div class="footer-brand">Arindam Sanyal — Product Design Manager</div>
-    <p class="footer-text">
-        E1 Global Redesign · Western Union · Biggest Overhaul in WU History<br>
-        11 Designers · 40+ Engineers · Nexus Design System · Canada → Global
-    </p>
-</footer>
-
-<!-- CASE NAV -->
-<div class="cs-nav">
-    <a href="index.html" class="cs-nav-home">← Portfolio</a>
-    <div class="cs-nav-mid">Case Study 1 of 4</div>
-    <a href="send-money-imt-case-study.html">Send Money IMT →</a>
+<div class="cs-about"><p class="cs-about-text">I led the biggest redesign in Western Union&rsquo;s history &mdash; unifying 5 fragmented digital products into one wallet-based platform. Managing a team of 11 designers across iOS, Android, and web, I balanced global brand consistency with regulatory compliance, accelerated delivery through dual-track agile, and introduced design QA rituals that reduced engineering rework by 40%.</p></div>
+<div class="cs-impact">
+  <div><div class="ci-lbl">Year</div><div class="ci-val">2023 &ndash; Present</div></div>
+  <div><div class="ci-lbl">Impact</div><div class="ci-items"><div class="ci-item">~5% drop-off reduction across key journeys</div><div class="ci-item">~25% fewer late-stage design changes</div><div class="ci-item">~20% design-to-engineering handoff time saved</div><div class="ci-item">40% rework reduction through design QA rituals</div></div></div>
+  <div><div class="ci-lbl">Collaborators</div><div class="ci-items"><div class="ci-item">Product Management</div><div class="ci-item">Engineering &mdash; 40+ engineers</div><div class="ci-item">Compliance &amp; Accessibility</div><div class="ci-item">Content &amp; Brand</div></div></div>
+  <div><div class="ci-lbl">My Role</div><div class="ci-items"><div class="ci-item">Design Manager</div><div class="ci-item">UX Strategy</div><div class="ci-item">Design Systems</div><div class="ci-item">Delivery &amp; Operations</div></div></div>
 </div>
-
+<div class="cs-content"><div class="cs-section"><div class="cs-sec-lbl">Payments Hub</div><img src="case-study-assets/03-payments-hub.png" alt="Payments Hub"><p class="cs-caption">The new entry point built around the user&rsquo;s mental model: sending to a person, not selecting a corridor. Recent contacts, quick actions, and payment history as the primary interface.</p></div><div class="cs-section"><div class="cs-sec-lbl">Transfer Flow</div><div class="cs-img-grid"><img src="case-study-assets/05-send-with-contacts.png" alt=""><img src="case-study-assets/04-send-methods.png" alt=""></div><p class="cs-caption">The estimate screen consolidates amount entry, live conversion, payment method selection, and fee transparency into a single view &mdash; reducing perceived steps from 7 to 3.</p></div><div class="cs-section"><div class="cs-sec-lbl">End-to-End Journey</div><img src="case-study-assets/08-bank-account-flow.png" alt="End-to-End Journey"><p class="cs-caption">The complete bank account transfer baseline &mdash; 19 screens covering entry through confirmation and error states. The definitive reference for engineering handoff across all markets.</p></div></div>
+<div class="cs-process"><div class="cs-process-lbl">Process</div><div class="cs-process-text"><p>The project began with a 2-day product strategy workshop bringing together Product, Business, and Engineering leadership to align on vision before any design work began. This was followed by competitor IA analysis (Wise, Remitly, existing WU R4), card sorting with real users, and a complete service blueprint mapping the sender journey end-to-end.</p><p>Epic prioritisation using the RICE framework established a clear delivery roadmap. I championed building the Nexus Design System before production screens &mdash; a non-negotiable decision that made 142+ screens ship at consistent quality. Dual-track agile ensured discovery always ran ahead of delivery, eliminating the engineering bottlenecks that had plagued previous WU projects.</p></div></div>
+<div class="cs-nav"><span></span><a href="ux-baseline-case-study.html">UX Baseline &rarr;</a></div>
+</div>
+</main>
+<footer><span class="fl">Arindam Sanyal &mdash; Product Design Manager</span><span class="fr">Pune, India &middot; &copy; 2026</span></footer>
 <script>
 (function(){
-    window.toggleFull = function(){
-        var fc  = document.getElementById('full-cs');
-        var btn = document.getElementById('lv-toggle');
-        var txt = document.getElementById('lv-btn-txt');
-        var isOpen = fc.classList.toggle('open');
-        btn.classList.toggle('open', isOpen);
-        txt.textContent = isOpen ? 'Collapse Case Study' : 'Read Full Case Study';
-        if(isOpen){ setTimeout(function(){ fc.scrollIntoView({behavior:'smooth',block:'start'}); }, 50); }
-        updateNavVis(isOpen);
-    };
-
-    var pb = document.getElementById('cs-pb');
-    window.addEventListener('scroll', function(){
-        var pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
-        if(pb) pb.style.width = Math.min(pct,100)+'%';
-    }, {passive:true});
-
-    function buildNav(){
-        var csn = document.getElementById('csn');
-        if(!csn) return;
-        var markers = document.querySelectorAll('.sec-ey');
-        var navSecs = [], idx = 0;
-        markers.forEach(function(m){
-            var sec = m.closest('section');
-            if(!sec) return;
-            var id = 'csn-'+idx++;
-            sec.setAttribute('data-csn', id);
-            var label = m.textContent.trim().replace(/^\d+\s*[—\-]\s*/,'').trim();
-            var inFull = !!sec.closest('#full-cs');
-            navSecs.push({id:id, label:label, sec:sec, inFull:inFull});
-        });
-        navSecs.forEach(function(ns){
-            var a = document.createElement('a');
-            a.className = 'csn-item'+(ns.inFull?' cs-full':'');
-            a.setAttribute('data-csn-id', ns.id);
-            a.href = 'javascript:void(0)';
-            a.innerHTML = '<span class="csn-lbl">'+ns.label+'</span><span class="csn-dot"></span>';
-            if(ns.inFull) a.style.display='none';
-            a.addEventListener('click', function(){ ns.sec.scrollIntoView({behavior:'smooth',block:'start'}); });
-            csn.appendChild(a);
-        });
-        var obs = new IntersectionObserver(function(entries){
-            entries.forEach(function(e){
-                if(e.isIntersecting){
-                    var id = e.target.getAttribute('data-csn');
-                    document.querySelectorAll('.csn-item').forEach(function(item){
-                        item.classList.toggle('active', item.getAttribute('data-csn-id')===id);
-                    });
-                }
-            });
-        },{threshold:0.25, rootMargin:'-10% 0px -65% 0px'});
-        navSecs.forEach(function(ns){ obs.observe(ns.sec); });
-    }
-    function updateNavVis(isOpen){
-        document.querySelectorAll('.csn-item.cs-full').forEach(function(item){
-            item.style.display = isOpen ? '' : 'none';
-        });
-    }
-    buildNav();
-
-    var obs2 = new IntersectionObserver(function(entries){
-        entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); obs2.unobserve(e.target); } });
-    }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
-    document.querySelectorAll('.rv').forEach(function(el){ obs2.observe(el); });
+  var n=document.getElementById('nav');
+  window.addEventListener('scroll',function(){n.classList.toggle('s',window.scrollY>40)},{passive:true});
 })();
 </script>
 </body>

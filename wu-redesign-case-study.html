@@ -89,6 +89,16 @@
         .role-inner { max-width: 1200px; margin: 0 auto; padding: 36px 48px; display: grid; grid-template-columns: repeat(4,1fr); gap: 48px; }
         .ri-lbl { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; color: var(--t3); margin-bottom: 8px; }
         .ri-val { font-size: 14px; font-weight: 700; color: var(--t1); line-height: 1.4; }
+        /* ─ THITI-STYLE IMPACT BLOCK ─ */
+        .ib { border-bottom: 1px solid var(--border); padding: 40px 48px; background: #0c0c0c; }
+        .ib-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 120px 1fr 1fr 1fr; gap: 48px; }
+        .ib-lbl { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 2.5px; color: var(--t3); margin-bottom: 10px; }
+        .ib-val { font-size: 14px; font-weight: 600; color: var(--t1); }
+        .ib-items { display: flex; flex-direction: column; gap: 6px; }
+        .ib-item { font-size: 13px; color: var(--t2); display: flex; gap: 8px; line-height: 1.5; }
+        .ib-item::before { content: '\2937'; color: rgba(129,140,248,.6); flex-shrink: 0; font-size: 12px; }
+        @media(max-width:900px){ .ib { padding: 32px 24px; } .ib-grid { grid-template-columns: 1fr 1fr; gap: 28px; } }
+
         .ri-sub { font-size: 12px; color: var(--t2); font-weight: 400; display: block; margin-top: 3px; }
 
         /* ─── LEADERSHIP VIEW ─── */
@@ -291,26 +301,42 @@
 <!-- ═══════════════════════════════════════════
      MY ROLE BAR
 ═══════════════════════════════════════════ -->
-<section class="role-bar">
-    <div class="role-inner">
+<!-- IMPACT BLOCK (thiti.design style) -->
+<div class="ib">
+    <div class="ib-grid">
         <div>
-            <div class="ri-lbl">My Role</div>
-            <div class="ri-val">Design Manager<span class="ri-sub">End-to-End UX Leadership</span></div>
+            <div class="ib-lbl">Year</div>
+            <div class="ib-val">2023&nbsp;&mdash;&nbsp;Present</div>
         </div>
         <div>
-            <div class="ri-lbl">Team</div>
-            <div class="ri-val">11 Designers<span class="ri-sub">Multi-disciplinary · Agile squads</span></div>
+            <div class="ib-lbl">Impact</div>
+            <div class="ib-items">
+                <span class="ib-item">~5% drop-off reduction across key user journeys</span>
+                <span class="ib-item">~25% fewer late-stage design changes</span>
+                <span class="ib-item">~20% design-to-engineering handoff time saved</span>
+                <span class="ib-item">40% rework reduction through design QA rituals</span>
+            </div>
         </div>
         <div>
-            <div class="ri-lbl">Scope</div>
-            <div class="ri-val">Full redesign · 142+ screens<span class="ri-sub">Discovery → Design QA → Launch</span></div>
+            <div class="ib-lbl">Collaborators</div>
+            <div class="ib-items">
+                <span class="ib-item">Product Management</span>
+                <span class="ib-item">Engineering &mdash; 40+ engineers</span>
+                <span class="ib-item">Compliance &amp; Accessibility</span>
+                <span class="ib-item">Content &amp; Brand</span>
+            </div>
         </div>
         <div>
-            <div class="ri-lbl">Contribution</div>
-            <div class="ri-val">Strategy · Design System · Delivery<span class="ri-sub">Figma · UserTesting · Amplitude</span></div>
+            <div class="ib-lbl">My Role</div>
+            <div class="ib-items">
+                <span class="ib-item">Design Manager</span>
+                <span class="ib-item">UX Strategy</span>
+                <span class="ib-item">Design Systems</span>
+                <span class="ib-item">Delivery &amp; Operations</span>
+            </div>
         </div>
     </div>
-</section>
+</div>
 
 <!-- ═══════════════════════════════════════════
      LEADERSHIP SUMMARY

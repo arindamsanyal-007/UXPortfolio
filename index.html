@@ -4,1632 +4,394 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arindam Sanyal — Product Design Manager</title>
-    <meta name="description" content="14+ years designing fintech products at global scale. Product Design Manager at Western Union.">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    <meta name="description" content="Product Design Manager with 14+ years building digital financial products for millions of users worldwide.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
+        :root { --bg:#080808;--s1:#111111;--border:rgba(255,255,255,.09);--t1:rgba(255,255,255,.95);--t2:rgba(255,255,255,.5);--t3:rgba(255,255,255,.25);--accent:#818CF8;--green:#2ecc71;--ease:cubic-bezier(.16,1,.3,1); }
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:rgba(129,140,248,.2) transparent}
+        ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:rgba(129,140,248,.25);border-radius:2px}
+        body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--t1);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+        a{text-decoration:none;color:inherit}
+    </style>
+    <style>
+        /* NAV */
+        nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;padding:0 48px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid transparent;transition:background .3s,border-color .3s}
+        nav.stuck{background:rgba(8,8,8,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom-color:var(--border)}
+        .nav-logo{font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px}
+        .nav-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);flex-shrink:0}
+        .nav-links{display:flex;align-items:center;gap:6px}
+        .nav-link{font-size:13px;font-weight:500;color:var(--t2);padding:7px 14px;border-radius:8px;transition:color .2s,background .2s}
+        .nav-link:hover{color:var(--t1);background:rgba(255,255,255,.05)}
+        .nav-btn{font-size:12px;font-weight:700;padding:8px 18px;border:1px solid var(--border);border-radius:100px;color:var(--t1);transition:border-color .2s,color .2s}
+        .nav-btn:hover{border-color:var(--accent);color:var(--accent)}
 
-        /* ─────────────────────────────────────────
-           RESET & ROOT
-        ───────────────────────────────────────── */
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        /* HERO */
+        .hero{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding-top:60px}
+        .hero-inner{max-width:1296px;margin:0 auto;padding:0 48px;width:100%}
+        .hero-status{display:inline-flex;align-items:center;gap:10px;font-size:12px;color:var(--t2);font-weight:500;padding:56px 0 36px}
+        .hero-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(46,204,113,.15);animation:blink 2.5s ease infinite;flex-shrink:0}
+        @keyframes blink{0%,100%{box-shadow:0 0 0 3px rgba(46,204,113,.15)}50%{box-shadow:0 0 0 6px rgba(46,204,113,.06)}}
+        .hero-hl{font-size:clamp(36px,5.2vw,68px);font-weight:700;letter-spacing:-2.5px;line-height:1.05;max-width:900px}
+        .hero-hl em{font-style:normal;color:var(--t3)}
+        .hero-meta{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--border);margin-top:56px}
+        .hm-cell{padding:20px 24px;border-right:1px solid var(--border)}
+        .hm-cell:first-child{padding-left:0}.hm-cell:last-child{border-right:none}
+        .hm-key{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--t3);margin-bottom:6px}
+        .hm-val{font-size:14px;font-weight:600;color:var(--t1);line-height:1.3}
+        .hm-sub{font-size:11px;color:var(--t3);margin-top:3px}
 
-        :root {
-            --yellow:       #818CF8;
-            --yellow-glow:  rgba(129,140,248,0.15);
-            --yellow-dim:   rgba(129,140,248,0.06);
-            --bg:           #080808;
-            --surface-1:    #101010;
-            --surface-2:    #181818;
-            --surface-3:    #222222;
-            --border:       rgba(255,255,255,0.07);
-            --border-hover: rgba(255,255,255,0.15);
-            --white:        #FFFFFF;
-            --text-1:       rgba(255,255,255,1);
-            --text-2:       rgba(255,255,255,0.5);
-            --text-3:       rgba(255,255,255,0.25);
-            --radius-sm:    10px;
-            --radius-md:    18px;
-            --radius-lg:    28px;
-            --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
-        }
+        /* DIVIDER */
+        .div{height:1px;background:var(--border)}
 
-        html {
-            scroll-behavior: smooth;
-            scrollbar-width: thin;
-            scrollbar-color: rgba(129,140,248,0.2) transparent;
-        }
+        /* SECTION */
+        .sec{padding:80px 48px;max-width:1296px;margin:0 auto}
+        .sec-hd{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:48px}
+        .sec-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--t3)}
+        .sec-lnk{font-size:13px;color:var(--t2);transition:color .2s}.sec-lnk:hover{color:var(--t1)}
 
-        ::-webkit-scrollbar { width: 3px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: rgba(129,140,248,0.25); border-radius: 2px; }
+        /* WORK GRID */
+        .work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px}
+        .wk{display:flex;flex-direction:column;gap:14px}
+        .wk-img{position:relative;overflow:hidden;border-radius:14px;background:var(--s1);aspect-ratio:4/3}
+        .wk-img img{width:100%;height:100%;object-fit:cover;object-position:top left;display:block;transition:transform .6s var(--ease)}
+        .wk:hover .wk-img img{transform:scale(1.04)}
+        .wk-shade{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 55%,rgba(8,8,8,.3) 100%)}
+        .wk-cat{display:flex;align-items:center;gap:8px}
+        .wk-tag{font-size:12px;color:var(--t3);font-weight:500}
+        .wk-sep{font-size:8px;color:var(--t3)}
+        .wk-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+        .wk-title{font-size:clamp(17px,2vw,21px);font-weight:700;letter-spacing:-.4px;line-height:1.25;transition:color .2s}
+        .wk:hover .wk-title{color:var(--accent)}
+        .wk-arrow{font-size:14px;color:var(--t3);flex-shrink:0;margin-top:3px;transition:color .2s,transform .25s var(--ease)}
+        .wk:hover .wk-arrow{color:var(--accent);transform:translate(3px,-3px)}
+        /* Featured */
+        .wk--feat{grid-column:span 2;flex-direction:row;align-items:stretch;gap:40px}
+        .wk--feat .wk-img{flex:1.6;aspect-ratio:auto;min-height:320px;border-radius:16px}
+        .wk--feat .wk-content{flex:1;display:flex;flex-direction:column;justify-content:space-between;padding:8px 0}
+        .wk--feat .wk-title{font-size:clamp(20px,2.2vw,28px)}
+        .wk-desc{font-size:14px;color:var(--t2);line-height:1.7;margin-top:12px}
+        .wk-feat-tag{display:inline-flex;align-items:center;position:absolute;top:16px;left:16px;background:var(--accent);color:#fff;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;padding:5px 12px;border-radius:100px}
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg);
-            color: var(--text-1);
-            line-height: 1.6;
-            overflow-x: hidden;
-            cursor: none;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
+        /* CAPABILITIES */
+        .caps{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--border)}
+        .cap{font-size:16px;font-weight:500;color:var(--t2);padding:18px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;transition:color .2s,padding-left .2s}
+        .cap:hover{color:var(--t1);padding-left:8px}
+        .cap:nth-child(odd){padding-right:40px;border-right:1px solid var(--border)}
+        .cap:nth-child(even){padding-left:40px}
+        .cap:nth-child(even):hover{padding-left:48px}
+        .cap-arr{font-size:13px;color:var(--t3);flex-shrink:0;transition:color .2s}.cap:hover .cap-arr{color:var(--accent)}
 
-        /* ─────────────────────────────────────────
-           CUSTOM CURSOR
-        ───────────────────────────────────────── */
-        #c-dot {
-            width: 5px; height: 5px;
-            background: var(--yellow);
-            border-radius: 50%;
-            position: fixed; top: 0; left: 0;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%,-50%);
-        }
-        #c-ring {
-            width: 32px; height: 32px;
-            border: 1px solid rgba(129,140,248,0.35);
-            border-radius: 50%;
-            position: fixed; top: 0; left: 0;
-            pointer-events: none;
-            z-index: 9998;
-            transform: translate(-50%,-50%);
-            transition: width .25s var(--ease-out),
-                        height .25s var(--ease-out),
-                        border-color .25s ease,
-                        background .25s ease;
-        }
-        #c-ring.hover {
-            width: 52px; height: 52px;
-            border-color: rgba(129,140,248,0.6);
-            background: rgba(129,140,248,0.04);
-        }
+        /* COMPANIES */
+        .cos{display:flex;align-items:stretch;border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;margin:0 48px}
+        .cos-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--t3);padding:20px 36px 20px 0;border-right:1px solid var(--border);white-space:nowrap;display:flex;align-items:center}
+        .co{font-size:14px;font-weight:600;color:var(--t3);padding:20px 32px;border-right:1px solid var(--border);white-space:nowrap;transition:color .2s;display:flex;align-items:center}
+        .co:hover{color:var(--t1)}.co:last-child{border-right:none}
 
-        /* ─────────────────────────────────────────
-           LAYOUT HELPERS
-        ───────────────────────────────────────── */
-        .wrap  { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
-        .tight { max-width: 960px;  margin: 0 auto; padding: 0 48px; }
+        /* TESTIMONIALS */
+        .testi-outer{overflow:hidden;display:flex;flex-direction:column;gap:14px}
+        .testi-row{display:flex;gap:14px;width:max-content}
+        .testi-row--a{animation:tL 50s linear infinite}
+        .testi-row--b{animation:tR 50s linear infinite}
+        .testi-outer:hover .testi-row{animation-play-state:paused}
+        @keyframes tL{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+        @keyframes tR{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+        .tc{min-width:320px;max-width:380px;flex-shrink:0;border:1px solid var(--border);border-radius:14px;padding:24px 26px;background:var(--s1);display:flex;flex-direction:column;gap:18px}
+        .tc--ph{border-style:dashed;border-color:rgba(129,140,248,.2);background:rgba(129,140,248,.03)}
+        .tc-q{font-size:13px;line-height:1.75;color:var(--t2)}
+        .tc-q--ph{color:var(--t3)}
+        .tc-who{font-size:12px;color:var(--t3)}
+        .tc-who strong{color:var(--t2);font-weight:600}
 
-        /* ─────────────────────────────────────────
-           REVEAL ANIMATIONS
-        ───────────────────────────────────────── */
-        .r {
-            opacity: 0;
-            transform: translateY(28px);
-            transition: opacity .75s var(--ease-out),
-                        transform .75s var(--ease-out);
-        }
-        .r.in  { opacity: 1; transform: translateY(0); }
-        .r-d1  { transition-delay: .08s; }
-        .r-d2  { transition-delay: .16s; }
-        .r-d3  { transition-delay: .24s; }
-        .r-d4  { transition-delay: .32s; }
+        /* CONTACT */
+        .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+        .contact-hl{font-size:clamp(32px,4vw,52px);font-weight:700;letter-spacing:-2px;line-height:1.08}
+        .contact-hl em{font-style:normal;color:var(--t3)}
+        .contact-sub{font-size:15px;color:var(--t2);margin-top:20px;line-height:1.7}
+        .cls{border-top:1px solid var(--border)}
+        .cl{display:flex;align-items:center;justify-content:space-between;padding:20px 0;border-bottom:1px solid var(--border);transition:padding-left .2s}
+        .cl:hover{padding-left:8px}
+        .cl-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--t3);margin-bottom:4px}
+        .cl-val{font-size:15px;font-weight:600;color:var(--t1)}
+        .cl-arr{font-size:16px;color:var(--t3);transition:color .2s,transform .25s var(--ease);flex-shrink:0}
+        .cl:hover .cl-lbl{color:var(--accent)}.cl:hover .cl-arr{color:var(--accent);transform:translate(3px,-3px)}
 
-        /* ─────────────────────────────────────────
-           NAVIGATION
-        ───────────────────────────────────────── */
-        nav {
-            position: fixed; top: 0; left: 0; right: 0;
-            z-index: 100;
-            padding: 0 48px;
-            height: 64px;
-            display: flex; align-items: center; justify-content: space-between;
-            transition: background .3s ease, border-color .3s ease;
-            border-bottom: 1px solid transparent;
-        }
-        nav.on {
-            background: rgba(8,8,8,.88);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border-bottom-color: var(--border);
-        }
-        .nav-logo {
-            font-size: 22px; font-weight: 900; letter-spacing: -1px;
-            color: var(--white); text-decoration: none;
-        }
-        .nav-logo span { color: var(--yellow); }
-        .nav-links { display: flex; align-items: center; gap: 36px; }
-        .nav-links a {
-            font-size: 13px; font-weight: 500;
-            color: var(--text-2); text-decoration: none;
-            transition: color .2s ease;
-        }
-        .nav-links a:hover { color: var(--text-1); }
-        .nav-links a.active { color: var(--text-1); }
-        .nav-cta {
-            background: var(--yellow); color: #fff !important;
-            padding: 8px 20px; border-radius: 100px;
-            font-weight: 700 !important; font-size: 12px !important;
-            letter-spacing: .3px;
-            transition: opacity .2s ease, transform .2s ease !important;
-        }
-        .nav-cta:hover { opacity: .85 !important; transform: translateY(-1px) !important; }
+        /* FOOTER */
+        footer{padding:24px 48px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+        .foot-l,.foot-r{font-size:12px;color:var(--t3)}
 
-        /* ─────────────────────────────────────────
-           HERO
-        ───────────────────────────────────────── */
-        .hero {
-            min-height: 100vh;
-            display: flex; flex-direction: column; justify-content: flex-end;
-            padding: 64px 48px 88px;
-            position: relative; overflow: hidden;
-        }
-        .hero-bg {
-            position: absolute; inset: 0; pointer-events: none;
-            background:
-                radial-gradient(ellipse 90% 70% at 75% 15%, rgba(129,140,248,0.05) 0%, transparent 55%),
-                radial-gradient(ellipse 50% 50% at 10% 85%, rgba(129,140,248,0.025) 0%, transparent 55%);
-        }
-        .hero-grid {
-            position: absolute; inset: 0; pointer-events: none;
-            background-image:
-                linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-            background-size: 72px 72px;
-            -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
-            mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
-        }
-        .hero-content { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; width: 100%; }
+        /* REVEAL */
+        .rv{opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+        .rv.in{opacity:1;transform:none}
+        .rv-d1{transition-delay:.07s}.rv-d2{transition-delay:.14s}.rv-d3{transition-delay:.21s}
 
-        .hero-eyebrow {
-            display: flex; align-items: center; gap: 14px; margin-bottom: 28px;
-            animation: slideUp .8s var(--ease-out) .15s both;
+        /* RESPONSIVE */
+        @media(max-width:960px){
+            nav{padding:0 24px}
+            .nav-link{display:none}
+            .hero-inner,.sec{padding-left:24px;padding-right:24px}
+            .hero-hl{letter-spacing:-1.5px}
+            .hero-meta{grid-template-columns:repeat(2,1fr)}
+            .hm-cell:nth-child(5){border-right:none}
+            .work-grid{grid-template-columns:1fr;gap:28px}
+            .wk--feat{grid-column:span 1;flex-direction:column}
+            .wk--feat .wk-img{aspect-ratio:16/10;min-height:auto}
+            .caps{grid-template-columns:1fr}
+            .cap:nth-child(odd){border-right:none;padding-right:0}
+            .cap:nth-child(even){padding-left:0}
+            .cos{margin:0 24px;flex-wrap:wrap}
+            .cos-lbl{width:100%;padding:16px 0;border-right:none;border-bottom:1px solid var(--border)}
+            .co{border-right:none;border-bottom:1px solid var(--border);padding:16px 0}
+            .contact-grid{grid-template-columns:1fr;gap:48px}
+            footer{flex-direction:column;gap:4px;text-align:center}
         }
-        .hero-line { width: 36px; height: 2px; background: var(--yellow); flex-shrink: 0; }
-        .hero-label {
-            font-size: 11px; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 3.5px; color: var(--yellow);
-        }
-        .hero-name {
-            font-size: clamp(72px, 10vw, 136px);
-            font-weight: 900; letter-spacing: -4px; line-height: .88;
-            margin-bottom: 48px;
-            animation: slideUp .9s var(--ease-out) .3s both;
-        }
-        .hero-name em {
-            font-style: normal;
-            color: transparent;
-            -webkit-text-stroke: 1.5px rgba(255,255,255,0.2);
-        }
-        .hero-footer {
-            display: flex; align-items: flex-end; justify-content: space-between; gap: 48px;
-            animation: slideUp .9s var(--ease-out) .45s both;
-        }
-        .hero-desc {
-            font-size: 16px; color: var(--text-2); line-height: 1.75; max-width: 460px;
-        }
-        .hero-desc strong { color: var(--text-1); font-weight: 600; }
-        .hero-ctas { display: flex; gap: 12px; align-items: center; flex-shrink: 0; }
-
-        /* buttons */
-        .btn {
-            display: inline-flex; align-items: center; gap: 8px;
-            font-size: 14px; font-weight: 700; padding: 15px 28px;
-            border-radius: 100px; text-decoration: none;
-            transition: transform .25s var(--ease-out), box-shadow .25s ease, opacity .2s ease;
-        }
-        .btn-y { background: var(--yellow); color: #fff; }
-        .btn-y:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(129,140,248,.25); }
-        .btn-o {
-            color: var(--text-2); border: 1px solid var(--border);
-            background: transparent;
-        }
-        .btn-o:hover { color: var(--text-1); border-color: var(--border-hover); transform: translateY(-1px); }
-
-        /* scroll pill */
-        .scroll-pill {
-            position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
-            display: flex; align-items: center; gap: 8px; z-index: 1;
-            font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px;
-            color: var(--text-3);
-            animation: fadeIn 1s ease 1.2s both;
-        }
-        .scroll-pill-dot {
-            width: 6px; height: 16px; border: 1px solid rgba(255,255,255,0.12);
-            border-radius: 100px; display: flex; align-items: flex-start; justify-content: center;
-            padding: 2px;
-        }
-        .scroll-pill-dot::before {
-            content: ''; width: 2px; height: 4px;
-            background: var(--text-3); border-radius: 1px;
-            animation: scrollDot 1.5s ease infinite;
-        }
-
-        /* ─────────────────────────────────────────
-           STATS STRIP
-        ───────────────────────────────────────── */
-        .stats-strip {
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            padding: 56px 0;
-        }
-        .stats-grid {
-            display: grid; grid-template-columns: repeat(4,1fr);
-        }
-        .stat {
-            padding: 0 48px;
-            border-right: 1px solid var(--border);
-        }
-        .stat:first-child { padding-left: 0; }
-        .stat:last-child  { border-right: none; }
-        .stat-num {
-            font-size: 56px; font-weight: 900; letter-spacing: -3px;
-            color: var(--yellow); line-height: 1; margin-bottom: 10px;
-        }
-        .stat-text {
-            font-size: 13px; color: var(--text-2); line-height: 1.5; max-width: 180px;
-        }
-
-        /* ─────────────────────────────────────────
-           SECTION BASE
-        ───────────────────────────────────────── */
-        .section { padding: 120px 0; }
-        .section--alt {
-            background: var(--surface-1);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-        }
-        .sec-header { margin-bottom: 72px; }
-        .sec-tag {
-            display: inline-flex; align-items: center; gap: 10px;
-            font-size: 10px; font-weight: 800; text-transform: uppercase;
-            letter-spacing: 3px; color: var(--text-3); margin-bottom: 18px;
-        }
-        .sec-tag::before { content:''; width: 18px; height: 1px; background: var(--text-3); }
-        .sec-title {
-            font-size: clamp(30px, 4vw, 46px); font-weight: 800;
-            letter-spacing: -1.5px; line-height: 1.08;
-        }
-        .sec-lead {
-            font-size: 16px; color: var(--text-2); margin-top: 16px;
-            max-width: 520px; line-height: 1.75;
-        }
-
-        /* ─────────────────────────────────────────
-           HERO EXTRAS
-        ───────────────────────────────────────── */
-        .hero-rings {
-            position: absolute; top: 35%; left: 68%;
-            transform: translate(-50%, -50%);
-            pointer-events: none; z-index: 0;
-        }
-        .hero-ring {
-            position: absolute; border-radius: 50%;
-            border: 1px solid rgba(129,140,248,0.06);
-            top: 50%; left: 50%;
-            transform: translate(-50%,-50%) scale(0.85);
-            animation: ringPulse 8s ease-in-out infinite;
-        }
-        .hero-ring:nth-child(1) { width: 240px; height: 240px; animation-delay: 0s; }
-        .hero-ring:nth-child(2) { width: 420px; height: 420px; animation-delay: 1.8s; border-color: rgba(129,140,248,0.04); }
-        .hero-ring:nth-child(3) { width: 620px; height: 620px; animation-delay: 3.6s; border-color: rgba(129,140,248,0.025); }
-        .hero-ring:nth-child(4) { width: 840px; height: 840px; animation-delay: 5.4s; border-color: rgba(129,140,248,0.015); }
-        .hero-orb {
-            position: absolute; top: 30%; left: 65%;
-            width: 500px; height: 500px; border-radius: 50%;
-            background: radial-gradient(circle, rgba(129,140,248,0.04) 0%, transparent 65%);
-            pointer-events: none; z-index: 0;
-            animation: orbDrift 12s ease-in-out infinite;
-        }
-        .hero-status {
-            display: inline-flex; align-items: center; gap: 8px;
-            margin-bottom: 20px;
-            animation: fadeIn .8s ease .08s both;
-        }
-        .hero-status-dot {
-            width: 7px; height: 7px; border-radius: 50%;
-            background: #00C875;
-            box-shadow: 0 0 0 2px rgba(0,200,117,.2);
-            animation: dotBlink 2.5s ease infinite;
-        }
-        .hero-status-text {
-            font-size: 11px; font-weight: 600; color: var(--text-3); letter-spacing: .5px;
-        }
-        .hero-floats {
-            position: absolute; right: 48px; top: 50%;
-            transform: translateY(-50%); z-index: 1;
-            display: flex; flex-direction: column; gap: 12px;
-            animation: fadeIn 1s ease 1s both;
-            pointer-events: none;
-        }
-        .hf-pill {
-            display: flex; flex-direction: column;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 14px; padding: 16px 24px;
-            text-align: right;
-            backdrop-filter: blur(10px);
-        }
-        .hf-num { font-size: 28px; font-weight: 900; color: var(--yellow); letter-spacing: -1px; line-height: 1; }
-        .hf-lbl { font-size: 11px; color: var(--text-3); font-weight: 500; margin-top: 4px; }
-
-        /* ─────────────────────────────────────────
-           WORK CARDS (GRID)
-        ───────────────────────────────────────── */
-        .work-stack { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
-        .work-card {
-            background: var(--surface-1);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            text-decoration: none; color: inherit;
-            display: flex; flex-direction: column;
-            transition: background .3s ease, transform .4s var(--ease-out), box-shadow .4s ease;
-            position: relative;
-        }
-        .work-card:hover { background: var(--surface-2); transform: translateY(-6px); box-shadow: 0 32px 64px rgba(0,0,0,.4); }
-        .work-card:hover .wc-arrow { transform: translate(5px,-5px); color: var(--yellow); border-color: rgba(129,140,248,.3); }
-
-        .wc-visual {
-            position: relative; overflow: hidden;
-            background: var(--surface-2);
-            height: 280px; flex-shrink: 0;
-        }
-        .wc-visual svg { width: 100%; height: 100%; display: block; }
-
-        .wc-body {
-            padding: 36px 40px 40px;
-            display: flex; flex-direction: column; justify-content: space-between;
-            flex: 1;
-        }
-        .wc-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
-        .wc-tag {
-            font-size: 10px; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 1.5px; padding: 5px 12px;
-            border-radius: 100px; border: 1px solid var(--border); color: var(--text-3);
-        }
-        .wc-title {
-            font-size: clamp(18px, 2vw, 24px); font-weight: 800;
-            letter-spacing: -.5px; line-height: 1.25; margin-bottom: 12px;
-        }
-        .wc-desc { font-size: 14px; color: var(--text-2); line-height: 1.75; }
-        .wc-foot {
-            display: flex; align-items: flex-end; justify-content: space-between;
-            margin-top: 32px;
-        }
-        .wc-stat-num { font-size: 28px; font-weight: 900; color: var(--yellow); letter-spacing: -1px; }
-        .wc-stat-lbl { font-size: 12px; color: var(--text-3); margin-top: 2px; }
-        .wc-arrow {
-            width: 44px; height: 44px; border-radius: 50%;
-            border: 1px solid var(--border);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 17px; color: var(--text-2);
-            transition: transform .35s var(--ease-out), color .2s ease, border-color .2s ease;
-            flex-shrink: 0;
-        }
-        .wc-coming {
-            display: flex; align-items: center; justify-content: center;
-            height: 100%; font-size: 11px; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 3px; color: var(--text-3);
-        }
-
-        /* ─────────────────────────────────────────
-           ABOUT — BENTO GRID
-        ───────────────────────────────────────── */
-        .bento {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2px;
-        }
-        .bc {
-            background: var(--surface-2);
-            border-radius: var(--radius-md);
-            padding: 40px;
-        }
-        .bc--wide  { grid-column: span 2; }
-        .bc--tall  { grid-row:    span 2; }
-        .bc--gold  { background: var(--yellow); color: #fff; }
-        .bc-lbl {
-            font-size: 10px; font-weight: 800; text-transform: uppercase;
-            letter-spacing: 3px; color: var(--text-3); margin-bottom: 20px;
-        }
-        .bc--gold .bc-lbl { color: rgba(255,255,255,0.45); }
-        .bc-head {
-            font-size: 20px; font-weight: 800; line-height: 1.3;
-            letter-spacing: -.4px; margin-bottom: 12px;
-        }
-        .bc--gold .bc-head { color: #fff; }
-        .bc-body { font-size: 14px; color: var(--text-2); line-height: 1.75; }
-        .bc--gold .bc-body { color: rgba(255,255,255,0.65); }
-        .big-n {
-            font-size: 88px; font-weight: 900; letter-spacing: -5px;
-            color: var(--yellow); line-height: 1; margin-bottom: 8px;
-        }
-        .skill-chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
-        .chip {
-            font-size: 12px; font-weight: 500;
-            padding: 6px 13px; border-radius: 100px;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid var(--border);
-            color: var(--text-2);
-        }
-        .chip--y {
-            background: rgba(129,140,248,0.07);
-            border-color: rgba(129,140,248,0.2);
-            color: var(--yellow);
-        }
-
-        /* ─────────────────────────────────────────
-           EXPERIENCE TIMELINE
-        ───────────────────────────────────────── */
-        .timeline { }
-        .tl-item {
-            display: grid; grid-template-columns: 220px 1fr;
-            gap: 48px; padding: 52px 0;
-            border-top: 1px solid var(--border);
-            align-items: start;
-        }
-        .tl-item:last-child { border-bottom: 1px solid var(--border); }
-        .tl-date { font-size: 12px; color: var(--text-3); font-weight: 500; padding-top: 3px; letter-spacing: .3px; }
-        .tl-company {
-            font-size: 10px; font-weight: 800; text-transform: uppercase;
-            letter-spacing: 2.5px; color: var(--yellow); margin-bottom: 8px;
-        }
-        .tl-role {
-            font-size: 21px; font-weight: 700; letter-spacing: -.4px;
-            margin-bottom: 14px; line-height: 1.2;
-        }
-        .tl-desc { font-size: 14px; color: var(--text-2); line-height: 1.75; max-width: 600px; }
-        .tl-chips { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 20px; }
-        .tl-chip {
-            font-size: 11px; font-weight: 500; padding: 4px 11px;
-            border-radius: 100px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--border); color: var(--text-3);
-        }
-
-        /* ─────────────────────────────────────────
-           CONTACT
-        ───────────────────────────────────────── */
-        .contact-inner {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
-        }
-        .contact-head {
-            font-size: clamp(34px, 4.5vw, 58px); font-weight: 900;
-            letter-spacing: -2px; line-height: 1.02;
-        }
-        .contact-head em {
-            font-style: normal; color: transparent;
-            -webkit-text-stroke: 1.5px rgba(255,255,255,0.18);
-        }
-        .contact-sub { font-size: 15px; color: var(--text-2); margin-top: 20px; line-height: 1.7; }
-        .contact-links { display: flex; flex-direction: column; gap: 12px; }
-        .cl {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 22px 26px;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            text-decoration: none; color: inherit;
-            transition: border-color .2s ease, background .2s ease;
-        }
-        .cl:hover { border-color: rgba(129,140,248,.3); background: var(--yellow-dim); }
-        .cl:hover .cl-arrow { color: var(--yellow); transform: translate(4px,-4px); }
-        .cl-lbl { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--text-3); margin-bottom: 4px; }
-        .cl-val { font-size: 15px; font-weight: 600; }
-        .cl-arrow { font-size: 17px; color: var(--text-3); transition: color .2s, transform .25s var(--ease-out); }
-
-        /* ─────────────────────────────────────────
-           FOOTER
-        ───────────────────────────────────────── */
-        footer {
-            padding: 28px 48px;
-            border-top: 1px solid var(--border);
-            display: flex; align-items: center; justify-content: space-between;
-        }
-        .foot-name { font-size: 13px; font-weight: 600; color: var(--text-3); }
-        .foot-copy { font-size: 12px; color: var(--text-3); }
-
-        /* ─────────────────────────────────────────
-           KEYFRAMES
-        ───────────────────────────────────────── */
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(28px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to   { opacity: 1; }
-        }
-        @keyframes scrollDot {
-            0%,100% { transform: translateY(0); opacity:1; }
-            80%      { transform: translateY(6px); opacity: 0; }
-        }
-        @keyframes ringPulse {
-            0%   { transform: translate(-50%,-50%) scale(0.85); opacity: 0; }
-            25%  { opacity: 1; }
-            100% { transform: translate(-50%,-50%) scale(1.1); opacity: 0; }
-        }
-        @keyframes orbDrift {
-            0%,100% { transform: translate(0,0) scale(1); opacity:.7; }
-            33%     { transform: translate(-40px, 30px) scale(1.1); opacity:1; }
-            66%     { transform: translate(30px,-20px) scale(.9); opacity:.6; }
-        }
-        @keyframes dotBlink {
-            0%,100% { box-shadow: 0 0 0 2px rgba(0,200,117,.2); }
-            50%     { box-shadow: 0 0 0 5px rgba(0,200,117,.08); }
-        }
-
-        /* ─────────────────────────────────────────
-           HERO RESTRUCTURE ADDITIONS
-        ───────────────────────────────────────── */
-        .hero-tagline {
-            font-size: 18px; color: var(--text-2); line-height: 1.65;
-            max-width: 600px; margin-bottom: 36px;
-            animation: slideUp .9s var(--ease-out) .42s both;
-        }
-        .hero-tagline strong { color: var(--text-1); font-weight: 600; }
-        .hero-meta {
-            display: flex; align-items: center; margin-bottom: 40px;
-            animation: slideUp .9s var(--ease-out) .54s both;
-        }
-        .hm-item { display: flex; flex-direction: column; gap: 2px; }
-        .hm-val { font-size: 19px; font-weight: 800; color: var(--text-1); letter-spacing: -.4px; }
-        .hm-lbl { font-size: 10px; color: var(--text-3); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; }
-        .hm-div { width: 1px; height: 36px; background: var(--border); margin: 0 28px; }
-        .hero-ctas { display: flex; gap: 12px; align-items: center; flex-shrink: 0; animation: slideUp .9s var(--ease-out) .62s both; }
-
-        /* ─────────────────────────────────────────
-           COMPANIES STRIP
-        ───────────────────────────────────────── */
-        .co-strip { padding: 20px 0; border-bottom: 1px solid var(--border); }
-        .co-strip-inner { display: flex; align-items: center; gap: 40px; flex-wrap: wrap; }
-        .co-strip-lbl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: var(--text-3); white-space: nowrap; flex-shrink: 0; }
-        .co-names { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
-        .co-name { font-size: 15px; font-weight: 700; color: var(--text-2); letter-spacing: -.2px; transition: color .2s; }
-        .co-name:hover { color: var(--text-1); }
-        .co-sep { color: var(--text-3); font-size: 10px; }
-
-        /* ─────────────────────────────────────────
-           CARD REAL IMAGES
-        ───────────────────────────────────────── */
-        .wc-img { width: 100%; height: 100%; object-fit: cover; object-position: top left; opacity: .72; transition: opacity .4s ease, transform .6s var(--ease-out); display: block; }
-        .work-card:hover .wc-img { opacity: .88; transform: scale(1.03); }
-        .wc-img-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(8,8,8,0) 40%, rgba(8,8,8,.25) 100%); pointer-events: none; }
-        .wc-img-bg { background-size: cover; background-position: top left; background-repeat: no-repeat; transition: filter .4s ease; }
-        .wc-img-bg > svg { display: none; }
-        .work-card:hover .wc-img-bg { filter: brightness(1.1); }
-
-        /* ─────────────────────────────────────────
-           TESTIMONIALS
-        ───────────────────────────────────────── */
-        .testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
-        .testi-card {
-            background: var(--surface-2); border-radius: var(--radius-md);
-            padding: 32px; display: flex; flex-direction: column;
-            justify-content: space-between; gap: 24px;
-            border: 1px solid var(--border);
-            transition: border-color .25s ease, transform .3s var(--ease-out);
-        }
-        .testi-card:hover { border-color: rgba(129,140,248,.3); transform: translateY(-3px); }
-        .testi-qmark { font-size: 48px; color: var(--yellow); opacity: .3; line-height: 1; margin-bottom: 4px; font-family: Georgia, serif; }
-        .testi-text { font-size: 14px; color: var(--text-1); line-height: 1.75; font-style: italic; }
-        .testi-name { font-size: 14px; font-weight: 700; color: var(--text-1); }
-        .testi-role { font-size: 11px; color: var(--text-3); margin-top: 3px; letter-spacing: .3px; }
-        .testi-placeholder { font-size: 13px; color: var(--text-3); line-height: 1.7; font-style: normal; background: rgba(129,140,248,.05); border: 1px dashed rgba(129,140,248,.2); border-radius: 8px; padding: 12px 14px; }
-
-        /* ─────────────────────────────────────────
-           MARQUEE TICKER
-        ───────────────────────────────────────── */
-        .mq-wrap {
-            overflow: hidden;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            padding: 14px 0;
-            background: var(--surface-1);
-        }
-        .mq-track {
-            display: flex; align-items: center; gap: 48px;
-            width: max-content;
-            animation: marquee 35s linear infinite;
-            font-size: 10px; font-weight: 800;
-            text-transform: uppercase; letter-spacing: 2.5px;
-            color: var(--text-3);
-        }
-        .mq-wrap:hover .mq-track { animation-play-state: paused; }
-        .mq-dot { color: var(--yellow); flex-shrink: 0; font-size: 7px; }
-        @keyframes marquee {
-            from { transform: translateX(0); }
-            to   { transform: translateX(-50%); }
-        }
-
-        /* ─────────────────────────────────────────
-           RESPONSIVE
-        ───────────────────────────────────────── */
-        @media (max-width: 960px) {
-            .wrap, .tight { padding: 0 24px; }
-            nav { padding: 0 24px; }
-            .hero { padding: 64px 24px 80px; }
-            .hero-name { letter-spacing: -2.5px; }
-            .hero-footer { flex-direction: column; align-items: flex-start; gap: 28px; }
-            .hero-floats { display: none; }
-            .hero-rings { display: none; }
-            .stats-grid { grid-template-columns: 1fr 1fr; gap: 40px 0; }
-            .stat { padding: 0 24px; border-right: none; }
-            .stat:nth-child(odd) { padding-left: 0; border-right: 1px solid var(--border); }
-            .work-stack { grid-template-columns: 1fr; }
-            .wc-visual { height: 220px; }
-            .wc-body { padding: 28px 28px 32px; }
-            .testi-grid { grid-template-columns: 1fr; }
-            .bc--wide { grid-column: span 2; }
-            .tl-item { grid-template-columns: 1fr; gap: 12px; }
-            .contact-inner { grid-template-columns: 1fr; gap: 48px; }
-            footer { flex-direction: column; gap: 6px; text-align: center; }
-            body { cursor: auto; }
-            #c-dot, #c-ring { display: none; }
-        }
-        @media (max-width: 600px) {
-            .bento { grid-template-columns: 1fr; }
-            .bc--wide { grid-column: span 1; }
-            .nav-links a:not(.nav-cta) { display: none; }
-        }
-
     </style>
 </head>
 <body>
 
-<!-- Custom cursor -->
-<div id="c-dot"></div>
-<div id="c-ring"></div>
-
-<!-- ─── NAVIGATION ─── -->
 <nav id="nav">
-    <a href="#" class="nav-logo">A<span>.</span></a>
+    <a href="#" class="nav-logo"><span class="nav-dot"></span>Arindam Sanyal</a>
     <div class="nav-links">
-        <a href="#work">Work</a>
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#testimonials">Testimonials</a>
-        <a href="#contact" class="nav-cta">Contact</a>
+        <a href="#work" class="nav-link">Work</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#testimonials" class="nav-link">Testimonials</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <a href="mailto:asanyal88@gmail.com" class="nav-btn">Book an Intro</a>
     </div>
 </nav>
 
-<!-- ─── HERO ─── -->
 <section class="hero" id="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-grid"></div>
-    <div class="hero-orb"></div>
-    <div class="hero-rings" aria-hidden="true">
-        <div class="hero-ring"></div>
-        <div class="hero-ring"></div>
-        <div class="hero-ring"></div>
-        <div class="hero-ring"></div>
-    </div>
-
-    <!-- Floating stat pills (desktop only) -->
-    <div class="hero-floats" aria-hidden="true">
-        <div class="hf-pill">
-            <span class="hf-num">14+</span>
-            <span class="hf-lbl">Years of experience</span>
-        </div>
-        <div class="hf-pill">
-            <span class="hf-num">8</span>
-            <span class="hf-lbl">Designers led</span>
-        </div>
-        <div class="hf-pill">
-            <span class="hf-num">200+</span>
-            <span class="hf-lbl">Markets served</span>
-        </div>
-    </div>
-
-    <div class="hero-content">
+    <div class="hero-inner">
         <div class="hero-status">
-            <span class="hero-status-dot"></span>
-            <span class="hero-status-text">Available &mdash; Open to Senior Design Leadership Roles</span>
+            <span class="hero-dot"></span>
+            Available &mdash; Open to Senior Design Leadership Roles
         </div>
-        <div class="hero-eyebrow">
-            <div class="hero-line"></div>
-            <span class="hero-label">Product Design Manager &middot; Pune, India</span>
-        </div>
-        <h1 class="hero-name">Arindam<br><em>Sanyal.</em></h1>
-        <p class="hero-tagline">
-            Leading UX design for global fintech &mdash; from the <strong>biggest redesign in Western Union's history</strong>
-            to building personalisation systems used across <strong>200+ markets worldwide</strong>.
-        </p>
+        <h1 class="hero-hl">
+            Product Design Manager<br>
+            building digital financial products<br>
+            for <em>millions worldwide.</em>
+        </h1>
         <div class="hero-meta">
-            <div class="hm-item"><div class="hm-val">14+</div><div class="hm-lbl">Years</div></div>
-            <div class="hm-div"></div>
-            <div class="hm-item"><div class="hm-val">8</div><div class="hm-lbl">Designers Led</div></div>
-            <div class="hm-div"></div>
-            <div class="hm-item"><div class="hm-val">200+</div><div class="hm-lbl">Markets</div></div>
-            <div class="hm-div"></div>
-            <div class="hm-item"><div class="hm-val">Fintech</div><div class="hm-lbl">Industry</div></div>
+            <div class="hm-cell">
+                <div class="hm-key">Availability</div>
+                <div class="hm-val">Open to Roles</div>
+                <div class="hm-sub">Remote / Hybrid</div>
+            </div>
+            <div class="hm-cell">
+                <div class="hm-key">Experience</div>
+                <div class="hm-val">14+ Years</div>
+                <div class="hm-sub">Design Manager</div>
+            </div>
+            <div class="hm-cell">
+                <div class="hm-key">Industry</div>
+                <div class="hm-val">Fintech</div>
+                <div class="hm-sub">Enterprise Products</div>
+            </div>
+            <div class="hm-cell">
+                <div class="hm-key">Location</div>
+                <div class="hm-val">Pune, IN</div>
+                <div class="hm-sub" id="local-time">&mdash;</div>
+            </div>
+            <div class="hm-cell">
+                <div class="hm-key">Currently</div>
+                <div class="hm-val">Western Union</div>
+                <div class="hm-sub">Sep 2023 &ndash; Present</div>
+            </div>
         </div>
-        <div class="hero-ctas">
-            <a href="#work" class="btn btn-y">View Work &rarr;</a>
-            <a href="mailto:asanyal88@gmail.com" class="btn btn-o">Book an Intro</a>
-        </div>
-    </div>
-    <div class="scroll-pill">
-        <div class="scroll-pill-dot"></div>
-        Scroll
     </div>
 </section>
 
-<!-- ─── STATS ─── -->
-<div class="stats-strip">
-    <div class="wrap">
-        <div class="stats-grid">
-            <div class="stat r">
-                <div class="stat-num" data-to="5" data-prefix="~" data-suffix="%">~5%</div>
-                <div class="stat-text">Drop-off reduction across key user journeys</div>
-            </div>
-            <div class="stat r r-d1">
-                <div class="stat-num" data-to="25" data-prefix="~" data-suffix="%">~25%</div>
-                <div class="stat-text">Late-stage design changes cut through earlier alignment</div>
-            </div>
-            <div class="stat r r-d2">
-                <div class="stat-num" data-to="20" data-prefix="~" data-suffix="%">~20%</div>
-                <div class="stat-text">Design-to-engineering handoff time saved</div>
-            </div>
-            <div class="stat r r-d3">
-                <div class="stat-num" data-to="8" data-prefix="~" data-suffix="%">~8%</div>
-                <div class="stat-text">Inbound customer support issues reduced</div>
-            </div>
-        </div>
+<div class="div"></div>
+
+<section class="sec" id="work">
+    <div class="sec-hd rv">
+        <span class="sec-lbl">Featured Work</span>
+        <a href="wu-redesign-case-study.html" class="sec-lnk">All case studies &rarr;</a>
     </div>
+    <div class="work-grid">
+
+        <a href="wu-redesign-case-study.html" class="wk wk--feat rv">
+            <div class="wk-img">
+                <img src="case-study-assets/08-bank-account-flow.png" alt="WU E1 Redesign">
+                <div class="wk-shade"></div>
+                <span class="wk-feat-tag">&#9733; Featured</span>
+            </div>
+            <div class="wk-content">
+                <div>
+                    <div class="wk-cat" style="margin-bottom:16px;">
+                        <span class="wk-tag">Design Manager</span><span class="wk-sep">&middot;</span>
+                        <span class="wk-tag">Fintech</span><span class="wk-sep">&middot;</span>
+                        <span class="wk-tag">2023&ndash;Present</span>
+                    </div>
+                    <div class="wk-title">Biggest Overhaul in Western Union&rsquo;s History</div>
+                    <p class="wk-desc">Led 11 designers to redesign the entire WU platform &mdash; collapsing 5 fragmented apps into one unified, wallet-based experience across iOS, Android &amp; web.</p>
+                </div>
+                <div class="wk-row" style="margin-top:32px;">
+                    <span style="font-size:13px;color:var(--t3)">142+ screens &middot; 40+ engineers</span>
+                    <span class="wk-arrow">&nearr;</span>
+                </div>
+            </div>
+        </a>
+
+        <a href="ux-baseline-case-study.html" class="wk rv rv-d1">
+            <div class="wk-img">
+                <img src="case-study-assets/03-payments-hub.png" alt="UX Baseline">
+                <div class="wk-shade"></div>
+            </div>
+            <div class="wk-cat">
+                <span class="wk-tag">UX Strategy</span><span class="wk-sep">&middot;</span>
+                <span class="wk-tag">Design Ops</span><span class="wk-sep">&middot;</span>
+                <span class="wk-tag">Global Scale</span>
+            </div>
+            <div class="wk-row">
+                <div class="wk-title">The Case for a UX Baseline</div>
+                <span class="wk-arrow">&nearr;</span>
+            </div>
+        </a>
+
+        <a href="send-money-imt-case-study.html" class="wk rv rv-d2">
+            <div class="wk-img">
+                <img src="case-study-assets/05-send-with-contacts.png" alt="Send Money IMT">
+                <div class="wk-shade"></div>
+            </div>
+            <div class="wk-cat">
+                <span class="wk-tag">Interaction Design</span><span class="wk-sep">&middot;</span>
+                <span class="wk-tag">Mobile</span><span class="wk-sep">&middot;</span>
+                <span class="wk-tag">Accessibility</span>
+            </div>
+            <div class="wk-row">
+                <div class="wk-title">Send Money &mdash; International Money Transfer</div>
+                <span class="wk-arrow">&nearr;</span>
+            </div>
+        </a>
+
+        <a href="content-network-case-study.html" class="wk rv rv-d3">
+            <div class="wk-img">
+                <img src="case-study-assets/06-send-to.png" alt="Content Network">
+                <div class="wk-shade"></div>
+            </div>
+            <div class="wk-cat">
+                <span class="wk-tag">Product Strategy</span><span class="wk-sep">&middot;</span>
+                <span class="wk-tag">Personalisation</span><span class="wk-sep">&middot;</span>
+                <span class="wk-tag">2024</span>
+            </div>
+            <div class="wk-row">
+                <div class="wk-title">Content Network Product Strategy</div>
+                <span class="wk-arrow">&nearr;</span>
+            </div>
+        </a>
+
+    </div>
+</section>
+
+<div class="div"></div>
+
+<section class="sec" id="about">
+    <div class="sec-hd rv"><span class="sec-lbl">What I Lead</span></div>
+    <div class="caps">
+        <div class="cap rv">Product Design <span class="cap-arr">&nearr;</span></div>
+        <div class="cap rv">Design Systems <span class="cap-arr">&nearr;</span></div>
+        <div class="cap rv">UX Strategy <span class="cap-arr">&nearr;</span></div>
+        <div class="cap rv">Team Leadership &mdash; 8 Designers <span class="cap-arr">&nearr;</span></div>
+        <div class="cap rv">Interaction Design <span class="cap-arr">&nearr;</span></div>
+        <div class="cap rv">Accessibility (WCAG 2.1) <span class="cap-arr">&nearr;</span></div>
+        <div class="cap rv">Design Operations <span class="cap-arr">&nearr;</span></div>
+        <div class="cap rv">Fintech Products <span class="cap-arr">&nearr;</span></div>
+        <div class="cap rv">Stakeholder Alignment <span class="cap-arr">&nearr;</span></div>
+        <div class="cap rv">Product Discovery <span class="cap-arr">&nearr;</span></div>
+    </div>
+</section>
+
+<div class="cos rv">
+    <span class="cos-lbl">Companies &amp; Teams</span>
+    <span class="co">Western Union</span>
+    <span class="co">EY (Ernst &amp; Young)</span>
+    <span class="co">Searce Inc</span>
+    <span class="co">Mobikon</span>
+    <span class="co">Fab.com</span>
 </div>
 
-<!-- ─ COMPANIES ─ -->
-<div class="co-strip">
-    <div class="wrap">
-        <div class="co-strip-inner">
-            <span class="co-strip-lbl">Companies I've Led Design For</span>
-            <div class="co-names">
-                <span class="co-name">Western Union</span>
-                <span class="co-sep">●</span>
-                <span class="co-name">EY</span>
-                <span class="co-sep">●</span>
-                <span class="co-name">Searce</span>
-                <span class="co-sep">●</span>
-                <span class="co-name">Mobikon</span>
-                <span class="co-sep">●</span>
-                <span class="co-name">Fab.com</span>
-            </div>
-        </div>
+<div class="div"></div>
+
+<section class="sec" id="testimonials">
+    <div class="sec-hd rv">
+        <span class="sec-lbl">Testimonials</span>
+        <span style="font-size:12px;color:var(--t3)">Placeholder &mdash; replace with real quotes from colleagues</span>
     </div>
-</div>
-
-<!-- ─ MARQUEE ─ -->
-<div class="mq-wrap" aria-hidden="true">
-    <div class="mq-track">
-        <span>Interaction Design</span><span class="mq-dot">●</span>
-        <span>Design Systems</span><span class="mq-dot">●</span>
-        <span>UX Strategy</span><span class="mq-dot">●</span>
-        <span>Accessibility (WCAG)</span><span class="mq-dot">●</span>
-        <span>Fintech</span><span class="mq-dot">●</span>
-        <span>Design Ops</span><span class="mq-dot">●</span>
-        <span>Team Leadership</span><span class="mq-dot">●</span>
-        <span>Product Discovery</span><span class="mq-dot">●</span>
-        <span>Stakeholder Alignment</span><span class="mq-dot">●</span>
-        <span>Enterprise Platforms</span><span class="mq-dot">●</span>
-        <span>Mobile Design</span><span class="mq-dot">●</span>
-        <span>Prototyping</span><span class="mq-dot">●</span>
-        <!-- duplicate for seamless loop -->
-        <span>Interaction Design</span><span class="mq-dot">●</span>
-        <span>Design Systems</span><span class="mq-dot">●</span>
-        <span>UX Strategy</span><span class="mq-dot">●</span>
-        <span>Accessibility (WCAG)</span><span class="mq-dot">●</span>
-        <span>Fintech</span><span class="mq-dot">●</span>
-        <span>Design Ops</span><span class="mq-dot">●</span>
-        <span>Team Leadership</span><span class="mq-dot">●</span>
-        <span>Product Discovery</span><span class="mq-dot">●</span>
-        <span>Stakeholder Alignment</span><span class="mq-dot">●</span>
-        <span>Enterprise Platforms</span><span class="mq-dot">●</span>
-        <span>Mobile Design</span><span class="mq-dot">●</span>
-        <span>Prototyping</span><span class="mq-dot">●</span>
-    </div>
-</div>
-
-<!-- ─ WORK ─ -->
-<section class="section" id="work">
-    <div class="wrap">
-        <div class="sec-header r">
-            <div class="sec-tag">Selected Work</div>
-            <h2 class="sec-title">Case Studies</h2>
-            <p class="sec-lead">Deep-dives into the design decisions, strategy, and measurable outcomes behind complex fintech products.</p>
+    <div class="testi-outer">
+        <div class="testi-row testi-row--a">
+            <div class="tc tc--ph"><p class="tc-q tc-q--ph">[Placeholder] Add a quote from a Product Manager at Western Union about your cross-functional leadership on the E1 Redesign &mdash; how you aligned design, engineering and compliance teams.</p><div class="tc-who"><strong>[Name]</strong> &mdash; Product Manager &middot; Western Union</div></div>
+            <div class="tc tc--ph"><p class="tc-q tc-q--ph">[Placeholder] A quote from an Engineering Lead about how your dual-track agile approach, design QA rituals, and clear specs improved delivery velocity and reduced rework by 40%.</p><div class="tc-who"><strong>[Name]</strong> &mdash; Engineering Lead &middot; Western Union</div></div>
+            <div class="tc tc--ph"><p class="tc-q tc-q--ph">[Placeholder] A testimonial from a designer you mentored about your 1:1s, critique sessions, and how your feedback helped them grow in their craft and decision-making.</p><div class="tc-who"><strong>[Name]</strong> &mdash; Senior UX Designer &middot; Western Union</div></div>
+            <div class="tc tc--ph"><p class="tc-q tc-q--ph">[Placeholder] A quote from Searce Inc about your UX strategy, product discovery approach, and contributions to the HappierWork roadmap and engineering collaboration.</p><div class="tc-who"><strong>[Name]</strong> &mdash; Product Director &middot; Searce Inc</div></div>
+            <div class="tc tc--ph"><p class="tc-q tc-q--ph">[Placeholder] Add a quote from a Product Manager at Western Union about your cross-functional leadership on the E1 Redesign &mdash; how you aligned design, engineering and compliance teams.</p><div class="tc-who"><strong>[Name]</strong> &mdash; Product Manager &middot; Western Union</div></div>
+            <div class="tc tc--ph"><p class="tc-q tc-q--ph">[Placeholder] A quote from an Engineering Lead about how your dual-track agile approach, design QA rituals, and clear specs improved delivery velocity and reduced rework by 40%.</p><div class="tc-who"><strong>[Name]</strong> &mdash; Engineering Lead &middot; Western Union</div></div>
+            <div class="tc tc--ph"><p class="tc-q tc-q--ph">[Placeholder] A testimonial from a designer you mentored about your 1:1s, critique sessions, and how your feedback helped them grow in their craft and decision-making.</p><div class="tc-who"><strong>[Name]</strong> &mdash; Senior UX Designer &middot; Western Union</div></div>
+            <div class="tc tc--ph"><p class="tc-q tc-q--ph">[Placeholder] A quote from Searce Inc about your UX strategy, product discovery approach, and contributions to the HappierWork roadmap and engineering collaboration.</p><div class="tc-who"><strong>[Name]</strong> &mdash; Product Director &middot; Searce Inc</div></div>
         </div>
-        <div class="work-stack">
-
-            <!-- FEATURED: WU Redesign (full-width) -->
-            <a href="wu-redesign-case-study.html" class="work-card r" style="grid-column:span 2; flex-direction:row; min-height:320px; background:linear-gradient(135deg,#101018 0%,#0e0e1a 100%); border:1px solid rgba(129,140,248,.15);">
-                <div class="wc-visual" style="height:auto; flex:1; background:#0a0a12;">
-                    <svg viewBox="0 0 760 320" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-                        <style>
-                            .wu-sc { animation: wuF 5s ease-in-out infinite; }
-                            .wu-sc:nth-child(2){ animation-delay:.9s; }
-                            .wu-sc:nth-child(3){ animation-delay:1.8s; }
-                            .wu-sc:nth-child(4){ animation-delay:2.7s; }
-                            .wu-sc:nth-child(5){ animation-delay:3.6s; }
-                            @keyframes wuF { 0%,100%{opacity:.25} 50%{opacity:.75} }
-                        </style>
-                        <defs>
-                            <radialGradient id="wug" cx="50%" cy="50%" r="55%">
-                                <stop offset="0%" stop-color="#818CF8" stop-opacity=".12"/>
-                                <stop offset="100%" stop-color="#818CF8" stop-opacity="0"/>
-                            </radialGradient>
-                            <pattern id="wupg" width="48" height="48" patternUnits="userSpaceOnUse">
-                                <path d="M48 0L0 0 0 48" fill="none" stroke="rgba(255,255,255,.022)" stroke-width="1"/>
-                            </pattern>
-                        </defs>
-                        <rect width="760" height="320" fill="#0a0a12"/>
-                        <rect width="760" height="320" fill="url(#wupg)"/>
-                        <rect width="760" height="320" fill="url(#wug)"/>
-
-                        <!-- 5 phone screens representing 5 apps → 1 -->
-                        <!-- OLD 5 fragmented (left, fading) -->
-                        <g opacity=".35">
-                            <rect x="28" y="50" width="52" height="88" rx="6" fill="none" stroke="#818CF8" stroke-width="1" stroke-opacity=".4"/>
-                            <rect x="34" y="60" width="40" height="4" rx="1.5" fill="#818CF8" fill-opacity=".2"/>
-                            <rect x="34" y="68" width="30" height="2" rx="1" fill="rgba(255,255,255,.07)"/>
-                            <rect x="34" y="73" width="36" height="2" rx="1" fill="rgba(255,255,255,.07)"/>
-                            <text x="54" y="152" font-family="Inter,sans-serif" font-size="7" fill="rgba(255,255,255,.25)" text-anchor="middle" font-weight="600">R3</text>
-
-                            <rect x="92" y="60" width="52" height="88" rx="6" fill="none" stroke="#818CF8" stroke-width="1" stroke-opacity=".3"/>
-                            <rect x="98" y="70" width="40" height="4" rx="1.5" fill="#818CF8" fill-opacity=".12"/>
-                            <text x="118" y="162" font-family="Inter,sans-serif" font-size="7" fill="rgba(255,255,255,.25)" text-anchor="middle" font-weight="600">R4</text>
-
-                            <rect x="156" y="68" width="52" height="88" rx="6" fill="none" stroke="#818CF8" stroke-width="1" stroke-opacity=".2"/>
-                            <text x="182" y="170" font-family="Inter,sans-serif" font-size="7" fill="rgba(255,255,255,.2)" text-anchor="middle" font-weight="600">US Wallet</text>
-
-                            <rect x="220" y="72" width="52" height="88" rx="6" fill="none" stroke="#818CF8" stroke-width="1" stroke-opacity=".15"/>
-                            <text x="246" y="174" font-family="Inter,sans-serif" font-size="7" fill="rgba(255,255,255,.15)" text-anchor="middle" font-weight="600">EU App</text>
-
-                            <rect x="284" y="76" width="52" height="88" rx="6" fill="none" stroke="#818CF8" stroke-width="1" stroke-opacity=".1"/>
-                            <text x="310" y="178" font-family="Inter,sans-serif" font-size="7" fill="rgba(255,255,255,.1)" text-anchor="middle" font-weight="600">Legacy</text>
-                        </g>
-
-                        <!-- Arrow / convergence -->
-                        <text x="365" y="130" font-family="Inter,sans-serif" font-size="28" fill="#818CF8" fill-opacity=".5" text-anchor="middle">→</text>
-                        <text x="365" y="158" font-family="Inter,sans-serif" font-size="9" fill="rgba(255,255,255,.2)" text-anchor="middle" font-weight="700" letter-spacing="1.5">UNIFIED</text>
-
-                        <!-- NEW unified E1 (right, prominent + animated) -->
-                        <g class="wu-sc">
-                            <rect x="420" y="30" width="96" height="160" rx="10" fill="none" stroke="#818CF8" stroke-width="2" stroke-opacity=".8"/>
-                            <rect x="430" y="46" width="76" height="10" rx="3" fill="#818CF8" fill-opacity=".25"/>
-                            <rect x="430" y="62" width="56" height="4" rx="2" fill="rgba(255,255,255,.08)"/>
-                            <rect x="430" y="70" width="68" height="4" rx="2" fill="rgba(255,255,255,.08)"/>
-                            <rect x="430" y="78" width="48" height="4" rx="2" fill="rgba(255,255,255,.08)"/>
-                            <rect x="430" y="92" width="76" height="28" rx="6" fill="#818CF8" fill-opacity=".15" stroke="#818CF8" stroke-opacity=".3" stroke-width="1"/>
-                            <rect x="430" y="126" width="34" height="4" rx="2" fill="rgba(255,255,255,.06)"/>
-                            <rect x="430" y="134" width="54" height="4" rx="2" fill="rgba(255,255,255,.06)"/>
-                            <rect x="430" y="142" width="44" height="4" rx="2" fill="rgba(255,255,255,.06)"/>
-                            <rect x="430" y="156" width="76" height="20" rx="5" fill="#818CF8" fill-opacity=".2" stroke="#818CF8" stroke-opacity=".25" stroke-width="1"/>
-                            <text x="468" y="205" font-family="Inter,sans-serif" font-size="10" fill="#818CF8" fill-opacity=".8" text-anchor="middle" font-weight="800">E1</text>
-                        </g>
-
-                        <!-- Nexus DS label -->
-                        <rect x="570" y="60" width="130" height="20" rx="10" fill="rgba(129,140,248,.08)" stroke="rgba(129,140,248,.2)" stroke-width="1"/>
-                        <text x="635" y="74" font-family="Inter,sans-serif" font-size="8.5" fill="#818CF8" text-anchor="middle" font-weight="800">Nexus Design System</text>
-                        <rect x="570" y="90" width="130" height="20" rx="10" fill="rgba(129,140,248,.06)" stroke="rgba(129,140,248,.15)" stroke-width="1"/>
-                        <text x="635" y="104" font-family="Inter,sans-serif" font-size="8.5" fill="#A5B4FC" text-anchor="middle" font-weight="700">11 Designers · 40+ Engineers</text>
-                        <rect x="570" y="120" width="130" height="20" rx="10" fill="rgba(129,140,248,.06)" stroke="rgba(129,140,248,.15)" stroke-width="1"/>
-                        <text x="635" y="134" font-family="Inter,sans-serif" font-size="8.5" fill="#A5B4FC" text-anchor="middle" font-weight="700">KYC · Loyalty · Wallet · iOS/Android</text>
-
-                        <!-- Stats at bottom -->
-                        <text x="430" y="258" font-family="Inter,sans-serif" font-size="40" fill="#818CF8" font-weight="900" fill-opacity=".9">142+</text>
-                        <text x="540" y="258" font-family="Inter,sans-serif" font-size="13" fill="rgba(255,255,255,.2)" font-weight="600">screens</text>
-                        <text x="620" y="258" font-family="Inter,sans-serif" font-size="40" fill="#818CF8" font-weight="900" fill-opacity=".9">5→1</text>
-                        <text x="688" y="258" font-family="Inter,sans-serif" font-size="13" fill="rgba(255,255,255,.2)" font-weight="600">apps</text>
-
-                        <text x="28" y="305" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,.15)" font-weight="700" letter-spacing="2">BIGGEST OVERHAUL IN WU HISTORY &bull; E1 UNIFIED PLATFORM &bull; WESTERN UNION</text>
-                    </svg>
-                </div>
-                <div class="wc-body" style="flex:0 0 380px; padding:40px;">
-                    <div>
-                        <div style="display:inline-flex; align-items:center; gap:6px; background:var(--accent); color:#fff; border-radius:100px; padding:5px 14px; font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; margin-bottom:16px;">★ Featured</div>
-                        <div class="wc-tags">
-                            <span class="wc-tag">Design Leadership</span>
-                            <span class="wc-tag">Design Systems</span>
-                            <span class="wc-tag">Enterprise Redesign</span>
-                        </div>
-                        <div class="wc-title">Biggest Overhaul in WU History &mdash; E1 Redesign</div>
-                        <p class="wc-desc">Led 11 designers to redesign the entire Western Union digital platform from scratch &mdash; collapsing 5 fragmented apps into one unified, wallet-based experience across iOS, Android, and web.</p>
-                    </div>
-                    <div class="wc-foot">
-                        <div>
-                            <div class="wc-stat-num">142+</div>
-                            <div class="wc-stat-lbl">Screens &middot; 11 designers &middot; 40+ engineers</div>
-                        </div>
-                        <div class="wc-arrow">&rarr;</div>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Card 2: UX Baseline -->
-            <a href="ux-baseline-case-study.html" class="work-card r">
-                <div class="wc-visual wc-img-bg" style="background-image:url('case-study-assets/03-payments-hub.png');background-size:cover;">
-                    <svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-                        <style>
-                            .b-screen { animation: bFade 4s ease-in-out infinite; }
-                            .b-screen:nth-child(2) { animation-delay:.8s; }
-                            .b-screen:nth-child(3) { animation-delay:1.6s; }
-                            .b-node { animation: bPulse 3s ease-in-out infinite; }
-                            .b-node:nth-child(2) { animation-delay:.5s; }
-                            .b-node:nth-child(3) { animation-delay:1s; }
-                            @keyframes bFade { 0%,100%{opacity:.35} 50%{opacity:.7} }
-                            @keyframes bPulse { 0%,100%{r:3} 50%{r:5} }
-                        </style>
-                        <defs>
-                            <radialGradient id="bg1" cx="65%" cy="35%" r="55%">
-                                <stop offset="0%" stop-color="#818CF8" stop-opacity=".06"/>
-                                <stop offset="100%" stop-color="#080808" stop-opacity="0"/>
-                            </radialGradient>
-                            <pattern id="pg1" width="40" height="40" patternUnits="userSpaceOnUse">
-                                <path d="M40 0L0 0 0 40" fill="none" stroke="rgba(255,255,255,.025)" stroke-width="1"/>
-                            </pattern>
-                        </defs>
-                        <rect width="600" height="280" fill="#0a0a0a"/>
-                        <rect width="600" height="280" fill="url(#pg1)"/>
-                        <rect width="600" height="280" fill="url(#bg1)"/>
-
-                        <!-- Row of phone wireframes fading right -->
-                        <g class="b-screen">
-                            <rect x="52" y="32" width="76" height="120" rx="7" fill="none" stroke="#818CF8" stroke-width="1.5" stroke-opacity=".55"/>
-                            <rect x="62" y="46" width="56" height="7" rx="2" fill="#818CF8" fill-opacity=".18"/>
-                            <rect x="62" y="59" width="42" height="3" rx="1.5" fill="rgba(255,255,255,.07)"/>
-                            <rect x="62" y="66" width="50" height="3" rx="1.5" fill="rgba(255,255,255,.07)"/>
-                            <rect x="62" y="73" width="34" height="3" rx="1.5" fill="rgba(255,255,255,.07)"/>
-                            <rect x="62" y="86" width="56" height="20" rx="5" fill="#818CF8" fill-opacity=".12" stroke="#818CF8" stroke-opacity=".2" stroke-width="1"/>
-                            <rect x="62" y="110" width="30" height="3" rx="1.5" fill="rgba(255,255,255,.05)"/>
-                            <rect x="62" y="117" width="44" height="3" rx="1.5" fill="rgba(255,255,255,.05)"/>
-                            <rect x="62" y="124" width="26" height="3" rx="1.5" fill="rgba(255,255,255,.05)"/>
-                        </g>
-                        <g class="b-screen">
-                            <rect x="148" y="32" width="76" height="120" rx="7" fill="none" stroke="#818CF8" stroke-width="1" stroke-opacity=".35"/>
-                            <rect x="158" y="46" width="56" height="7" rx="2" fill="#818CF8" fill-opacity=".1"/>
-                            <rect x="158" y="59" width="38" height="3" rx="1.5" fill="rgba(255,255,255,.05)"/>
-                            <rect x="158" y="66" width="52" height="3" rx="1.5" fill="rgba(255,255,255,.05)"/>
-                            <rect x="158" y="86" width="56" height="20" rx="5" fill="rgba(129,140,248,.07)"/>
-                        </g>
-                        <g class="b-screen">
-                            <rect x="244" y="32" width="76" height="120" rx="7" fill="none" stroke="#818CF8" stroke-width="1" stroke-opacity=".2"/>
-                            <rect x="254" y="46" width="56" height="7" rx="2" fill="#818CF8" fill-opacity=".06"/>
-                            <rect x="254" y="86" width="56" height="20" rx="5" fill="rgba(129,140,248,.04)"/>
-                        </g>
-                        <rect x="340" y="32" width="76" height="120" rx="7" fill="none" stroke="rgba(129,140,248,.1)" stroke-width="1"/>
-                        <rect x="436" y="32" width="76" height="120" rx="7" fill="none" stroke="rgba(129,140,248,.05)" stroke-width="1"/>
-                        <rect x="532" y="32" width="76" height="120" rx="7" fill="none" stroke="rgba(129,140,248,.03)" stroke-width="1"/>
-
-                        <!-- Connector dashes -->
-                        <line x1="128" y1="92" x2="148" y2="92" stroke="rgba(129,140,248,.3)" stroke-width="1" stroke-dasharray="3 3"/>
-                        <line x1="224" y1="92" x2="244" y2="92" stroke="rgba(129,140,248,.18)" stroke-width="1" stroke-dasharray="3 3"/>
-                        <line x1="320" y1="92" x2="340" y2="92" stroke="rgba(129,140,248,.1)" stroke-width="1" stroke-dasharray="3 3"/>
-
-                        <!-- Quality gate pills -->
-                        <rect x="52" y="175" width="528" height="1" fill="rgba(255,255,255,.05)"/>
-                        <rect x="52" y="188" width="88" height="20" rx="10" fill="rgba(0,182,122,.08)" stroke="rgba(0,182,122,.22)" stroke-width="1"/>
-                        <text x="96" y="202" font-family="Inter,sans-serif" font-size="8.5" fill="rgba(0,182,122,.85)" text-anchor="middle" font-weight="700">Accessibility</text>
-                        <rect x="150" y="188" width="72" height="20" rx="10" fill="rgba(0,182,122,.08)" stroke="rgba(0,182,122,.22)" stroke-width="1"/>
-                        <text x="186" y="202" font-family="Inter,sans-serif" font-size="8.5" fill="rgba(0,182,122,.85)" text-anchor="middle" font-weight="700">Touch</text>
-                        <rect x="232" y="188" width="88" height="20" rx="10" fill="rgba(129,140,248,.06)" stroke="rgba(129,140,248,.18)" stroke-width="1"/>
-                        <text x="276" y="202" font-family="Inter,sans-serif" font-size="8.5" fill="rgba(129,140,248,.7)" text-anchor="middle" font-weight="700">Performance</text>
-                        <rect x="330" y="188" width="80" height="20" rx="10" fill="rgba(129,140,248,.06)" stroke="rgba(129,140,248,.18)" stroke-width="1"/>
-                        <text x="370" y="202" font-family="Inter,sans-serif" font-size="8.5" fill="rgba(129,140,248,.7)" text-anchor="middle" font-weight="700">Navigation</text>
-                        <rect x="420" y="188" width="64" height="20" rx="10" fill="rgba(255,152,0,.06)" stroke="rgba(255,152,0,.18)" stroke-width="1"/>
-                        <text x="452" y="202" font-family="Inter,sans-serif" font-size="8.5" fill="rgba(255,152,0,.7)" text-anchor="middle" font-weight="700">Forms</text>
-
-                        <!-- Numbers -->
-                        <text x="52" y="246" font-family="Inter,sans-serif" font-size="36" fill="#818CF8" font-weight="900" fill-opacity=".9">142</text>
-                        <text x="118" y="246" font-family="Inter,sans-serif" font-size="14" fill="rgba(255,255,255,.15)" font-weight="700" dominant-baseline="middle" y="238">screens</text>
-                        <text x="320" y="246" font-family="Inter,sans-serif" font-size="36" fill="#818CF8" font-weight="900" fill-opacity=".9">200+</text>
-                        <text x="398" y="246" font-family="Inter,sans-serif" font-size="14" fill="rgba(255,255,255,.15)" font-weight="700" dominant-baseline="middle" y="238">markets</text>
-
-                        <text x="52" y="270" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,.18)" font-weight="700" letter-spacing="2">UX BASELINE &bull; GLOBAL SCALE &bull; WESTERN UNION</text>
-                    </svg>
-                </div>
-                <div class="wc-body">
-                    <div>
-                        <div class="wc-tags">
-                            <span class="wc-tag">UX Strategy</span>
-                            <span class="wc-tag">Design Ops</span>
-                            <span class="wc-tag">Global Scale</span>
-                        </div>
-                        <div class="wc-title">The Case for a UX Baseline</div>
-                        <p class="wc-desc">How I established a global design reference across 200+ markets &mdash; transforming quality from a subjective review into an objective, measurable gate.</p>
-                    </div>
-                    <div class="wc-foot">
-                        <div>
-                            <div class="wc-stat-num">142</div>
-                            <div class="wc-stat-lbl">Validated screens &middot; 7 payment methods</div>
-                        </div>
-                        <div class="wc-arrow">&rarr;</div>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Card 2: Send Money IMT -->
-            <a href="send-money-imt-case-study.html" class="work-card r r-d1">
-                <div class="wc-visual wc-img-bg" style="background-image:url('case-study-assets/05-send-with-contacts.png');background-size:cover;">
-                    <svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-                        <style>
-                            .i-path { stroke-dasharray: 300; animation: flowAnim 5s ease-in-out infinite; }
-                            .i-path2 { stroke-dasharray: 280; animation: flowAnim 5s ease-in-out infinite; animation-delay: 1.5s; }
-                            .i-path3 { stroke-dasharray: 320; animation: flowAnim 5s ease-in-out infinite; animation-delay: 3s; }
-                            .i-node { animation: nodePulse 3.5s ease-in-out infinite; }
-                            .i-node2 { animation: nodePulse 3.5s ease-in-out infinite; animation-delay: 1.75s; }
-                            @keyframes flowAnim {
-                                0% { stroke-dashoffset: 300; opacity: 0; }
-                                20% { opacity: 1; }
-                                80% { opacity: 1; }
-                                100% { stroke-dashoffset: -300; opacity: 0; }
-                            }
-                            @keyframes nodePulse {
-                                0%,100% { opacity:.55; r: 18; }
-                                50% { opacity:.9; r: 22; }
-                            }
-                        </style>
-                        <defs>
-                            <radialGradient id="bg2a" cx="20%" cy="50%" r="45%">
-                                <stop offset="0%" stop-color="#818CF8" stop-opacity=".1"/>
-                                <stop offset="100%" stop-color="#818CF8" stop-opacity="0"/>
-                            </radialGradient>
-                            <radialGradient id="bg2b" cx="80%" cy="50%" r="45%">
-                                <stop offset="0%" stop-color="#FFAA00" stop-opacity=".08"/>
-                                <stop offset="100%" stop-color="#FFAA00" stop-opacity="0"/>
-                            </radialGradient>
-                            <pattern id="pg2" width="48" height="48" patternUnits="userSpaceOnUse">
-                                <path d="M48 0L0 0 0 48" fill="none" stroke="rgba(255,255,255,.025)" stroke-width="1"/>
-                            </pattern>
-                        </defs>
-                        <rect width="600" height="280" fill="#0a0a0a"/>
-                        <rect width="600" height="280" fill="url(#pg2)"/>
-                        <rect width="600" height="280" fill="url(#bg2a)"/>
-                        <rect width="600" height="280" fill="url(#bg2b)"/>
-
-                        <!-- Flow paths -->
-                        <path class="i-path" d="M 90 140 C 210 70, 390 210, 510 140" fill="none" stroke="#818CF8" stroke-width="1.5" stroke-opacity=".5"/>
-                        <path class="i-path2" d="M 90 140 C 190 180, 370 100, 510 140" fill="none" stroke="#818CF8" stroke-width="1" stroke-opacity=".3"/>
-                        <path class="i-path3" d="M 90 140 C 230 240, 380 50, 510 140" fill="none" stroke="rgba(255,200,0,.25)" stroke-width="1" stroke-opacity=".4"/>
-
-                        <!-- Source node -->
-                        <circle class="i-node" cx="90" cy="140" r="20" fill="#818CF8" fill-opacity=".08" stroke="#818CF8" stroke-opacity=".6" stroke-width="1.5"/>
-                        <circle cx="90" cy="140" r="6" fill="#818CF8" fill-opacity=".9"/>
-                        <text x="90" y="120" font-family="Inter,sans-serif" font-size="10" fill="#818CF8" fill-opacity=".7" text-anchor="middle" font-weight="700">AUD</text>
-                        <text x="90" y="170" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,.3)" text-anchor="middle">Australia</text>
-
-                        <!-- Mid satellite nodes -->
-                        <circle cx="220" cy="100" r="4" fill="#818CF8" fill-opacity=".25"/>
-                        <circle cx="300" cy="168" r="3" fill="#818CF8" fill-opacity=".2"/>
-                        <circle cx="180" cy="185" r="3" fill="#818CF8" fill-opacity=".18"/>
-                        <circle cx="380" cy="95" r="3" fill="#818CF8" fill-opacity=".18"/>
-                        <circle cx="430" cy="190" r="4" fill="#818CF8" fill-opacity=".2"/>
-
-                        <!-- Dest node -->
-                        <circle class="i-node2" cx="510" cy="140" r="20" fill="#818CF8" fill-opacity=".08" stroke="#818CF8" stroke-opacity=".6" stroke-width="1.5"/>
-                        <circle cx="510" cy="140" r="6" fill="#818CF8" fill-opacity=".9"/>
-                        <text x="510" y="120" font-family="Inter,sans-serif" font-size="10" fill="#818CF8" fill-opacity=".7" text-anchor="middle" font-weight="700">PHP</text>
-                        <text x="510" y="170" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,.3)" text-anchor="middle">Philippines</text>
-
-                        <!-- Stat labels at bottom -->
-                        <text x="52" y="240" font-family="Inter,sans-serif" font-size="28" fill="#818CF8" font-weight="900" fill-opacity=".9">+34%</text>
-                        <text x="160" y="240" font-family="Inter,sans-serif" font-size="11" fill="rgba(255,255,255,.2)" font-weight="600" dominant-baseline="auto">completion rate</text>
-                        <text x="320" y="240" font-family="Inter,sans-serif" font-size="28" fill="#818CF8" font-weight="900" fill-opacity=".9">&minus;52%</text>
-                        <text x="424" y="240" font-family="Inter,sans-serif" font-size="11" fill="rgba(255,255,255,.2)" font-weight="600">time-to-send</text>
-
-                        <text x="52" y="270" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,.18)" font-weight="700" letter-spacing="2">SEND MONEY IMT &bull; 200+ CORRIDORS &bull; WESTERN UNION</text>
-                    </svg>
-                </div>
-                <div class="wc-body">
-                    <div>
-                        <div class="wc-tags">
-                            <span class="wc-tag">Interaction Design</span>
-                            <span class="wc-tag">Mobile</span>
-                            <span class="wc-tag">Accessibility</span>
-                        </div>
-                        <div class="wc-title">Send Money &mdash; International Money Transfer</div>
-                        <p class="wc-desc">Redesigning the core transfer journey for Western Union. Progressive disclosure reduced perceived steps from 7 to 3 and drove a +34% lift in completion rate.</p>
-                    </div>
-                    <div class="wc-foot">
-                        <div>
-                            <div class="wc-stat-num">+34%</div>
-                            <div class="wc-stat-lbl">Completion rate lift post-launch</div>
-                        </div>
-                        <div class="wc-arrow">&rarr;</div>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Card 3: Content Network (full-width) -->
-            <a href="content-network-case-study.html" class="work-card r" style="grid-column:span 2; flex-direction:row; min-height:260px;">
-                <div class="wc-visual" style="height:auto; flex:1;">
-                    <svg viewBox="0 0 800 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-                        <style>
-                            .cnp { animation: cnP 4s ease-in-out infinite; }
-                            .cnp2 { animation: cnP 4s ease-in-out infinite; animation-delay:1.4s; }
-                            .cnf { stroke-dasharray:180; animation: cnF 3.5s ease-in-out infinite; }
-                            .cnf2 { stroke-dasharray:160; animation: cnF 3.5s ease-in-out infinite; animation-delay:1.2s; }
-                            .cnf3 { stroke-dasharray:200; animation: cnF 3.5s ease-in-out infinite; animation-delay:2.4s; }
-                            .cnf4 { stroke-dasharray:150; animation: cnF 3.5s ease-in-out infinite; animation-delay:.6s; }
-                            @keyframes cnP { 0%,100%{opacity:.35} 50%{opacity:.85} }
-                            @keyframes cnF { 0%{stroke-dashoffset:180;opacity:0} 20%{opacity:.65} 80%{opacity:.65} 100%{stroke-dashoffset:-180;opacity:0} }
-                        </style>
-                        <defs>
-                            <radialGradient id="cng" cx="50%" cy="50%" r="40%">
-                                <stop offset="0%" stop-color="#818CF8" stop-opacity=".1"/>
-                                <stop offset="100%" stop-color="#818CF8" stop-opacity="0"/>
-                            </radialGradient>
-                            <pattern id="cgp" width="40" height="40" patternUnits="userSpaceOnUse">
-                                <path d="M40 0L0 0 0 40" fill="none" stroke="rgba(255,255,255,.022)" stroke-width="1"/>
-                            </pattern>
-                        </defs>
-                        <rect width="800" height="260" fill="#0a0a0a"/>
-                        <rect width="800" height="260" fill="url(#cgp)"/>
-                        <rect width="800" height="260" fill="url(#cng)"/>
-
-                        <!-- Hub -->
-                        <circle class="cnp" cx="380" cy="130" r="38" fill="none" stroke="#818CF8" stroke-opacity=".45" stroke-width="1.5"/>
-                        <circle cx="380" cy="130" r="20" fill="#818CF8" fill-opacity=".1" stroke="#818CF8" stroke-opacity=".35" stroke-width="1"/>
-                        <circle cx="380" cy="130" r="7" fill="#818CF8" fill-opacity=".9"/>
-                        <text x="380" y="185" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,.3)" text-anchor="middle" font-weight="700" letter-spacing="1.5">RECOMMENDATION ENGINE</text>
-
-                        <!-- Paths left (content) -->
-                        <path class="cnf"  d="M358 120 C 280 70,  200 70,  140 75"  fill="none" stroke="#818CF8" stroke-width="1.2" stroke-opacity=".55"/>
-                        <path class="cnf2" d="M358 138 C 280 190, 200 195, 140 195" fill="none" stroke="#818CF8" stroke-width="1.2" stroke-opacity=".55"/>
-                        <!-- Paths right (channels) -->
-                        <path class="cnf3" d="M405 120 C 480 70,  560 70,  620 75"  fill="none" stroke="#818CF8" stroke-width="1.2" stroke-opacity=".55"/>
-                        <path class="cnf4" d="M405 138 C 480 190, 560 195, 620 195" fill="none" stroke="#818CF8" stroke-width="1.2" stroke-opacity=".55"/>
-
-                        <!-- Left nodes (content types) -->
-                        <circle class="cnp2" cx="132" cy="65"  r="12" fill="rgba(129,140,248,.08)" stroke="#818CF8" stroke-opacity=".4" stroke-width="1"/>
-                        <text x="132" y="70" font-family="Inter,sans-serif" font-size="7" fill="#818CF8" text-anchor="middle" font-weight="800">DEALS</text>
-                        <circle class="cnp" cx="132" cy="112" r="12" fill="rgba(129,140,248,.06)" stroke="#818CF8" stroke-opacity=".3" stroke-width="1"/>
-                        <text x="132" y="117" font-family="Inter,sans-serif" font-size="7" fill="#A5B4FC" text-anchor="middle" font-weight="800">PROMO</text>
-                        <circle cx="132" cy="160" r="12" fill="rgba(129,140,248,.04)" stroke="#818CF8" stroke-opacity=".2" stroke-width="1"/>
-                        <text x="132" y="165" font-family="Inter,sans-serif" font-size="6.5" fill="#A5B4FC" text-anchor="middle" font-weight="800">EDUC.</text>
-                        <circle class="cnp2" cx="132" cy="205" r="12" fill="rgba(129,140,248,.04)" stroke="#818CF8" stroke-opacity=".2" stroke-width="1"/>
-                        <text x="132" y="210" font-family="Inter,sans-serif" font-size="6.5" fill="#A5B4FC" text-anchor="middle" font-weight="800">COMM.</text>
-
-                        <!-- Right nodes (placements) -->
-                        <circle class="cnp"  cx="628" cy="65"  r="12" fill="rgba(129,140,248,.08)" stroke="#818CF8" stroke-opacity=".4" stroke-width="1"/>
-                        <text x="628" y="70" font-family="Inter,sans-serif" font-size="7" fill="#818CF8" text-anchor="middle" font-weight="800">APP</text>
-                        <circle class="cnp2" cx="628" cy="112" r="12" fill="rgba(129,140,248,.06)" stroke="#818CF8" stroke-opacity=".3" stroke-width="1"/>
-                        <text x="628" y="117" font-family="Inter,sans-serif" font-size="7" fill="#A5B4FC" text-anchor="middle" font-weight="800">WEB</text>
-                        <circle cx="628" cy="160" r="12" fill="rgba(129,140,248,.04)" stroke="#818CF8" stroke-opacity=".2" stroke-width="1"/>
-                        <text x="628" y="165" font-family="Inter,sans-serif" font-size="7" fill="#A5B4FC" text-anchor="middle" font-weight="800">EMAIL</text>
-                        <circle class="cnp" cx="628" cy="205" r="12" fill="rgba(129,140,248,.04)" stroke="#818CF8" stroke-opacity=".2" stroke-width="1"/>
-                        <text x="628" y="210" font-family="Inter,sans-serif" font-size="7" fill="#A5B4FC" text-anchor="middle" font-weight="800">DOOH</text>
-
-                        <!-- Stats -->
-                        <text x="728" y="118" font-family="Inter,sans-serif" font-size="40" fill="#818CF8" font-weight="900" fill-opacity=".85" text-anchor="middle">6</text>
-                        <text x="728" y="136" font-family="Inter,sans-serif" font-size="10" fill="rgba(255,255,255,.18)" text-anchor="middle" font-weight="600">content types</text>
-                        <text x="728" y="172" font-family="Inter,sans-serif" font-size="28" fill="#818CF8" font-weight="900" fill-opacity=".85" text-anchor="middle">200+</text>
-                        <text x="728" y="190" font-family="Inter,sans-serif" font-size="10" fill="rgba(255,255,255,.18)" text-anchor="middle" font-weight="600">markets</text>
-
-                        <text x="52" y="248" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,.15)" font-weight="700" letter-spacing="2">CONTENT NETWORK &bull; RECOMMENDATION ENGINE &bull; WESTERN UNION</text>
-                    </svg>
-                </div>
-                <div class="wc-body" style="flex:0 0 360px; padding:36px 40px;">
-                    <div>
-                        <div class="wc-tags">
-                            <span class="wc-tag">Product Strategy</span>
-                            <span class="wc-tag">UX Architecture</span>
-                            <span class="wc-tag">Personalisation</span>
-                        </div>
-                        <div class="wc-title">Content Network &mdash; Product Strategy</div>
-                        <p class="wc-desc">Defining the UX &amp; product architecture for WU's content personalisation engine &mdash; transforming a single-use transfer utility into an engagement platform.</p>
-                    </div>
-                    <div class="wc-foot">
-                        <div>
-                            <div class="wc-stat-num">6</div>
-                            <div class="wc-stat-lbl">Content types &middot; 4 distribution channels</div>
-                        </div>
-                        <div class="wc-arrow">&rarr;</div>
-                    </div>
-                </div>
-            </a>
-
+        <div class="testi-row testi-row--b">
+            <div class="tc tc--ph"><p class="tc-q tc-q--ph">[Placeholder] A quote from an EY colleague about your enterprise UX engagements, design thinking workshops, or how you managed stakeholder alignment on complex transformation projects.</p><div class="tc-who"><strong>[Name]</strong> &mdash; Senior Manager &middot; EY</div></div>
+            <div class="tc tc--ph"><p class="tc-q tc-q--ph">[Placeholder] A LinkedIn recommendation from a peer design leader or Director who can speak to your strategic design thinking, leadership philosophy, and long-term impact on the organisations you&rsquo;ve worked in.</p><div class="tc-who"><strong>[Name]</strong> &mdash; Design Director &middot; [Company]</div></div>
+            <div class="tc tc--ph"><p class="tc-q tc-q--ph">[Placeholder] A quote from an Accessibility or Compliance partner at WU about how you made heavy regulatory requirements feel transparent and trustworthy for users without adding friction to the core flow.</p><div class="tc-who"><strong>[Name]</strong> &mdash; Compliance Lead &middot; Western Union</div></div>
+            <div class="tc tc--ph"><p class="tc-q tc-q--ph">[Placeholder] A quote from a senior product or technology leader about how your design QA rituals and structured handoff process built engineering confidence and measurably improved the quality of shipped products.</p><div class="tc-who"><strong>[Name]</strong> &mdash; VP Product &middot; [Company]</div></div>
+            <div class="tc tc--ph"><p class="tc-q tc-q--ph">[Placeholder] A quote from an EY colleague about your enterprise UX engagements, design thinking workshops, or how you managed stakeholder alignment on complex transformation projects.</p><div class="tc-who"><strong>[Name]</strong> &mdash; Senior Manager &middot; EY</div></div>
+            <div class="tc tc--ph"><p class="tc-q tc-q--ph">[Placeholder] A LinkedIn recommendation from a peer design leader or Director who can speak to your strategic design thinking, leadership philosophy, and long-term impact on the organisations you&rsquo;ve worked in.</p><div class="tc-who"><strong>[Name]</strong> &mdash; Design Director &middot; [Company]</div></div>
+            <div class="tc tc--ph"><p class="tc-q tc-q--ph">[Placeholder] A quote from an Accessibility or Compliance partner at WU about how you made heavy regulatory requirements feel transparent and trustworthy for users without adding friction to the core flow.</p><div class="tc-who"><strong>[Name]</strong> &mdash; Compliance Lead &middot; Western Union</div></div>
+            <div class="tc tc--ph"><p class="tc-q tc-q--ph">[Placeholder] A quote from a senior product or technology leader about how your design QA rituals and structured handoff process built engineering confidence and measurably improved the quality of shipped products.</p><div class="tc-who"><strong>[Name]</strong> &mdash; VP Product &middot; [Company]</div></div>
         </div>
     </div>
 </section>
 
-<!-- ─── ABOUT ─── -->
-<section class="section section--alt" id="about">
-    <div class="wrap">
-        <div class="sec-header r">
-            <div class="sec-tag">About</div>
-            <h2 class="sec-title">Design as<br>organisational infrastructure</h2>
+<div class="div"></div>
+
+<section class="sec" id="contact" style="padding-bottom:96px">
+    <div class="contact-grid">
+        <div class="rv">
+            <div class="contact-hl">Let&rsquo;s build<br>something<br><em>meaningful.</em></div>
+            <p class="contact-sub">Open to senior design leadership roles, consulting engagements, and collaborations on complex product challenges.</p>
         </div>
-        <div class="bento">
-
-            <div class="bc bc--wide r">
-                <div class="bc-lbl">Philosophy</div>
-                <div class="bc-head">Good UX is not about beautiful screens — it is about decisions that survive contact with reality.</div>
-                <p class="bc-body" style="margin-top:14px;">
-                    I've spent 14+ years working on products that handle money, identity, and trust at scale. The design problems that matter here are as much organisational as creative: how do you maintain quality when 8 designers are building across 200+ markets simultaneously? How do you make accessibility non-negotiable rather than aspirational? How do you create systems that distributed teams actually adopt? These are the questions that drive my practice.
-                </p>
-            </div>
-
-            <div class="bc bc--gold r r-d1">
-                <div class="bc-lbl">Currently</div>
-                <div class="bc-head">Product Design Manager<br>at Western Union</div>
-                <p class="bc-body" style="margin-top:12px;">Leading UX for the company's largest redesign initiative — onboarding, identity verification, transfers, and account management across iOS, Android, and web.</p>
-            </div>
-
-            <div class="bc r">
-                <div class="bc-lbl">Team</div>
-                <div class="big-n">8</div>
-                <p class="bc-body">Designers managed across fintech products serving millions of users globally.</p>
-            </div>
-
-            <div class="bc r r-d1">
-                <div class="bc-lbl">Skills</div>
-                <div class="skill-chips">
-                    <span class="chip chip--y">UX Strategy</span>
-                    <span class="chip chip--y">Design Systems</span>
-                    <span class="chip chip--y">Accessibility (WCAG)</span>
-                    <span class="chip chip--y">Interaction Design</span>
-                    <span class="chip">Team Management</span>
-                    <span class="chip">Product Discovery</span>
-                    <span class="chip">Design Ops</span>
-                    <span class="chip">Stakeholder Alignment</span>
-                    <span class="chip">Enterprise Platforms</span>
-                    <span class="chip">Prototyping</span>
-                    <span class="chip">Figma</span>
-                    <span class="chip">Usability Testing</span>
-                </div>
-            </div>
-
-            <div class="bc r r-d2">
-                <div class="bc-lbl">Education</div>
-                <div class="bc-head">Bachelor of Design</div>
-                <p class="bc-body" style="margin-top:10px;">
-                    User Experience Design<br>
-                    Symbiosis Institute of Design, Pune<br>
-                    <span style="color:var(--text-3); font-size:12px; margin-top:6px; display:block;">2006 – 2011</span>
-                </p>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- ─── EXPERIENCE ─── -->
-<section class="section" id="experience">
-    <div class="wrap">
-        <div class="sec-header r">
-            <div class="sec-tag">Experience</div>
-            <h2 class="sec-title">14 Years of<br>Craft & Leadership</h2>
-        </div>
-        <div class="timeline">
-
-            <div class="tl-item r">
-                <div class="tl-date">Sep 2023 – Present</div>
-                <div>
-                    <div class="tl-company">Western Union</div>
-                    <div class="tl-role">Product Design Manager</div>
-                    <p class="tl-desc">Led UX design for Western Union's digital ecosystem — the company's largest redesign initiative — owning onboarding, identity verification, transfers, and account management across iOS, Android, and web. Managed and mentored a team of 8 UX designers; partnered with Product, Engineering, Compliance, and Accessibility globally. Simplified user journeys reducing early-stage drop-offs by ~5%; cut late-stage design changes by ~25% through structured critiques and earlier alignment; reduced engineering handoff time by ~20%.</p>
-                    <div class="tl-chips">
-                        <span class="tl-chip">Team Management</span>
-                        <span class="tl-chip">Design Ops</span>
-                        <span class="tl-chip">Fintech · Transfers</span>
-                        <span class="tl-chip">Accessibility</span>
-                        <span class="tl-chip">iOS · Android · Web</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tl-item r">
-                <div class="tl-date">Oct 2020 – Jul 2023</div>
-                <div>
-                    <div class="tl-company">Searce Inc</div>
-                    <div class="tl-role">Principal UX Designer</div>
-                    <p class="tl-desc">Led UX strategy and product design for HappierWork, an enterprise HR platform. Drove product discovery and translated user insights and business goals into scalable features. Partnered with Product and Engineering leadership to shape roadmaps and priorities. Established UX standards that improved consistency across the product; mentored designers and improved integration of design into the product development lifecycle.</p>
-                    <div class="tl-chips">
-                        <span class="tl-chip">UX Strategy</span>
-                        <span class="tl-chip">Product Discovery</span>
-                        <span class="tl-chip">Enterprise SaaS</span>
-                        <span class="tl-chip">Mentorship</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tl-item r">
-                <div class="tl-date">Jan 2019 – Sep 2020</div>
-                <div>
-                    <div class="tl-company">EY</div>
-                    <div class="tl-role">Senior UX Architect</div>
-                    <p class="tl-desc">Led UX engagements across enterprise digital transformation initiatives. Managed UX delivery including stakeholder alignment and project planning. Facilitated product discovery workshops and design thinking sessions; delivered UX strategy, information architecture, and product design for enterprise platforms.</p>
-                    <div class="tl-chips">
-                        <span class="tl-chip">Information Architecture</span>
-                        <span class="tl-chip">Digital Transformation</span>
-                        <span class="tl-chip">Stakeholder Facilitation</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tl-item r">
-                <div class="tl-date">Jun 2016 – Dec 2018</div>
-                <div>
-                    <div class="tl-company">Mobikon</div>
-                    <div class="tl-role">UX Design Lead</div>
-                    <p class="tl-desc">Led UX for an AI-driven customer engagement and analytics platform. Designed dashboards and analytics workflows for operational users; collaborated closely with engineering to ensure high-quality product execution.</p>
-                    <div class="tl-chips">
-                        <span class="tl-chip">Analytics · Dashboards</span>
-                        <span class="tl-chip">AI Products</span>
-                        <span class="tl-chip">B2B</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tl-item r">
-                <div class="tl-date">2010 – 2016</div>
-                <div>
-                    <div class="tl-company">Earlier Experience</div>
-                    <div class="tl-role">iCare Life India · Fortunecookie Marketing · Fab.com</div>
-                    <p class="tl-desc">Early career spanning consumer e-commerce (Fab.com), digital marketing, and healthcare UX — building foundational skills across research, visual design, and interaction design in fast-moving product environments.</p>
-                    <div class="tl-chips">
-                        <span class="tl-chip">E-Commerce</span>
-                        <span class="tl-chip">Healthcare UX</span>
-                        <span class="tl-chip">Consumer Apps</span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- ─── TESTIMONIALS ─── -->
-<section class="section" id="testimonials">
-    <div class="wrap">
-        <div class="sec-header r">
-            <div class="sec-tag">Testimonials</div>
-            <h2 class="sec-title">What People Say</h2>
-            <p class="sec-lead">Placeholder — replace with real quotes from colleagues, PMs, engineering leads, or stakeholders you've worked with.</p>
-        </div>
-        <div class="testi-grid">
-
-            <div class="testi-card r">
-                <div>
-                    <div class="testi-qmark">"</div>
-                    <p class="testi-text testi-placeholder">[Placeholder] Add a testimonial from a Product Manager or Engineering Lead you partnered with on the WU E1 Redesign.</p>
-                </div>
-                <div>
-                    <div class="testi-name">[Name]</div>
-                    <div class="testi-role">Product Manager · Western Union</div>
-                </div>
-            </div>
-
-            <div class="testi-card r r-d1">
-                <div>
-                    <div class="testi-qmark">"</div>
-                    <p class="testi-text testi-placeholder">[Placeholder] Add a quote from an Engineering Lead, Compliance partner, or Accessibility stakeholder at WU about your cross-functional collaboration.</p>
-                </div>
-                <div>
-                    <div class="testi-name">[Name]</div>
-                    <div class="testi-role">Engineering Lead · Western Union</div>
-                </div>
-            </div>
-
-            <div class="testi-card r r-d2">
-                <div>
-                    <div class="testi-qmark">"</div>
-                    <p class="testi-text testi-placeholder">[Placeholder] A testimonial from a designer you mentored, or a peer design leader who worked alongside you and can speak to your design management style.</p>
-                </div>
-                <div>
-                    <div class="testi-name">[Name]</div>
-                    <div class="testi-role">Senior UX Designer · Western Union</div>
-                </div>
-            </div>
-
-            <div class="testi-card r r-d1">
-                <div>
-                    <div class="testi-qmark">"</div>
-                    <p class="testi-text testi-placeholder">[Placeholder] A quote from someone at Searce (HappierWork) about your UX strategy and product discovery approach — a PM, engineering lead, or product director.</p>
-                </div>
-                <div>
-                    <div class="testi-name">[Name]</div>
-                    <div class="testi-role">Product Director · Searce Inc</div>
-                </div>
-            </div>
-
-            <div class="testi-card r r-d2">
-                <div>
-                    <div class="testi-qmark">"</div>
-                    <p class="testi-text testi-placeholder">[Placeholder] A testimonial from an EY client or colleague about your enterprise UX work, stakeholder facilitation, or design thinking sessions.</p>
-                </div>
-                <div>
-                    <div class="testi-name">[Name]</div>
-                    <div class="testi-role">Senior Manager · EY</div>
-                </div>
-            </div>
-
-            <div class="testi-card r r-d3">
-                <div>
-                    <div class="testi-qmark">"</div>
-                    <p class="testi-text testi-placeholder">[Placeholder] A LinkedIn recommendation from a peer, direct report, or senior leader who can speak to your design leadership philosophy and long-term impact.</p>
-                </div>
-                <div>
-                    <div class="testi-name">[Name]</div>
-                    <div class="testi-role">Design Director · [Company]</div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- ─── CONTACT ─── -->
-<section class="section section--alt" id="contact">
-    <div class="wrap">
-        <div class="contact-inner">
-            <div class="r">
-                <div class="sec-tag" style="margin-bottom:24px;">Get in Touch</div>
-                <div class="contact-head">
-                    Let's build<br><em>something</em><br>meaningful.
-                </div>
-                <p class="contact-sub">Open to senior design leadership roles, consulting engagements, and collaborations on complex product challenges.</p>
-            </div>
-            <div class="contact-links r r-d1">
+        <div class="rv rv-d1">
+            <div class="cls">
                 <a href="mailto:asanyal88@gmail.com" class="cl">
-                    <div>
-                        <div class="cl-lbl">Book an Intro</div>
-                        <div class="cl-val">asanyal88@gmail.com</div>
-                    </div>
-                    <div class="cl-arrow">↗</div>
+                    <div><div class="cl-lbl">Book an Intro / Email</div><div class="cl-val">asanyal88@gmail.com</div></div>
+                    <span class="cl-arr">&nearr;</span>
                 </a>
                 <a href="https://linkedin.com/in/arindam-sanyal" target="_blank" rel="noopener" class="cl">
-                    <div>
-                        <div class="cl-lbl">LinkedIn</div>
-                        <div class="cl-val">linkedin.com/in/arindam-sanyal</div>
-                    </div>
-                    <div class="cl-arrow">↗</div>
+                    <div><div class="cl-lbl">LinkedIn</div><div class="cl-val">linkedin.com/in/arindam-sanyal</div></div>
+                    <span class="cl-arr">&nearr;</span>
                 </a>
                 <a href="tel:+919096580834" class="cl">
-                    <div>
-                        <div class="cl-lbl">Phone</div>
-                        <div class="cl-val">+91 90965 80834</div>
-                    </div>
-                    <div class="cl-arrow">↗</div>
+                    <div><div class="cl-lbl">Phone</div><div class="cl-val">+91 90965 80834</div></div>
+                    <span class="cl-arr">&nearr;</span>
                 </a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ─── FOOTER ─── -->
-<footer>
-    <div class="foot-name">Arindam Sanyal — Product Design Manager</div>
-    <div class="foot-copy">© 2026 · Pune, India</div>
+<footer id="footer">
+    <span class="foot-l">Arindam Sanyal &mdash; Product Design Manager</span>
+    <span class="foot-r">Pune, India &middot; &copy; 2026</span>
 </footer>
 
 <script>
-(function () {
-    'use strict';
-
-    /* ── Custom cursor ── */
-    const dot  = document.getElementById('c-dot');
-    const ring = document.getElementById('c-ring');
-    let mx = 0, my = 0, rx = 0, ry = 0;
-
-    document.addEventListener('mousemove', e => {
-        mx = e.clientX; my = e.clientY;
-        dot.style.left = mx + 'px';
-        dot.style.top  = my + 'px';
-    });
-
-    const interactables = 'a,button,[role="button"]';
-    document.addEventListener('mouseover', e => {
-        if (e.target.closest(interactables)) ring.classList.add('hover');
-    });
-    document.addEventListener('mouseout', e => {
-        if (e.target.closest(interactables)) ring.classList.remove('hover');
-    });
-
-    (function tickRing() {
-        rx += (mx - rx) * 0.11;
-        ry += (my - ry) * 0.11;
-        ring.style.left = rx + 'px';
-        ring.style.top  = ry + 'px';
-        requestAnimationFrame(tickRing);
-    })();
-
-    /* ── Sticky nav ── */
-    const nav = document.getElementById('nav');
-    const onScroll = () => nav.classList.toggle('on', window.scrollY > 50);
-    window.addEventListener('scroll', onScroll, { passive: true });
-
-    /* ── Scroll reveal ── */
-    const revealObs = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-            if (e.isIntersecting) { e.target.classList.add('in'); revealObs.unobserve(e.target); }
-        });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-
-    document.querySelectorAll('.r').forEach(el => revealObs.observe(el));
-
-    /* ── Counter animation ── */
-    function runCounter(el) {
-        const target = parseInt(el.dataset.to, 10);
-        const prefix = el.dataset.prefix || '';
-        const suffix = el.dataset.suffix || '';
-        const dur = 1100;
-        const start = performance.now();
-        (function tick(now) {
-            const p = Math.min((now - start) / dur, 1);
-            const v = Math.round((1 - Math.pow(1 - p, 3)) * target);
-            el.textContent = prefix + v + suffix;
-            if (p < 1) requestAnimationFrame(tick);
-        })(start);
+(function(){
+    var nav=document.getElementById('nav');
+    window.addEventListener('scroll',function(){nav.classList.toggle('stuck',window.scrollY>50)},{passive:true});
+    function tick(){
+        var el=document.getElementById('local-time');
+        if(!el)return;
+        var now=new Date(),ist=new Date(now.getTime()+5.5*3600000);
+        var h=ist.getUTCHours(),m=ist.getUTCMinutes(),ap=h>=12?'PM':'AM';
+        h=h%12||12;
+        el.textContent=h+':'+(m<10?'0':'')+m+' '+ap+' IST';
     }
-
-    const counterObs = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-            if (e.isIntersecting && e.target.dataset.to) {
-                runCounter(e.target);
-                counterObs.unobserve(e.target);
-            }
-        });
-    }, { threshold: 0.6 });
-
-    document.querySelectorAll('[data-to]').forEach(el => counterObs.observe(el));
-
-    /* ── Active nav link on scroll ── */
-    const sections = document.querySelectorAll('section[id]');
-    const navAs = document.querySelectorAll('.nav-links a[href^="#"]');
-
-    const activeObs = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-            if (e.isIntersecting) {
-                navAs.forEach(a => {
-                    const isActive = a.getAttribute('href') === '#' + e.target.id;
-                    a.classList.toggle('active', isActive && !a.classList.contains('nav-cta'));
-                });
-            }
-        });
-    }, { threshold: 0.45 });
-
-    sections.forEach(s => activeObs.observe(s));
-
-    /* ── Scroll parallax on hero ── */
-    var heroContent = document.querySelector('.hero-content');
-    var heroBg      = document.querySelector('.hero-bg');
-    var heroGrid    = document.querySelector('.hero-grid');
-    var heroSection = document.querySelector('.hero');
-    var mouseOffX = 0, mouseOffY = 0;
-
-    window.addEventListener('scroll', function(){
-        var y = window.scrollY;
-        nav.classList.toggle('on', y > 50);
-        if (y < window.innerHeight * 1.4) {
-            if (heroContent) heroContent.style.transform = 'translateY(' + (y * 0.22) + 'px)';
-        }
-    }, {passive:true});
-
-    /* ── Mouse parallax inside hero ── */
-    if (heroSection) {
-        heroSection.addEventListener('mousemove', function(e){
-            var rect = heroSection.getBoundingClientRect();
-            var xRel = (e.clientX - rect.left) / rect.width  - 0.5;
-            var yRel = (e.clientY - rect.top)  / rect.height - 0.5;
-            mouseOffX = xRel; mouseOffY = yRel;
-            if (heroGrid) heroGrid.style.transform = 'translate(' + (xRel*24)+'px,' + (yRel*16)+'px)';
-            if (heroBg)   heroBg.style.transform   = 'translate(' + (xRel*12)+'px,' + (yRel*8) +'px)';
-        });
-        heroSection.addEventListener('mouseleave', function(){
-            if (heroGrid) heroGrid.style.transform = '';
-            if (heroBg)   heroBg.style.transform   = '';
-        });
-    }
-
-    /* ── Work card tilt ── */
-    document.querySelectorAll('.work-card').forEach(function(card){
-        card.addEventListener('mouseenter', function(){ this.style.transition = 'background .3s ease, transform .15s ease'; });
-        card.addEventListener('mouseleave', function(){
-            this.style.transform = '';
-            this.style.transition = 'background .3s ease, transform .5s cubic-bezier(.16,1,.3,1)';
-        });
-        card.addEventListener('mousemove', function(e){
-            var r = this.getBoundingClientRect();
-            var x = (e.clientX - r.left) / r.width  - 0.5;
-            var y = (e.clientY - r.top)  / r.height - 0.5;
-            this.style.transform = 'perspective(1200px) rotateX('+(y*-5)+'deg) rotateY('+(x*5)+'deg) scale(1.005)';
-        });
-    });
-
+    tick();setInterval(tick,30000);
+    var obs=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});
+    },{threshold:0.07,rootMargin:'0px 0px -24px 0px'});
+    document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
 })();
 </script>
-
 </body>
 </html>
-

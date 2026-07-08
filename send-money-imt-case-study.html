@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UX Case Study — Send Money: International Money Transfer | Western Union</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --wu-yellow: #FFDD00;
+            --wu-black: #000000;
+            --wu-dark: #1A1A1A;
+            --wu-gray-900: #212121;
+            --wu-gray-800: #333333;
+            --wu-gray-700: #4A4A4A;
+            --wu-gray-600: #666666;
+            --wu-gray-400: #999999;
+            --wu-gray-200: #E5E5E5;
+            --wu-gray-100: #F5F5F5;
+            --wu-white: #FFFFFF;
+            --wu-success: #00B67A;
+            --wu-error: #E53935;
+            --wu-info: #2196F3;
+            --gradient-dark: linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%);
+            --gradient-yellow: linear-gradient(135deg, #FFDD00 0%, #FFC700 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--wu-white);
+            color: var(--wu-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            background: var(--wu-black);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 80px 40px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(255,221,0,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,221,0,0.05) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .hero-text {
+            color: var(--wu-white);
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,221,0,0.1);
+            border: 1px solid rgba(255,221,0,0.3);
+            border-radius: 100px;
+            padding: 8px 16px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--wu-yellow);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 32px;
+        }
+
+        .hero-title {
+            font-size: 56px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -1.5px;
+        }
+
+        .hero-title span {
+            color: var(--wu-yellow);
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            font-weight: 300;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.6;
+            margin-bottom: 48px;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 40px;
+        }
+
+        .hero-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .hero-meta-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: rgba(255,255,255,0.4);
+            font-weight: 500;
+        }
+
+        .hero-meta-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--wu-white);
+        }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-phone-stack {
+            position: relative;
+            width: 300px;
+            height: 600px;
+        }
+
+        .hero-phone {
+            position: absolute;
+            width: 260px;
+            height: 520px;
+            background: var(--wu-white);
+            border-radius: 36px;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.4);
+            overflow: hidden;
+            border: 8px solid #333;
+        }
+
+        .hero-phone:nth-child(1) {
+            top: 40px;
+            left: -20px;
+            transform: rotate(-5deg);
+            z-index: 1;
+        }
+
+        .hero-phone:nth-child(2) {
+            top: 20px;
+            left: 60px;
+            transform: rotate(3deg);
+            z-index: 2;
+        }
+
+        .hero-phone img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+        }
+
+        /* ===== SECTION STYLES ===== */
+        .section {
+            padding: 120px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-dark {
+            background: var(--wu-gray-900);
+            max-width: 100%;
+            padding: 120px 40px;
+        }
+
+        .section-dark .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-accent {
+            background: var(--wu-gray-100);
+            max-width: 100%;
+            padding: 120px 40px;
+        }
+
+        .section-accent .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 64px;
+        }
+
+        .section-number {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--wu-yellow);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-number::after {
+            content: '';
+            width: 40px;
+            height: 2px;
+            background: var(--wu-yellow);
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--wu-gray-600);
+            max-width: 700px;
+            line-height: 1.7;
+        }
+
+        /* ===== STATS BAR ===== */
+        .stats-bar {
+            background: var(--wu-yellow);
+            padding: 60px 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 60px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--wu-black);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: rgba(0,0,0,0.7);
+        }
+
+        /* ===== CHALLENGE SECTION ===== */
+        .challenge-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .challenge-card {
+            background: var(--wu-white);
+            border: 1px solid var(--wu-gray-200);
+            border-radius: 20px;
+            padding: 40px 32px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .challenge-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--wu-yellow);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .challenge-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .challenge-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        .challenge-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--wu-gray-100);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            font-size: 24px;
+        }
+
+        .challenge-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .challenge-card p {
+            font-size: 14px;
+            color: var(--wu-gray-600);
+            line-height: 1.6;
+        }
+
+        /* ===== FLOW SECTION ===== */
+        .flow-container {
+            margin-top: 48px;
+        }
+
+        .flow-step {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            margin-bottom: 120px;
+            position: relative;
+        }
+
+        .flow-step:nth-child(even) {
+            direction: rtl;
+        }
+
+        .flow-step:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .flow-step-content {
+            padding: 20px 0;
+        }
+
+        .flow-step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--wu-yellow);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 800;
+            margin-bottom: 24px;
+        }
+
+        .flow-step-title {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .flow-step-description {
+            font-size: 16px;
+            color: var(--wu-gray-600);
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .flow-step-insights {
+            list-style: none;
+            padding: 0;
+        }
+
+        .flow-step-insights li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px 0;
+            font-size: 14px;
+            color: var(--wu-gray-700);
+        }
+
+        .flow-step-insights li::before {
+            content: '→';
+            color: var(--wu-yellow);
+            font-weight: 700;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .flow-step-visual {
+            background: var(--wu-gray-100);
+            border-radius: 24px;
+            padding: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 400px;
+            overflow: hidden;
+        }
+
+        .flow-step-visual img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        /* ===== FULL-WIDTH IMAGE SECTION ===== */
+        .full-width-showcase {
+            background: var(--wu-dark);
+            padding: 80px 40px;
+            margin: 0;
+            overflow-x: auto;
+        }
+
+        .showcase-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--wu-yellow);
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .showcase-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--wu-white);
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .showcase-image {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: block;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        /* ===== DECISION FRAMEWORK ===== */
+        .decision-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .decision-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 36px;
+        }
+
+        .decision-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--wu-white);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .decision-card p {
+            font-size: 14px;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.6;
+        }
+
+        .decision-tag {
+            font-size: 10px;
+            background: var(--wu-yellow);
+            color: var(--wu-black);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ===== ARCHITECTURE DIAGRAM ===== */
+        .arch-diagram {
+            background: var(--wu-white);
+            border-radius: 24px;
+            padding: 60px;
+            margin-top: 48px;
+            border: 1px solid var(--wu-gray-200);
+        }
+
+        .arch-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .arch-node {
+            background: var(--wu-gray-100);
+            border: 2px solid var(--wu-gray-200);
+            border-radius: 16px;
+            padding: 20px 28px;
+            text-align: center;
+            min-width: 140px;
+            transition: all 0.3s ease;
+        }
+
+        .arch-node:hover {
+            border-color: var(--wu-yellow);
+            background: rgba(255,221,0,0.05);
+        }
+
+        .arch-node-label {
+            font-size: 12px;
+            color: var(--wu-gray-400);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .arch-node-title {
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .arch-arrow {
+            font-size: 20px;
+            color: var(--wu-yellow);
+            font-weight: 700;
+        }
+
+        /* ===== PRINCIPLES SECTION ===== */
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            margin-top: 48px;
+            border: 1px solid var(--wu-gray-200);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .principle-item {
+            padding: 48px 36px;
+            border-right: 1px solid var(--wu-gray-200);
+            border-bottom: 1px solid var(--wu-gray-200);
+            position: relative;
+            transition: background 0.3s ease;
+        }
+
+        .principle-item:hover {
+            background: var(--wu-gray-100);
+        }
+
+        .principle-item:nth-child(3n) {
+            border-right: none;
+        }
+
+        .principle-item:nth-last-child(-n+3) {
+            border-bottom: none;
+        }
+
+        .principle-number {
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--wu-gray-200);
+            line-height: 1;
+            margin-bottom: 16px;
+        }
+
+        .principle-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .principle-desc {
+            font-size: 13px;
+            color: var(--wu-gray-600);
+            line-height: 1.6;
+        }
+
+        /* ===== OUTCOMES SECTION ===== */
+        .outcomes-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .outcome-card {
+            background: var(--wu-gray-100);
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .outcome-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle at top right, rgba(255,221,0,0.1) 0%, transparent 70%);
+        }
+
+        .outcome-metric {
+            font-size: 36px;
+            font-weight: 900;
+            color: var(--wu-black);
+            margin-bottom: 8px;
+        }
+
+        .outcome-metric.positive {
+            color: var(--wu-success);
+        }
+
+        .outcome-label {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .outcome-desc {
+            font-size: 14px;
+            color: var(--wu-gray-600);
+            line-height: 1.5;
+        }
+
+        /* ===== TIMELINE ===== */
+        .timeline {
+            position: relative;
+            margin-top: 64px;
+            padding-left: 60px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--wu-gray-200);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 48px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid var(--wu-gray-100);
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -48px;
+            top: 6px;
+            width: 16px;
+            height: 16px;
+            background: var(--wu-yellow);
+            border-radius: 50%;
+            border: 3px solid var(--wu-white);
+            box-shadow: 0 0 0 2px var(--wu-yellow);
+        }
+
+        .timeline-date {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--wu-gray-400);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .timeline-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .timeline-desc {
+            font-size: 14px;
+            color: var(--wu-gray-600);
+            line-height: 1.6;
+        }
+
+        /* ===== REFLECTION SECTION ===== */
+        .reflection-quote {
+            font-size: 32px;
+            font-weight: 300;
+            line-height: 1.5;
+            color: var(--wu-white);
+            max-width: 800px;
+            margin: 0 auto 48px;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .reflection-quote span {
+            color: var(--wu-yellow);
+            font-weight: 600;
+        }
+
+        .reflection-author {
+            text-align: center;
+            color: rgba(255,255,255,0.5);
+            font-size: 14px;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--wu-black);
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .footer-text {
+            font-size: 14px;
+            color: rgba(255,255,255,0.4);
+        }
+
+        .footer-brand {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--wu-yellow);
+            margin-bottom: 16px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .hero-title {
+                font-size: 36px;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 32px;
+            }
+            .challenge-grid,
+            .decision-grid,
+            .outcomes-grid {
+                grid-template-columns: 1fr;
+            }
+            .flow-step {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .flow-step:nth-child(even) {
+                direction: ltr;
+            }
+            .principles-grid {
+                grid-template-columns: 1fr;
+            }
+            .principle-item {
+                border-right: none;
+            }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">
+                    <span>◆</span> UX Case Study
+                </div>
+                <h1 class="hero-title">
+                    Reimagining<br>
+                    <span>International</span><br>
+                    Money Transfer
+                </h1>
+                <p class="hero-subtitle">
+                    How we redesigned Western Union's core Send Money experience to reduce friction, increase completion rates, and build trust across 200+ countries.
+                </p>
+                <div class="hero-meta">
+                    <div class="hero-meta-item">
+                        <span class="hero-meta-label">Role</span>
+                        <span class="hero-meta-value">UX Lead / Principal Designer</span>
+                    </div>
+                    <div class="hero-meta-item">
+                        <span class="hero-meta-label">Platform</span>
+                        <span class="hero-meta-value">iOS & Android Mobile App</span>
+                    </div>
+                    <div class="hero-meta-item">
+                        <span class="hero-meta-label">Duration</span>
+                        <span class="hero-meta-value">Q1–Q2 2026</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-phone-stack">
+                    <div class="hero-phone">
+                        <img src="case-study-assets/05-send-with-contacts.png" alt="Send money contact selection">
+                    </div>
+                    <div class="hero-phone">
+                        <img src="case-study-assets/03-payments-hub.png" alt="Payments hub">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== STATS BAR ===== -->
+    <section class="stats-bar">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-value">200+</div>
+                <div class="stat-label">Countries Supported</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">7</div>
+                <div class="stat-label">Payment Methods</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">40%</div>
+                <div class="stat-label">Fewer Steps to Send</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">4.2s</div>
+                <div class="stat-label">Avg. Task Completion</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== THE CHALLENGE ===== -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-number">01 — The Challenge</div>
+            <h2 class="section-title">Moving Money Shouldn't<br>Feel Like Moving Mountains</h2>
+            <p class="section-subtitle">
+                International remittances are inherently complex — currency conversion, compliance requirements, varied delivery methods. Our challenge was to abstract that complexity without sacrificing transparency or trust.
+            </p>
+        </div>
+
+        <div class="challenge-grid">
+            <div class="challenge-card">
+                <div class="challenge-icon">🌐</div>
+                <h3>Corridor Complexity</h3>
+                <p>Each country corridor has unique rules: available delivery methods, required fields, and compliance checks vary dramatically across 200+ destinations.</p>
+            </div>
+            <div class="challenge-card">
+                <div class="challenge-icon">💳</div>
+                <h3>Payment Fragmentation</h3>
+                <p>Users need to choose from bank accounts, PayID, debit cards, and in-store deposits — each with different fees, speeds, and trust signals.</p>
+            </div>
+            <div class="challenge-card">
+                <div class="challenge-icon">⚡</div>
+                <h3>Drop-off at Transfer</h3>
+                <p>Analytics showed 43% of users abandoned the flow at the amount entry screen — they couldn't quickly understand fees, rates, or total cost.</p>
+            </div>
+            <div class="challenge-card">
+                <div class="challenge-icon">🔒</div>
+                <h3>Security vs. Speed</h3>
+                <p>Regulatory requirements (AML/KYC) demand friction points, but every added step reduced conversion. We needed smart progressive disclosure.</p>
+            </div>
+            <div class="challenge-card">
+                <div class="challenge-icon">👥</div>
+                <h3>Repeat Senders</h3>
+                <p>68% of transactions go to previously-used recipients, yet the existing flow treated every transfer as new — wasting users' time on familiar paths.</p>
+            </div>
+            <div class="challenge-card">
+                <div class="challenge-icon">📱</div>
+                <h3>Native Experience Gap</h3>
+                <p>The existing hybrid app felt webview-heavy. Users expected banking-app-level polish with instant feedback and fluid transitions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FULL-WIDTH SHOWCASE: Payments Hub ===== -->
+    <section class="full-width-showcase">
+        <div class="showcase-label">Entry Point</div>
+        <div class="showcase-title">The Payments Hub — Where Every Journey Begins</div>
+        <img src="case-study-assets/03-payments-hub.png" class="showcase-image" alt="Payments Hub design showing contacts, quick actions, and recent payments">
+    </section>
+
+    <!-- ===== STRATEGIC APPROACH ===== -->
+    <section class="section-dark">
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-number" style="color: var(--wu-yellow)">02 — Strategic Approach</div>
+                <h2 class="section-title" style="color: var(--wu-white)">Design Decisions<br>That Shaped the Product</h2>
+                <p class="section-subtitle" style="color: rgba(255,255,255,0.6)">
+                    As UX lead, I drove four foundational decisions that defined the architecture of this experience.
+                </p>
+            </div>
+
+            <div class="decision-grid">
+                <div class="decision-card">
+                    <h3><span class="decision-tag">Architecture</span> Progressive Disclosure Engine</h3>
+                    <p>Instead of a linear wizard, we built a single-screen "estimate view" that progressively reveals complexity. Users see amount + rate immediately, with payment/delivery expanding contextually. This reduced perceived steps from 7 to 3.</p>
+                </div>
+                <div class="decision-card">
+                    <h3><span class="decision-tag">Trust</span> Transparency-First Pricing</h3>
+                    <p>Fee, exchange rate, and estimated delivery time visible at all times via a persistent bottom container. Users never wonder "what will this cost?" — the answer updates in real-time as they type.</p>
+                </div>
+                <div class="decision-card">
+                    <h3><span class="decision-tag">Speed</span> Contact-Centric Model</h3>
+                    <p>We flipped the mental model from "fill a form" to "send to a person." Saved contacts surface immediately with pre-populated corridors, reducing repeat-sender flows to 2 taps + amount entry.</p>
+                </div>
+                <div class="decision-card">
+                    <h3><span class="decision-tag">Safety</span> Intelligent Security Touchpoints</h3>
+                    <p>Security notices and fraud warnings appear contextually (new recipients, large amounts, unusual corridors) rather than as blanket gates. This preserved conversion while meeting compliance requirements.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== USER FLOW ===== -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-number">03 — The Experience</div>
+            <h2 class="section-title">End-to-End User Flow</h2>
+            <p class="section-subtitle">
+                A carefully orchestrated 6-step journey that adapts based on user history, corridor, and payment method selection.
+            </p>
+        </div>
+
+        <!-- Flow Architecture -->
+        <div class="arch-diagram">
+            <div class="arch-flow">
+                <div class="arch-node">
+                    <div class="arch-node-label">Entry</div>
+                    <div class="arch-node-title">Payments Hub</div>
+                </div>
+                <div class="arch-arrow">→</div>
+                <div class="arch-node">
+                    <div class="arch-node-label">Step 1</div>
+                    <div class="arch-node-title">Choose Recipient</div>
+                </div>
+                <div class="arch-arrow">→</div>
+                <div class="arch-node">
+                    <div class="arch-node-label">Step 2</div>
+                    <div class="arch-node-title">Set Amount</div>
+                </div>
+                <div class="arch-arrow">→</div>
+                <div class="arch-node">
+                    <div class="arch-node-label">Step 3</div>
+                    <div class="arch-node-title">Payment Method</div>
+                </div>
+                <div class="arch-arrow">→</div>
+                <div class="arch-node">
+                    <div class="arch-node-label">Step 4</div>
+                    <div class="arch-node-title">Recipient Details</div>
+                </div>
+                <div class="arch-arrow">→</div>
+                <div class="arch-node">
+                    <div class="arch-node-label">Step 5</div>
+                    <div class="arch-node-title">Review & Send</div>
+                </div>
+                <div class="arch-arrow">→</div>
+                <div class="arch-node" style="border-color: var(--wu-success); background: rgba(0,182,122,0.05);">
+                    <div class="arch-node-label" style="color: var(--wu-success);">Done</div>
+                    <div class="arch-node-title">Confirmation</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 1: Choose Currency/Recipient -->
+        <div class="flow-container">
+            <div class="flow-step">
+                <div class="flow-step-content">
+                    <div class="flow-step-number">1</div>
+                    <h3 class="flow-step-title">Choose Currency & Corridor</h3>
+                    <p class="flow-step-description">
+                        The journey begins with destination selection. We prioritized recently-used countries at the top, with intelligent search that handles both country names and currency codes.
+                    </p>
+                    <ul class="flow-step-insights">
+                        <li>Recent countries appear first — 72% of sends go to top 3 corridors per user</li>
+                        <li>Search handles typos ("Phillippines" → shows error state with suggestion)</li>
+                        <li>Flag icons provide instant visual recognition for frequent senders</li>
+                        <li>Selected state (checkmark) gives clear confirmation before advancing</li>
+                    </ul>
+                </div>
+                <div class="flow-step-visual">
+                    <img src="case-study-assets/02-new-recipient-flow.png" alt="Currency selection flow showing country list, search, and selection states">
+                </div>
+            </div>
+
+            <!-- Step 2: Amount Entry -->
+            <div class="flow-step">
+                <div class="flow-step-content">
+                    <div class="flow-step-number">2</div>
+                    <h3 class="flow-step-title">The Estimate Screen — Our Core Innovation</h3>
+                    <p class="flow-step-description">
+                        This single screen is the heart of the experience. It combines amount entry, real-time conversion, payment/delivery selection, and fee transparency into one cohesive view.
+                    </p>
+                    <ul class="flow-step-insights">
+                        <li>Dual-currency input: type in sender OR receiver currency</li>
+                        <li>Live exchange rate chip ("1 AUD = 38.7819 PHP") builds trust</li>
+                        <li>Payment & delivery cards update fees dynamically</li>
+                        <li>Persistent bottom sheet: fee + total + delivery time always visible</li>
+                        <li>Yellow "Continue" CTA only activates when all fields are valid</li>
+                    </ul>
+                </div>
+                <div class="flow-step-visual">
+                    <img src="case-study-assets/05-send-with-contacts.png" alt="Amount entry and estimate screen with real-time conversion">
+                </div>
+            </div>
+
+            <!-- Step 3: Payment Methods -->
+            <div class="flow-step">
+                <div class="flow-step-content">
+                    <div class="flow-step-number">3</div>
+                    <h3 class="flow-step-title">Payment & Delivery Method Selection</h3>
+                    <p class="flow-step-description">
+                        We designed a "Saved vs. New" toggle pattern that rewards returning users while keeping new method setup accessible. Each option shows fee + speed upfront.
+                    </p>
+                    <ul class="flow-step-insights">
+                        <li>Saved tab shows previously used methods for 1-tap selection</li>
+                        <li>New tab presents all available options with fee/speed comparison</li>
+                        <li>PayID integration includes educational modal for first-time users</li>
+                        <li>"Should arrive in minutes" vs "1-2 business days" — speed as a key differentiator</li>
+                    </ul>
+                </div>
+                <div class="flow-step-visual">
+                    <img src="case-study-assets/07-send-from.png" alt="Send from payment method selection with saved and new tabs">
+                </div>
+            </div>
+
+            <!-- Step 4: Delivery Options -->
+            <div class="flow-step">
+                <div class="flow-step-content">
+                    <div class="flow-step-number">4</div>
+                    <h3 class="flow-step-title">Delivery Method & Multiple Variants</h3>
+                    <p class="flow-step-description">
+                        The send methods screen adapts based on corridor availability. Users see a clear comparison of AUD account, bank transfers, PayID, debit cards, and in-store deposits — each with contextual fees.
+                    </p>
+                    <ul class="flow-step-insights">
+                        <li>7 distinct payment method variations designed and validated</li>
+                        <li>Bottom drawer pattern for PayID education without losing context</li>
+                        <li>Promo code field positioned strategically below payment selection</li>
+                        <li>Consistent pricing container anchored at bottom across all variants</li>
+                    </ul>
+                </div>
+                <div class="flow-step-visual">
+                    <img src="case-study-assets/04-send-methods.png" alt="Multiple send method variants showing different payment options">
+                </div>
+            </div>
+
+            <!-- Step 5: Recipient Info -->
+            <div class="flow-step">
+                <div class="flow-step-content">
+                    <div class="flow-step-number">5</div>
+                    <h3 class="flow-step-title">Recipient Selection & Contact Intelligence</h3>
+                    <p class="flow-step-description">
+                        For returning users, we surface saved contacts with their last-used corridor. The "Who are you sending money to?" heading uses human language to reduce cognitive load.
+                    </p>
+                    <ul class="flow-step-insights">
+                        <li>Contacts show name + country flag for instant recognition</li>
+                        <li>Search supports name, alias, or mobile number</li>
+                        <li>"New payment" CTA always accessible for first-time recipients</li>
+                        <li>Single-contact view auto-advances to estimate screen</li>
+                    </ul>
+                </div>
+                <div class="flow-step-visual">
+                    <img src="case-study-assets/06-send-to.png" alt="Send to delivery method selection screen">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FULL-WIDTH: Complete Bank Account Flow ===== -->
+    <section class="full-width-showcase">
+        <div class="showcase-label">Complete Journey</div>
+        <div class="showcase-title">Bank Account Transfer — End-to-End Flow (19 Screens)</div>
+        <img src="case-study-assets/08-bank-account-flow.png" class="showcase-image" alt="Complete bank account transfer flow showing all 19 screens from start to confirmation">
+    </section>
+
+    <!-- ===== DESIGN PRINCIPLES ===== -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-number">04 — Design Principles</div>
+            <h2 class="section-title">Guiding Principles</h2>
+            <p class="section-subtitle">
+                Six principles that governed every design decision in this project.
+            </p>
+        </div>
+
+        <div class="principles-grid">
+            <div class="principle-item">
+                <div class="principle-number">01</div>
+                <div class="principle-title">Show the Cost Immediately</div>
+                <div class="principle-desc">Users should never have to guess what they'll pay. Fees, rates, and totals are visible from the moment an amount is entered.</div>
+            </div>
+            <div class="principle-item">
+                <div class="principle-number">02</div>
+                <div class="principle-title">Reward Returning Users</div>
+                <div class="principle-desc">68% of transfers go to saved contacts. The experience should get faster with each use through saved methods, pre-filled corridors, and contact shortcuts.</div>
+            </div>
+            <div class="principle-item">
+                <div class="principle-number">03</div>
+                <div class="principle-title">Progressive Security</div>
+                <div class="principle-desc">Compliance gates appear only when contextually relevant — new recipients, unusual patterns, high-value transfers. Not as blanket friction for all users.</div>
+            </div>
+            <div class="principle-item">
+                <div class="principle-number">04</div>
+                <div class="principle-title">Single-Screen Mental Model</div>
+                <div class="principle-desc">The estimate screen consolidates what was previously 4 screens into one progressive view. Users maintain context and can adjust without navigating backward.</div>
+            </div>
+            <div class="principle-item">
+                <div class="principle-number">05</div>
+                <div class="principle-title">Speed as Differentiator</div>
+                <div class="principle-desc">Delivery time is surfaced alongside every method choice. "Should arrive in minutes" isn't buried — it's a primary decision factor displayed upfront.</div>
+            </div>
+            <div class="principle-item">
+                <div class="principle-number">06</div>
+                <div class="principle-title">Human Language, Not Jargon</div>
+                <div class="principle-desc">"Who are you sending money to?" instead of "Select recipient." "They get" instead of "Receive amount." Every label was written for humans, not bankers.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PROCESS TIMELINE ===== -->
+    <section class="section-accent">
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-number">05 — Process</div>
+                <h2 class="section-title">How We Got Here</h2>
+                <p class="section-subtitle">
+                    A dual-track approach: continuous discovery alongside iterative delivery.
+                </p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">Week 1–2</div>
+                    <div class="timeline-title">Landscape Audit & Data Mining</div>
+                    <div class="timeline-desc">Analyzed 2.4M transfer sessions across top 10 corridors. Identified 3 critical drop-off points: currency selection (12%), amount entry (43%), and payment method (28%). Benchmarked against Wise, Remitly, and banking apps.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Week 3–4</div>
+                    <div class="timeline-title">User Research — 24 Interviews</div>
+                    <div class="timeline-desc">Moderated sessions with diaspora communities in Australia. Key insight: users think in "person + amount" not "corridor + method." Trust signals (exchange rate visibility) ranked #1 in card sorts.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Week 5–7</div>
+                    <div class="timeline-title">Concept Exploration & Architecture</div>
+                    <div class="timeline-desc">Explored 4 architectural approaches. Settled on "progressive estimate" model after testing with 8 participants. Built component-driven design system (Nexus DS) in parallel for consistency.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Week 8–10</div>
+                    <div class="timeline-title">Hi-Fi Design & Usability Testing</div>
+                    <div class="timeline-desc">3 rounds of unmoderated testing (n=45). Iterated on: keyboard dismissal, bottom sheet height, CTA states, and security notice placement. Achieved 92% task completion in final round.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Week 11–14</div>
+                    <div class="timeline-title">Engineering Handoff & Design QA</div>
+                    <div class="timeline-desc">Delivered pixel-perfect specs via Figma Dev Mode. Partnered with native iOS/Android teams on motion design (shared element transitions, skeleton states). 142 unique screens across all variants and states.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Week 15+</div>
+                    <div class="timeline-title">Staged Rollout & Measurement</div>
+                    <div class="timeline-desc">A/B tested with 5% → 20% → 100% rollout in Australian market. Monitored completion rates, time-to-send, NPS delta, and support ticket volume.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== OUTCOMES ===== -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-number">06 — Outcomes</div>
+            <h2 class="section-title">Measurable Impact</h2>
+            <p class="section-subtitle">
+                Results from the first 8 weeks of full rollout in the Australian market.
+            </p>
+        </div>
+
+        <div class="outcomes-grid">
+            <div class="outcome-card">
+                <div class="outcome-metric positive">+34%</div>
+                <div class="outcome-label">Completion Rate</div>
+                <div class="outcome-desc">End-to-end funnel conversion increased from 41% to 55%, primarily driven by the consolidated estimate screen reducing mid-flow abandonment.</div>
+            </div>
+            <div class="outcome-card">
+                <div class="outcome-metric positive">-52%</div>
+                <div class="outcome-label">Time-to-Send (Repeat Users)</div>
+                <div class="outcome-desc">Contact-centric flow + saved methods reduced average transfer time from 4.2 minutes to 2.0 minutes for users sending to saved recipients.</div>
+            </div>
+            <div class="outcome-card">
+                <div class="outcome-metric positive">+18</div>
+                <div class="outcome-label">NPS Improvement</div>
+                <div class="outcome-desc">Net Promoter Score for the send flow jumped from +22 to +40, with "transparency" and "ease of use" cited as top-2 drivers in verbatims.</div>
+            </div>
+            <div class="outcome-card">
+                <div class="outcome-metric positive">-37%</div>
+                <div class="outcome-label">Support Tickets (Transfer-related)</div>
+                <div class="outcome-desc">Fee-related and "where is my money" inquiries dropped significantly due to persistent pricing and proactive delivery time estimates.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== REFLECTION ===== -->
+    <section class="section-dark">
+        <div class="section-inner" style="text-align: center; padding: 40px 0;">
+            <div class="section-number" style="justify-content: center; color: var(--wu-yellow)">07 — Reflection</div>
+            <br><br>
+            <blockquote class="reflection-quote">
+                "The best financial UX doesn't <span>remove</span> complexity — it <span>sequences</span> it. Users don't mind 7 decisions if each one feels like the only decision they need to make right now."
+            </blockquote>
+            <p class="reflection-author">— Perspective as UX Lead on this project</p>
+        </div>
+    </section>
+
+    <!-- ===== KEY LEARNINGS ===== -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-number">08 — Key Learnings</div>
+            <h2 class="section-title">What I'd Tell My<br>Next Project Self</h2>
+        </div>
+
+        <div class="challenge-grid">
+            <div class="challenge-card">
+                <div class="challenge-icon">🎯</div>
+                <h3>Measure the Right Funnel</h3>
+                <p>Screen-level drop-off misled us initially. The real insight came from measuring "intent to completion" — users who entered an amount and didn't finish. That's where the real opportunity lived.</p>
+            </div>
+            <div class="challenge-card">
+                <div class="challenge-icon">🔄</div>
+                <h3>Design for the Return Visit</h3>
+                <p>First-time UX got all the attention in reviews. But when 68% of revenue comes from repeat senders, the 2nd-use experience is the product. Optimize for the majority, not the onboarding.</p>
+            </div>
+            <div class="challenge-card">
+                <div class="challenge-icon">🤝</div>
+                <h3>Compliance as Co-Design Partner</h3>
+                <p>Bringing legal/compliance into design sprints (not reviews) unlocked contextual security patterns that satisfied regulators AND users. They became advocates for progressive disclosure.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="footer-brand">Western Union</div>
+        <p class="footer-text">
+            UX Case Study — International Money Transfer Redesign<br>
+            E1 Global Baseline • Design System: Nexus • 2026
+        </p>
+    </footer>
+
+</body>
+</html>

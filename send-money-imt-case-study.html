@@ -782,6 +782,101 @@
             margin-bottom: 16px;
         }
 
+        /* ─── DARK MODE ─── */
+        body { background: #080808; color: rgba(255,255,255,.88); }
+        .section-accent { background: #0d0d0d; }
+        .section-title { color: #fff; }
+        .section-subtitle { color: rgba(255,255,255,.45); }
+        .challenge-card { background: #141414; border-color: rgba(255,255,255,.08); }
+        .challenge-card:hover { box-shadow: 0 20px 40px rgba(0,0,0,.5); }
+        .challenge-card h3, .timeline-title, .principle-title { color: #fff; }
+        .challenge-card p, .principle-desc, .timeline-desc, .outcome-desc { color: rgba(255,255,255,.45); }
+        .challenge-icon { background: rgba(255,255,255,.06); }
+        .flow-step-title { color: #fff; }
+        .flow-step-subtitle, .flow-details li, .flow-step-desc { color: rgba(255,255,255,.45); }
+        .arch-diagram { background: #141414; border-color: rgba(255,255,255,.08); }
+        .arch-node { background: #1e1e1e; border-color: rgba(255,255,255,.1); }
+        .arch-node-label { color: rgba(255,255,255,.3); }
+        .arch-node-title { color: #fff; }
+        .principles-grid { border-color: rgba(255,255,255,.07); }
+        .principle-item { border-color: rgba(255,255,255,.07); }
+        .principle-item:hover { background: rgba(255,255,255,.03); }
+        .principle-number { color: rgba(255,255,255,.07); }
+        .outcome-card { background: #141414; }
+        .outcome-label { color: rgba(255,255,255,.88); }
+        .timeline::before { background: rgba(255,255,255,.1); }
+        .timeline-item { border-color: rgba(255,255,255,.05); }
+        .timeline-item::before { border-color: #080808; }
+        .timeline-date { color: rgba(255,255,255,.25); }
+        .section-dark { background: #0a0a0a; }
+
+        /* ─── CASE NAV ─── */
+        body { padding-bottom: 60px; }
+        .cs-nav {
+            position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+            background: rgba(8,8,8,.93);
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            border-top: 1px solid rgba(255,255,255,.07);
+            height: 60px; display: flex; align-items: center;
+            padding: 0 48px; justify-content: space-between;
+        }
+        .cs-nav a {
+            font-size: 12px; font-weight: 600; letter-spacing: .3px;
+            color: rgba(255,255,255,.4); text-decoration: none;
+            display: flex; align-items: center; gap: 8px;
+            transition: color .2s ease;
+        }
+        .cs-nav a:hover { color: #FFDD00; }
+        .cs-nav-home { color: rgba(255,255,255,.22) !important; font-size: 11px !important; }
+        .cs-nav-home:hover { color: rgba(255,255,255,.55) !important; }
+        .cs-nav-mid { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: rgba(255,255,255,.18); }
+
+        /* ─── LEADERSHIP VIEW ─── */
+        .lv { background: #0c0c0c; border-bottom: 1px solid rgba(255,255,255,.07); padding: 80px 0; }
+        .lv-inner { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+        .lv-hd { display: flex; align-items: center; justify-content: space-between; margin-bottom: 48px; flex-wrap: wrap; gap: 12px; }
+        .lv-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255,221,0,.07); border: 1px solid rgba(255,221,0,.2);
+            border-radius: 100px; padding: 6px 16px;
+            font-size: 10px; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 2.5px; color: #FFDD00;
+        }
+        .lv-subtitle { font-size: 12px; color: rgba(255,255,255,.3); font-weight: 500; }
+        .lv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 2px; }
+        .lv-cell { background: #161616; border-radius: 16px; padding: 36px 32px; }
+        .lv-cell-lbl { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; color: rgba(255,255,255,.25); margin-bottom: 14px; }
+        .lv-cell-title { font-size: 18px; font-weight: 800; color: #fff; line-height: 1.3; margin-bottom: 12px; letter-spacing: -.3px; }
+        .lv-cell-body { font-size: 14px; color: rgba(255,255,255,.5); line-height: 1.7; }
+        .lv-decisions { display: flex; flex-direction: column; gap: 14px; }
+        .lv-d { display: flex; gap: 14px; align-items: flex-start; }
+        .lv-d-n { width: 24px; height: 24px; background: #FFDD00; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 900; color: #000; flex-shrink: 0; margin-top: 1px; }
+        .lv-d-t { font-size: 13px; color: rgba(255,255,255,.5); line-height: 1.65; }
+        .lv-d-t strong { color: rgba(255,255,255,.85); font-weight: 700; }
+        .lv-metrics { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; margin-top: 2px; margin-bottom: 40px; }
+        .lv-m { background: #161616; border-radius: 12px; padding: 24px 20px; text-align: center; }
+        .lv-m-n { font-size: 30px; font-weight: 900; color: #FFDD00; letter-spacing: -1px; margin-bottom: 6px; line-height: 1; }
+        .lv-m-l { font-size: 11px; color: rgba(255,255,255,.35); line-height: 1.5; }
+        .lv-toggle {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1);
+            border-radius: 100px; padding: 14px 28px;
+            font-size: 13px; font-weight: 700; color: rgba(255,255,255,.5);
+            cursor: pointer; font-family: inherit; letter-spacing: 0;
+            transition: all .2s ease;
+        }
+        .lv-toggle:hover { background: rgba(255,221,0,.05); border-color: rgba(255,221,0,.25); color: #FFDD00; }
+        .lv-toggle-ic { transition: transform .3s ease; display: inline-block; }
+        .lv-toggle.open .lv-toggle-ic { transform: rotate(180deg); }
+
+        /* ─── FULL CS HIDDEN ─── */
+        #full-cs { display: none; }
+        #full-cs.open { display: block; }
+
+        /* ─── SCROLL REVEAL ─── */
+        .rv { opacity: 0; transform: translateY(22px); transition: opacity .65s cubic-bezier(.16,1,.3,1), transform .65s cubic-bezier(.16,1,.3,1); }
+        .rv.in { opacity: 1; transform: none; }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .hero-content {
@@ -898,6 +993,57 @@
             </div>
         </div>
     </section>
+
+    <!-- ===== LEADERSHIP SUMMARY ===== -->
+    <section class="lv">
+        <div class="lv-inner">
+            <div class="lv-hd">
+                <div class="lv-badge">⚡ Leadership Summary</div>
+                <div class="lv-subtitle">The strategic view — key decisions, contribution &amp; outcomes</div>
+            </div>
+            <div class="lv-grid">
+                <div class="lv-cell">
+                    <div class="lv-cell-lbl">The Problem</div>
+                    <div class="lv-cell-title">A 7-screen flow with 43% abandonment at the most critical step</div>
+                    <p class="lv-cell-body">The existing Send Money experience treated every transfer as a new journey, even for the 68% of users sending to saved recipients. Currency conversion, fees, and delivery times were hidden until confirmation — and 43% of users who entered an amount never completed the transfer.</p>
+                </div>
+                <div class="lv-cell">
+                    <div class="lv-cell-lbl">My Role &amp; Contribution</div>
+                    <div class="lv-cell-title">UX Lead — 14 weeks, sole design decision-maker on the full flow</div>
+                    <p class="lv-cell-body">Owned the entire redesign from data analysis through staged rollout. Drove four foundational architectural decisions that defined the product’s interaction model. Partnered with compliance, engineering, and product to ship across iOS, Android, and web.</p>
+                </div>
+            </div>
+            <div class="lv-cell" style="border-radius:16px; margin-top:2px;">
+                <div class="lv-cell-lbl">Three Key Design Decisions</div>
+                <div class="lv-decisions">
+                    <div class="lv-d">
+                        <div class="lv-d-n">1</div>
+                        <div class="lv-d-t"><strong>Progressive disclosure model:</strong> Collapsed all amount, rate, and fee data into a single “estimate screen” — reducing perceived steps from 7 to 3 without removing any information or compliance requirements.</div>
+                    </div>
+                    <div class="lv-d">
+                        <div class="lv-d-n">2</div>
+                        <div class="lv-d-t"><strong>Contact-centric navigation:</strong> Rebuilt the entry point around saved recipients rather than corridors — matching the user’s mental model of “I’m sending to Maria” not “I’m sending to the Philippines”.</div>
+                    </div>
+                    <div class="lv-d">
+                        <div class="lv-d-n">3</div>
+                        <div class="lv-d-t"><strong>Fee transparency as trust infrastructure:</strong> Made exchange rate and total cost persistent at every step — reversing the common fintech pattern of hiding fees until confirmation, which became the #1 driver of NPS improvement.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="lv-metrics">
+                <div class="lv-m"><div class="lv-m-n">+34%</div><div class="lv-m-l">Completion rate (41% → 55%)</div></div>
+                <div class="lv-m"><div class="lv-m-n">−52%</div><div class="lv-m-l">Time-to-send for repeat users</div></div>
+                <div class="lv-m"><div class="lv-m-n">+18</div><div class="lv-m-l">NPS improvement</div></div>
+                <div class="lv-m"><div class="lv-m-n">−37%</div><div class="lv-m-l">Transfer-related support tickets</div></div>
+            </div>
+            <button class="lv-toggle" id="lv-toggle" onclick="toggleFull()">
+                <span id="lv-btn-txt">Read Full Case Study</span>
+                <span class="lv-toggle-ic">↓</span>
+            </button>
+        </div>
+    </section>
+
+    <div id="full-cs">
 
     <!-- ===== THE CHALLENGE ===== -->
     <section class="section">
@@ -1305,6 +1451,8 @@
         </div>
     </section>
 
+    </div><!-- /#full-cs -->
+
     <!-- ===== FOOTER ===== -->
     <footer class="footer">
         <div class="footer-brand">Western Union</div>
@@ -1313,6 +1461,31 @@
             E1 Global Baseline • Design System: Nexus • 2026
         </p>
     </footer>
+
+    <!-- CASE NAV -->
+    <div class="cs-nav">
+        <a href="index.html" class="cs-nav-home">← Portfolio</a>
+        <div class="cs-nav-mid">Case Study 1 of 2</div>
+        <a href="ux-baseline-case-study.html">UX Baseline →</a>
+    </div>
+
+    <script>
+    (function(){
+        window.toggleFull = function(){
+            var fc  = document.getElementById('full-cs');
+            var btn = document.getElementById('lv-toggle');
+            var txt = document.getElementById('lv-btn-txt');
+            var isOpen = fc.classList.toggle('open');
+            btn.classList.toggle('open', isOpen);
+            txt.textContent = isOpen ? 'Collapse Case Study' : 'Read Full Case Study';
+            if(isOpen){ setTimeout(function(){ fc.scrollIntoView({behavior:'smooth',block:'start'}); }, 50); }
+        };
+        var obs = new IntersectionObserver(function(entries){
+            entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); } });
+        }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+        document.querySelectorAll('.rv').forEach(function(el){ obs.observe(el); });
+    })();
+    </script>
 
 </body>
 </html>

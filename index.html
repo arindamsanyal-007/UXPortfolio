@@ -287,71 +287,120 @@
         }
 
         /* ─────────────────────────────────────────
-           WORK CARDS
+           HERO EXTRAS
         ───────────────────────────────────────── */
-        .work-stack { display: flex; flex-direction: column; gap: 2px; }
+        .hero-rings {
+            position: absolute; top: 35%; left: 68%;
+            transform: translate(-50%, -50%);
+            pointer-events: none; z-index: 0;
+        }
+        .hero-ring {
+            position: absolute; border-radius: 50%;
+            border: 1px solid rgba(255,221,0,0.06);
+            top: 50%; left: 50%;
+            transform: translate(-50%,-50%) scale(0.85);
+            animation: ringPulse 8s ease-in-out infinite;
+        }
+        .hero-ring:nth-child(1) { width: 240px; height: 240px; animation-delay: 0s; }
+        .hero-ring:nth-child(2) { width: 420px; height: 420px; animation-delay: 1.8s; border-color: rgba(255,221,0,0.04); }
+        .hero-ring:nth-child(3) { width: 620px; height: 620px; animation-delay: 3.6s; border-color: rgba(255,221,0,0.025); }
+        .hero-ring:nth-child(4) { width: 840px; height: 840px; animation-delay: 5.4s; border-color: rgba(255,221,0,0.015); }
+        .hero-orb {
+            position: absolute; top: 30%; left: 65%;
+            width: 500px; height: 500px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,221,0,0.04) 0%, transparent 65%);
+            pointer-events: none; z-index: 0;
+            animation: orbDrift 12s ease-in-out infinite;
+        }
+        .hero-status {
+            display: inline-flex; align-items: center; gap: 8px;
+            margin-bottom: 20px;
+            animation: fadeIn .8s ease .08s both;
+        }
+        .hero-status-dot {
+            width: 7px; height: 7px; border-radius: 50%;
+            background: #00C875;
+            box-shadow: 0 0 0 2px rgba(0,200,117,.2);
+            animation: dotBlink 2.5s ease infinite;
+        }
+        .hero-status-text {
+            font-size: 11px; font-weight: 600; color: var(--text-3); letter-spacing: .5px;
+        }
+        .hero-floats {
+            position: absolute; right: 48px; top: 50%;
+            transform: translateY(-50%); z-index: 1;
+            display: flex; flex-direction: column; gap: 12px;
+            animation: fadeIn 1s ease 1s both;
+            pointer-events: none;
+        }
+        .hf-pill {
+            display: flex; flex-direction: column;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 14px; padding: 16px 24px;
+            text-align: right;
+            backdrop-filter: blur(10px);
+        }
+        .hf-num { font-size: 28px; font-weight: 900; color: var(--yellow); letter-spacing: -1px; line-height: 1; }
+        .hf-lbl { font-size: 11px; color: var(--text-3); font-weight: 500; margin-top: 4px; }
+
+        /* ─────────────────────────────────────────
+           WORK CARDS (GRID)
+        ───────────────────────────────────────── */
+        .work-stack { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
         .work-card {
             background: var(--surface-1);
             border-radius: var(--radius-lg);
             overflow: hidden;
             text-decoration: none; color: inherit;
-            display: grid; grid-template-columns: 1fr 1fr;
-            min-height: 380px;
-            transition: background .3s ease;
+            display: flex; flex-direction: column;
+            transition: background .3s ease, transform .4s var(--ease-out), box-shadow .4s ease;
             position: relative;
         }
-        .work-card:hover { background: var(--surface-2); }
-        .work-card:hover .wc-arrow { transform: translate(5px,-5px); }
-        .work-card:hover .wc-img { opacity: .9; transform: scale(1.03); }
+        .work-card:hover { background: var(--surface-2); transform: translateY(-6px); box-shadow: 0 32px 64px rgba(0,0,0,.4); }
+        .work-card:hover .wc-arrow { transform: translate(5px,-5px); color: var(--yellow); border-color: rgba(255,221,0,.3); }
+
+        .wc-visual {
+            position: relative; overflow: hidden;
+            background: var(--surface-2);
+            height: 280px; flex-shrink: 0;
+        }
+        .wc-visual svg { width: 100%; height: 100%; display: block; }
 
         .wc-body {
-            padding: 56px 64px;
+            padding: 36px 40px 40px;
             display: flex; flex-direction: column; justify-content: space-between;
+            flex: 1;
         }
-        .wc-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+        .wc-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
         .wc-tag {
             font-size: 10px; font-weight: 700; text-transform: uppercase;
             letter-spacing: 1.5px; padding: 5px 12px;
             border-radius: 100px; border: 1px solid var(--border); color: var(--text-3);
         }
         .wc-title {
-            font-size: clamp(20px, 2.5vw, 28px); font-weight: 800;
-            letter-spacing: -.6px; line-height: 1.2; margin-bottom: 14px;
+            font-size: clamp(18px, 2vw, 24px); font-weight: 800;
+            letter-spacing: -.5px; line-height: 1.25; margin-bottom: 12px;
         }
-        .wc-desc {
-            font-size: 14px; color: var(--text-2); line-height: 1.75; max-width: 380px;
-        }
+        .wc-desc { font-size: 14px; color: var(--text-2); line-height: 1.75; }
         .wc-foot {
             display: flex; align-items: flex-end; justify-content: space-between;
-            margin-top: 48px;
+            margin-top: 32px;
         }
-        .wc-stat-num { font-size: 30px; font-weight: 900; color: var(--yellow); letter-spacing: -1px; }
+        .wc-stat-num { font-size: 28px; font-weight: 900; color: var(--yellow); letter-spacing: -1px; }
         .wc-stat-lbl { font-size: 12px; color: var(--text-3); margin-top: 2px; }
         .wc-arrow {
-            width: 46px; height: 46px; border-radius: 50%;
+            width: 44px; height: 44px; border-radius: 50%;
             border: 1px solid var(--border);
             display: flex; align-items: center; justify-content: center;
             font-size: 17px; color: var(--text-2);
-            transition: transform .35s var(--ease-out), color .2s ease;
+            transition: transform .35s var(--ease-out), color .2s ease, border-color .2s ease;
             flex-shrink: 0;
         }
-        .work-card:hover .wc-arrow { color: var(--yellow); border-color: rgba(255,221,0,.3); }
-
-        .wc-visual {
-            position: relative; overflow: hidden;
-            background: var(--surface-2);
-        }
-        .wc-img {
-            width: 100%; height: 100%;
-            object-fit: cover; object-position: top left;
-            opacity: .65;
-            transition: opacity .4s ease, transform .6s var(--ease-out);
-            display: block;
-        }
-        .wc-visual-fallback {
-            position: absolute; inset: 0;
+        .wc-coming {
             display: flex; align-items: center; justify-content: center;
-            font-size: 96px; opacity: .04;
+            height: 100%; font-size: 11px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 3px; color: var(--text-3);
         }
 
         /* ─────────────────────────────────────────
@@ -485,6 +534,20 @@
             0%,100% { transform: translateY(0); opacity:1; }
             80%      { transform: translateY(6px); opacity: 0; }
         }
+        @keyframes ringPulse {
+            0%   { transform: translate(-50%,-50%) scale(0.85); opacity: 0; }
+            25%  { opacity: 1; }
+            100% { transform: translate(-50%,-50%) scale(1.1); opacity: 0; }
+        }
+        @keyframes orbDrift {
+            0%,100% { transform: translate(0,0) scale(1); opacity:.7; }
+            33%     { transform: translate(-40px, 30px) scale(1.1); opacity:1; }
+            66%     { transform: translate(30px,-20px) scale(.9); opacity:.6; }
+        }
+        @keyframes dotBlink {
+            0%,100% { box-shadow: 0 0 0 2px rgba(0,200,117,.2); }
+            50%     { box-shadow: 0 0 0 5px rgba(0,200,117,.08); }
+        }
 
         /* ─────────────────────────────────────────
            MARQUEE TICKER
@@ -520,12 +583,14 @@
             .hero { padding: 64px 24px 80px; }
             .hero-name { letter-spacing: -2.5px; }
             .hero-footer { flex-direction: column; align-items: flex-start; gap: 28px; }
+            .hero-floats { display: none; }
+            .hero-rings { display: none; }
             .stats-grid { grid-template-columns: 1fr 1fr; gap: 40px 0; }
             .stat { padding: 0 24px; border-right: none; }
             .stat:nth-child(odd) { padding-left: 0; border-right: 1px solid var(--border); }
-            .work-card { grid-template-columns: 1fr; }
-            .wc-visual { height: 260px; order: -1; }
-            .wc-body { padding: 36px 36px; }
+            .work-stack { grid-template-columns: 1fr; }
+            .wc-visual { height: 220px; }
+            .wc-body { padding: 28px 28px 32px; }
             .bento { grid-template-columns: 1fr 1fr; }
             .bc--wide { grid-column: span 2; }
             .tl-item { grid-template-columns: 1fr; gap: 12px; }
@@ -563,18 +628,46 @@
 <section class="hero" id="hero">
     <div class="hero-bg"></div>
     <div class="hero-grid"></div>
+    <div class="hero-orb"></div>
+    <div class="hero-rings" aria-hidden="true">
+        <div class="hero-ring"></div>
+        <div class="hero-ring"></div>
+        <div class="hero-ring"></div>
+        <div class="hero-ring"></div>
+    </div>
+
+    <!-- Floating stat pills (desktop only) -->
+    <div class="hero-floats" aria-hidden="true">
+        <div class="hf-pill">
+            <span class="hf-num">14+</span>
+            <span class="hf-lbl">Years of experience</span>
+        </div>
+        <div class="hf-pill">
+            <span class="hf-num">8</span>
+            <span class="hf-lbl">Designers led</span>
+        </div>
+        <div class="hf-pill">
+            <span class="hf-num">200+</span>
+            <span class="hf-lbl">Markets served</span>
+        </div>
+    </div>
+
     <div class="hero-content">
+        <div class="hero-status">
+            <span class="hero-status-dot"></span>
+            <span class="hero-status-text">Currently at Western Union &mdash; Open to senior leadership roles</span>
+        </div>
         <div class="hero-eyebrow">
             <div class="hero-line"></div>
-            <span class="hero-label">Product Design Manager · Pune, India</span>
+            <span class="hero-label">Product Design Manager &middot; Pune, India</span>
         </div>
         <h1 class="hero-name">Arindam<br><em>Sanyal.</em></h1>
         <div class="hero-footer">
             <p class="hero-desc">
-                <strong>14+ years</strong> designing fintech products at global scale. Currently leading design at <strong>Western Union</strong> — managing a team of 8 across onboarding, transfers, and account management for millions of users worldwide.
+                <strong>14+ years</strong> designing fintech products at global scale. At <strong>Western Union</strong> I lead a team of 8 across onboarding, transfers, and account management &mdash; translating regulatory complexity into intuitive experiences for millions of users worldwide.
             </p>
             <div class="hero-ctas">
-                <a href="#work" class="btn btn-y">View Work →</a>
+                <a href="#work" class="btn btn-y">View Work &rarr;</a>
                 <a href="mailto:asanyal88@gmail.com" class="btn btn-o">Get in Touch</a>
             </div>
         </div>
@@ -650,7 +743,88 @@
         </div>
         <div class="work-stack">
 
+            <!-- Card 1: UX Baseline -->
             <a href="ux-baseline-case-study.html" class="work-card r">
+                <div class="wc-visual">
+                    <svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                        <style>
+                            .b-screen { animation: bFade 4s ease-in-out infinite; }
+                            .b-screen:nth-child(2) { animation-delay:.8s; }
+                            .b-screen:nth-child(3) { animation-delay:1.6s; }
+                            .b-node { animation: bPulse 3s ease-in-out infinite; }
+                            .b-node:nth-child(2) { animation-delay:.5s; }
+                            .b-node:nth-child(3) { animation-delay:1s; }
+                            @keyframes bFade { 0%,100%{opacity:.35} 50%{opacity:.7} }
+                            @keyframes bPulse { 0%,100%{r:3} 50%{r:5} }
+                        </style>
+                        <defs>
+                            <radialGradient id="bg1" cx="65%" cy="35%" r="55%">
+                                <stop offset="0%" stop-color="#FFDD00" stop-opacity=".06"/>
+                                <stop offset="100%" stop-color="#080808" stop-opacity="0"/>
+                            </radialGradient>
+                            <pattern id="pg1" width="40" height="40" patternUnits="userSpaceOnUse">
+                                <path d="M40 0L0 0 0 40" fill="none" stroke="rgba(255,255,255,.025)" stroke-width="1"/>
+                            </pattern>
+                        </defs>
+                        <rect width="600" height="280" fill="#0a0a0a"/>
+                        <rect width="600" height="280" fill="url(#pg1)"/>
+                        <rect width="600" height="280" fill="url(#bg1)"/>
+
+                        <!-- Row of phone wireframes fading right -->
+                        <g class="b-screen">
+                            <rect x="52" y="32" width="76" height="120" rx="7" fill="none" stroke="#FFDD00" stroke-width="1.5" stroke-opacity=".55"/>
+                            <rect x="62" y="46" width="56" height="7" rx="2" fill="#FFDD00" fill-opacity=".18"/>
+                            <rect x="62" y="59" width="42" height="3" rx="1.5" fill="rgba(255,255,255,.07)"/>
+                            <rect x="62" y="66" width="50" height="3" rx="1.5" fill="rgba(255,255,255,.07)"/>
+                            <rect x="62" y="73" width="34" height="3" rx="1.5" fill="rgba(255,255,255,.07)"/>
+                            <rect x="62" y="86" width="56" height="20" rx="5" fill="#FFDD00" fill-opacity=".12" stroke="#FFDD00" stroke-opacity=".2" stroke-width="1"/>
+                            <rect x="62" y="110" width="30" height="3" rx="1.5" fill="rgba(255,255,255,.05)"/>
+                            <rect x="62" y="117" width="44" height="3" rx="1.5" fill="rgba(255,255,255,.05)"/>
+                            <rect x="62" y="124" width="26" height="3" rx="1.5" fill="rgba(255,255,255,.05)"/>
+                        </g>
+                        <g class="b-screen">
+                            <rect x="148" y="32" width="76" height="120" rx="7" fill="none" stroke="#FFDD00" stroke-width="1" stroke-opacity=".35"/>
+                            <rect x="158" y="46" width="56" height="7" rx="2" fill="#FFDD00" fill-opacity=".1"/>
+                            <rect x="158" y="59" width="38" height="3" rx="1.5" fill="rgba(255,255,255,.05)"/>
+                            <rect x="158" y="66" width="52" height="3" rx="1.5" fill="rgba(255,255,255,.05)"/>
+                            <rect x="158" y="86" width="56" height="20" rx="5" fill="rgba(255,221,0,.07)"/>
+                        </g>
+                        <g class="b-screen">
+                            <rect x="244" y="32" width="76" height="120" rx="7" fill="none" stroke="#FFDD00" stroke-width="1" stroke-opacity=".2"/>
+                            <rect x="254" y="46" width="56" height="7" rx="2" fill="#FFDD00" fill-opacity=".06"/>
+                            <rect x="254" y="86" width="56" height="20" rx="5" fill="rgba(255,221,0,.04)"/>
+                        </g>
+                        <rect x="340" y="32" width="76" height="120" rx="7" fill="none" stroke="rgba(255,221,0,.1)" stroke-width="1"/>
+                        <rect x="436" y="32" width="76" height="120" rx="7" fill="none" stroke="rgba(255,221,0,.05)" stroke-width="1"/>
+                        <rect x="532" y="32" width="76" height="120" rx="7" fill="none" stroke="rgba(255,221,0,.03)" stroke-width="1"/>
+
+                        <!-- Connector dashes -->
+                        <line x1="128" y1="92" x2="148" y2="92" stroke="rgba(255,221,0,.3)" stroke-width="1" stroke-dasharray="3 3"/>
+                        <line x1="224" y1="92" x2="244" y2="92" stroke="rgba(255,221,0,.18)" stroke-width="1" stroke-dasharray="3 3"/>
+                        <line x1="320" y1="92" x2="340" y2="92" stroke="rgba(255,221,0,.1)" stroke-width="1" stroke-dasharray="3 3"/>
+
+                        <!-- Quality gate pills -->
+                        <rect x="52" y="175" width="528" height="1" fill="rgba(255,255,255,.05)"/>
+                        <rect x="52" y="188" width="88" height="20" rx="10" fill="rgba(0,182,122,.08)" stroke="rgba(0,182,122,.22)" stroke-width="1"/>
+                        <text x="96" y="202" font-family="Inter,sans-serif" font-size="8.5" fill="rgba(0,182,122,.85)" text-anchor="middle" font-weight="700">Accessibility</text>
+                        <rect x="150" y="188" width="72" height="20" rx="10" fill="rgba(0,182,122,.08)" stroke="rgba(0,182,122,.22)" stroke-width="1"/>
+                        <text x="186" y="202" font-family="Inter,sans-serif" font-size="8.5" fill="rgba(0,182,122,.85)" text-anchor="middle" font-weight="700">Touch</text>
+                        <rect x="232" y="188" width="88" height="20" rx="10" fill="rgba(255,221,0,.06)" stroke="rgba(255,221,0,.18)" stroke-width="1"/>
+                        <text x="276" y="202" font-family="Inter,sans-serif" font-size="8.5" fill="rgba(255,221,0,.7)" text-anchor="middle" font-weight="700">Performance</text>
+                        <rect x="330" y="188" width="80" height="20" rx="10" fill="rgba(255,221,0,.06)" stroke="rgba(255,221,0,.18)" stroke-width="1"/>
+                        <text x="370" y="202" font-family="Inter,sans-serif" font-size="8.5" fill="rgba(255,221,0,.7)" text-anchor="middle" font-weight="700">Navigation</text>
+                        <rect x="420" y="188" width="64" height="20" rx="10" fill="rgba(255,152,0,.06)" stroke="rgba(255,152,0,.18)" stroke-width="1"/>
+                        <text x="452" y="202" font-family="Inter,sans-serif" font-size="8.5" fill="rgba(255,152,0,.7)" text-anchor="middle" font-weight="700">Forms</text>
+
+                        <!-- Numbers -->
+                        <text x="52" y="246" font-family="Inter,sans-serif" font-size="36" fill="#FFDD00" font-weight="900" fill-opacity=".9">142</text>
+                        <text x="118" y="246" font-family="Inter,sans-serif" font-size="14" fill="rgba(255,255,255,.15)" font-weight="700" dominant-baseline="middle" y="238">screens</text>
+                        <text x="320" y="246" font-family="Inter,sans-serif" font-size="36" fill="#FFDD00" font-weight="900" fill-opacity=".9">200+</text>
+                        <text x="398" y="246" font-family="Inter,sans-serif" font-size="14" fill="rgba(255,255,255,.15)" font-weight="700" dominant-baseline="middle" y="238">markets</text>
+
+                        <text x="52" y="270" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,.18)" font-weight="700" letter-spacing="2">UX BASELINE &bull; GLOBAL SCALE &bull; WESTERN UNION</text>
+                    </svg>
+                </div>
                 <div class="wc-body">
                     <div>
                         <div class="wc-tags">
@@ -659,23 +833,90 @@
                             <span class="wc-tag">Global Scale</span>
                         </div>
                         <div class="wc-title">The Case for a UX Baseline</div>
-                        <p class="wc-desc">How I established a global design reference across 200+ markets — transforming quality from a subjective design review into an objective, measurable gate that teams could actually use.</p>
+                        <p class="wc-desc">How I established a global design reference across 200+ markets &mdash; transforming quality from a subjective review into an objective, measurable gate.</p>
                     </div>
                     <div class="wc-foot">
                         <div>
                             <div class="wc-stat-num">142</div>
-                            <div class="wc-stat-lbl">Validated screens · 7 payment methods</div>
+                            <div class="wc-stat-lbl">Validated screens &middot; 7 payment methods</div>
                         </div>
-                        <div class="wc-arrow">→</div>
+                        <div class="wc-arrow">&rarr;</div>
                     </div>
-                </div>
-                <div class="wc-visual">
-                    <div class="wc-visual-fallback">◈</div>
-                    <img src="case-study-assets/08-bank-account-flow.png" class="wc-img" alt="UX Baseline — Bank Account Flow">
                 </div>
             </a>
 
+            <!-- Card 2: Send Money IMT -->
             <a href="send-money-imt-case-study.html" class="work-card r r-d1">
+                <div class="wc-visual">
+                    <svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                        <style>
+                            .i-path { stroke-dasharray: 300; animation: flowAnim 5s ease-in-out infinite; }
+                            .i-path2 { stroke-dasharray: 280; animation: flowAnim 5s ease-in-out infinite; animation-delay: 1.5s; }
+                            .i-path3 { stroke-dasharray: 320; animation: flowAnim 5s ease-in-out infinite; animation-delay: 3s; }
+                            .i-node { animation: nodePulse 3.5s ease-in-out infinite; }
+                            .i-node2 { animation: nodePulse 3.5s ease-in-out infinite; animation-delay: 1.75s; }
+                            @keyframes flowAnim {
+                                0% { stroke-dashoffset: 300; opacity: 0; }
+                                20% { opacity: 1; }
+                                80% { opacity: 1; }
+                                100% { stroke-dashoffset: -300; opacity: 0; }
+                            }
+                            @keyframes nodePulse {
+                                0%,100% { opacity:.55; r: 18; }
+                                50% { opacity:.9; r: 22; }
+                            }
+                        </style>
+                        <defs>
+                            <radialGradient id="bg2a" cx="20%" cy="50%" r="45%">
+                                <stop offset="0%" stop-color="#FFDD00" stop-opacity=".1"/>
+                                <stop offset="100%" stop-color="#FFDD00" stop-opacity="0"/>
+                            </radialGradient>
+                            <radialGradient id="bg2b" cx="80%" cy="50%" r="45%">
+                                <stop offset="0%" stop-color="#FFAA00" stop-opacity=".08"/>
+                                <stop offset="100%" stop-color="#FFAA00" stop-opacity="0"/>
+                            </radialGradient>
+                            <pattern id="pg2" width="48" height="48" patternUnits="userSpaceOnUse">
+                                <path d="M48 0L0 0 0 48" fill="none" stroke="rgba(255,255,255,.025)" stroke-width="1"/>
+                            </pattern>
+                        </defs>
+                        <rect width="600" height="280" fill="#0a0a0a"/>
+                        <rect width="600" height="280" fill="url(#pg2)"/>
+                        <rect width="600" height="280" fill="url(#bg2a)"/>
+                        <rect width="600" height="280" fill="url(#bg2b)"/>
+
+                        <!-- Flow paths -->
+                        <path class="i-path" d="M 90 140 C 210 70, 390 210, 510 140" fill="none" stroke="#FFDD00" stroke-width="1.5" stroke-opacity=".5"/>
+                        <path class="i-path2" d="M 90 140 C 190 180, 370 100, 510 140" fill="none" stroke="#FFDD00" stroke-width="1" stroke-opacity=".3"/>
+                        <path class="i-path3" d="M 90 140 C 230 240, 380 50, 510 140" fill="none" stroke="rgba(255,200,0,.25)" stroke-width="1" stroke-opacity=".4"/>
+
+                        <!-- Source node -->
+                        <circle class="i-node" cx="90" cy="140" r="20" fill="#FFDD00" fill-opacity=".08" stroke="#FFDD00" stroke-opacity=".6" stroke-width="1.5"/>
+                        <circle cx="90" cy="140" r="6" fill="#FFDD00" fill-opacity=".9"/>
+                        <text x="90" y="120" font-family="Inter,sans-serif" font-size="10" fill="#FFDD00" fill-opacity=".7" text-anchor="middle" font-weight="700">AUD</text>
+                        <text x="90" y="170" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,.3)" text-anchor="middle">Australia</text>
+
+                        <!-- Mid satellite nodes -->
+                        <circle cx="220" cy="100" r="4" fill="#FFDD00" fill-opacity=".25"/>
+                        <circle cx="300" cy="168" r="3" fill="#FFDD00" fill-opacity=".2"/>
+                        <circle cx="180" cy="185" r="3" fill="#FFDD00" fill-opacity=".18"/>
+                        <circle cx="380" cy="95" r="3" fill="#FFDD00" fill-opacity=".18"/>
+                        <circle cx="430" cy="190" r="4" fill="#FFDD00" fill-opacity=".2"/>
+
+                        <!-- Dest node -->
+                        <circle class="i-node2" cx="510" cy="140" r="20" fill="#FFDD00" fill-opacity=".08" stroke="#FFDD00" stroke-opacity=".6" stroke-width="1.5"/>
+                        <circle cx="510" cy="140" r="6" fill="#FFDD00" fill-opacity=".9"/>
+                        <text x="510" y="120" font-family="Inter,sans-serif" font-size="10" fill="#FFDD00" fill-opacity=".7" text-anchor="middle" font-weight="700">PHP</text>
+                        <text x="510" y="170" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,.3)" text-anchor="middle">Philippines</text>
+
+                        <!-- Stat labels at bottom -->
+                        <text x="52" y="240" font-family="Inter,sans-serif" font-size="28" fill="#FFDD00" font-weight="900" fill-opacity=".9">+34%</text>
+                        <text x="160" y="240" font-family="Inter,sans-serif" font-size="11" fill="rgba(255,255,255,.2)" font-weight="600" dominant-baseline="auto">completion rate</text>
+                        <text x="320" y="240" font-family="Inter,sans-serif" font-size="28" fill="#FFDD00" font-weight="900" fill-opacity=".9">&minus;52%</text>
+                        <text x="424" y="240" font-family="Inter,sans-serif" font-size="11" fill="rgba(255,255,255,.2)" font-weight="600">time-to-send</text>
+
+                        <text x="52" y="270" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,.18)" font-weight="700" letter-spacing="2">SEND MONEY IMT &bull; 200+ CORRIDORS &bull; WESTERN UNION</text>
+                    </svg>
+                </div>
                 <div class="wc-body">
                     <div>
                         <div class="wc-tags">
@@ -683,20 +924,16 @@
                             <span class="wc-tag">Mobile</span>
                             <span class="wc-tag">Accessibility</span>
                         </div>
-                        <div class="wc-title">Send Money — International Money Transfer</div>
-                        <p class="wc-desc">Redesigning the core transfer journey for Western Union. Progressive disclosure reduced perceived steps from 7 to 3. The resulting 19-screen reference became the delivery standard for all markets.</p>
+                        <div class="wc-title">Send Money &mdash; International Money Transfer</div>
+                        <p class="wc-desc">Redesigning the core transfer journey for Western Union. Progressive disclosure reduced perceived steps from 7 to 3 and drove a +34% lift in completion rate.</p>
                     </div>
                     <div class="wc-foot">
                         <div>
-                            <div class="wc-stat-num">~5%</div>
-                            <div class="wc-stat-lbl">Drop-off reduction post-launch</div>
+                            <div class="wc-stat-num">+34%</div>
+                            <div class="wc-stat-lbl">Completion rate lift post-launch</div>
                         </div>
-                        <div class="wc-arrow">→</div>
+                        <div class="wc-arrow">&rarr;</div>
                     </div>
-                </div>
-                <div class="wc-visual">
-                    <div class="wc-visual-fallback">◈</div>
-                    <img src="case-study-assets/05-send-with-contacts.png" class="wc-img" alt="Send Money IMT">
                 </div>
             </a>
 

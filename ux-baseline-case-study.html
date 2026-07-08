@@ -7,8 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --color-primary: #FFDD00;
-            --color-primary-dark: #E6C700;
+            --color-primary: #818CF8;
+            --color-primary-dark: #6366F1;
             --color-black: #000000;
             --color-dark: #0F0F0F;
             --color-gray-900: #1A1A1A;
@@ -69,7 +69,7 @@
             right: -200px;
             width: 900px;
             height: 900px;
-            background: radial-gradient(circle, rgba(255,221,0,0.06) 0%, transparent 60%);
+            background: radial-gradient(circle, rgba(129,140,248,0.06) 0%, transparent 60%);
             border-radius: 50%;
         }
 
@@ -80,7 +80,7 @@
             left: -100px;
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, rgba(255,221,0,0.04) 0%, transparent 60%);
+            background: radial-gradient(circle, rgba(129,140,248,0.04) 0%, transparent 60%);
             border-radius: 50%;
         }
 
@@ -331,8 +331,8 @@
         }
 
         .pillar:hover {
-            background: rgba(255,221,0,0.04);
-            border-color: rgba(255,221,0,0.2);
+            background: rgba(129,140,248,0.04);
+            border-color: rgba(129,140,248,0.2);
         }
 
         .pillar-number {
@@ -754,7 +754,7 @@
 
         .recommendation-cta:hover {
             transform: scale(1.05);
-            box-shadow: 0 8px 24px rgba(255,221,0,0.3);
+            box-shadow: 0 8px 24px rgba(129,140,248,0.3);
         }
 
         /* ===== ROADMAP ===== */
@@ -868,7 +868,7 @@
             display: flex; align-items: center; gap: 8px;
             transition: color .2s ease;
         }
-        .cs-nav a:hover { color: #FFDD00; }
+        .cs-nav a:hover { color: #818CF8; }
         .cs-nav-home { color: rgba(255,255,255,.22) !important; font-size: 11px !important; }
         .cs-nav-home:hover { color: rgba(255,255,255,.55) !important; }
         .cs-nav-mid { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: rgba(255,255,255,.18); }
@@ -879,10 +879,10 @@
         .lv-hd { display: flex; align-items: center; justify-content: space-between; margin-bottom: 48px; flex-wrap: wrap; gap: 12px; }
         .lv-badge {
             display: inline-flex; align-items: center; gap: 8px;
-            background: rgba(255,221,0,.07); border: 1px solid rgba(255,221,0,.2);
+            background: rgba(129,140,248,.07); border: 1px solid rgba(129,140,248,.2);
             border-radius: 100px; padding: 6px 16px;
             font-size: 10px; font-weight: 800; text-transform: uppercase;
-            letter-spacing: 2.5px; color: #FFDD00;
+            letter-spacing: 2.5px; color: #818CF8;
         }
         .lv-subtitle { font-size: 12px; color: rgba(255,255,255,.3); font-weight: 500; }
         .lv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 2px; }
@@ -892,12 +892,12 @@
         .lv-cell-body { font-size: 14px; color: rgba(255,255,255,.5); line-height: 1.7; }
         .lv-decisions { display: flex; flex-direction: column; gap: 14px; }
         .lv-d { display: flex; gap: 14px; align-items: flex-start; }
-        .lv-d-n { width: 24px; height: 24px; background: #FFDD00; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 900; color: #000; flex-shrink: 0; margin-top: 1px; }
+        .lv-d-n { width: 24px; height: 24px; background: #818CF8; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 900; color: #000; flex-shrink: 0; margin-top: 1px; }
         .lv-d-t { font-size: 13px; color: rgba(255,255,255,.5); line-height: 1.65; }
         .lv-d-t strong { color: rgba(255,255,255,.85); font-weight: 700; }
         .lv-metrics { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; margin-top: 2px; margin-bottom: 40px; }
         .lv-m { background: #161616; border-radius: 12px; padding: 24px 20px; text-align: center; }
-        .lv-m-n { font-size: 30px; font-weight: 900; color: #FFDD00; letter-spacing: -1px; margin-bottom: 6px; line-height: 1; }
+        .lv-m-n { font-size: 30px; font-weight: 900; color: #818CF8; letter-spacing: -1px; margin-bottom: 6px; line-height: 1; }
         .lv-m-l { font-size: 11px; color: rgba(255,255,255,.35); line-height: 1.5; }
         .lv-toggle {
             display: inline-flex; align-items: center; gap: 10px;
@@ -907,7 +907,7 @@
             cursor: pointer; font-family: inherit; letter-spacing: 0;
             transition: all .2s ease;
         }
-        .lv-toggle:hover { background: rgba(255,221,0,.05); border-color: rgba(255,221,0,.25); color: #FFDD00; }
+        .lv-toggle:hover { background: rgba(129,140,248,.05); border-color: rgba(129,140,248,.25); color: #818CF8; }
         .lv-toggle-ic { transition: transform .3s ease; display: inline-block; }
         .lv-toggle.open .lv-toggle-ic { transform: rotate(180deg); }
         #full-cs { display: none; }
@@ -918,9 +918,9 @@
         /* ─── PROGRESS BAR + SECTION NAV ─── */
         #cs-pb {
             position: fixed; top: 0; left: 0; height: 2px;
-            background: #FFDD00; z-index: 600; width: 0;
+            background: #818CF8; z-index: 600; width: 0;
             transition: width .08s linear;
-            box-shadow: 0 0 8px rgba(255,221,0,.5);
+            box-shadow: 0 0 8px rgba(129,140,248,.5);
         }
         .csn {
             position: fixed; right: 28px; top: 50%;
@@ -947,8 +947,8 @@
             transition: all .28s cubic-bezier(.16,1,.3,1);
         }
         .csn:hover .csn-lbl { opacity: 1; transform: translateX(0); }
-        .csn-item.active .csn-dot  { background: #FFDD00; height: 14px; box-shadow: 0 0 6px rgba(255,221,0,.5); }
-        .csn-item.active .csn-lbl  { opacity: 1; transform: translateX(0); color: #FFDD00; }
+        .csn-item.active .csn-dot  { background: #818CF8; height: 14px; box-shadow: 0 0 6px rgba(129,140,248,.5); }
+        .csn-item.active .csn-lbl  { opacity: 1; transform: translateX(0); color: #818CF8; }
         @media(max-width:1100px){ .csn { display: none; } }
 
         /* ===== RESPONSIVE ===== */
@@ -1242,23 +1242,23 @@
                         The answer was a three-part framework — strategic principles that defined how the baseline would work as an organisation, not just as a design artefact. These principles governed every decision: what got included in the baseline, who owned it, how it evolved, and how teams were expected to use it.
                     </p>
                 </div>
-                <div style="background:rgba(255,221,0,0.04); border:1px solid rgba(255,221,0,0.12); border-radius:var(--radius-lg); padding:36px;">
+                <div style="background:rgba(129,140,248,0.04); border:1px solid rgba(129,140,248,0.12); border-radius:var(--radius-lg); padding:36px;">
                     <div style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:3px; color:var(--color-primary); margin-bottom:20px;">The Core Challenge</div>
                     <div style="display:flex; flex-direction:column; gap:16px;">
                         <div style="display:flex; gap:14px; align-items:flex-start;">
-                            <div style="width:6px; height:6px; background:rgba(255,221,0,0.5); border-radius:50%; margin-top:8px; flex-shrink:0;"></div>
+                            <div style="width:6px; height:6px; background:rgba(129,140,248,0.5); border-radius:50%; margin-top:8px; flex-shrink:0;"></div>
                             <p style="font-size:14px; color:rgba(255,255,255,0.6); line-height:1.6;">200+ country corridors, each with unique payment methods, compliance rules, and user expectations</p>
                         </div>
                         <div style="display:flex; gap:14px; align-items:flex-start;">
-                            <div style="width:6px; height:6px; background:rgba(255,221,0,0.5); border-radius:50%; margin-top:8px; flex-shrink:0;"></div>
+                            <div style="width:6px; height:6px; background:rgba(129,140,248,0.5); border-radius:50%; margin-top:8px; flex-shrink:0;"></div>
                             <p style="font-size:14px; color:rgba(255,255,255,0.6); line-height:1.6;">Multiple product squads operating autonomously, each making independent design decisions</p>
                         </div>
                         <div style="display:flex; gap:14px; align-items:flex-start;">
-                            <div style="width:6px; height:6px; background:rgba(255,221,0,0.5); border-radius:50%; margin-top:8px; flex-shrink:0;"></div>
+                            <div style="width:6px; height:6px; background:rgba(129,140,248,0.5); border-radius:50%; margin-top:8px; flex-shrink:0;"></div>
                             <p style="font-size:14px; color:rgba(255,255,255,0.6); line-height:1.6;">No shared reference → every squad reinventing patterns already solved elsewhere, accumulating drift with each release</p>
                         </div>
                         <div style="display:flex; gap:14px; align-items:flex-start;">
-                            <div style="width:6px; height:6px; background:rgba(255,221,0,0.5); border-radius:50%; margin-top:8px; flex-shrink:0;"></div>
+                            <div style="width:6px; height:6px; background:rgba(129,140,248,0.5); border-radius:50%; margin-top:8px; flex-shrink:0;"></div>
                             <p style="font-size:14px; color:rgba(255,255,255,0.6); line-height:1.6;">Quality enforced through subjective design critique — dependent on who was in the room, not what the standard required</p>
                         </div>
                     </div>
@@ -1319,7 +1319,7 @@
                     <div style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:3px; color:rgba(255,255,255,0.35); margin-bottom:24px;">Making It Operational</div>
                     <p style="font-size:15px; color:rgba(255,255,255,0.6); line-height:1.8; margin-bottom:24px;">Strategic principles only work if teams can use them in daily work without friction. Two artefacts operationalize the strategy at the file level:</p>
                     <div style="display:flex; flex-direction:column; gap:16px;">
-                        <div style="background:rgba(255,221,0,0.05); border:1px solid rgba(255,221,0,0.15); border-radius:var(--radius-md); padding:24px 28px;">
+                        <div style="background:rgba(129,140,248,0.05); border:1px solid rgba(129,140,248,0.15); border-radius:var(--radius-md); padding:24px 28px;">
                             <div style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--color-primary); margin-bottom:8px;">Instruction Pages</div>
                             <p style="font-size:14px; color:rgba(255,255,255,0.6); line-height:1.6;">Embedded in Figma, these answer when to use a pattern, what can be adapted, and what good looks like — surfacing standards exactly where designers work, before work begins, not after it's handed off.</p>
                         </div>
@@ -1793,8 +1793,8 @@
     <!-- CASE NAV -->
     <div class="cs-nav">
         <a href="send-money-imt-case-study.html">← Send Money IMT</a>
-        <div class="cs-nav-mid">Case Study 2 of 2</div>
-        <a href="index.html" class="cs-nav-home">Portfolio →</a>
+        <div class="cs-nav-mid">Case Study 2 of 3</div>
+        <a href="content-network-case-study.html">Content Network →</a>
     </div>
 
     <script>

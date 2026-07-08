@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --wu-yellow: #FFDD00;
+            --wu-yellow: #818CF8;
             --wu-black: #000000;
             --wu-dark: #1A1A1A;
             --wu-gray-900: #212121;
@@ -22,7 +22,7 @@
             --wu-error: #E53935;
             --wu-info: #2196F3;
             --gradient-dark: linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%);
-            --gradient-yellow: linear-gradient(135deg, #FFDD00 0%, #FFC700 100%);
+            --gradient-yellow: linear-gradient(135deg, #818CF8 0%, #6366F1 100%);
         }
 
         * {
@@ -58,7 +58,7 @@
             right: -20%;
             width: 800px;
             height: 800px;
-            background: radial-gradient(circle, rgba(255,221,0,0.08) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(129,140,248,0.08) 0%, transparent 70%);
             border-radius: 50%;
         }
 
@@ -69,7 +69,7 @@
             left: -10%;
             width: 600px;
             height: 600px;
-            background: radial-gradient(circle, rgba(255,221,0,0.05) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(129,140,248,0.05) 0%, transparent 70%);
             border-radius: 50%;
         }
 
@@ -91,8 +91,8 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(255,221,0,0.1);
-            border: 1px solid rgba(255,221,0,0.3);
+            background: rgba(129,140,248,0.1);
+            border: 1px solid rgba(129,140,248,0.3);
             border-radius: 100px;
             padding: 8px 16px;
             font-size: 12px;
@@ -555,7 +555,7 @@
 
         .arch-node:hover {
             border-color: var(--wu-yellow);
-            background: rgba(255,221,0,0.05);
+            background: rgba(129,140,248,0.05);
         }
 
         .arch-node-label {
@@ -651,7 +651,7 @@
             right: 0;
             width: 120px;
             height: 120px;
-            background: radial-gradient(circle at top right, rgba(255,221,0,0.1) 0%, transparent 70%);
+            background: radial-gradient(circle at top right, rgba(129,140,248,0.1) 0%, transparent 70%);
         }
 
         .outcome-metric {
@@ -826,7 +826,7 @@
             display: flex; align-items: center; gap: 8px;
             transition: color .2s ease;
         }
-        .cs-nav a:hover { color: #FFDD00; }
+        .cs-nav a:hover { color: #818CF8; }
         .cs-nav-home { color: rgba(255,255,255,.22) !important; font-size: 11px !important; }
         .cs-nav-home:hover { color: rgba(255,255,255,.55) !important; }
         .cs-nav-mid { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: rgba(255,255,255,.18); }
@@ -837,10 +837,10 @@
         .lv-hd { display: flex; align-items: center; justify-content: space-between; margin-bottom: 48px; flex-wrap: wrap; gap: 12px; }
         .lv-badge {
             display: inline-flex; align-items: center; gap: 8px;
-            background: rgba(255,221,0,.07); border: 1px solid rgba(255,221,0,.2);
+            background: rgba(129,140,248,.07); border: 1px solid rgba(129,140,248,.2);
             border-radius: 100px; padding: 6px 16px;
             font-size: 10px; font-weight: 800; text-transform: uppercase;
-            letter-spacing: 2.5px; color: #FFDD00;
+            letter-spacing: 2.5px; color: #818CF8;
         }
         .lv-subtitle { font-size: 12px; color: rgba(255,255,255,.3); font-weight: 500; }
         .lv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 2px; }
@@ -850,12 +850,12 @@
         .lv-cell-body { font-size: 14px; color: rgba(255,255,255,.5); line-height: 1.7; }
         .lv-decisions { display: flex; flex-direction: column; gap: 14px; }
         .lv-d { display: flex; gap: 14px; align-items: flex-start; }
-        .lv-d-n { width: 24px; height: 24px; background: #FFDD00; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 900; color: #000; flex-shrink: 0; margin-top: 1px; }
+        .lv-d-n { width: 24px; height: 24px; background: #818CF8; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 900; color: #000; flex-shrink: 0; margin-top: 1px; }
         .lv-d-t { font-size: 13px; color: rgba(255,255,255,.5); line-height: 1.65; }
         .lv-d-t strong { color: rgba(255,255,255,.85); font-weight: 700; }
         .lv-metrics { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; margin-top: 2px; margin-bottom: 40px; }
         .lv-m { background: #161616; border-radius: 12px; padding: 24px 20px; text-align: center; }
-        .lv-m-n { font-size: 30px; font-weight: 900; color: #FFDD00; letter-spacing: -1px; margin-bottom: 6px; line-height: 1; }
+        .lv-m-n { font-size: 30px; font-weight: 900; color: #818CF8; letter-spacing: -1px; margin-bottom: 6px; line-height: 1; }
         .lv-m-l { font-size: 11px; color: rgba(255,255,255,.35); line-height: 1.5; }
         .lv-toggle {
             display: inline-flex; align-items: center; gap: 10px;
@@ -865,7 +865,7 @@
             cursor: pointer; font-family: inherit; letter-spacing: 0;
             transition: all .2s ease;
         }
-        .lv-toggle:hover { background: rgba(255,221,0,.05); border-color: rgba(255,221,0,.25); color: #FFDD00; }
+        .lv-toggle:hover { background: rgba(129,140,248,.05); border-color: rgba(129,140,248,.25); color: #818CF8; }
         .lv-toggle-ic { transition: transform .3s ease; display: inline-block; }
         .lv-toggle.open .lv-toggle-ic { transform: rotate(180deg); }
 
@@ -880,9 +880,9 @@
         /* ─── PROGRESS BAR + SECTION NAV ─── */
         #cs-pb {
             position: fixed; top: 0; left: 0; height: 2px;
-            background: #FFDD00; z-index: 600; width: 0;
+            background: #818CF8; z-index: 600; width: 0;
             transition: width .08s linear;
-            box-shadow: 0 0 8px rgba(255,221,0,.5);
+            box-shadow: 0 0 8px rgba(129,140,248,.5);
         }
         .csn {
             position: fixed; right: 28px; top: 50%;
@@ -909,8 +909,8 @@
             transition: all .28s cubic-bezier(.16,1,.3,1);
         }
         .csn:hover .csn-lbl { opacity: 1; transform: translateX(0); }
-        .csn-item.active .csn-dot  { background: #FFDD00; height: 14px; box-shadow: 0 0 6px rgba(255,221,0,.5); }
-        .csn-item.active .csn-lbl  { opacity: 1; transform: translateX(0); color: #FFDD00; }
+        .csn-item.active .csn-dot  { background: #818CF8; height: 14px; box-shadow: 0 0 6px rgba(129,140,248,.5); }
+        .csn-item.active .csn-lbl  { opacity: 1; transform: translateX(0); color: #818CF8; }
         @media(max-width:1100px){ .csn { display: none; } }
 
         /* ===== RESPONSIVE ===== */
@@ -1506,7 +1506,7 @@
     <!-- CASE NAV -->
     <div class="cs-nav">
         <a href="index.html" class="cs-nav-home">← Portfolio</a>
-        <div class="cs-nav-mid">Case Study 1 of 2</div>
+        <div class="cs-nav-mid">Case Study 1 of 3</div>
         <a href="ux-baseline-case-study.html">UX Baseline →</a>
     </div>
 

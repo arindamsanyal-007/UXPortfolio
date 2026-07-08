@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Network Product Strategy — Western Union | Arindam Sanyal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent:       #818CF8;
+            --accent-dark:  #6366F1;
+            --accent-light: #A5B4FC;
+            --accent-glow:  rgba(129,140,248,0.18);
+            --accent-dim:   rgba(129,140,248,0.07);
+            --bg:           #080808;
+            --s1:           #101010;
+            --s2:           #161616;
+            --s3:           #1f1f1f;
+            --border:       rgba(255,255,255,0.07);
+            --text-1:       rgba(255,255,255,0.92);
+            --text-2:       rgba(255,255,255,0.5);
+            --text-3:       rgba(255,255,255,0.25);
+            --success:      #10B981;
+            --warning:      #F59E0B;
+            --error:        #EF4444;
+            --r-sm: 8px; --r-md: 16px; --r-lg: 24px;
+            --ease: cubic-bezier(0.16,1,0.3,1);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: rgba(129,140,248,.2) transparent; }
+        ::-webkit-scrollbar { width: 3px; }
+        ::-webkit-scrollbar-thumb { background: rgba(129,140,248,.25); border-radius: 2px; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg); color: var(--text-1);
+            line-height: 1.6; overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            padding-bottom: 60px;
+        }
+
+        /* ─── WRAP ─── */
+        .wrap { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+
+        /* ─── COVER ─── */
+        .cover {
+            min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end;
+            padding: 80px 48px; position: relative; overflow: hidden;
+            background: var(--bg);
+        }
+        .cover-bg {
+            position: absolute; inset: 0; pointer-events: none;
+            background:
+                radial-gradient(ellipse 80% 60% at 70% 20%, rgba(129,140,248,0.08) 0%, transparent 55%),
+                radial-gradient(ellipse 40% 40% at 15% 80%, rgba(99,102,241,0.04) 0%, transparent 55%);
+        }
+        .cover-grid {
+            position: absolute; inset: 0; pointer-events: none;
+            background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+            background-size: 64px 64px;
+            -webkit-mask-image: radial-gradient(ellipse at 70% 30%, black 15%, transparent 70%);
+            mask-image: radial-gradient(ellipse at 70% 30%, black 15%, transparent 70%);
+        }
+        .cover-content { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; width: 100%; }
+        .cover-eyebrow {
+            display: inline-flex; align-items: center; gap: 12px;
+            font-size: 10px; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 3px; color: var(--accent); margin-bottom: 28px;
+            animation: slideUp .8s var(--ease) .1s both;
+        }
+        .cover-eyebrow-line { width: 32px; height: 1.5px; background: var(--accent); }
+        .cover-title {
+            font-size: clamp(48px, 7vw, 96px); font-weight: 900;
+            letter-spacing: -3px; line-height: .9; margin-bottom: 36px;
+            animation: slideUp .9s var(--ease) .25s both;
+        }
+        .cover-title em { font-style: normal; color: transparent; -webkit-text-stroke: 1.5px rgba(255,255,255,0.18); }
+        .cover-meta {
+            display: flex; gap: 48px; flex-wrap: wrap;
+            animation: slideUp .9s var(--ease) .4s both;
+        }
+        .cover-meta-item { display: flex; flex-direction: column; gap: 4px; }
+        .cover-meta-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--text-3); }
+        .cover-meta-value { font-size: 14px; font-weight: 600; color: var(--text-1); }
+
+        /* ─── MY ROLE BAR ─── */
+        .role-bar {
+            background: #0c0c0c; border-bottom: 1px solid var(--border);
+        }
+        .role-bar-inner {
+            max-width: 1200px; margin: 0 auto; padding: 36px 48px;
+            display: grid; grid-template-columns: repeat(4,1fr); gap: 48px;
+        }
+        .role-item-label { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; color: var(--text-3); margin-bottom: 8px; }
+        .role-item-value { font-size: 14px; font-weight: 700; color: var(--text-1); line-height: 1.4; }
+        .role-item-sub { font-size: 12px; color: var(--text-2); font-weight: 400; display: block; margin-top: 2px; }
+
+        /* ─── LEADERSHIP VIEW ─── */
+        .lv { background: #0c0c0c; border-bottom: 1px solid var(--border); padding: 80px 0; }
+        .lv-inner { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+        .lv-hd { display: flex; align-items: center; justify-content: space-between; margin-bottom: 48px; flex-wrap: wrap; gap: 12px; }
+        .lv-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--accent-dim); border: 1px solid rgba(129,140,248,.2);
+            border-radius: 100px; padding: 6px 16px;
+            font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 2.5px; color: var(--accent);
+        }
+        .lv-subtitle { font-size: 12px; color: var(--text-3); font-weight: 500; }
+        .lv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 2px; }
+        .lv-cell { background: var(--s2); border-radius: 16px; padding: 36px 32px; }
+        .lv-cell-lbl { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; color: var(--text-3); margin-bottom: 14px; }
+        .lv-cell-title { font-size: 18px; font-weight: 800; color: var(--text-1); line-height: 1.3; margin-bottom: 12px; letter-spacing: -.3px; }
+        .lv-cell-body { font-size: 14px; color: var(--text-2); line-height: 1.7; }
+        .lv-decisions { display: flex; flex-direction: column; gap: 14px; }
+        .lv-d { display: flex; gap: 14px; align-items: flex-start; }
+        .lv-d-n { width: 24px; height: 24px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 900; color: #fff; flex-shrink: 0; margin-top: 1px; }
+        .lv-d-t { font-size: 13px; color: var(--text-2); line-height: 1.65; }
+        .lv-d-t strong { color: rgba(255,255,255,.85); font-weight: 700; }
+        .lv-metrics { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; margin-top: 2px; margin-bottom: 40px; }
+        .lv-m { background: var(--s2); border-radius: 12px; padding: 24px 20px; text-align: center; }
+        .lv-m-n { font-size: 28px; font-weight: 900; color: var(--accent); letter-spacing: -1px; margin-bottom: 6px; line-height: 1; }
+        .lv-m-l { font-size: 11px; color: var(--text-3); line-height: 1.5; }
+        .lv-toggle {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1);
+            border-radius: 100px; padding: 14px 28px;
+            font-size: 13px; font-weight: 700; color: var(--text-2);
+            cursor: pointer; font-family: inherit; transition: all .2s ease;
+        }
+        .lv-toggle:hover { background: var(--accent-dim); border-color: rgba(129,140,248,.25); color: var(--accent); }
+        .lv-toggle-ic { transition: transform .3s ease; display: inline-block; }
+        .lv-toggle.open .lv-toggle-ic { transform: rotate(180deg); }
+        #full-cs { display: none; }
+        #full-cs.open { display: block; }
+
+        /* ─── SECTION BASE ─── */
+        .section { padding: 100px 0; }
+        .section-dark { background: #0a0a0a; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 100px 0; }
+        .section-alt { background: var(--s1); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 100px 0; }
+        .section-eyebrow {
+            display: inline-flex; align-items: center; gap: 10px;
+            font-size: 10px; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 3px; color: var(--accent); margin-bottom: 20px;
+        }
+        .section-eyebrow::after { content: ''; width: 32px; height: 1.5px; background: var(--accent); display: block; }
+        .section-title { font-size: clamp(28px, 3.5vw, 44px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; color: var(--text-1); margin-bottom: 16px; }
+        .section-lead { font-size: 16px; color: var(--text-2); max-width: 640px; line-height: 1.75; }
+        .section-header { margin-bottom: 64px; }
+
+        /* ─── PROBLEM GRID ─── */
+        .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 56px; border-radius: var(--r-lg); overflow: hidden; background: rgba(255,255,255,.03); }
+        .problem-card { background: var(--s2); padding: 40px 36px; }
+        .problem-card-num { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; color: var(--accent); margin-bottom: 16px; }
+        .problem-card-title { font-size: 17px; font-weight: 700; color: var(--text-1); margin-bottom: 10px; line-height: 1.3; }
+        .problem-card-problem { font-size: 13px; color: var(--text-2); line-height: 1.7; margin-bottom: 16px; }
+        .problem-card-implication { font-size: 12px; color: var(--accent-light); background: var(--accent-dim); border: 1px solid rgba(129,140,248,.15); border-radius: 8px; padding: 12px 14px; line-height: 1.6; }
+
+        /* ─── CONTENT TYPES ─── */
+        .content-types { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-top: 56px; }
+        .ct-card { background: var(--s2); padding: 32px; border-radius: 0; }
+        .ct-card:first-child { border-radius: var(--r-lg) 0 0 0; }
+        .ct-card:nth-child(3) { border-radius: 0 var(--r-lg) 0 0; }
+        .ct-card:nth-child(4) { border-radius: 0 0 0 var(--r-lg); }
+        .ct-card:last-child { border-radius: 0 0 var(--r-lg) 0; }
+        .ct-type { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 2.5px; color: var(--text-3); margin-bottom: 10px; }
+        .ct-name { font-size: 17px; font-weight: 800; color: var(--text-1); margin-bottom: 8px; }
+        .ct-desc { font-size: 13px; color: var(--text-2); line-height: 1.7; margin-bottom: 14px; }
+        .ct-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+        .ct-tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 4px 10px; border-radius: 100px; border: 1px solid var(--border); color: var(--text-3); }
+        .ct-tag--a { border-color: rgba(16,185,129,.2); color: rgba(16,185,129,.8); }
+        .ct-tag--b { border-color: rgba(129,140,248,.2); color: var(--accent); }
+
+        /* ─── ARCHITECTURE ─── */
+        .arch-wrap { margin-top: 56px; background: var(--s2); border-radius: var(--r-lg); padding: 56px; }
+        .arch-label { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; color: var(--text-3); margin-bottom: 32px; }
+        .arch-flow { display: flex; align-items: stretch; gap: 0; overflow: hidden; border-radius: var(--r-md); border: 1px solid var(--border); }
+        .arch-col { flex: 1; padding: 28px 24px; border-right: 1px solid var(--border); }
+        .arch-col:last-child { border-right: none; }
+        .arch-col-title { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 16px; }
+        .arch-items { display: flex; flex-direction: column; gap: 8px; }
+        .arch-item { background: rgba(129,140,248,.06); border: 1px solid rgba(129,140,248,.12); border-radius: 8px; padding: 10px 14px; font-size: 12px; font-weight: 600; color: var(--text-2); }
+        .arch-item--accent { background: var(--accent); color: #fff; border-color: transparent; font-weight: 700; }
+        .arch-arrow { display: flex; align-items: center; padding: 0 8px; color: var(--text-3); font-size: 18px; flex-shrink: 0; }
+
+        /* ─── STORIES ─── */
+        .stories { display: flex; flex-direction: column; gap: 2px; margin-top: 56px; }
+        .story-card { background: var(--s2); border-radius: var(--r-lg); padding: 48px; display: grid; grid-template-columns: 200px 1fr; gap: 48px; }
+        .story-name { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; color: var(--accent); margin-bottom: 8px; }
+        .story-persona { font-size: 14px; font-weight: 700; color: var(--text-1); margin-bottom: 8px; }
+        .story-tag { display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; padding: 4px 10px; border-radius: 100px; background: var(--accent-dim); border: 1px solid rgba(129,140,248,.2); color: var(--accent); }
+        .story-context { font-size: 14px; color: var(--text-2); line-height: 1.75; margin-bottom: 20px; }
+        .story-outcome { background: rgba(16,185,129,.06); border: 1px solid rgba(16,185,129,.15); border-radius: var(--r-sm); padding: 16px 20px; }
+        .story-outcome-lbl { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: rgba(16,185,129,.7); margin-bottom: 6px; }
+        .story-outcome-text { font-size: 13px; color: rgba(255,255,255,.65); line-height: 1.6; }
+
+        /* ─── PILLARS ─── */
+        .pillars { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-top: 56px; }
+        .pillar-card { background: var(--s2); padding: 40px; border-radius: var(--r-lg); }
+        .pillar-num { font-size: 52px; font-weight: 900; color: var(--accent); opacity: .2; line-height: 1; margin-bottom: 16px; letter-spacing: -3px; }
+        .pillar-title { font-size: 18px; font-weight: 800; color: var(--text-1); margin-bottom: 6px; }
+        .pillar-subtitle { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 14px; }
+        .pillar-body { font-size: 14px; color: var(--text-2); line-height: 1.7; }
+        .pillar-checks { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+        .pillar-checks li { font-size: 13px; color: var(--text-2); display: flex; align-items: flex-start; gap: 8px; }
+        .pillar-checks li::before { content: '↗'; color: var(--accent); font-weight: 700; flex-shrink: 0; font-size: 11px; margin-top: 2px; }
+
+        /* ─── MVP STEPS ─── */
+        .mvp-steps { display: flex; flex-direction: column; gap: 2px; margin-top: 56px; }
+        .mvp-step { display: grid; grid-template-columns: 64px 1fr; gap: 32px; align-items: start; background: var(--s2); padding: 32px 36px; border-radius: 0; }
+        .mvp-step:first-child { border-radius: var(--r-lg) var(--r-lg) 0 0; }
+        .mvp-step:last-child { border-radius: 0 0 var(--r-lg) var(--r-lg); }
+        .mvp-step-n { font-size: 36px; font-weight: 900; color: var(--accent); opacity: .3; letter-spacing: -2px; line-height: 1; }
+        .mvp-step-title { font-size: 16px; font-weight: 700; color: var(--text-1); margin-bottom: 6px; }
+        .mvp-step-body { font-size: 13px; color: var(--text-2); line-height: 1.7; }
+
+        /* ─── METRICS ─── */
+        .metrics-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; margin-top: 56px; }
+        .metric-card { background: var(--s2); padding: 32px 28px; border-radius: var(--r-md); }
+        .metric-obj { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 2.5px; color: var(--accent); margin-bottom: 12px; }
+        .metric-title { font-size: 15px; font-weight: 700; color: var(--text-1); margin-bottom: 12px; }
+        .metric-items { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+        .metric-items li { font-size: 12px; color: var(--text-2); display: flex; gap: 7px; }
+        .metric-items li::before { content: '·'; color: var(--accent); flex-shrink: 0; }
+        .guardrail-table { margin-top: 56px; background: var(--s2); border-radius: var(--r-lg); overflow: hidden; }
+        .gt-row { display: grid; grid-template-columns: 160px 1fr 1fr; gap: 0; border-bottom: 1px solid var(--border); }
+        .gt-row:last-child { border-bottom: none; }
+        .gt-row--header { background: rgba(129,140,248,.06); }
+        .gt-cell { padding: 16px 20px; font-size: 13px; color: var(--text-2); border-right: 1px solid var(--border); }
+        .gt-cell:last-child { border-right: none; }
+        .gt-row--header .gt-cell { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); }
+        .gt-page { font-weight: 700; color: var(--text-1); }
+
+        /* ─── RECOMMENDATION / CLOSING ─── */
+        .closing { background: #060606; padding: 120px 48px; text-align: center; border-top: 1px solid var(--border); }
+        .closing-quote { font-size: clamp(20px, 2.5vw, 32px); font-weight: 300; color: var(--text-1); max-width: 780px; margin: 0 auto 40px; line-height: 1.5; }
+        .closing-quote strong { color: var(--accent-light); font-weight: 600; }
+        .closing-sub { font-size: 14px; color: var(--text-3); margin-bottom: 48px; }
+        .closing-cta { display: inline-flex; align-items: center; gap: 10px; background: var(--accent); color: #fff; font-size: 13px; font-weight: 700; padding: 14px 28px; border-radius: 100px; text-decoration: none; transition: opacity .2s, transform .2s; }
+        .closing-cta:hover { opacity: .85; transform: translateY(-2px); }
+
+        /* ─── FOOTER ─── */
+        .footer { background: #040404; padding: 48px; text-align: center; border-top: 1px solid var(--border); }
+        .footer-brand { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 10px; }
+        .footer-text { font-size: 12px; color: var(--text-3); line-height: 1.8; }
+
+        /* ─── PROGRESS + SECTION NAV ─── */
+        #cs-pb { position: fixed; top: 0; left: 0; height: 2px; background: var(--accent); z-index: 600; width: 0; transition: width .08s linear; box-shadow: 0 0 8px var(--accent-glow); }
+        .csn { position: fixed; right: 28px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 10px; z-index: 100; align-items: flex-end; }
+        .csn-item { display: flex; align-items: center; gap: 10px; justify-content: flex-end; cursor: pointer; text-decoration: none; }
+        .csn-lbl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,.22); opacity: 0; transform: translateX(8px); transition: opacity .2s, transform .2s, color .2s; white-space: nowrap; }
+        .csn-dot { width: 5px; height: 5px; border-radius: 3px; background: rgba(255,255,255,.15); flex-shrink: 0; transition: all .28s cubic-bezier(.16,1,.3,1); }
+        .csn:hover .csn-lbl { opacity: 1; transform: translateX(0); }
+        .csn-item.active .csn-dot { background: var(--accent); height: 14px; box-shadow: 0 0 6px var(--accent-glow); }
+        .csn-item.active .csn-lbl { opacity: 1; transform: translateX(0); color: var(--accent); }
+        @media(max-width:1100px) { .csn { display: none; } }
+
+        /* ─── CASE NAV ─── */
+        .cs-nav { position: fixed; bottom: 0; left: 0; right: 0; z-index: 200; background: rgba(8,8,8,.93); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-top: 1px solid var(--border); height: 60px; display: flex; align-items: center; padding: 0 48px; justify-content: space-between; }
+        .cs-nav a { font-size: 12px; font-weight: 600; letter-spacing: .3px; color: rgba(255,255,255,.4); text-decoration: none; display: flex; align-items: center; gap: 8px; transition: color .2s ease; }
+        .cs-nav a:hover { color: var(--accent); }
+        .cs-nav-home { color: rgba(255,255,255,.22) !important; font-size: 11px !important; }
+        .cs-nav-home:hover { color: rgba(255,255,255,.55) !important; }
+        .cs-nav-mid { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: rgba(255,255,255,.18); }
+
+        /* ─── SCROLL REVEAL ─── */
+        .rv { opacity: 0; transform: translateY(22px); transition: opacity .65s cubic-bezier(.16,1,.3,1), transform .65s cubic-bezier(.16,1,.3,1); }
+        .rv.in { opacity: 1; transform: none; }
+
+        @keyframes slideUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 900px) {
+            .wrap { padding: 0 24px; }
+            .cover { padding: 64px 24px 56px; }
+            .cover-title { letter-spacing: -2px; }
+            .role-bar-inner { grid-template-columns: 1fr 1fr; gap: 28px; padding: 28px 24px; }
+            .lv-inner { padding: 0 24px; }
+            .lv-grid { grid-template-columns: 1fr; }
+            .lv-metrics { grid-template-columns: repeat(2,1fr); }
+            .section, .section-dark, .section-alt { padding: 64px 0; }
+            .problem-grid, .content-types, .pillars, .metrics-grid { grid-template-columns: 1fr; }
+            .story-card { grid-template-columns: 1fr; gap: 24px; padding: 32px; }
+            .arch-flow { flex-direction: column; }
+            .arch-arrow { transform: rotate(90deg); padding: 8px 0; }
+            .guardrail-table .gt-row { grid-template-columns: 1fr; }
+            .cs-nav { padding: 0 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="cs-pb"></div>
+<nav class="csn" id="csn" aria-label="Section navigation"></nav>
+
+<!-- ═══════════════════════════════════════════
+     COVER
+═══════════════════════════════════════════ -->
+<section class="cover">
+    <div class="cover-bg"></div>
+    <div class="cover-grid"></div>
+    <div class="cover-content">
+        <div class="cover-eyebrow"><div class="cover-eyebrow-line"></div>Product Strategy · UX Architecture</div>
+        <h1 class="cover-title">Content<br><em>Network.</em></h1>
+        <div class="cover-meta">
+            <div class="cover-meta-item">
+                <span class="cover-meta-label">Company</span>
+                <span class="cover-meta-value">Western Union</span>
+            </div>
+            <div class="cover-meta-item">
+                <span class="cover-meta-label">Scope</span>
+                <span class="cover-meta-value">Global — 200+ Markets</span>
+            </div>
+            <div class="cover-meta-item">
+                <span class="cover-meta-label">Platforms</span>
+                <span class="cover-meta-value">iOS · Android · Web</span>
+            </div>
+            <div class="cover-meta-item">
+                <span class="cover-meta-label">Type</span>
+                <span class="cover-meta-value">Product Strategy · UX Systems</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     MY ROLE
+═══════════════════════════════════════════ -->
+<section class="role-bar">
+    <div class="role-bar-inner">
+        <div>
+            <div class="role-item-label">My Role</div>
+            <div class="role-item-value">Lead UX & Product Strategy<span class="role-item-sub">CX Architecture · Journey Design</span></div>
+        </div>
+        <div>
+            <div class="role-item-label">Timeline</div>
+            <div class="role-item-value">6 months<span class="role-item-sub">Discovery → MVP Launch</span></div>
+        </div>
+        <div>
+            <div class="role-item-label">Scope</div>
+            <div class="role-item-value">6 content types · 4 channels<span class="role-item-sub">Homepage + Receipt · Canada + US</span></div>
+        </div>
+        <div>
+            <div class="role-item-label">Contribution</div>
+            <div class="role-item-value">Rec. Engine UX · Customer Stories<span class="role-item-sub">Guardrail Framework · MVP Definition</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     LEADERSHIP SUMMARY
+═══════════════════════════════════════════ -->
+<section class="lv">
+    <div class="lv-inner">
+        <div class="lv-hd">
+            <div class="lv-badge">⚡ Leadership Summary</div>
+            <div class="lv-subtitle">The strategic view — key decisions, contribution &amp; outcomes</div>
+        </div>
+        <div class="lv-grid">
+            <div class="lv-cell">
+                <div class="lv-cell-lbl">The Problem</div>
+                <div class="lv-cell-title">Western Union was a single-use transfer utility with no engagement engine between transactions</div>
+                <p class="lv-cell-body">Rising customer acquisition costs made retention critical, yet WU had no personalized content capability. Customers sent money and left — with no mechanism to educate them on loyalty, cross-sell adjacent services, or build habitual usage. Surface areas across app, web, and email were sitting idle.</p>
+            </div>
+            <div class="lv-cell">
+                <div class="lv-cell-lbl">My Role &amp; Contribution</div>
+                <div class="lv-cell-title">Lead UX &amp; Product Strategy — full ownership from discovery to MVP</div>
+                <p class="lv-cell-body">Defined the customer experience architecture for Content Network: the recommendation engine's decisioning logic, the 6 content type framework, the 3-persona customer journey validation (Will, Bharath, Stella), and the guardrail metrics system. Partnered with Product, Engineering, Data Science, Marketing, and Affiliates across two regions.</p>
+            </div>
+        </div>
+        <div class="lv-cell" style="border-radius:16px; margin-top:2px;">
+            <div class="lv-cell-lbl">Three Key Strategic Decisions</div>
+            <div class="lv-decisions">
+                <div class="lv-d">
+                    <div class="lv-d-n">1</div>
+                    <div class="lv-d-t"><strong>Recommendation engine, not editorial scheduling:</strong> Architected personalization around a dynamic decisioning layer that routes content based on behavioral signals — the only approach that could scale across 200+ markets without a per-market content team.</div>
+                </div>
+                <div class="lv-d">
+                    <div class="lv-d-n">2</div>
+                    <div class="lv-d-t"><strong>Receivers as an untapped growth engine:</strong> Broke from WU's sender-centric model to design content pathways for receivers. With 90% of senders sending to 1–2 recipients in the same country, corridor-specific content for receivers is the highest-relevance, lowest-cost acquisition channel available.</div>
+                </div>
+                <div class="lv-d">
+                    <div class="lv-d-n">3</div>
+                    <div class="lv-d-t"><strong>Guardrail metrics as a mandatory shipping gate:</strong> Mandated that every content placement define a transfer-rate guardrail before launch. This gave Engineering and Product confidence to test engagement aggressively without risking core conversion — and it prevented the classic engagement-vs-conversion trade-off.</div>
+                </div>
+            </div>
+        </div>
+        <div class="lv-metrics">
+            <div class="lv-m"><div class="lv-m-n">6</div><div class="lv-m-l">Content types defined &amp; piloted</div></div>
+            <div class="lv-m"><div class="lv-m-n">4</div><div class="lv-m-l">Distribution channels (App · Web · Email · DOOH)</div></div>
+            <div class="lv-m"><div class="lv-m-n">2</div><div class="lv-m-l">MVP markets (Canada + US) live</div></div>
+            <div class="lv-m"><div class="lv-m-n">5</div><div class="lv-m-l">Guardrail thresholds protecting core transfer CVR</div></div>
+        </div>
+        <button class="lv-toggle" id="lv-toggle" onclick="toggleFull()">
+            <span id="lv-btn-txt">Read Full Case Study</span>
+            <span class="lv-toggle-ic">↓</span>
+        </button>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FULL CASE STUDY
+═══════════════════════════════════════════ -->
+<div id="full-cs">
+
+<!-- 01 — THE PROBLEM -->
+<section class="section">
+    <div class="wrap">
+        <div class="section-header rv">
+            <div class="section-eyebrow">01 — The Problem</div>
+            <h2 class="section-title">Why the Transaction-Only Model Was Unsustainable</h2>
+            <p class="section-lead">Four compounding problems were eroding Western Union's ability to build lasting customer relationships — and creating an urgent strategic opportunity.</p>
+        </div>
+        <div class="problem-grid">
+            <div class="problem-card rv">
+                <div class="problem-card-num">Problem 01</div>
+                <div class="problem-card-title">Hidden ecosystem value</div>
+                <p class="problem-card-problem">Customers were unaware of services beyond money transfer — loyalty, bill pay, digital wallets — leading to chronic underutilisation and low LTV despite a broad product portfolio.</p>
+                <div class="problem-card-implication">↗ Content is not being used to introduce, educate, or activate cross-product features.</div>
+            </div>
+            <div class="problem-card rv">
+                <div class="problem-card-num">Problem 02</div>
+                <div class="problem-card-title">No lifecycle engagement</div>
+                <p class="problem-card-problem">Content wasn't relevant or timely — no personalised nudges tied to customer lifecycle stages, resulting in high drop-off after a single transaction and low repeat usage.</p>
+                <div class="problem-card-implication">↗ Lack of next best actions, benefit unlocks, and product cross-sells tied to behaviour.</div>
+            </div>
+            <div class="problem-card rv">
+                <div class="problem-card-num">Problem 03</div>
+                <div class="problem-card-title">Wrong content at wrong moments</div>
+                <p class="problem-card-problem">We weren't surfacing feature benefits at the right time — content was generic, poorly timed, and disconnected from what users were actually doing in the app at that moment.</p>
+                <div class="problem-card-implication">↗ Missed adoption opportunities; reduced perceived value of the ecosystem.</div>
+            </div>
+            <div class="problem-card rv">
+                <div class="problem-card-num">Problem 04</div>
+                <div class="problem-card-title">Receivers: the ignored growth loop</div>
+                <p class="problem-card-problem">WU's content and product focus was 100% sender-centric, missing the receiver segment entirely — a substantial and captive audience with clear upsell potential.</p>
+                <div class="problem-card-implication">↗ Receivers represent an untapped growth loop — content isn't tailored to convert them into active senders.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 02 — WHAT IS CONTENT NETWORK -->
+<section class="section-dark">
+    <div class="wrap">
+        <div class="section-header rv">
+            <div class="section-eyebrow">02 — Definition</div>
+            <h2 class="section-title">What is Content Network?</h2>
+            <p class="section-lead">A strategic product capability that delivers personalised, context-aware content across key touchpoints — transforming passive experiences into value-driven journeys.</p>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px; margin-bottom:2px;" class="rv">
+            <div style="background:var(--s2); border-radius:16px 0 0 16px; padding:40px;">
+                <div style="font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:3px; color:var(--text-3); margin-bottom:16px;">The Vision</div>
+                <p style="font-size:16px; color:var(--text-1); line-height:1.7; font-weight:500; margin-bottom:16px;">"A world where content drives <em style='font-style:normal; color:var(--accent-light);'>habit</em>, not just clicks — where data powers timely, personalised experiences across our ecosystem."</p>
+                <p style="font-size:14px; color:var(--text-2); line-height:1.75;">By combining relevant messaging, diverse placements, and data-driven recommendations, it transforms passive experiences into engaging, value-driven journeys — fostering stronger customer relationships beyond the transaction.</p>
+            </div>
+            <div style="background:var(--s2); border-radius:0 16px 16px 0; padding:40px;">
+                <div style="font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:3px; color:var(--text-3); margin-bottom:20px;">The Recommendation Engine</div>
+                <p style="font-size:14px; color:var(--text-2); line-height:1.75; margin-bottom:20px;">The intelligence layer that powers personalisation across all content surfaces. A dynamic decisioning system that determines <strong style="color:var(--text-1);">which content to show, to which users, at what time, in which placement</strong> — based on behavioural, contextual, and business rules.</p>
+                <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                    <span style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; padding:5px 12px; border-radius:100px; border:1px solid rgba(129,140,248,.2); color:var(--accent);">Behavioural signals</span>
+                    <span style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; padding:5px 12px; border-radius:100px; border:1px solid var(--border); color:var(--text-3);">Contextual rules</span>
+                    <span style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; padding:5px 12px; border-radius:100px; border:1px solid var(--border); color:var(--text-3);">Business rules</span>
+                    <span style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; padding:5px 12px; border-radius:100px; border:1px solid var(--border); color:var(--text-3);">ML optimisation</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Architecture flow -->
+        <div class="arch-wrap rv">
+            <div class="arch-label">Distribution Architecture — Content → Decisioning → Channels → Slots</div>
+            <div class="arch-flow">
+                <div class="arch-col">
+                    <div class="arch-col-title">Content</div>
+                    <div class="arch-items">
+                        <div class="arch-item">Deals &amp; Rewards</div>
+                        <div class="arch-item">Rewards Bonus</div>
+                        <div class="arch-item">Product X-Sell</div>
+                        <div class="arch-item">Education</div>
+                        <div class="arch-item">Co-Marketing</div>
+                    </div>
+                </div>
+                <div class="arch-arrow">→</div>
+                <div class="arch-col">
+                    <div class="arch-col-title">Decisioning</div>
+                    <div class="arch-items">
+                        <div class="arch-item arch-item--accent">Personalisation Engine</div>
+                        <div class="arch-item">Customer profile</div>
+                        <div class="arch-item">Behaviour signals</div>
+                        <div class="arch-item">Goals &amp; targeting</div>
+                    </div>
+                </div>
+                <div class="arch-arrow">→</div>
+                <div class="arch-col">
+                    <div class="arch-col-title">Channels</div>
+                    <div class="arch-items">
+                        <div class="arch-item">App</div>
+                        <div class="arch-item">Web</div>
+                        <div class="arch-item">Email</div>
+                        <div class="arch-item">Other</div>
+                    </div>
+                </div>
+                <div class="arch-arrow">→</div>
+                <div class="arch-col">
+                    <div class="arch-col-title">Slots</div>
+                    <div class="arch-items">
+                        <div class="arch-item">Dashboard</div>
+                        <div class="arch-item">Post-transaction</div>
+                        <div class="arch-item">Rewards Centre</div>
+                        <div class="arch-item">DOOH</div>
+                        <div class="arch-item">Email / SMS</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 03 — CONTENT TYPES -->
+<section class="section">
+    <div class="wrap">
+        <div class="section-header rv">
+            <div class="section-eyebrow">03 — Content Ecosystem</div>
+            <h2 class="section-title">Six Content Types, Mapped to Outcomes</h2>
+            <p class="section-lead">Each content type has a defined primary objective, placement strategy, and success metric — ensuring content is never deployed without measurable intent.</p>
+        </div>
+        <div class="content-types">
+            <div class="ct-card rv">
+                <div class="ct-type">Type 01</div>
+                <div class="ct-name">Profile Completion</div>
+                <p class="ct-desc">Encourage customers to complete their profile and unlock features that enrich their experience. Piloted in Canada with loyalty point incentives.</p>
+                <div class="ct-tags"><span class="ct-tag ct-tag--a">Acquisition</span><span class="ct-tag ct-tag--b">Product Adoption</span></div>
+            </div>
+            <div class="ct-card rv">
+                <div class="ct-type">Type 02</div>
+                <div class="ct-name">Promotional</div>
+                <p class="ct-desc">Promote transfer offers, new payment methods, and expanded payout options — surfaced at the moment of highest intent (estimate screen, receipt).</p>
+                <div class="ct-tags"><span class="ct-tag ct-tag--b">Conversion</span><span class="ct-tag">Habituation</span></div>
+            </div>
+            <div class="ct-card rv">
+                <div class="ct-type">Type 03</div>
+                <div class="ct-name">Deals &amp; Offers</div>
+                <p class="ct-desc">Exclusive third-party deals (McDonald's, Uber Eats, Duolingo, US Cellular) for WU customers — driving return visits and building perceived platform value.</p>
+                <div class="ct-tags"><span class="ct-tag ct-tag--b">Engagement</span><span class="ct-tag">Monetisation</span><span class="ct-tag">Habituation</span></div>
+            </div>
+            <div class="ct-card rv">
+                <div class="ct-type">Type 04</div>
+                <div class="ct-name">Editorial</div>
+                <p class="ct-desc">Regional, cultural, or sponsored content that deepens connection with users — country news, lifestyle content, community stories tailored to corridor.</p>
+                <div class="ct-tags"><span class="ct-tag ct-tag--b">Engagement</span><span class="ct-tag">Monetisation</span></div>
+            </div>
+            <div class="ct-card rv">
+                <div class="ct-type">Type 05</div>
+                <div class="ct-name">Educational</div>
+                <p class="ct-desc">Financial education and product guidance — credit building, budgeting tips, WU feature walkthroughs — building trust and confidence with first-time and infrequent users.</p>
+                <div class="ct-tags"><span class="ct-tag ct-tag--a">Conversion</span><span class="ct-tag ct-tag--b">Engagement</span><span class="ct-tag">Monetisation</span></div>
+            </div>
+            <div class="ct-card rv">
+                <div class="ct-type">Type 06</div>
+                <div class="ct-name">Community</div>
+                <p class="ct-desc">User-generated and community content that builds authenticity — diaspora stories, cultural celebrations, peer experience sharing across corridors.</p>
+                <div class="ct-tags"><span class="ct-tag ct-tag--b">Engagement</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 04 — CUSTOMER STORIES -->
+<section class="section-alt">
+    <div class="wrap">
+        <div class="section-header rv">
+            <div class="section-eyebrow">04 — Customer Journey Design</div>
+            <h2 class="section-title">Three Journeys. Three Segments. One System.</h2>
+            <p class="section-lead">Customer stories validated that a single Content Network, with the right decisioning, could serve radically different user needs — without bespoke builds per segment.</p>
+        </div>
+        <div class="stories">
+            <div class="story-card rv">
+                <div>
+                    <div class="story-name">Will</div>
+                    <div class="story-persona">First-time sender · US to Mexico</div>
+                    <span class="story-tag">Acquisition + Activation</span>
+                </div>
+                <div>
+                    <p class="story-context">Recently relocated from Mexico to New York. Needs to set up recurring transfers to his father and find retail payout options. He doesn't know WU's loyalty programme exists.</p>
+                    <div class="story-outcome">
+                        <div class="story-outcome-lbl">Content Network outcome</div>
+                        <div class="story-outcome-text">Promotional content on the estimate screen highlights $0 transfer fee. Post-transfer, the recommendation engine surfaces loyalty enrolment as a Next Best Action — saving Will money on future transactions and increasing LTV for WU.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="story-card rv">
+                <div>
+                    <div class="story-name">Bharath</div>
+                    <div class="story-persona">Frequent sender · India to US · Price-sensitive</div>
+                    <span class="story-tag">Engagement + Education</span>
+                </div>
+                <div>
+                    <p class="story-context">Student at NYU, sends money home regularly. Uses WU for price comparisons but has no brand loyalty. Prioritises cost and is keen on building US credit history as a new immigrant.</p>
+                    <div class="story-outcome">
+                        <div class="story-outcome-lbl">Content Network outcome</div>
+                        <div class="story-outcome-text">Educational content about Upwardli Credit Builder appears during app visits. Monthly notifications (credit score alerts, blog content) keep Bharath engaged between transfers — turning a price-comparison visit into a habitual relationship.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="story-card rv">
+                <div>
+                    <div class="story-name">Stella</div>
+                    <div class="story-persona">Loyal customer · Canada · Rewards engaged</div>
+                    <span class="story-tag">Retention + Monetisation</span>
+                </div>
+                <div>
+                    <p class="story-context">Avid WU customer in Canada. Shops at brands she loves. After sending money, discovers a Deals section she wasn't aware of and signs up for Rewards.</p>
+                    <div class="story-outcome">
+                        <div class="story-outcome-lbl">Content Network outcome</div>
+                        <div class="story-outcome-text">Deal saved. A reminder notification drives her back to the app. She redeems the deal and shares it with a friend in her WU directory — creating a viral, word-of-mouth acquisition loop that required zero paid media spend.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 05 — COMPETITIVE STRATEGY -->
+<section class="section-dark">
+    <div class="wrap">
+        <div class="section-header rv">
+            <div class="section-eyebrow">05 — Competitive Strategy</div>
+            <h2 class="section-title">Why Western Union Is Positioned to Win</h2>
+            <p class="section-lead">Competitors use affiliate marketing for acquisition. WU has the infrastructure to go further — building a content network that lives where users already transact.</p>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px;" class="rv">
+            <div style="background:var(--s2); padding:40px; border-radius:16px 0 0 0;">
+                <div style="font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:3px; color:var(--text-3); margin-bottom:20px;">Competitors (Remitly, Wise, MoneyGram)</div>
+                <ul style="list-style:none; display:flex; flex-direction:column; gap:12px;">
+                    <li style="display:flex; gap:12px; align-items:flex-start; font-size:14px; color:var(--text-2); line-height:1.6;"><span style="color:var(--error); flex-shrink:0;">✕</span> Rely on third-party affiliate banners and links</li>
+                    <li style="display:flex; gap:12px; align-items:flex-start; font-size:14px; color:var(--text-2); line-height:1.6;"><span style="color:var(--error); flex-shrink:0;">✕</span> One-off conversions, no engagement ownership</li>
+                    <li style="display:flex; gap:12px; align-items:flex-start; font-size:14px; color:var(--text-2); line-height:1.6;"><span style="color:var(--error); flex-shrink:0;">✕</span> External content, not contextual to the transfer journey</li>
+                    <li style="display:flex; gap:12px; align-items:flex-start; font-size:14px; color:var(--text-2); line-height:1.6;"><span style="color:var(--error); flex-shrink:0;">✕</span> No behavioural personalisation at content level</li>
+                </ul>
+            </div>
+            <div style="background:var(--s2); padding:40px; border-radius:0 16px 0 0;">
+                <div style="font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:3px; color:var(--accent); margin-bottom:20px;">Western Union (Content Network)</div>
+                <ul style="list-style:none; display:flex; flex-direction:column; gap:12px;">
+                    <li style="display:flex; gap:12px; align-items:flex-start; font-size:14px; color:var(--text-2); line-height:1.6;"><span style="color:var(--success); flex-shrink:0;">✓</span> Content lives inside the product — contextual, not external</li>
+                    <li style="display:flex; gap:12px; align-items:flex-start; font-size:14px; color:var(--text-2); line-height:1.6;"><span style="color:var(--success); flex-shrink:0;">✓</span> 200+ country presence enables localised content at global scale</li>
+                    <li style="display:flex; gap:12px; align-items:flex-start; font-size:14px; color:var(--text-2); line-height:1.6;"><span style="color:var(--success); flex-shrink:0;">✓</span> Behavioural + transactional data powers personalisation at user level</li>
+                    <li style="display:flex; gap:12px; align-items:flex-start; font-size:14px; color:var(--text-2); line-height:1.6;"><span style="color:var(--success); flex-shrink:0;">✓</span> Retail footprint provides a migration path from physical to digital — exclusive advantage</li>
+                </ul>
+            </div>
+            <div style="grid-column:span 2; background:var(--accent); border-radius:0 0 16px 16px; padding:32px 40px; display:flex; align-items:center; gap:24px;">
+                <div style="font-size:32px; font-weight:900; color:#fff; opacity:.3; flex-shrink:0;">→</div>
+                <p style="font-size:15px; color:#fff; line-height:1.7;">None of our competitors have a Content Network that seamlessly integrates personalised content and deals into the core CX. This is our competitive advantage — <strong>a flywheel of engagement, relevance, and habit formation</strong> that second-mover competitors cannot easily replicate.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 06 — PRODUCT PILLARS -->
+<section class="section">
+    <div class="wrap">
+        <div class="section-header rv">
+            <div class="section-eyebrow">06 — Product Pillars</div>
+            <h2 class="section-title">Three Pillars. One Coherent System.</h2>
+            <p class="section-lead">Every product decision maps to one of three pillars — ensuring the Content Network remains coherent as it scales across markets, teams, and content types.</p>
+        </div>
+        <div class="pillars">
+            <div class="pillar-card rv">
+                <div class="pillar-num">01</div>
+                <div class="pillar-title">Content</div>
+                <div class="pillar-subtitle">Scalable · Relevant · Actionable</div>
+                <p class="pillar-body">Deliver timely, meaningful content that drives awareness, activation, and repeat engagement. Content should showcase hidden value and continuously evolve through testing.</p>
+                <ul class="pillar-checks">
+                    <li>Surface loyalty, referrals, and cross-product value</li>
+                    <li>Test content formats continuously (A/B)</li>
+                    <li>Evolve through engagement signal learning</li>
+                </ul>
+            </div>
+            <div class="pillar-card rv">
+                <div class="pillar-num">02</div>
+                <div class="pillar-title">Placement Ecosystem</div>
+                <div class="pillar-subtitle">Right Channel · Right Slot</div>
+                <p class="pillar-body">A unified content delivery framework across key surfaces — web, app, email, blog, and messaging. Standardised placements embedded into core journeys.</p>
+                <ul class="pillar-checks">
+                    <li>Homepage, receipt, rewards hub, DOOH slots</li>
+                    <li>CMS integration for speed and governance</li>
+                    <li>Consistent placement spec across all channels</li>
+                </ul>
+            </div>
+            <div class="pillar-card rv">
+                <div class="pillar-num">03</div>
+                <div class="pillar-title">Data &amp; Personalisation</div>
+                <div class="pillar-subtitle">Relevance Powered by Signals</div>
+                <p class="pillar-body">Leverage behavioural and transactional data to recommend Next Best Actions. Use lifecycle, intent, and engagement segmentation to personalise at scale.</p>
+                <ul class="pillar-checks">
+                    <li>Rules-based and ML-based personalisation</li>
+                    <li>Lifecycle segmentation (new → loyal → at-risk)</li>
+                    <li>Continuous signal capture and feedback loops</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 07 — MVP & ROLLOUT -->
+<section class="section-alt">
+    <div class="wrap">
+        <div class="section-header rv">
+            <div class="section-eyebrow">07 — MVP &amp; Rollout</div>
+            <h2 class="section-title">From Vision to Impact — Five Steps</h2>
+            <p class="section-lead">Canada as test ground. Five sequential steps to validate hypotheses before committing to global investment — a deliberate, low-risk validation strategy.</p>
+        </div>
+        <div class="mvp-steps">
+            <div class="mvp-step rv">
+                <div class="mvp-step-n">01</div>
+                <div>
+                    <div class="mvp-step-title">Test content on dedicated slots — Homepage + Receipt (Canada E1 &amp; US R3)</div>
+                    <p class="mvp-step-body">Desktop web, mobile web, and app. Validate impression volume, engagement rate, and CTR across the two highest-traffic surfaces before expanding placement inventory.</p>
+                </div>
+            </div>
+            <div class="mvp-step rv">
+                <div class="mvp-step-n">02</div>
+                <div>
+                    <div class="mvp-step-title">Use rule-based targeting to reach the right customers</div>
+                    <p class="mvp-step-body">Start with crude but precise rules (new users, post-first transfer, loyalty-enrolled vs. not). This establishes baseline targeting accuracy before investing in ML-based personalisation.</p>
+                </div>
+            </div>
+            <div class="mvp-step rv">
+                <div class="mvp-step-n">03</div>
+                <div>
+                    <div class="mvp-step-title">Capture behavioural signals into internal data systems</div>
+                    <p class="mvp-step-body">Every interaction (impression, click, save, dismiss) feeds the recommendation engine. This is the data flywheel that makes personalisation increasingly accurate over time.</p>
+                </div>
+            </div>
+            <div class="mvp-step rv">
+                <div class="mvp-step-n">04</div>
+                <div>
+                    <div class="mvp-step-title">Build internal CMS with campaign workflows and localisation</div>
+                    <p class="mvp-step-body">Enable content teams to create, schedule, and localise content independently of Engineering. CMS with business rules engine, translation support, and A/B testing capability.</p>
+                </div>
+            </div>
+            <div class="mvp-step rv">
+                <div class="mvp-step-n">05</div>
+                <div>
+                    <div class="mvp-step-title">Integrate affiliate partner to drive curated deals engagement</div>
+                    <p class="mvp-step-body">First external partnership integrated into the placement ecosystem — validating the deals and offers content type and establishing the monetisation foundation for future partnerships.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 08 — METRICS FRAMEWORK -->
+<section class="section">
+    <div class="wrap">
+        <div class="section-header rv">
+            <div class="section-eyebrow">08 — Metrics Framework</div>
+            <h2 class="section-title">Four Objectives. Measured at Every Layer.</h2>
+            <p class="section-lead">The measurement framework maps each objective to primary metrics, supporting metrics, and placement-level guardrails — ensuring content never cannibalises core transfer performance.</p>
+        </div>
+        <div class="metrics-grid rv">
+            <div class="metric-card">
+                <div class="metric-obj">Reach</div>
+                <div class="metric-title">Network Size</div>
+                <ul class="metric-items">
+                    <li>Total impressions (daily / weekly / monthly)</li>
+                    <li>Active content placements</li>
+                    <li>% of traffic covered by content</li>
+                </ul>
+            </div>
+            <div class="metric-card">
+                <div class="metric-obj">Engagement</div>
+                <div class="metric-title">Depth of Interaction</div>
+                <ul class="metric-items">
+                    <li>Click-through rate (CTR)</li>
+                    <li>Average time spent on content</li>
+                    <li>Scroll depth / % viewed</li>
+                </ul>
+            </div>
+            <div class="metric-card">
+                <div class="metric-obj">Monetisation</div>
+                <div class="metric-title">Conversion</div>
+                <ul class="metric-items">
+                    <li>Conversion rate (CVR) post-click</li>
+                    <li>Revenue influenced by content</li>
+                    <li>Downstream actions (sign-up, send)</li>
+                </ul>
+            </div>
+            <div class="metric-card">
+                <div class="metric-obj">Habituation</div>
+                <div class="metric-title">Return &amp; Frequency</div>
+                <ul class="metric-items">
+                    <li>Return visits within 7 / 14 / 30 days</li>
+                    <li>% of users engaging multiple times</li>
+                    <li>Content-driven session frequency</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Guardrail Table -->
+        <div style="margin-top:56px;" class="rv">
+            <div style="font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:3px; color:var(--text-3); margin-bottom:20px;">Guardrail Metrics — Content Placements Must Never Cannibalize Core Transfer Goals</div>
+            <div class="guardrail-table">
+                <div class="gt-row gt-row--header">
+                    <div class="gt-cell">Placement</div>
+                    <div class="gt-cell">Core Goal + Guardrail Metric</div>
+                    <div class="gt-cell">Threshold &amp; Action</div>
+                </div>
+                <div class="gt-row">
+                    <div class="gt-cell"><span class="gt-page">Homepage</span></div>
+                    <div class="gt-cell">Start a money transfer · % of transfer starts</div>
+                    <div class="gt-cell">If transfer starts drop >X% → adjust or remove content</div>
+                </div>
+                <div class="gt-row">
+                    <div class="gt-cell"><span class="gt-page">Receipt Page</span></div>
+                    <div class="gt-cell">Confirm transaction + next best action · Completion rate / CSAT</div>
+                    <div class="gt-cell">If completion rate drops or complaints rise → re-evaluate</div>
+                </div>
+                <div class="gt-row">
+                    <div class="gt-cell"><span class="gt-page">Deals Page</span></div>
+                    <div class="gt-cell">Drive deal views + redemptions · % of deal redemptions</div>
+                    <div class="gt-cell">If redemption rate falls → adjust placement or format</div>
+                </div>
+                <div class="gt-row">
+                    <div class="gt-cell"><span class="gt-page">Loyalty Page</span></div>
+                    <div class="gt-cell">Drive enrolments + usage · Enrolment rate / active usage</div>
+                    <div class="gt-cell">If loyalty usage declines → recalibrate content in CX</div>
+                </div>
+                <div class="gt-row">
+                    <div class="gt-cell"><span class="gt-page">Push / Notifications</span></div>
+                    <div class="gt-cell">Drive quick action · Notification CTR + downstream CVR</div>
+                    <div class="gt-cell">If CTR declines or spam complaints rise → tighten targeting</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</div><!-- /#full-cs -->
+
+<!-- CLOSING -->
+<section class="closing">
+    <p class="closing-quote">
+        "The Content Network is not just a feature. It's <strong>organisational infrastructure</strong> — a strategic capability that drives retention, monetisation, and long-term customer value, and one that positions us ahead of the competition in how we connect with and serve our customers."
+    </p>
+    <p class="closing-sub">Western Union Content Network · Product Strategy &amp; UX Architecture · 2024</p>
+    <a href="index.html" class="closing-cta">View Portfolio →</a>
+</section>
+
+<footer class="footer">
+    <div class="footer-brand">Arindam Sanyal — Product Design Manager</div>
+    <p class="footer-text">
+        Content Network Product Strategy · Western Union · UX &amp; Product Leadership<br>
+        Recommendation Engine · Customer Journeys · Metrics Framework · MVP Rollout
+    </p>
+</footer>
+
+<!-- CASE NAV -->
+<div class="cs-nav">
+    <a href="ux-baseline-case-study.html">← UX Baseline</a>
+    <div class="cs-nav-mid">Case Study 3 of 3</div>
+    <a href="index.html" class="cs-nav-home">Portfolio →</a>
+</div>
+
+<script>
+(function(){
+    window.toggleFull = function(){
+        var fc  = document.getElementById('full-cs');
+        var btn = document.getElementById('lv-toggle');
+        var txt = document.getElementById('lv-btn-txt');
+        var isOpen = fc.classList.toggle('open');
+        btn.classList.toggle('open', isOpen);
+        txt.textContent = isOpen ? 'Collapse Case Study' : 'Read Full Case Study';
+        if(isOpen){ setTimeout(function(){ fc.scrollIntoView({behavior:'smooth',block:'start'}); }, 50); }
+        updateNavVis(isOpen);
+    };
+
+    // Progress bar
+    var pb = document.getElementById('cs-pb');
+    window.addEventListener('scroll', function(){
+        var pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+        if(pb) pb.style.width = Math.min(pct,100)+'%';
+    }, {passive:true});
+
+    // Section nav
+    function buildNav(){
+        var csn = document.getElementById('csn');
+        if(!csn) return;
+        var markers = document.querySelectorAll('.section-eyebrow');
+        var navSecs = [];
+        var idx = 0;
+        markers.forEach(function(m){
+            var sec = m.closest('section');
+            if(!sec) return;
+            var id = 'csn-'+idx++;
+            sec.setAttribute('data-csn', id);
+            var label = m.textContent.trim().replace(/^\d+\s*[—\-]\s*/,'').trim();
+            var inFull = !!sec.closest('#full-cs');
+            navSecs.push({id:id,label:label,sec:sec,inFull:inFull});
+        });
+        navSecs.forEach(function(ns){
+            var a = document.createElement('a');
+            a.className = 'csn-item'+(ns.inFull?' cs-full':'');
+            a.setAttribute('data-csn-id', ns.id);
+            a.href = 'javascript:void(0)';
+            a.innerHTML = '<span class="csn-lbl">'+ns.label+'</span><span class="csn-dot"></span>';
+            if(ns.inFull) a.style.display='none';
+            a.addEventListener('click', function(){ ns.sec.scrollIntoView({behavior:'smooth',block:'start'}); });
+            csn.appendChild(a);
+        });
+        var obs = new IntersectionObserver(function(entries){
+            entries.forEach(function(e){
+                if(e.isIntersecting){
+                    var id = e.target.getAttribute('data-csn');
+                    document.querySelectorAll('.csn-item').forEach(function(item){
+                        item.classList.toggle('active', item.getAttribute('data-csn-id')===id);
+                    });
+                }
+            });
+        },{threshold:0.25, rootMargin:'-10% 0px -65% 0px'});
+        navSecs.forEach(function(ns){ obs.observe(ns.sec); });
+    }
+    function updateNavVis(isOpen){
+        document.querySelectorAll('.csn-item.cs-full').forEach(function(item){
+            item.style.display = isOpen ? '' : 'none';
+        });
+    }
+    buildNav();
+
+    // Scroll reveal
+    var obs2 = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); obs2.unobserve(e.target); } });
+    }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+    document.querySelectorAll('.rv').forEach(function(el){ obs2.observe(el); });
+})();
+</script>
+
+</body>
+</html>

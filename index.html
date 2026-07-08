@@ -133,6 +133,7 @@ nav{
 .work-card{
   position:relative;border-radius:6px;overflow:hidden;
   aspect-ratio:16/11;display:block;background:#111;
+  isolation:isolate;
 }
 .work-card img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
 .work-card:hover img{transform:scale(1.05)}
@@ -167,16 +168,23 @@ nav{
 /* COMPANIES */
 .companies{max-width:var(--mw);margin:0 auto;padding:64px var(--px)}
 .companies-lbl{font-size:13px;color:var(--fg3);text-align:center;margin-bottom:40px;letter-spacing:.2px}
-.companies-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.companies-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border)}
 .co-item{
-  border:1px solid var(--border);margin:-.5px;
-  padding:26px 20px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:14px;font-weight:600;color:var(--fg3);text-align:center;
-  transition:color .2s,background .2s;
+  padding:28px 20px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
   background:var(--s1);
+  transition:background .2s;
+  text-align:center;
 }
-.co-item:hover{color:var(--fg);background:var(--s3)}
+.co-item:hover{background:var(--s2)}
+.co-logo{
+  width:44px;height:44px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:800;letter-spacing:-.5px;
+  flex-shrink:0;
+}
+.co-name{font-size:13px;font-weight:600;color:var(--fg);line-height:1.2}
+.co-role{font-size:11px;color:var(--fg2);margin-top:2px}
 
 /* TESTIMONIALS */
 .testi{
@@ -332,28 +340,109 @@ footer{padding:0 var(--px);padding-top:48px;overflow:hidden;background:var(--s1)
     </div>
     <div class="work-grid">
       <a href="wu-redesign-case-study.html" class="work-card rv">
-        <img src="case-study-assets/08-bank-account-flow.png" alt="WU E1 Redesign" loading="lazy">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 800 550" preserveAspectRatio="xMidYMid slice" style="display:block;position:absolute;inset:0">
+          <defs>
+            <radialGradient id="wu-glow" cx="65%" cy="35%" r="55%"><stop offset="0%" stop-color="#ff6b35" stop-opacity=".7"/><stop offset="100%" stop-color="#ff6b35" stop-opacity="0"/></radialGradient>
+            <linearGradient id="wu-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1a0800"/><stop offset="100%" stop-color="#2d1000"/></linearGradient>
+          </defs>
+          <rect width="800" height="550" fill="url(#wu-bg)"/>
+          <ellipse cx="520" cy="190" rx="380" ry="300" fill="url(#wu-glow)"/>
+          <circle cx="560" cy="275" r="210" fill="none" stroke="rgba(255,107,53,.18)" stroke-width="1"/>
+          <circle cx="560" cy="275" r="145" fill="none" stroke="rgba(255,107,53,.22)" stroke-width="1"/>
+          <circle cx="560" cy="275" r="80" fill="none" stroke="rgba(255,107,53,.28)" stroke-width="1"/>
+          <rect x="55" y="110" width="290" height="170" rx="8" fill="rgba(255,255,255,.04)" stroke="rgba(255,107,53,.25)" stroke-width="1"/>
+          <rect x="75" y="132" width="110" height="8" rx="2" fill="rgba(255,107,53,.6)"/>
+          <rect x="75" y="152" width="210" height="5" rx="2" fill="rgba(255,255,255,.12)"/>
+          <rect x="75" y="167" width="170" height="5" rx="2" fill="rgba(255,255,255,.08)"/>
+          <rect x="75" y="192" width="250" height="44" rx="4" fill="rgba(255,107,53,.18)"/>
+          <rect x="55" y="310" width="135" height="85" rx="6" fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+          <rect x="205" y="310" width="135" height="85" rx="6" fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+          <text x="590" y="330" font-family="Arial,sans-serif" font-size="130" font-weight="900" fill="rgba(255,107,53,.08)" text-anchor="middle">WU</text>
+        </svg>
         <div class="work-overlay">
           <div class="work-tags"><span class="work-tag">Design Manager</span><span class="work-tag">Fintech</span></div>
           <div class="work-title">Biggest Overhaul in Western Union&rsquo;s History</div>
         </div>
       </a>
       <a href="ux-baseline-case-study.html" class="work-card rv r1">
-        <img src="case-study-assets/03-payments-hub.png" alt="UX Baseline" loading="lazy">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 800 550" preserveAspectRatio="xMidYMid slice" style="display:block;position:absolute;inset:0">
+          <defs>
+            <radialGradient id="ux-glow" cx="40%" cy="50%" r="55%"><stop offset="0%" stop-color="#6c63ff" stop-opacity=".6"/><stop offset="100%" stop-color="#6c63ff" stop-opacity="0"/></radialGradient>
+            <linearGradient id="ux-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#080a1a"/><stop offset="100%" stop-color="#0e1030"/></linearGradient>
+          </defs>
+          <rect width="800" height="550" fill="url(#ux-bg)"/>
+          <ellipse cx="320" cy="275" rx="340" ry="280" fill="url(#ux-glow)"/>
+          <g stroke="rgba(108,99,255,.2)" stroke-width="1" fill="none">
+            <line x1="0" y1="55" x2="800" y2="55"/><line x1="0" y1="165" x2="800" y2="165"/><line x1="0" y1="275" x2="800" y2="275"/><line x1="0" y1="385" x2="800" y2="385"/><line x1="0" y1="495" x2="800" y2="495"/>
+            <line x1="100" y1="0" x2="100" y2="550"/><line x1="250" y1="0" x2="250" y2="550"/><line x1="400" y1="0" x2="400" y2="550"/><line x1="550" y1="0" x2="550" y2="550"/><line x1="700" y1="0" x2="700" y2="550"/>
+          </g>
+          <circle cx="250" cy="275" r="5" fill="rgba(108,99,255,.9)"/>
+          <circle cx="400" cy="165" r="5" fill="rgba(108,99,255,.7)"/>
+          <circle cx="550" cy="275" r="5" fill="rgba(108,99,255,.7)"/>
+          <circle cx="400" cy="385" r="5" fill="rgba(108,99,255,.7)"/>
+          <line x1="250" y1="275" x2="400" y2="165" stroke="rgba(108,99,255,.5)" stroke-width="1.5"/>
+          <line x1="250" y1="275" x2="400" y2="385" stroke="rgba(108,99,255,.5)" stroke-width="1.5"/>
+          <line x1="400" y1="165" x2="550" y2="275" stroke="rgba(108,99,255,.5)" stroke-width="1.5"/>
+          <line x1="400" y1="385" x2="550" y2="275" stroke="rgba(108,99,255,.5)" stroke-width="1.5"/>
+          <circle cx="250" cy="275" r="40" fill="none" stroke="rgba(108,99,255,.15)" stroke-width="1"/>
+          <circle cx="550" cy="275" r="40" fill="none" stroke="rgba(108,99,255,.15)" stroke-width="1"/>
+        </svg>
         <div class="work-overlay">
           <div class="work-tags"><span class="work-tag">UX Strategy</span><span class="work-tag">Design Ops</span></div>
           <div class="work-title">The Case for a UX Baseline</div>
         </div>
       </a>
       <a href="send-money-imt-case-study.html" class="work-card rv r2">
-        <img src="case-study-assets/05-send-with-contacts.png" alt="Send Money IMT" loading="lazy">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 800 550" preserveAspectRatio="xMidYMid slice" style="display:block;position:absolute;inset:0">
+          <defs>
+            <radialGradient id="imt-glow" cx="60%" cy="40%" r="55%"><stop offset="0%" stop-color="#00d4a0" stop-opacity=".55"/><stop offset="100%" stop-color="#00d4a0" stop-opacity="0"/></radialGradient>
+            <linearGradient id="imt-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#001a12"/><stop offset="100%" stop-color="#001f1a"/></linearGradient>
+          </defs>
+          <rect width="800" height="550" fill="url(#imt-bg)"/>
+          <ellipse cx="480" cy="220" rx="340" ry="280" fill="url(#imt-glow)"/>
+          <rect x="320" y="80" width="160" height="280" rx="18" fill="rgba(255,255,255,.04)" stroke="rgba(0,212,160,.35)" stroke-width="1.5"/>
+          <rect x="340" y="105" width="120" height="8" rx="4" fill="rgba(0,212,160,.3)"/>
+          <rect x="340" y="150" width="120" height="100" rx="6" fill="rgba(0,212,160,.08)" stroke="rgba(0,212,160,.15)" stroke-width="1"/>
+          <text x="400" y="208" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="rgba(0,212,160,.7)" text-anchor="middle">$250</text>
+          <rect x="340" y="268" width="120" height="32" rx="6" fill="rgba(0,212,160,.25)"/>
+          <path d="M140 275 Q220 200 310 275" stroke="rgba(0,212,160,.4)" stroke-width="2" fill="none" stroke-dasharray="6 4"/>
+          <polygon points="308,268 318,275 308,282" fill="rgba(0,212,160,.5)"/>
+          <path d="M490 275 Q580 200 660 275" stroke="rgba(0,212,160,.4)" stroke-width="2" fill="none" stroke-dasharray="6 4"/>
+          <polygon points="658,268 668,275 658,282" fill="rgba(0,212,160,.5)"/>
+          <circle cx="110" cy="275" r="30" fill="rgba(0,212,160,.12)" stroke="rgba(0,212,160,.3)" stroke-width="1"/>
+          <circle cx="690" cy="275" r="30" fill="rgba(0,212,160,.12)" stroke="rgba(0,212,160,.3)" stroke-width="1"/>
+        </svg>
         <div class="work-overlay">
           <div class="work-tags"><span class="work-tag">Interaction Design</span><span class="work-tag">Mobile</span></div>
           <div class="work-title">Send Money &mdash; International Money Transfer</div>
         </div>
       </a>
       <a href="content-network-case-study.html" class="work-card rv r3">
-        <img src="case-study-assets/06-send-to.png" alt="Content Network" loading="lazy">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 800 550" preserveAspectRatio="xMidYMid slice" style="display:block;position:absolute;inset:0">
+          <defs>
+            <radialGradient id="cn-glow" cx="50%" cy="50%" r="55%"><stop offset="0%" stop-color="#a855f7" stop-opacity=".5"/><stop offset="100%" stop-color="#a855f7" stop-opacity="0"/></radialGradient>
+            <radialGradient id="cn-glow2" cx="80%" cy="20%" r="40%"><stop offset="0%" stop-color="#f5a623" stop-opacity=".4"/><stop offset="100%" stop-color="#f5a623" stop-opacity="0"/></radialGradient>
+            <linearGradient id="cn-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0e0818"/><stop offset="100%" stop-color="#180e20"/></linearGradient>
+          </defs>
+          <rect width="800" height="550" fill="url(#cn-bg)"/>
+          <ellipse cx="400" cy="275" rx="360" ry="290" fill="url(#cn-glow)"/>
+          <ellipse cx="640" cy="110" rx="220" ry="180" fill="url(#cn-glow2)"/>
+          <line x1="400" y1="275" x2="200" y2="150" stroke="rgba(168,85,247,.3)" stroke-width="1"/>
+          <line x1="400" y1="275" x2="600" y2="150" stroke="rgba(168,85,247,.3)" stroke-width="1"/>
+          <line x1="400" y1="275" x2="620" y2="375" stroke="rgba(168,85,247,.3)" stroke-width="1"/>
+          <line x1="400" y1="275" x2="180" y2="400" stroke="rgba(168,85,247,.3)" stroke-width="1"/>
+          <line x1="400" y1="275" x2="400" y2="100" stroke="rgba(245,166,35,.3)" stroke-width="1"/>
+          <line x1="200" y1="150" x2="600" y2="150" stroke="rgba(168,85,247,.15)" stroke-width="1"/>
+          <line x1="600" y1="150" x2="620" y2="375" stroke="rgba(168,85,247,.15)" stroke-width="1"/>
+          <circle cx="400" cy="275" r="14" fill="rgba(168,85,247,.8)"/>
+          <circle cx="200" cy="150" r="8" fill="rgba(168,85,247,.5)"/>
+          <circle cx="600" cy="150" r="8" fill="rgba(245,166,35,.7)"/>
+          <circle cx="620" cy="375" r="8" fill="rgba(168,85,247,.5)"/>
+          <circle cx="180" cy="400" r="8" fill="rgba(168,85,247,.5)"/>
+          <circle cx="400" cy="100" r="8" fill="rgba(245,166,35,.6)"/>
+          <circle cx="400" cy="275" r="35" fill="none" stroke="rgba(168,85,247,.25)" stroke-width="1"/>
+          <circle cx="400" cy="275" r="60" fill="none" stroke="rgba(168,85,247,.12)" stroke-width="1"/>
+        </svg>
         <div class="work-overlay">
           <div class="work-tags"><span class="work-tag">Product Strategy</span><span class="work-tag">Personalisation</span></div>
           <div class="work-title">Content Network Product Strategy</div>
@@ -388,14 +477,46 @@ footer{padding:0 var(--px);padding-top:48px;overflow:hidden;background:var(--s1)
   <div class="companies rv">
     <p class="companies-lbl">Companies &amp; Teams I&rsquo;ve worked with</p>
     <div class="companies-grid">
-      <div class="co-item">Western Union</div>
-      <div class="co-item">EY (Ernst &amp; Young)</div>
-      <div class="co-item">Searce Inc</div>
-      <div class="co-item">Mobikon</div>
-      <div class="co-item">Fab.com</div>
-      <div class="co-item">HappierWork</div>
-      <div class="co-item">ThoughtWorks</div>
-      <div class="co-item">Infosys BPO</div>
+      <div class="co-item">
+        <div class="co-logo" style="background:#FDBE12;color:#000">WU</div>
+        <div class="co-name">Western Union</div>
+        <div class="co-role">Design Manager</div>
+      </div>
+      <div class="co-item">
+        <div class="co-logo" style="background:#FFE600;color:#000">EY</div>
+        <div class="co-name">Ernst &amp; Young</div>
+        <div class="co-role">UX Consultant</div>
+      </div>
+      <div class="co-item">
+        <div class="co-logo" style="background:#4285F4;color:#fff">SC</div>
+        <div class="co-name">Searce Inc</div>
+        <div class="co-role">Lead Designer</div>
+      </div>
+      <div class="co-item">
+        <div class="co-logo" style="background:#00BCD4;color:#fff">MK</div>
+        <div class="co-name">Mobikon</div>
+        <div class="co-role">Product Designer</div>
+      </div>
+      <div class="co-item">
+        <div class="co-logo" style="background:#E65C00;color:#fff">F</div>
+        <div class="co-name">Fab.com</div>
+        <div class="co-role">UX Designer</div>
+      </div>
+      <div class="co-item">
+        <div class="co-logo" style="background:#4CAF50;color:#fff">HW</div>
+        <div class="co-name">HappierWork</div>
+        <div class="co-role">Product Designer</div>
+      </div>
+      <div class="co-item">
+        <div class="co-logo" style="background:#E0175F;color:#fff">TW</div>
+        <div class="co-name">ThoughtWorks</div>
+        <div class="co-role">UX Consultant</div>
+      </div>
+      <div class="co-item">
+        <div class="co-logo" style="background:#0066CC;color:#fff">IN</div>
+        <div class="co-name">Infosys BPO</div>
+        <div class="co-role">UI Designer</div>
+      </div>
     </div>
   </div>
 </section>

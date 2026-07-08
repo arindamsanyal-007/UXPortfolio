@@ -487,6 +487,31 @@
         }
 
         /* ─────────────────────────────────────────
+           MARQUEE TICKER
+        ───────────────────────────────────────── */
+        .mq-wrap {
+            overflow: hidden;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 0;
+            background: var(--surface-1);
+        }
+        .mq-track {
+            display: flex; align-items: center; gap: 48px;
+            width: max-content;
+            animation: marquee 35s linear infinite;
+            font-size: 10px; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 2.5px;
+            color: var(--text-3);
+        }
+        .mq-wrap:hover .mq-track { animation-play-state: paused; }
+        .mq-dot { color: var(--yellow); flex-shrink: 0; font-size: 7px; }
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+        }
+
+        /* ─────────────────────────────────────────
            RESPONSIVE
         ───────────────────────────────────────── */
         @media (max-width: 960px) {
@@ -584,7 +609,38 @@
     </div>
 </div>
 
-<!-- ─── WORK ─── -->
+<!-- ─ MARQUEE ─ -->
+<div class="mq-wrap" aria-hidden="true">
+    <div class="mq-track">
+        <span>Interaction Design</span><span class="mq-dot">●</span>
+        <span>Design Systems</span><span class="mq-dot">●</span>
+        <span>UX Strategy</span><span class="mq-dot">●</span>
+        <span>Accessibility (WCAG)</span><span class="mq-dot">●</span>
+        <span>Fintech</span><span class="mq-dot">●</span>
+        <span>Design Ops</span><span class="mq-dot">●</span>
+        <span>Team Leadership</span><span class="mq-dot">●</span>
+        <span>Product Discovery</span><span class="mq-dot">●</span>
+        <span>Stakeholder Alignment</span><span class="mq-dot">●</span>
+        <span>Enterprise Platforms</span><span class="mq-dot">●</span>
+        <span>Mobile Design</span><span class="mq-dot">●</span>
+        <span>Prototyping</span><span class="mq-dot">●</span>
+        <!-- duplicate for seamless loop -->
+        <span>Interaction Design</span><span class="mq-dot">●</span>
+        <span>Design Systems</span><span class="mq-dot">●</span>
+        <span>UX Strategy</span><span class="mq-dot">●</span>
+        <span>Accessibility (WCAG)</span><span class="mq-dot">●</span>
+        <span>Fintech</span><span class="mq-dot">●</span>
+        <span>Design Ops</span><span class="mq-dot">●</span>
+        <span>Team Leadership</span><span class="mq-dot">●</span>
+        <span>Product Discovery</span><span class="mq-dot">●</span>
+        <span>Stakeholder Alignment</span><span class="mq-dot">●</span>
+        <span>Enterprise Platforms</span><span class="mq-dot">●</span>
+        <span>Mobile Design</span><span class="mq-dot">●</span>
+        <span>Prototyping</span><span class="mq-dot">●</span>
+    </div>
+</div>
+
+<!-- ─ WORK ─ -->
 <section class="section" id="work">
     <div class="wrap">
         <div class="sec-header r">
@@ -926,6 +982,52 @@
     }, { threshold: 0.45 });
 
     sections.forEach(s => activeObs.observe(s));
+
+    /* ── Scroll parallax on hero ── */
+    var heroContent = document.querySelector('.hero-content');
+    var heroBg      = document.querySelector('.hero-bg');
+    var heroGrid    = document.querySelector('.hero-grid');
+    var heroSection = document.querySelector('.hero');
+    var mouseOffX = 0, mouseOffY = 0;
+
+    window.addEventListener('scroll', function(){
+        var y = window.scrollY;
+        nav.classList.toggle('on', y > 50);
+        if (y < window.innerHeight * 1.4) {
+            if (heroContent) heroContent.style.transform = 'translateY(' + (y * 0.22) + 'px)';
+        }
+    }, {passive:true});
+
+    /* ── Mouse parallax inside hero ── */
+    if (heroSection) {
+        heroSection.addEventListener('mousemove', function(e){
+            var rect = heroSection.getBoundingClientRect();
+            var xRel = (e.clientX - rect.left) / rect.width  - 0.5;
+            var yRel = (e.clientY - rect.top)  / rect.height - 0.5;
+            mouseOffX = xRel; mouseOffY = yRel;
+            if (heroGrid) heroGrid.style.transform = 'translate(' + (xRel*24)+'px,' + (yRel*16)+'px)';
+            if (heroBg)   heroBg.style.transform   = 'translate(' + (xRel*12)+'px,' + (yRel*8) +'px)';
+        });
+        heroSection.addEventListener('mouseleave', function(){
+            if (heroGrid) heroGrid.style.transform = '';
+            if (heroBg)   heroBg.style.transform   = '';
+        });
+    }
+
+    /* ── Work card tilt ── */
+    document.querySelectorAll('.work-card').forEach(function(card){
+        card.addEventListener('mouseenter', function(){ this.style.transition = 'background .3s ease, transform .15s ease'; });
+        card.addEventListener('mouseleave', function(){
+            this.style.transform = '';
+            this.style.transition = 'background .3s ease, transform .5s cubic-bezier(.16,1,.3,1)';
+        });
+        card.addEventListener('mousemove', function(e){
+            var r = this.getBoundingClientRect();
+            var x = (e.clientX - r.left) / r.width  - 0.5;
+            var y = (e.clientY - r.top)  / r.height - 0.5;
+            this.style.transform = 'perspective(1200px) rotateX('+(y*-5)+'deg) rotateY('+(x*5)+'deg) scale(1.005)';
+        });
+    });
 
 })();
 </script>

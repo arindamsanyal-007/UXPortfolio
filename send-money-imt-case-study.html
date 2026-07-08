@@ -877,6 +877,42 @@
         .rv { opacity: 0; transform: translateY(22px); transition: opacity .65s cubic-bezier(.16,1,.3,1), transform .65s cubic-bezier(.16,1,.3,1); }
         .rv.in { opacity: 1; transform: none; }
 
+        /* ─── PROGRESS BAR + SECTION NAV ─── */
+        #cs-pb {
+            position: fixed; top: 0; left: 0; height: 2px;
+            background: #FFDD00; z-index: 600; width: 0;
+            transition: width .08s linear;
+            box-shadow: 0 0 8px rgba(255,221,0,.5);
+        }
+        .csn {
+            position: fixed; right: 28px; top: 50%;
+            transform: translateY(-50%);
+            display: flex; flex-direction: column; gap: 10px;
+            z-index: 100; align-items: flex-end;
+        }
+        .csn-item {
+            display: flex; align-items: center; gap: 10px;
+            justify-content: flex-end;
+            cursor: pointer; text-decoration: none;
+        }
+        .csn-lbl {
+            font-size: 10px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 1.5px; color: rgba(255,255,255,.22);
+            opacity: 0; transform: translateX(8px);
+            transition: opacity .2s ease, transform .2s ease, color .2s ease;
+            white-space: nowrap;
+        }
+        .csn-dot {
+            width: 5px; height: 5px; border-radius: 3px;
+            background: rgba(255,255,255,.15);
+            flex-shrink: 0;
+            transition: all .28s cubic-bezier(.16,1,.3,1);
+        }
+        .csn:hover .csn-lbl { opacity: 1; transform: translateX(0); }
+        .csn-item.active .csn-dot  { background: #FFDD00; height: 14px; box-shadow: 0 0 6px rgba(255,221,0,.5); }
+        .csn-item.active .csn-lbl  { opacity: 1; transform: translateX(0); color: #FFDD00; }
+        @media(max-width:1100px){ .csn { display: none; } }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .hero-content {
@@ -1462,6 +1498,11 @@
         </p>
     </footer>
 
+    <!-- Progress bar -->
+    <div id="cs-pb"></div>
+    <!-- Section nav -->
+    <nav class="csn" id="csn" aria-label="Section navigation"></nav>
+
     <!-- CASE NAV -->
     <div class="cs-nav">
         <a href="index.html" class="cs-nav-home">← Portfolio</a>
@@ -1479,7 +1520,63 @@
             btn.classList.toggle('open', isOpen);
             txt.textContent = isOpen ? 'Collapse Case Study' : 'Read Full Case Study';
             if(isOpen){ setTimeout(function(){ fc.scrollIntoView({behavior:'smooth',block:'start'}); }, 50); }
+            updateNavVis(isOpen);
         };
+
+        // Progress bar
+        var pb = document.getElementById('cs-pb');
+        function updPB(){
+            var pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+            if(pb) pb.style.width = Math.min(pct,100)+'%';
+        }
+        window.addEventListener('scroll', updPB, {passive:true});
+
+        // Section nav
+        function buildNav(){
+            var csn = document.getElementById('csn');
+            if(!csn) return;
+            var markers = document.querySelectorAll('.section-number');
+            var navSecs = [];
+            var idx = 0;
+            markers.forEach(function(m){
+                var sec = m.closest('section');
+                if(!sec) return;
+                var id = 'csn-'+idx++;
+                sec.setAttribute('data-csn', id);
+                var raw = m.textContent.trim();
+                var label = raw.replace(/^\d+\s*[—\-]\s*/,'').trim();
+                var inFull = !!sec.closest('#full-cs');
+                navSecs.push({id:id, label:label, sec:sec, inFull:inFull});
+            });
+            navSecs.forEach(function(ns){
+                var a = document.createElement('a');
+                a.className = 'csn-item'+(ns.inFull?' cs-full':'');
+                a.setAttribute('data-csn-id', ns.id);
+                a.href = 'javascript:void(0)';
+                a.innerHTML = '<span class="csn-lbl">'+ns.label+'</span><span class="csn-dot"></span>';
+                if(ns.inFull) a.style.display='none';
+                a.addEventListener('click', function(){ ns.sec.scrollIntoView({behavior:'smooth',block:'start'}); });
+                csn.appendChild(a);
+            });
+            var obs2 = new IntersectionObserver(function(entries){
+                entries.forEach(function(e){
+                    if(e.isIntersecting){
+                        var id = e.target.getAttribute('data-csn');
+                        document.querySelectorAll('.csn-item').forEach(function(item){
+                            item.classList.toggle('active', item.getAttribute('data-csn-id')===id);
+                        });
+                    }
+                });
+            },{threshold:0.25, rootMargin:'-10% 0px -65% 0px'});
+            navSecs.forEach(function(ns){ obs2.observe(ns.sec); });
+        }
+        function updateNavVis(isOpen){
+            document.querySelectorAll('.csn-item.cs-full').forEach(function(item){
+                item.style.display = isOpen ? '' : 'none';
+            });
+        }
+        buildNav();
+
         var obs = new IntersectionObserver(function(entries){
             entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); } });
         }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });

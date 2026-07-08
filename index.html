@@ -550,6 +550,64 @@
         }
 
         /* ─────────────────────────────────────────
+           HERO RESTRUCTURE ADDITIONS
+        ───────────────────────────────────────── */
+        .hero-tagline {
+            font-size: 18px; color: var(--text-2); line-height: 1.65;
+            max-width: 600px; margin-bottom: 36px;
+            animation: slideUp .9s var(--ease-out) .42s both;
+        }
+        .hero-tagline strong { color: var(--text-1); font-weight: 600; }
+        .hero-meta {
+            display: flex; align-items: center; margin-bottom: 40px;
+            animation: slideUp .9s var(--ease-out) .54s both;
+        }
+        .hm-item { display: flex; flex-direction: column; gap: 2px; }
+        .hm-val { font-size: 19px; font-weight: 800; color: var(--text-1); letter-spacing: -.4px; }
+        .hm-lbl { font-size: 10px; color: var(--text-3); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; }
+        .hm-div { width: 1px; height: 36px; background: var(--border); margin: 0 28px; }
+        .hero-ctas { display: flex; gap: 12px; align-items: center; flex-shrink: 0; animation: slideUp .9s var(--ease-out) .62s both; }
+
+        /* ─────────────────────────────────────────
+           COMPANIES STRIP
+        ───────────────────────────────────────── */
+        .co-strip { padding: 20px 0; border-bottom: 1px solid var(--border); }
+        .co-strip-inner { display: flex; align-items: center; gap: 40px; flex-wrap: wrap; }
+        .co-strip-lbl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: var(--text-3); white-space: nowrap; flex-shrink: 0; }
+        .co-names { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+        .co-name { font-size: 15px; font-weight: 700; color: var(--text-2); letter-spacing: -.2px; transition: color .2s; }
+        .co-name:hover { color: var(--text-1); }
+        .co-sep { color: var(--text-3); font-size: 10px; }
+
+        /* ─────────────────────────────────────────
+           CARD REAL IMAGES
+        ───────────────────────────────────────── */
+        .wc-img { width: 100%; height: 100%; object-fit: cover; object-position: top left; opacity: .72; transition: opacity .4s ease, transform .6s var(--ease-out); display: block; }
+        .work-card:hover .wc-img { opacity: .88; transform: scale(1.03); }
+        .wc-img-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(8,8,8,0) 40%, rgba(8,8,8,.25) 100%); pointer-events: none; }
+        .wc-img-bg { background-size: cover; background-position: top left; background-repeat: no-repeat; transition: filter .4s ease; }
+        .wc-img-bg > svg { display: none; }
+        .work-card:hover .wc-img-bg { filter: brightness(1.1); }
+
+        /* ─────────────────────────────────────────
+           TESTIMONIALS
+        ───────────────────────────────────────── */
+        .testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+        .testi-card {
+            background: var(--surface-2); border-radius: var(--radius-md);
+            padding: 32px; display: flex; flex-direction: column;
+            justify-content: space-between; gap: 24px;
+            border: 1px solid var(--border);
+            transition: border-color .25s ease, transform .3s var(--ease-out);
+        }
+        .testi-card:hover { border-color: rgba(129,140,248,.3); transform: translateY(-3px); }
+        .testi-qmark { font-size: 48px; color: var(--yellow); opacity: .3; line-height: 1; margin-bottom: 4px; font-family: Georgia, serif; }
+        .testi-text { font-size: 14px; color: var(--text-1); line-height: 1.75; font-style: italic; }
+        .testi-name { font-size: 14px; font-weight: 700; color: var(--text-1); }
+        .testi-role { font-size: 11px; color: var(--text-3); margin-top: 3px; letter-spacing: .3px; }
+        .testi-placeholder { font-size: 13px; color: var(--text-3); line-height: 1.7; font-style: normal; background: rgba(129,140,248,.05); border: 1px dashed rgba(129,140,248,.2); border-radius: 8px; padding: 12px 14px; }
+
+        /* ─────────────────────────────────────────
            MARQUEE TICKER
         ───────────────────────────────────────── */
         .mq-wrap {
@@ -591,7 +649,7 @@
             .work-stack { grid-template-columns: 1fr; }
             .wc-visual { height: 220px; }
             .wc-body { padding: 28px 28px 32px; }
-            .bento { grid-template-columns: 1fr 1fr; }
+            .testi-grid { grid-template-columns: 1fr; }
             .bc--wide { grid-column: span 2; }
             .tl-item { grid-template-columns: 1fr; gap: 12px; }
             .contact-inner { grid-template-columns: 1fr; gap: 48px; }
@@ -620,6 +678,7 @@
         <a href="#work">Work</a>
         <a href="#about">About</a>
         <a href="#experience">Experience</a>
+        <a href="#testimonials">Testimonials</a>
         <a href="#contact" class="nav-cta">Contact</a>
     </div>
 </nav>
@@ -655,21 +714,29 @@
     <div class="hero-content">
         <div class="hero-status">
             <span class="hero-status-dot"></span>
-            <span class="hero-status-text">Currently at Western Union &mdash; Open to senior leadership roles</span>
+            <span class="hero-status-text">Available &mdash; Open to Senior Design Leadership Roles</span>
         </div>
         <div class="hero-eyebrow">
             <div class="hero-line"></div>
             <span class="hero-label">Product Design Manager &middot; Pune, India</span>
         </div>
         <h1 class="hero-name">Arindam<br><em>Sanyal.</em></h1>
-        <div class="hero-footer">
-            <p class="hero-desc">
-                <strong>14+ years</strong> designing fintech products at global scale. At <strong>Western Union</strong> I lead a team of 8 across onboarding, transfers, and account management &mdash; translating regulatory complexity into intuitive experiences for millions of users worldwide.
-            </p>
-            <div class="hero-ctas">
-                <a href="#work" class="btn btn-y">View Work &rarr;</a>
-                <a href="mailto:asanyal88@gmail.com" class="btn btn-o">Get in Touch</a>
-            </div>
+        <p class="hero-tagline">
+            Leading UX design for global fintech &mdash; from the <strong>biggest redesign in Western Union's history</strong>
+            to building personalisation systems used across <strong>200+ markets worldwide</strong>.
+        </p>
+        <div class="hero-meta">
+            <div class="hm-item"><div class="hm-val">14+</div><div class="hm-lbl">Years</div></div>
+            <div class="hm-div"></div>
+            <div class="hm-item"><div class="hm-val">8</div><div class="hm-lbl">Designers Led</div></div>
+            <div class="hm-div"></div>
+            <div class="hm-item"><div class="hm-val">200+</div><div class="hm-lbl">Markets</div></div>
+            <div class="hm-div"></div>
+            <div class="hm-item"><div class="hm-val">Fintech</div><div class="hm-lbl">Industry</div></div>
+        </div>
+        <div class="hero-ctas">
+            <a href="#work" class="btn btn-y">View Work &rarr;</a>
+            <a href="mailto:asanyal88@gmail.com" class="btn btn-o">Book an Intro</a>
         </div>
     </div>
     <div class="scroll-pill">
@@ -697,6 +764,26 @@
             <div class="stat r r-d3">
                 <div class="stat-num" data-to="8" data-prefix="~" data-suffix="%">~8%</div>
                 <div class="stat-text">Inbound customer support issues reduced</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ─ COMPANIES ─ -->
+<div class="co-strip">
+    <div class="wrap">
+        <div class="co-strip-inner">
+            <span class="co-strip-lbl">Companies I've Led Design For</span>
+            <div class="co-names">
+                <span class="co-name">Western Union</span>
+                <span class="co-sep">●</span>
+                <span class="co-name">EY</span>
+                <span class="co-sep">●</span>
+                <span class="co-name">Searce</span>
+                <span class="co-sep">●</span>
+                <span class="co-name">Mobikon</span>
+                <span class="co-sep">●</span>
+                <span class="co-name">Fab.com</span>
             </div>
         </div>
     </div>
@@ -850,7 +937,7 @@
 
             <!-- Card 2: UX Baseline -->
             <a href="ux-baseline-case-study.html" class="work-card r">
-                <div class="wc-visual">
+                <div class="wc-visual wc-img-bg" style="background-image:url('case-study-assets/03-payments-hub.png');background-size:cover;">
                     <svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
                         <style>
                             .b-screen { animation: bFade 4s ease-in-out infinite; }
@@ -952,7 +1039,7 @@
 
             <!-- Card 2: Send Money IMT -->
             <a href="send-money-imt-case-study.html" class="work-card r r-d1">
-                <div class="wc-visual">
+                <div class="wc-visual wc-img-bg" style="background-image:url('case-study-assets/05-send-with-contacts.png');background-size:cover;">
                     <svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
                         <style>
                             .i-path { stroke-dasharray: 300; animation: flowAnim 5s ease-in-out infinite; }
@@ -1282,6 +1369,86 @@
     </div>
 </section>
 
+<!-- ─── TESTIMONIALS ─── -->
+<section class="section" id="testimonials">
+    <div class="wrap">
+        <div class="sec-header r">
+            <div class="sec-tag">Testimonials</div>
+            <h2 class="sec-title">What People Say</h2>
+            <p class="sec-lead">Placeholder — replace with real quotes from colleagues, PMs, engineering leads, or stakeholders you've worked with.</p>
+        </div>
+        <div class="testi-grid">
+
+            <div class="testi-card r">
+                <div>
+                    <div class="testi-qmark">"</div>
+                    <p class="testi-text testi-placeholder">[Placeholder] Add a testimonial from a Product Manager or Engineering Lead you partnered with on the WU E1 Redesign.</p>
+                </div>
+                <div>
+                    <div class="testi-name">[Name]</div>
+                    <div class="testi-role">Product Manager · Western Union</div>
+                </div>
+            </div>
+
+            <div class="testi-card r r-d1">
+                <div>
+                    <div class="testi-qmark">"</div>
+                    <p class="testi-text testi-placeholder">[Placeholder] Add a quote from an Engineering Lead, Compliance partner, or Accessibility stakeholder at WU about your cross-functional collaboration.</p>
+                </div>
+                <div>
+                    <div class="testi-name">[Name]</div>
+                    <div class="testi-role">Engineering Lead · Western Union</div>
+                </div>
+            </div>
+
+            <div class="testi-card r r-d2">
+                <div>
+                    <div class="testi-qmark">"</div>
+                    <p class="testi-text testi-placeholder">[Placeholder] A testimonial from a designer you mentored, or a peer design leader who worked alongside you and can speak to your design management style.</p>
+                </div>
+                <div>
+                    <div class="testi-name">[Name]</div>
+                    <div class="testi-role">Senior UX Designer · Western Union</div>
+                </div>
+            </div>
+
+            <div class="testi-card r r-d1">
+                <div>
+                    <div class="testi-qmark">"</div>
+                    <p class="testi-text testi-placeholder">[Placeholder] A quote from someone at Searce (HappierWork) about your UX strategy and product discovery approach — a PM, engineering lead, or product director.</p>
+                </div>
+                <div>
+                    <div class="testi-name">[Name]</div>
+                    <div class="testi-role">Product Director · Searce Inc</div>
+                </div>
+            </div>
+
+            <div class="testi-card r r-d2">
+                <div>
+                    <div class="testi-qmark">"</div>
+                    <p class="testi-text testi-placeholder">[Placeholder] A testimonial from an EY client or colleague about your enterprise UX work, stakeholder facilitation, or design thinking sessions.</p>
+                </div>
+                <div>
+                    <div class="testi-name">[Name]</div>
+                    <div class="testi-role">Senior Manager · EY</div>
+                </div>
+            </div>
+
+            <div class="testi-card r r-d3">
+                <div>
+                    <div class="testi-qmark">"</div>
+                    <p class="testi-text testi-placeholder">[Placeholder] A LinkedIn recommendation from a peer, direct report, or senior leader who can speak to your design leadership philosophy and long-term impact.</p>
+                </div>
+                <div>
+                    <div class="testi-name">[Name]</div>
+                    <div class="testi-role">Design Director · [Company]</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
 <!-- ─── CONTACT ─── -->
 <section class="section section--alt" id="contact">
     <div class="wrap">
@@ -1296,7 +1463,7 @@
             <div class="contact-links r r-d1">
                 <a href="mailto:asanyal88@gmail.com" class="cl">
                     <div>
-                        <div class="cl-lbl">Email</div>
+                        <div class="cl-lbl">Book an Intro</div>
                         <div class="cl-val">asanyal88@gmail.com</div>
                     </div>
                     <div class="cl-arrow">↗</div>

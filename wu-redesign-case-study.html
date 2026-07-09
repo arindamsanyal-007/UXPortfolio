@@ -40,16 +40,24 @@ nav{position:fixed;inset:0 0 auto;z-index:99;padding:18px var(--px);display:flex
 .ci-items{display:flex;flex-direction:column;gap:8px}
 .ci-item{font-size:13px;color:var(--fg2);display:flex;gap:8px;line-height:1.5}
 .ci-item::before{content:'\2937';color:var(--accent2);flex-shrink:0;font-size:12px;margin-top:1px}
-.cs-content{padding:80px 0}
-.cs-section{margin-bottom:80px}
-.cs-sec-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--accent);margin-bottom:20px}
+.cs-content{padding:0}
+.cs-section{
+  margin-bottom:0;padding:56px 0;border-bottom:1px solid var(--border);
+  display:grid;grid-template-columns:220px 1fr;gap:48px;align-items:start;
+}
+.cs-section:last-child{border-bottom:none}
+.cs-sec-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--accent);margin-bottom:0;padding-top:4px}
+.cs-sec-body{}
 .cs-section img{width:100%;border-radius:12px;display:block;background:var(--s1)}
-.cs-caption{font-size:14px;color:var(--fg2);line-height:1.7;margin-top:16px;max-width:680px}
+.cs-caption{font-size:14px;color:var(--fg2);line-height:1.7;margin-top:16px}
 .cs-img-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
 .cs-img-grid img{width:100%;border-radius:10px;display:block;background:var(--s1);aspect-ratio:16/10;object-fit:cover;object-position:top left}
-.cs-process{padding:64px 0;border-top:1px solid var(--border)}
-.cs-process-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--accent);margin-bottom:24px}
-.cs-process-text{font-size:16px;color:var(--fg2);line-height:1.8;max-width:720px}
+.cs-process{
+  padding:56px 0;border-top:1px solid var(--border);
+  display:grid;grid-template-columns:220px 1fr;gap:48px;align-items:start;
+}
+.cs-process-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--accent);margin-bottom:0;padding-top:4px}
+.cs-process-text{font-size:15px;color:var(--fg2);line-height:1.8}
 .cs-process-text p{margin-bottom:16px}
 .cs-process-text p:last-child{margin-bottom:0}
 .cs-nav{display:flex;align-items:center;justify-content:space-between;padding:40px 0;border-top:1px solid var(--border)}
@@ -80,6 +88,7 @@ footer{padding:22px var(--px);border-top:1px solid var(--border);display:flex;al
   .cs-title{letter-spacing:-2px}
   .cs-impact{grid-template-columns:1fr 1fr;gap:28px}
   .cs-img-grid{grid-template-columns:1fr}
+  .cs-section,.cs-process{grid-template-columns:1fr}
   .nav-links a{display:none}
 }
 </style>
@@ -133,32 +142,40 @@ footer{padding:22px var(--px);border-top:1px solid var(--border);display:flex;al
 
   <div class="cs-section rv">
     <div class="cs-sec-lbl">The Challenge</div>
-    <div class="cs-challenges">
-      <div class="cs-challenge"><div class="cs-ch-label">Legacy &amp; Debt</div><div class="cs-ch-body">Win leadership buy-in to challenge technical constraints, not design around them.</div></div>
-      <div class="cs-challenge"><div class="cs-ch-label">Alignment at Scale</div><div class="cs-ch-body">Keep product, engineering, and design moving in the same direction across squads.</div></div>
-      <div class="cs-challenge"><div class="cs-ch-label">Compliance Without Friction</div><div class="cs-ch-body">Make KYC/AML flows feel transparent and trustworthy despite heavy regulation.</div></div>
+    <div class="cs-sec-body">
+      <div class="cs-challenges">
+        <div class="cs-challenge"><div class="cs-ch-label">Legacy &amp; Debt</div><div class="cs-ch-body">Win leadership buy-in to challenge technical constraints, not design around them.</div></div>
+        <div class="cs-challenge"><div class="cs-ch-label">Alignment at Scale</div><div class="cs-ch-body">Keep product, engineering, and design moving in the same direction across squads.</div></div>
+        <div class="cs-challenge"><div class="cs-ch-label">Compliance Without Friction</div><div class="cs-ch-body">Make KYC/AML flows feel transparent and trustworthy despite heavy regulation.</div></div>
+      </div>
     </div>
   </div>
 
   <div class="cs-section rv">
     <div class="cs-sec-lbl">Payments Hub</div>
-    <img src="case-study-assets/03-payments-hub.png" alt="Payments Hub">
-    <p class="cs-caption">New entry point built around sending to a person, not selecting a corridor. Recent contacts, quick actions, and history as the primary interface.</p>
+    <div class="cs-sec-body">
+      <img src="case-study-assets/03-payments-hub.png" alt="Payments Hub">
+      <p class="cs-caption">New entry point built around sending to a person, not selecting a corridor. Recent contacts, quick actions, and history as the primary interface.</p>
+    </div>
   </div>
 
   <div class="cs-section rv">
     <div class="cs-sec-lbl">Transfer Flow</div>
-    <div class="cs-img-grid">
-      <img src="case-study-assets/05-send-with-contacts.png" alt="Send with Contacts">
-      <img src="case-study-assets/04-send-methods.png" alt="Send Methods">
+    <div class="cs-sec-body">
+      <div class="cs-img-grid">
+        <img src="case-study-assets/05-send-with-contacts.png" alt="Send with Contacts">
+        <img src="case-study-assets/04-send-methods.png" alt="Send Methods">
+      </div>
+      <p class="cs-caption">Amount entry, live conversion, payment method, and fee transparency consolidated into one screen &mdash; reducing perceived steps from 7 to 3.</p>
     </div>
-    <p class="cs-caption">Amount entry, live conversion, payment method, and fee transparency consolidated into one screen &mdash; reducing perceived steps from 7 to 3.</p>
   </div>
 
   <div class="cs-section rv">
     <div class="cs-sec-lbl">End-to-End Journey</div>
-    <img src="case-study-assets/08-bank-account-flow.png" alt="End-to-End Journey">
-    <p class="cs-caption">19-screen bank transfer baseline covering entry through confirmation and error states &mdash; the definitive engineering handoff reference across all markets.</p>
+    <div class="cs-sec-body">
+      <img src="case-study-assets/08-bank-account-flow.png" alt="End-to-End Journey">
+      <p class="cs-caption">19-screen bank transfer baseline covering entry through confirmation and error states &mdash; the definitive engineering handoff reference across all markets.</p>
+    </div>
   </div>
 
 </div>

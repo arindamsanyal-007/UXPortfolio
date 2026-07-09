@@ -55,6 +55,21 @@ nav{position:fixed;inset:0 0 auto;z-index:99;padding:18px var(--px);display:flex
 .cs-nav{display:flex;align-items:center;justify-content:space-between;padding:40px 0;border-top:1px solid var(--border)}
 .cs-nav a{font-size:13px;color:var(--fg2);font-weight:500;display:flex;align-items:center;gap:6px;transition:color .2s}
 .cs-nav a:hover{color:var(--fg)}
+/* CHALLENGE CARDS */
+.cs-challenges{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px}
+.cs-challenge{background:var(--s1);border:1px solid var(--border);border-radius:8px;padding:20px 22px}
+.cs-ch-label{font-size:12px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.cs-ch-body{font-size:13px;color:var(--fg2);line-height:1.65}
+/* TWO COLUMN */
+.cs-two-col{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.cs-col-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px}
+.cs-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.cs-list li{font-size:14px;color:var(--fg2);line-height:1.6;padding-left:16px;position:relative}
+.cs-list li::before{content:'→';position:absolute;left:0;color:var(--accent2);font-size:11px;top:3px}
+@media(max-width:880px){
+  .cs-challenges{grid-template-columns:1fr}
+  .cs-two-col{grid-template-columns:1fr}
+}
 footer{padding:22px var(--px);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--s1)}
 .fl,.fr{font-size:12px;color:var(--fg3)}
 .cursor-glow{position:fixed;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(108,99,255,.1) 0%,transparent 70%);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);will-change:transform;}
@@ -85,21 +100,158 @@ footer{padding:22px var(--px);border-top:1px solid var(--border);display:flex;al
 </nav>
 <main>
 <div class="wrap">
-<div class="cs-hero">
-  <div class="cs-label">Case Study</div>
-  <h1 class="cs-title">WU E1 Redesign</h1>
-  
+
+<div class="cs-hero rv">
+  <div class="cs-label">Case Study &mdash; Western Union</div>
+  <h1 class="cs-title">Biggest overhaul in the history of Western Union</h1>
 </div>
-<div class="cs-about"><p class="cs-about-text">I led the biggest redesign in Western Union&rsquo;s history &mdash; unifying 5 fragmented digital products into one wallet-based platform. Managing a team of 11 designers across iOS, Android, and web, I balanced global brand consistency with regulatory compliance, accelerated delivery through dual-track agile, and introduced design QA rituals that reduced engineering rework by 40%.</p></div>
-<div class="cs-impact">
+
+<div class="cs-about rv">
+  <p class="cs-about-text">Design a new-age, modern unified wallet-based money transfer application to enhance customer experience &mdash; becoming the single place for customers to interact with Western Union globally, welcoming customers of today while positioning for tomorrow.</p>
+</div>
+
+<div class="cs-impact rv">
   <div><div class="ci-lbl">Year</div><div class="ci-val">2023 &ndash; Present</div></div>
-  <div><div class="ci-lbl">Impact</div><div class="ci-items"><div class="ci-item">~5% drop-off reduction across key journeys</div><div class="ci-item">~25% fewer late-stage design changes</div><div class="ci-item">~20% design-to-engineering handoff time saved</div><div class="ci-item">40% rework reduction through design QA rituals</div></div></div>
-  <div><div class="ci-lbl">Collaborators</div><div class="ci-items"><div class="ci-item">Product Management</div><div class="ci-item">Engineering &mdash; 40+ engineers</div><div class="ci-item">Compliance &amp; Accessibility</div><div class="ci-item">Content &amp; Brand</div></div></div>
-  <div><div class="ci-lbl">My Role</div><div class="ci-items"><div class="ci-item">Design Manager</div><div class="ci-item">UX Strategy</div><div class="ci-item">Design Systems</div><div class="ci-item">Delivery &amp; Operations</div></div></div>
+  <div><div class="ci-lbl">Impact</div><div class="ci-items">
+    <div class="ci-item">~5% drop-off reduction across key journeys</div>
+    <div class="ci-item">40% rework reduction via design QA rituals</div>
+    <div class="ci-item">~25% fewer late-stage design changes</div>
+    <div class="ci-item">~20% faster design-to-engineering handoff</div>
+  </div></div>
+  <div><div class="ci-lbl">Collaborators</div><div class="ci-items">
+    <div class="ci-item">Product Management</div>
+    <div class="ci-item">40+ Engineers</div>
+    <div class="ci-item">Compliance &amp; Accessibility</div>
+    <div class="ci-item">Content &amp; Brand</div>
+  </div></div>
+  <div><div class="ci-lbl">My Role</div><div class="ci-items">
+    <div class="ci-item">Design Manager &mdash; 11-person team</div>
+    <div class="ci-item">UX Strategy &amp; Discovery</div>
+    <div class="ci-item">Design Systems</div>
+    <div class="ci-item">Delivery &amp; Operations</div>
+  </div></div>
 </div>
-<div class="cs-content"><div class="cs-section"><div class="cs-sec-lbl">Payments Hub</div><img src="case-study-assets/03-payments-hub.png" alt="Payments Hub"><p class="cs-caption">The new entry point built around the user&rsquo;s mental model: sending to a person, not selecting a corridor. Recent contacts, quick actions, and payment history as the primary interface.</p></div><div class="cs-section"><div class="cs-sec-lbl">Transfer Flow</div><div class="cs-img-grid"><img src="case-study-assets/05-send-with-contacts.png" alt=""><img src="case-study-assets/04-send-methods.png" alt=""></div><p class="cs-caption">The estimate screen consolidates amount entry, live conversion, payment method selection, and fee transparency into a single view &mdash; reducing perceived steps from 7 to 3.</p></div><div class="cs-section"><div class="cs-sec-lbl">End-to-End Journey</div><img src="case-study-assets/08-bank-account-flow.png" alt="End-to-End Journey"><p class="cs-caption">The complete bank account transfer baseline &mdash; 19 screens covering entry through confirmation and error states. The definitive reference for engineering handoff across all markets.</p></div></div>
-<div class="cs-process"><div class="cs-process-lbl">Process</div><div class="cs-process-text"><p>The project began with a 2-day product strategy workshop bringing together Product, Business, and Engineering leadership to align on vision before any design work began. This was followed by competitor IA analysis (Wise, Remitly, existing WU R4), card sorting with real users, and a complete service blueprint mapping the sender journey end-to-end.</p><p>Epic prioritisation using the RICE framework established a clear delivery roadmap. I championed building the Nexus Design System before production screens &mdash; a non-negotiable decision that made 142+ screens ship at consistent quality. Dual-track agile ensured discovery always ran ahead of delivery, eliminating the engineering bottlenecks that had plagued previous WU projects.</p></div></div>
-<div class="cs-nav"><span></span><a href="ux-baseline-case-study.html">UX Baseline &rarr;</a></div>
+
+<div class="cs-content">
+
+  <div class="cs-section rv">
+    <div class="cs-sec-lbl">The Challenge</div>
+    <p class="cs-caption" style="max-width:100%;font-size:15px;line-height:1.8;margin-bottom:28px">Western Union operated five fragmented digital products &mdash; R3 web/mobile, R4 web/mobile, US Wallet, EU Banking App &mdash; each with its own stack, team, and experience. The mandate was to collapse them into one unified, wallet-based platform without losing the trust of existing customers or violating regulatory constraints across global markets.</p>
+    <div class="cs-challenges">
+      <div class="cs-challenge rv"><div class="cs-ch-label">Legacy Systems &amp; Technical Debt</div><div class="cs-ch-body">Getting buy-in from senior leadership on design direction so that technical limitations could be challenged and rectified, not worked around.</div></div>
+      <div class="cs-challenge rv"><div class="cs-ch-label">Cross-Functional Alignment</div><div class="cs-ch-body">Embedded in grooming sessions with product and engineering to align everyone before a single pixel was designed.</div></div>
+      <div class="cs-challenge rv"><div class="cs-ch-label">Resource Constraints</div><div class="cs-ch-body">Prioritised work, adapted to fast delivery cycles, and decisively guided junior designers to stay on track.</div></div>
+      <div class="cs-challenge rv"><div class="cs-ch-label">Limited Access to Real Users</div><div class="cs-ch-body">Partnered with local research agencies and used remote usability testing tools (UserTesting) to maintain a continuous feedback loop.</div></div>
+      <div class="cs-challenge rv"><div class="cs-ch-label">Design&ndash;Engineering Collaboration Gaps</div><div class="cs-ch-body">Hosted daily/weekly syncs, created interactive prototypes to clarify animations and interactions, and established shared feasibility checkpoints.</div></div>
+      <div class="cs-challenge rv"><div class="cs-ch-label">Internal Feedback Overload</div><div class="cs-ch-body">Limited feedback rounds and designated a final decision-maker for each design phase to protect quality and velocity.</div></div>
+    </div>
+  </div>
+
+  <div class="cs-section rv">
+    <div class="cs-sec-lbl">Objectives</div>
+    <div class="cs-two-col">
+      <div>
+        <p class="cs-col-lbl">Strategic imperatives</p>
+        <ul class="cs-list">
+          <li>Engage receivers and elevate their status as core drivers of revenue and user acquisition</li>
+          <li>Expand the product suite beyond core money transfer &mdash; loyalty, financial services</li>
+          <li>Move to an account-based model offering multiple financial products</li>
+          <li>Deliver an integrated omni-channel experience leveraging the digital wallet</li>
+          <li>Modernise front-end platforms to improve speed of global delivery</li>
+        </ul>
+      </div>
+      <div>
+        <p class="cs-col-lbl">Operational drivers</p>
+        <ul class="cs-list">
+          <li>Eliminate duplication across R3, R4, US Wallet, EU Banking App</li>
+          <li>Unify technology stack, streamline teams, reduce cost and increase reliability</li>
+          <li>Trim licensing, maintenance, and infrastructure deployment costs</li>
+          <li>Simplified architecture through decoupling of services and modular components</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-section rv">
+    <div class="cs-sec-lbl">My Role as Design Manager</div>
+    <div class="cs-two-col">
+      <div>
+        <p class="cs-col-lbl">Design Leadership</p>
+        <ul class="cs-list">
+          <li>Led end-to-end UX process from discovery to delivery across a team of 11 designers</li>
+          <li>Balanced global brand consistency with Canada-specific localisation (English/French)</li>
+          <li>Ensured compliance-driven flows (KYC/AML) were usable, transparent, and trustworthy despite heavy regulatory constraints</li>
+        </ul>
+        <p class="cs-col-lbl" style="margin-top:24px">Team Management &amp; Mentorship</p>
+        <ul class="cs-list">
+          <li>Held weekly 1:1s and design critique sessions to foster continuous growth</li>
+          <li>Mentored junior designers on prioritisation and aligning UX decisions with business goals</li>
+        </ul>
+      </div>
+      <div>
+        <p class="cs-col-lbl">Cross-Functional &amp; Stakeholder Management</p>
+        <ul class="cs-list">
+          <li>Acted as bridge between design, engineering, and product management</li>
+          <li>Partnered closely with 40+ engineers ensuring designs were feasible and scalable</li>
+          <li>Negotiated scope trade-offs with PMs and Engineering Leads, protecting core UX outcomes</li>
+          <li>Collaborated with content and branding teams to align messaging and visual language</li>
+        </ul>
+        <p class="cs-col-lbl" style="margin-top:24px">Delivery &amp; Operations</p>
+        <ul class="cs-list">
+          <li>Embedded designers directly into agile squads, enabling continuous feedback loops</li>
+          <li>Introduced design QA rituals &mdash; reduced rework and sped up handoff by 40%</li>
+          <li>Championed dual-track agile so discovery ran ahead of delivery, preventing bottlenecks</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-section rv">
+    <div class="cs-sec-lbl">Payments Hub</div>
+    <img src="case-study-assets/03-payments-hub.png" alt="Payments Hub">
+    <p class="cs-caption">The new entry point built around the user&rsquo;s mental model: sending to a person, not selecting a corridor. Recent contacts, quick actions, and payment history as the primary interface.</p>
+  </div>
+
+  <div class="cs-section rv">
+    <div class="cs-sec-lbl">Transfer Flow</div>
+    <div class="cs-img-grid">
+      <img src="case-study-assets/05-send-with-contacts.png" alt="Send with Contacts">
+      <img src="case-study-assets/04-send-methods.png" alt="Send Methods">
+    </div>
+    <p class="cs-caption">The estimate screen consolidates amount entry, live conversion, payment method selection, and fee transparency into a single view &mdash; reducing perceived steps from 7 to 3.</p>
+  </div>
+
+  <div class="cs-section rv">
+    <div class="cs-sec-lbl">End-to-End Journey</div>
+    <img src="case-study-assets/08-bank-account-flow.png" alt="End-to-End Journey">
+    <p class="cs-caption">The complete bank account transfer baseline &mdash; 19 screens covering entry through confirmation and error states. The definitive reference for engineering handoff across all markets.</p>
+  </div>
+
+</div>
+
+<div class="cs-process rv">
+  <div class="cs-process-lbl">Process</div>
+  <div class="cs-process-text">
+    <p><strong>Product Strategy Workshop.</strong> A 2-day workshop bringing together Product, Business, and Engineering leadership to align on vision before any design work began. Followed by a competitor IA analysis of Wise, Remitly, and the existing WU R4 app to map patterns and gaps.</p>
+    <p><strong>Card Sorting &amp; IA.</strong> Post-workshop, we created several IA options and tested them with a limited audience, then proposed the optimal information architecture alongside the master user flow.</p>
+    <p><strong>Service Blueprint.</strong> Mapped the complete sender journey end-to-end, exposing friction points invisible to any single team alone.</p>
+    <p><strong>Epic Prioritisation.</strong> In collaboration with Product, we applied the RICE framework to create a clear, sequenced roadmap of feature deliveries. Each epic spanned two sprints. Design dependencies were treated as first-class constraints.</p>
+    <p><strong>Design System First.</strong> Before a single production screen, we made the case for &mdash; and won &mdash; a dedicated design system effort. The Nexus Design System united all WU digital assets under one roof, making 142+ screens ship at consistent quality at scale.</p>
+    <p><strong>UX Jam Sessions.</strong> Regular cross-functional jam sessions kept alignment alive between design, engineering, and product as we moved from wireframes to high-fidelity production screens.</p>
+    <p><strong>UX Review Before Launch.</strong> As a final quality measure, we conducted a full UX evaluation of the complete application to close the gap between design intent and shipped experience.</p>
+  </div>
+</div>
+
+<div class="cs-process rv" style="border-top:none;padding-top:0">
+  <div class="cs-process-lbl">What&rsquo;s Next</div>
+  <div class="cs-process-text">
+    <p>Monitor user activity, feedback, and behaviour through analytics (Amplitude, Quantum Metrics) and voice-of-customer channels to surface issues early.</p>
+    <p>Identify and prioritise issues through weekly hot-fix releases. A dedicated squad of designers handles optimisations while the remaining team advances the experience for new regions.</p>
+  </div>
+</div>
+
+<div class="cs-nav rv"><span></span><a href="ux-baseline-case-study.html">UX Baseline &rarr;</a></div>
+
 </div>
 </main>
 <footer><span class="fl">Arindam Sanyal &mdash; Product Design Manager</span><span class="fr">Pune, India &middot; &copy; 2026</span></footer>

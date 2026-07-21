@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>[DRAFT PREVIEW] WU E1 Redesign — Arindam Sanyal</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#111214;--s1:#18191d;--s2:#1e2025;
+  --fg:#fff;--fg2:rgba(255,255,255,.52);--fg3:rgba(255,255,255,.28);
+  --border:rgba(255,255,255,.1);
+  --accent:#6c63ff;--accent2:#00d4a0;
+  --px:48px;--mw:1032px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+
+/* DRAFT BANNER */
+.draft-banner{
+  position:fixed;bottom:0;left:0;right:0;z-index:999;
+  background:#f5a623;color:#000;
+  text-align:center;padding:10px 24px;
+  font-size:13px;font-weight:700;letter-spacing:.5px;
+}
+
+/* NAV */
+nav{position:fixed;inset:0 0 auto;z-index:99;padding:18px var(--px);display:flex;align-items:center;justify-content:space-between;background:rgba(17,18,20,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-stamp{width:34px;height:34px;border:1.5px solid var(--accent);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;letter-spacing:-.5px;flex-shrink:0;color:var(--accent);}
+.logo-name{font-size:14px;font-weight:600;letter-spacing:-.2px}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{font-size:14px;color:var(--fg2);transition:color .2s}
+.nav-links a:hover{color:var(--fg)}
+
+/* LAYOUT */
+.wrap{max-width:var(--mw);margin:0 auto;padding:0 var(--px)}
+
+/* HERO */
+.cs-hero{padding:120px 0 64px;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.cs-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(108,99,255,.13) 0%,transparent 70%);pointer-events:none;}
+.cs-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--accent);margin-bottom:24px}
+.cs-title{font-size:clamp(36px,5vw,72px);font-weight:700;letter-spacing:-2.5px;line-height:1.05;margin-bottom:0;position:relative;z-index:1}
+
+/* ABOUT */
+.cs-about{padding:56px 0;border-bottom:1px solid var(--border)}
+.cs-about-text{font-size:clamp(18px,2.2vw,22px);font-weight:500;font-style:italic;line-height:1.6;color:var(--fg);max-width:820px}
+
+/* IMPACT — redesigned with big numbers */
+.cs-impact{
+  padding:56px 0;border-bottom:1px solid var(--border);
+}
+.cs-impact-metrics{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:var(--border);
+  border-radius:12px;overflow:hidden;
+  margin-bottom:32px;
+}
+.cs-metric{
+  background:var(--s1);padding:28px 24px;
+  display:flex;flex-direction:column;gap:6px;
+}
+.cs-metric-num{
+  font-size:clamp(36px,4vw,56px);font-weight:900;
+  letter-spacing:-2px;line-height:1;
+  color:var(--fg);
+}
+.cs-metric-num b{color:var(--accent2)}
+.cs-metric-label{font-size:13px;font-weight:500;color:var(--fg2);line-height:1.4}
+.cs-metric-context{font-size:11px;color:var(--fg3);margin-top:2px}
+.cs-impact-meta{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+  padding-top:24px;border-top:1px solid var(--border);
+}
+.cs-meta-group{}
+.cs-meta-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:8px}
+.cs-meta-items{display:flex;flex-direction:column;gap:4px}
+.cs-meta-item{font-size:13px;color:var(--fg2);line-height:1.5}
+
+/* SECTIONS — 220px | 1fr grid matching landing page */
+.cs-content{padding:0}
+.cs-section{
+  padding:56px 0;border-bottom:1px solid var(--border);
+  display:grid;grid-template-columns:220px 1fr;gap:48px;align-items:start;
+}
+.cs-sec-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--accent);padding-top:4px}
+.cs-section img{width:100%;border-radius:12px;display:block;background:var(--s1)}
+.cs-caption{font-size:14px;color:var(--fg2);line-height:1.7;margin-top:16px}
+.cs-img-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.cs-img-grid img{width:100%;border-radius:10px;display:block;background:var(--s1);aspect-ratio:16/10;object-fit:cover;object-position:top left}
+
+/* OWNERSHIP TABLE */
+.cs-ownership{width:100%;border-collapse:collapse;margin-bottom:8px}
+.cs-ownership th{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);padding:0 0 12px;text-align:left;border-bottom:1px solid var(--border)}
+.cs-ownership td{font-size:13px;color:var(--fg2);padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);vertical-align:top;line-height:1.5}
+.cs-ownership td:first-child{padding-right:32px;color:var(--fg);font-weight:500}
+.cs-ownership tr:last-child td{border-bottom:none}
+
+/* DECISIONS */
+.cs-decisions{display:flex;flex-direction:column;gap:32px}
+.cs-decision{}
+.cs-decision-num{font-size:11px;font-weight:700;color:var(--accent2);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px}
+.cs-decision-title{font-size:16px;font-weight:700;color:var(--fg);margin-bottom:10px;letter-spacing:-.2px}
+.cs-decision-body{font-size:14px;color:var(--fg2);line-height:1.75}
+
+/* METRICS TABLE */
+.cs-metrics{width:100%;border-collapse:collapse}
+.cs-metrics th{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);padding:0 0 12px;text-align:left;border-bottom:1px solid var(--border)}
+.cs-metrics td{font-size:13px;color:var(--fg2);padding:12px 0;border-bottom:1px solid rgba(255,255,255,.05);line-height:1.5;vertical-align:top}
+.cs-metrics td:first-child{color:var(--fg);font-weight:500;padding-right:24px}
+.cs-metrics td.metric-val{color:var(--accent2);font-weight:700;font-size:14px;padding-right:24px}
+.cs-metrics tr:last-child td{border-bottom:none}
+
+/* RETROSPECTIVE */
+.cs-retro{background:var(--s1);border:1px solid var(--border);border-radius:10px;padding:24px 28px}
+.cs-retro-body{font-size:14px;color:var(--fg2);line-height:1.75}
+.cs-retro-body::before{content:'"';font-size:32px;color:var(--accent);line-height:1;display:block;margin-bottom:8px;font-family:Georgia,serif}
+
+/* PROCESS */
+.cs-process{
+  padding:56px 0;border-top:1px solid var(--border);
+  display:grid;grid-template-columns:220px 1fr;gap:48px;align-items:start;
+}
+.cs-process-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--accent);padding-top:4px}
+
+/* NAV */
+.cs-nav{display:flex;align-items:center;justify-content:space-between;padding:40px 0 48px;border-top:1px solid var(--border)}
+/* CTA */
+.cs-cta{padding:0 0 80px;text-align:center}
+.cs-cta-btn{display:inline-flex;align-items:center;gap:10px;font-size:16px;font-weight:700;letter-spacing:-.2px;color:#000;background:var(--accent2);padding:16px 36px;border-radius:100px;transition:opacity .2s,transform .2s;text-decoration:none;}
+.cs-cta-btn:hover{opacity:.88;transform:translateY(-2px)}
+.cs-nav a{font-size:13px;color:var(--fg2);font-weight:500;transition:color .2s}
+.cs-nav a:hover{color:var(--fg)}
+
+/* SECTION NAV */
+.section-nav{
+  position:sticky;top:70px;z-index:50;
+  background:rgba(17,18,20,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  overflow-x:auto;scrollbar-width:none;
+  opacity:0;transform:translateY(-8px);transition:opacity .3s,transform .3s;
+  pointer-events:none;
+}
+.section-nav.visible{opacity:1;transform:none;pointer-events:auto}
+.section-nav::-webkit-scrollbar{display:none}
+.section-nav-inner{
+  max-width:var(--mw);margin:0 auto;padding:0 var(--px);
+  display:flex;gap:0;
+}
+.section-nav a{
+  font-size:12px;font-weight:500;color:var(--fg3);
+  padding:12px 14px;white-space:nowrap;
+  border-bottom:2px solid transparent;
+  text-decoration:none;transition:color .2s,border-color .2s;
+  flex-shrink:0;
+}
+.section-nav a:hover{color:var(--fg2)}
+.section-nav a.sn-active{color:var(--accent2);border-bottom-color:var(--accent2)}
+
+/* FOOTER */
+footer{padding:22px var(--px);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--s1);padding-bottom:52px}
+.fl,.fr{font-size:12px;color:var(--fg3)}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+/* FRAGMENTATION DIAGRAM */
+.frag-diagram{display:flex;align-items:center;gap:0;padding:24px 0}
+.frag-apps{display:flex;flex-direction:column;gap:8px;flex-shrink:0;width:164px}
+.frag-app{background:var(--s2);border:1px solid var(--border);border-radius:6px;padding:9px 13px}
+.frag-app-name{font-size:12px;font-weight:600;color:var(--fg);display:block}
+.frag-app-issue{font-size:10px;color:var(--fg3);display:block;margin-top:2px}
+.frag-funnel{flex:1;display:flex;align-items:center;justify-content:center;padding:0 8px}
+.frag-unified{flex-shrink:0;width:148px;background:linear-gradient(135deg,rgba(108,99,255,.18),rgba(0,212,160,.1));border:1.5px solid var(--accent);border-radius:10px;padding:20px 16px;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
+.frag-unified-name{font-size:26px;font-weight:900;color:var(--accent);letter-spacing:-1px;line-height:1}
+.frag-unified-sub{font-size:11px;color:var(--fg2);font-weight:500}
+
+/* SWIM LANE */
+.swimlane{display:flex;flex-direction:column;gap:12px;padding:4px 0}
+.swim-row{display:flex;align-items:center;gap:16px;padding:16px;border-radius:8px}
+.swim-row--before{background:rgba(255,255,255,.03);border:1px solid var(--border)}
+.swim-row--after{background:rgba(108,99,255,.05);border:1px solid rgba(108,99,255,.25)}
+.swim-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;width:44px;flex-shrink:0}
+.swim-label--before{color:var(--fg3)}
+.swim-label--after{color:var(--accent)}
+.swim-steps{display:flex;align-items:center;gap:8px;flex-wrap:wrap;flex:1}
+.swim-step{padding:6px 14px;border-radius:100px;font-size:12px;font-weight:600;white-space:nowrap}
+.swim-step--design,.swim-step--discovery{background:rgba(108,99,255,.25);color:var(--accent);border:1px solid rgba(108,99,255,.4)}
+.swim-step--idle{background:rgba(255,255,255,.05);color:var(--fg3);border:1px dashed rgba(255,255,255,.15)}
+.swim-step--delivery{background:rgba(108,99,255,.12);color:#9d95ff;border:1px solid rgba(108,99,255,.25)}
+.swim-step--eng{background:rgba(0,212,160,.12);color:var(--accent2);border:1px solid rgba(0,212,160,.3)}
+.swim-parallel{display:flex;flex-direction:column;gap:6px}
+.swim-arrow{color:var(--fg3);font-size:18px;flex-shrink:0}
+.swim-note{font-size:11px;color:var(--accent2);font-weight:600;padding:8px 16px;background:rgba(0,212,160,.08);border-radius:6px;margin-top:4px}
+
+/* FLOW COMPARISON */
+.flow-compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:4px}
+.flow-col{border:1px solid var(--border);border-radius:8px;padding:20px}
+.flow-col--new{border-color:rgba(0,212,160,.4);background:rgba(0,212,160,.04)}
+.flow-col-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:14px;display:block}
+.flow-col--old .flow-col-label{color:var(--fg3)}
+.flow-col--new .flow-col-label{color:var(--accent2)}
+.flow-steps{display:flex;flex-direction:column;gap:8px}
+.flow-step{display:flex;align-items:flex-start;gap:10px;font-size:13px}
+.flow-step-num{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;margin-top:1px}
+.flow-col--old .flow-step-num{background:rgba(255,255,255,.08);color:var(--fg3)}
+.flow-col--new .flow-step-num{background:rgba(0,212,160,.25);color:var(--accent2)}
+.flow-step-text{color:var(--fg2);line-height:1.45}
+.flow-col--new .flow-step-text{color:var(--fg)}
+.flow-verdict{margin-top:16px;padding-top:14px;border-top:1px solid var(--border);font-size:12px;font-weight:700}
+.flow-col--old .flow-verdict{color:var(--fg3)}
+.flow-col--new .flow-verdict{color:var(--accent2)}
+
+/* PLATFORM GRID */
+.platform-table{width:100%;border-collapse:collapse;margin-top:4px}
+.platform-table th{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--accent);padding:0 8px 12px 0;text-align:left;border-bottom:1px solid var(--border)}
+.platform-table th:first-child{width:72px}
+.platform-table td{padding:10px 8px 10px 0;border-bottom:1px solid rgba(255,255,255,.05);vertical-align:middle}
+.platform-table tr:last-child td{border-bottom:none}
+.plat-name{font-size:11px;font-weight:700;color:var(--fg2);text-transform:uppercase;letter-spacing:1px}
+.plat-pill{display:inline-block;font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px;color:var(--accent2);border:1px solid rgba(0,212,160,.3);background:rgba(0,212,160,.06);margin:2px 3px 2px 0}
+
+/* STAT CALLOUTS */
+.stat-callouts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:4px}
+.stat-callout{background:var(--s1);border:1px solid var(--border);border-radius:10px;padding:24px 20px}
+.stat-callout-num{font-size:44px;font-weight:900;letter-spacing:-2px;color:var(--fg);line-height:1;margin-bottom:8px}
+.stat-callout-accent{color:var(--accent2)}
+.stat-callout-label{font-size:13px;font-weight:600;color:var(--fg2);line-height:1.4}
+.stat-callout-sub{font-size:11px;color:var(--fg3);margin-top:4px}
+
+/* DIRECTION GRID */
+.direction-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px}
+.direction-card{border:1px solid var(--border);border-radius:8px;overflow:hidden;position:relative}
+.direction-card--selected{border-color:var(--accent2);box-shadow:0 0 0 1px rgba(0,212,160,.4)}
+.direction-badge{position:absolute;top:10px;right:10px;background:var(--accent2);color:#000;font-size:10px;font-weight:800;padding:3px 10px;border-radius:100px;letter-spacing:.5px}
+.direction-preview{height:90px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--fg3)}
+.direction-info{padding:12px 14px;border-top:1px solid var(--border)}
+.direction-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--fg3);margin-bottom:4px}
+.direction-desc{font-size:12px;color:var(--fg2);line-height:1.5}
+
+/* UX REVIEW LENS CARDS */
+.lens-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:4px}
+.lens-card{background:var(--s1);border:1px solid var(--border);border-radius:8px;padding:20px 16px}
+.lens-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;font-size:19px}
+.lens-title{font-size:13px;font-weight:700;color:var(--fg);margin-bottom:6px}
+.lens-question{font-size:12px;color:var(--fg2);line-height:1.55}
+
+/* ROLE LIST */
+.cs-role-list{display:flex;flex-direction:column}
+.cs-role-item{display:grid;grid-template-columns:220px 1fr;gap:24px;padding:16px 0;border-bottom:1px solid var(--border);align-items:baseline}
+.cs-role-item:first-child{padding-top:0}
+.cs-role-item:last-child{border-bottom:none;padding-bottom:0}
+.cs-role-title{font-size:13px;font-weight:700;color:var(--fg)}
+.cs-role-desc{font-size:13px;color:var(--fg2);line-height:1.65}
+
+/* SELECTED DESIGN STYLE */
+.cs-style-selected{background:var(--s1);border:1px solid var(--border);border-radius:10px;padding:24px}
+.cs-style-badge{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent2);margin-bottom:14px}
+.cs-style-attrs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:4px}
+.cs-style-attr{font-size:12px;font-weight:600;color:var(--fg2);background:var(--s2);border:1px solid var(--border);border-radius:100px;padding:4px 12px}
+
+@media(max-width:860px){
+  :root{--px:16px}
+  .cs-impact{grid-template-columns:1fr 1fr;gap:24px}
+  .cs-section,.cs-process{grid-template-columns:1fr;gap:24px}
+  .cs-img-grid{grid-template-columns:1fr}
+  .cs-ownership{display:block}
+  .cs-ownership thead{display:none}
+  .cs-ownership tbody,tr,td{display:block}
+  .nav-links a{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="draft-banner">⚠ DRAFT PREVIEW — Not published to your website</div>
+
+<nav>
+  <a href="../index.html" class="logo">
+    <div class="logo-stamp">AS</div>
+    <span class="logo-name">A</span>
+  </a>
+  <div class="nav-links">
+    <a href="../index.html#work">Work</a>
+    <a href="../index.html#about">About</a>
+    <a href="../index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- SECTION NAV -->
+<div class="section-nav" id="section-nav">
+  <div class="section-nav-inner">
+    <a href="#s-problem">The Problem</a>
+    <a href="#s-role">My Role</a>
+    <a href="#s-decisions">Key Decisions</a>
+    <a href="#s-design-system">Design System</a>
+    <a href="#s-design-style">Design Style</a>
+    <a href="#s-ux-review">UX Review</a>
+    <a href="#s-outcomes">Outcomes</a>
+    <a href="#s-next">What&rsquo;s Next</a>
+  </div>
+</div>
+
+<main>
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="cs-hero rv">
+    <div class="cs-label">Case Study &mdash; Western Union</div>
+    <h1 class="cs-title">Unified 5 fragmented products into one platform &mdash; the biggest redesign in Western Union&rsquo;s 150-year history.</h1>
+  </div>
+
+  <!-- CONTEXT / ABOUT -->
+  <div class="cs-about rv">
+    <p class="cs-about-text">At Western Union, I led design for E1 &mdash; consolidating five separate apps into a single unified, account-based platform. I managed an 11-person design team working alongside 40+ engineers across iOS, Android, and web, under strict KYC/AML regulatory constraints across six markets.</p>
+  </div>
+
+  <!-- IMPACT STRIP -->
+  <div class="cs-impact rv">
+    <div class="cs-impact-metrics">
+      <div class="cs-metric">
+        <div class="cs-metric-num"><b>40</b>%</div>
+        <div class="cs-metric-label">Reduction in engineering rework</div>
+        <div class="cs-metric-context">Via design QA rituals</div>
+      </div>
+      <div class="cs-metric">
+        <div class="cs-metric-num">~<b>5</b>%</div>
+        <div class="cs-metric-label">Drop-off reduction on key journeys</div>
+        <div class="cs-metric-context">Across all primary flows</div>
+      </div>
+      <div class="cs-metric">
+        <div class="cs-metric-num">~<b>20</b>%</div>
+        <div class="cs-metric-label">Faster design-to-handoff cycle</div>
+        <div class="cs-metric-context">Per sprint</div>
+      </div>
+      <div class="cs-metric">
+        <div class="cs-metric-num"><b>142</b>+</div>
+        <div class="cs-metric-label">Screens shipped at consistent quality</div>
+        <div class="cs-metric-context">iOS, Android &amp; Web</div>
+      </div>
+    </div>
+    <div class="cs-impact-meta">
+      <div class="cs-meta-group">
+        <div class="cs-meta-lbl">Year</div>
+        <div class="cs-meta-items"><div class="cs-meta-item">2025</div></div>
+      </div>
+      <div class="cs-meta-group">
+        <div class="cs-meta-lbl">Collaborators</div>
+        <div class="cs-meta-items">
+          <div class="cs-meta-item">Product &amp; Engineering (40+ engineers)</div>
+          <div class="cs-meta-item">Compliance &amp; Accessibility</div>
+          <div class="cs-meta-item">Content &amp; Brand</div>
+        </div>
+      </div>
+      <div class="cs-meta-group">
+        <div class="cs-meta-lbl">My Role</div>
+        <div class="cs-meta-items">
+          <div class="cs-meta-item">Design Manager &mdash; 11-person team</div>
+          <div class="cs-meta-item">UX Strategy &amp; Design Systems</div>
+          <div class="cs-meta-item">Delivery &amp; Stakeholder Alignment</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-content">
+
+    <!-- PROBLEM -->
+    <div class="cs-section rv" id="s-problem">
+      <div class="cs-sec-lbl">The Problem</div>
+      <div>
+        <p style="font-size:14px;color:var(--fg2);line-height:1.75;margin-bottom:24px">WU ran five separate apps for the same user. Each had its own stack, team, and experience. The business model shift to account-based required one platform &mdash; not five.</p>
+        <svg viewBox="0 0 440 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:560px;display:block;overflow:visible">
+          <defs>
+            <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L6,3 z" fill="rgba(108,99,255,.8)"/>
+            </marker>
+          </defs>
+          <!-- App Box 1 -->
+          <rect x="0" y="10" width="158" height="44" rx="6" fill="#1e2025" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+          <text x="12" y="30" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#fff">R3 Web</text>
+          <text x="12" y="46" font-family="Inter,sans-serif" font-size="10" fill="rgba(255,255,255,.3)">Own stack &amp; team</text>
+          <line x1="158" y1="32" x2="230" y2="140" stroke="rgba(108,99,255,.45)" stroke-width="1.5"/>
+          <!-- App Box 2 -->
+          <rect x="0" y="64" width="158" height="44" rx="6" fill="#1e2025" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+          <text x="12" y="84" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#fff">R3 Mobile</text>
+          <text x="12" y="100" font-family="Inter,sans-serif" font-size="10" fill="rgba(255,255,255,.3)">Duplicate journeys</text>
+          <line x1="158" y1="86" x2="230" y2="140" stroke="rgba(108,99,255,.45)" stroke-width="1.5"/>
+          <!-- App Box 3 (middle — line goes straight across) -->
+          <rect x="0" y="118" width="158" height="44" rx="6" fill="#1e2025" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+          <text x="12" y="138" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#fff">R4 Web &amp; Mobile</text>
+          <text x="12" y="154" font-family="Inter,sans-serif" font-size="10" fill="rgba(255,255,255,.3)">Inconsistent UX</text>
+          <line x1="158" y1="140" x2="230" y2="140" stroke="rgba(108,99,255,.45)" stroke-width="1.5"/>
+          <!-- App Box 4 -->
+          <rect x="0" y="172" width="158" height="44" rx="6" fill="#1e2025" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+          <text x="12" y="192" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#fff">US Wallet</text>
+          <text x="12" y="208" font-family="Inter,sans-serif" font-size="10" fill="rgba(255,255,255,.3)">Separate compliance</text>
+          <line x1="158" y1="194" x2="230" y2="140" stroke="rgba(108,99,255,.45)" stroke-width="1.5"/>
+          <!-- App Box 5 -->
+          <rect x="0" y="226" width="158" height="44" rx="6" fill="#1e2025" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+          <text x="12" y="246" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#fff">EU Banking App</text>
+          <text x="12" y="262" font-family="Inter,sans-serif" font-size="10" fill="rgba(255,255,255,.3)">No shared foundation</text>
+          <line x1="158" y1="248" x2="230" y2="140" stroke="rgba(108,99,255,.45)" stroke-width="1.5"/>
+          <!-- Convergence node -->
+          <circle cx="230" cy="140" r="5" fill="rgba(108,99,255,.9)"/>
+          <!-- Arrow to unified -->
+          <line x1="235" y1="140" x2="272" y2="140" stroke="rgba(108,99,255,.7)" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+          <!-- Unified box -->
+          <rect x="282" y="82" width="148" height="116" rx="10" fill="rgba(108,99,255,.1)" stroke="rgba(108,99,255,.55)" stroke-width="1.5"/>
+          <text x="356" y="133" font-family="Inter,sans-serif" font-size="32" font-weight="900" fill="#6c63ff" text-anchor="middle" letter-spacing="-1">E1</text>
+          <text x="356" y="156" font-family="Inter,sans-serif" font-size="11" font-weight="500" fill="rgba(255,255,255,.55)" text-anchor="middle">Unified Platform</text>
+          <text x="356" y="174" font-family="Inter,sans-serif" font-size="10" fill="rgba(0,212,160,.8)" text-anchor="middle">1 stack · 1 team · 1 UX</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- MY ROLE -->
+    <div class="cs-section rv" id="s-role">
+      <div class="cs-sec-lbl">My Role</div>
+      <div>
+        <div class="cs-role-list">
+          <div class="cs-role-item"><div class="cs-role-title">Design Strategy &amp; Direction</div><div class="cs-role-desc">Set the end-to-end UX vision for E1, translating business objectives into a coherent design direction across all platforms and markets.</div></div>
+          <div class="cs-role-item"><div class="cs-role-title">Investment Case for Nexus Design System</div><div class="cs-role-desc">Made the case to CPO and Engineering leadership for a dedicated design system effort before a single production screen was designed.</div></div>
+          <div class="cs-role-item"><div class="cs-role-title">Dual-Track Agile Process Design</div><div class="cs-role-desc">Introduced and embedded dual-track agile across squads — keeping discovery one sprint ahead of delivery to prevent engineering bottlenecks.</div></div>
+          <div class="cs-role-item"><div class="cs-role-title">Epic Sequencing &amp; RICE Prioritisation</div><div class="cs-role-desc">Collaborated with Product to build the delivery roadmap using RICE, sequencing design dependencies as first-class constraints.</div></div>
+          <div class="cs-role-item"><div class="cs-role-title">Stakeholder Alignment</div><div class="cs-role-desc">Held alignment across CPO, Engineering VPs, Compliance, and Brand — negotiating scope trade-offs while protecting core UX outcomes.</div></div>
+          <div class="cs-role-item"><div class="cs-role-title">Design QA Ritual Design &amp; Enforcement</div><div class="cs-role-desc">Created and enforced a pre-launch UX review ritual — a quality gate between design approval and engineering shipment that reduced rework by 40%.</div></div>
+          <div class="cs-role-item"><div class="cs-role-title">Team Leadership — 11 Designers</div><div class="cs-role-desc">Led weekly 1:1s, critique sessions, and career development conversations across a multi-disciplinary team embedded in four agile squads.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KEY DECISIONS -->
+    <div class="cs-section rv" id="s-decisions">
+      <div class="cs-sec-lbl">Key Decisions</div>
+      <div class="cs-decisions">
+        <div class="cs-decision">
+          <div class="cs-decision-num">Decision 01</div>
+          <div class="cs-decision-title">Design system before production screens</div>
+          <div class="cs-decision-body">Six weeks in, engineering flagged that building a design system in parallel with production screens was unsustainable. I pushed back on delaying, reducing, or dropping the system &mdash; made the case to the CPO that a half-built system would cost more in rework than a short delay. We got three additional weeks. The Nexus Design System shipped before production. That decision is why 142 screens shipped at consistent quality.</div>
+        </div>
+        <div class="cs-decision">
+          <div class="cs-decision-num">Decision 02</div>
+          <div class="cs-decision-title">Dual-track agile to unblock engineering</div>
+          <div class="swimlane" style="margin-top:12px">
+            <div class="swim-row swim-row--before">
+              <span class="swim-label swim-label--before">Before</span>
+              <div class="swim-steps">
+                <span class="swim-step swim-step--design">Design</span>
+                <span class="swim-arrow">&#8594;</span>
+                <span class="swim-step swim-step--idle">&#9203; Engineers idle</span>
+                <span class="swim-arrow">&#8594;</span>
+                <span class="swim-step swim-step--eng">Engineering</span>
+              </div>
+            </div>
+            <div class="swim-row swim-row--after">
+              <span class="swim-label swim-label--after">After</span>
+              <div class="swim-steps">
+                <div class="swim-parallel">
+                  <span class="swim-step swim-step--discovery">Discovery sprint</span>
+                  <span class="swim-step swim-step--delivery">Delivery sprint</span>
+                </div>
+                <span class="swim-arrow">&#8594;</span>
+                <span class="swim-step swim-step--eng">Engineering always unblocked</span>
+              </div>
+            </div>
+            <div class="swim-note">Result: Design QA rituals introduced alongside &mdash; rework dropped 40% within 2 sprints</div>
+          </div>
+        </div>
+        <div class="cs-decision">
+          <div class="cs-decision-num">Decision 03</div>
+          <div class="cs-decision-title">Person-first IA over corridor-first</div>
+          <div class="flow-compare" style="margin-top:12px">
+            <div class="flow-col flow-col--old">
+              <span class="flow-col-label">&#9888; Old flow &mdash; 7 steps</span>
+              <div class="flow-steps">
+                <div class="flow-step"><span class="flow-step-num">1</span><span class="flow-step-text">Select destination country</span></div>
+                <div class="flow-step"><span class="flow-step-num">2</span><span class="flow-step-text">Enter recipient details</span></div>
+                <div class="flow-step"><span class="flow-step-num">3</span><span class="flow-step-text">Enter amount</span></div>
+                <div class="flow-step"><span class="flow-step-num">4</span><span class="flow-step-text">Select delivery method</span></div>
+                <div class="flow-step"><span class="flow-step-num">5</span><span class="flow-step-text">Review fees</span></div>
+                <div class="flow-step"><span class="flow-step-num">6</span><span class="flow-step-text">Select payment method</span></div>
+                <div class="flow-step"><span class="flow-step-num">7</span><span class="flow-step-text">Confirm &amp; send</span></div>
+              </div>
+              <div class="flow-verdict">Corridor-first &mdash; matches WU&rsquo;s architecture, not the user&rsquo;s mind</div>
+            </div>
+            <div class="flow-col flow-col--new">
+              <span class="flow-col-label">&#10003; New flow &mdash; 3 steps</span>
+              <div class="flow-steps">
+                <div class="flow-step"><span class="flow-step-num">1</span><span class="flow-step-text">Choose recipient (recent contacts surface first)</span></div>
+                <div class="flow-step"><span class="flow-step-num">2</span><span class="flow-step-text">Enter amount &amp; see live conversion</span></div>
+                <div class="flow-step"><span class="flow-step-num">3</span><span class="flow-step-text">Confirm &amp; send</span></div>
+              </div>
+              <div class="flow-verdict">Person-first &mdash; validated by card sorting with real users</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DESIGN SYSTEM -->
+    <div class="cs-section rv" id="s-design-system">
+      <div class="cs-sec-lbl">Design System</div>
+      <div>
+        <p style="font-size:15px;color:var(--fg2);line-height:1.8;margin-bottom:20px">Before a single production screen was designed, I made the case to leadership for a dedicated design system effort. The argument: without a shared foundation, 142 screens across 5 platforms would ship at 142 different quality levels. The Nexus Design System was the insurance policy for scale.</p>
+        <div class="cs-decisions" style="margin-top:0">
+          <div class="cs-decision">
+            <div class="cs-decision-num">The case made</div>
+            <div class="cs-decision-body">I framed the system not as a design need but as an engineering cost reduction &mdash; every inconsistent component meant a rework cycle. Leadership approved a 3-week investment before production began. It was the highest-leverage decision of the entire project.</div>
+          </div>
+          <div class="cs-decision">
+            <div class="cs-decision-num">What it unified</div>
+            <table class="platform-table">
+              <thead><tr><th>Platform</th><th>Colour</th><th>Typography</th><th>Spacing</th><th>Components</th><th>Motion</th><th>Accessibility</th></tr></thead>
+              <tbody>
+                <tr><td><span class="plat-name">iOS</span></td><td><span class="plat-pill">&#10003;</span></td><td><span class="plat-pill">&#10003;</span></td><td><span class="plat-pill">&#10003;</span></td><td><span class="plat-pill">&#10003;</span></td><td><span class="plat-pill">&#10003;</span></td><td><span class="plat-pill">&#10003;</span></td></tr>
+                <tr><td><span class="plat-name">Android</span></td><td><span class="plat-pill">&#10003;</span></td><td><span class="plat-pill">&#10003;</span></td><td><span class="plat-pill">&#10003;</span></td><td><span class="plat-pill">&#10003;</span></td><td><span class="plat-pill">&#10003;</span></td><td><span class="plat-pill">&#10003;</span></td></tr>
+                <tr><td><span class="plat-name">Web</span></td><td><span class="plat-pill">&#10003;</span></td><td><span class="plat-pill">&#10003;</span></td><td><span class="plat-pill">&#10003;</span></td><td><span class="plat-pill">&#10003;</span></td><td><span class="plat-pill">&#10003;</span></td><td><span class="plat-pill">&#10003;</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="cs-decision">
+            <div class="cs-decision-num">What it enabled</div>
+            <div class="stat-callouts">
+              <div class="stat-callout"><div class="stat-callout-num"><span class="stat-callout-accent">142</span>+</div><div class="stat-callout-label">Screens shipped at consistent quality</div><div class="stat-callout-sub">Across iOS, Android &amp; Web</div></div>
+              <div class="stat-callout"><div class="stat-callout-num stat-callout-accent">Days</div><div class="stat-callout-label">Not weeks to onboard new designers</div><div class="stat-callout-sub">Single source of truth</div></div>
+              <div class="stat-callout"><div class="stat-callout-num"><span class="stat-callout-accent">1</span></div><div class="stat-callout-label">Unified system for global expansion</div><div class="stat-callout-sub">Foundation beyond E1</div></div>
+            </div>
+          </div>
+        </div>
+        <img src="fb1aab69-fb4b-4003-b565-798b12e0272a.webp" alt="Nexus Design System" style="margin-top:28px;border-radius:10px;width:100%">
+        <p class="cs-caption">The Nexus Design System — a shared foundation of components, tokens, and standards that unified the visual language across iOS, Android, and Web.</p>
+      </div>
+    </div>
+
+    <!-- DESIGN STYLE -->
+    <div class="cs-section rv" id="s-design-style">
+      <div class="cs-sec-lbl">Design Style</div>
+      <div>
+        <p style="font-size:14px;color:var(--fg2);line-height:1.75;margin-bottom:24px">Four design directions were explored and presented to leadership, each resolving the same core screen with a different visual language and rationale. Direction 01 received the most votes and aligned with the core aesthetics of Western Union &mdash; it went through a second round of critique before becoming the foundation of E1&rsquo;s visual language.</p>
+        <div class="cs-style-selected">
+          <div class="cs-style-badge">Selected Direction &mdash; Direction 01</div>
+          <div class="cs-style-attrs">
+            <span class="cs-style-attr">Modern &amp; account-based</span>
+            <span class="cs-style-attr">High contrast</span>
+            <span class="cs-style-attr">Warm brand heritage</span>
+            <span class="cs-style-attr">WCAG 2.1 AA compliant</span>
+            <span class="cs-style-attr">Global low-literacy market ready</span>
+          </div>
+          <p style="font-size:14px;color:var(--fg2);line-height:1.7;margin-top:16px">Balanced WU&rsquo;s brand warmth with a modern, fintech-grade product language. High contrast ratios met accessibility compliance across all markets. Clear visual hierarchy reduced cognitive load for low-literacy users. Enough visual elevation to compete with challenger fintech products without abandoning the trust signals WU users relied on.</p>
+          <img src="b4e8b444-8a59-47d6-bb0f-1b20533fdb1f.webp" alt="E1 Design Style Review — Direction 1" style="margin-top:20px;border-radius:10px;width:100%">
+          <p class="cs-caption">Direction 1 — Scannable, minimalistic, clear and concise with a subtle burst of colour. Selected by leadership as the foundation for E1&rsquo;s visual language.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- UX REVIEW RITUAL -->
+    <div class="cs-section rv" id="s-ux-review">
+      <div class="cs-sec-lbl">UX Review Ritual</div>
+      <div>
+        <p style="font-size:15px;color:var(--fg2);line-height:1.8;margin-bottom:20px">Before launch, I introduced a structured UX evaluation process &mdash; a quality gate that sat between &ldquo;design approved&rdquo; and &ldquo;engineering shipped&rdquo;. This was not a visual QA pass. It was a systematic review of the complete application against the original experience intent.</p>
+        <div class="cs-decisions" style="margin-top:0">
+          <div class="cs-decision">
+            <div class="cs-decision-num">What it covered</div>
+            <div class="lens-grid">
+              <div class="lens-card"><div class="lens-icon" style="background:rgba(108,99,255,.2)">&#128100;</div><div class="lens-title">Usability</div><div class="lens-question">Can users complete the task without error or confusion?</div></div>
+              <div class="lens-card"><div class="lens-icon" style="background:rgba(0,212,160,.15)">&#9654;</div><div class="lens-title">Accessibility</div><div class="lens-question">Does it meet WCAG 2.1 AA across all primary flows?</div></div>
+              <div class="lens-card"><div class="lens-icon" style="background:rgba(245,166,35,.15)">&#9632;</div><div class="lens-title">Consistency</div><div class="lens-question">Does it match the Nexus Design System in every component?</div></div>
+              <div class="lens-card"><div class="lens-icon" style="background:rgba(255,100,100,.12)">&#128737;</div><div class="lens-title">Trust</div><div class="lens-question">Does the UI earn user confidence at each step of the flow?</div></div>
+            </div>
+          </div>
+          <div class="cs-decision">
+            <div class="cs-decision-num">Why it worked</div>
+            <div class="cs-decision-body">Most design QA happens informally and too late. By formalising it as a ritual with a structured template and a named owner, it became predictable &mdash; engineers knew when it was coming, what it covered, and how findings would be actioned. Rework dropped by 40% within two sprints of adoption.</div>
+          </div>
+          <div class="cs-decision">
+            <div class="cs-decision-num">What it became</div>
+            <div class="cs-decision-body">The ritual outlasted the project. It was adopted by squads not on E1 as a standard practice. It&rsquo;s now part of how Western Union&rsquo;s design team ships globally.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OUTCOMES -->
+    <div class="cs-section rv" id="s-outcomes">
+      <div class="cs-sec-lbl">Outcomes</div>
+      <div>
+        <table class="cs-metrics">
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>Result</th>
+              <th>Business meaning</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Engineering rework</td><td class="metric-val">~40% reduction</td><td>Faster delivery, fewer sprint overruns</td></tr>
+            <tr><td>Journey drop-off</td><td class="metric-val">~5% reduction</td><td>Measurable conversion improvement across key flows</td></tr>
+            <tr><td>Design-to-handoff cycle</td><td class="metric-val">~20% faster</td><td>More engineering throughput per sprint</td></tr>
+            <tr><td>Production quality</td><td class="metric-val">142+ screens</td><td>Consistent standard achieved at scale</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- WHAT'S NEXT -->
+    <div class="cs-section rv" id="s-next">
+      <div class="cs-sec-lbl">What&rsquo;s Next</div>
+      <div class="cs-decisions">
+        <div class="cs-decision">
+          <div class="cs-decision-num">Monitor &amp; Learn</div>
+          <div class="cs-decision-body">Study user activity, feedback, and behaviour through analytics tools — Amplitude and Quantum Metrics — alongside voice-of-customer channels. Surface issues before they become patterns.</div>
+        </div>
+        <div class="cs-decision">
+          <div class="cs-decision-num">Hot-Fix Cadence</div>
+          <div class="cs-decision-body">Identify and prioritise issues from analytics weekly. A dedicated squad of designers works exclusively on hot-fix optimisations, keeping the shipped experience continuously improving post-launch.</div>
+        </div>
+        <div class="cs-decision">
+          <div class="cs-decision-num">Regional Expansion</div>
+          <div class="cs-decision-body">Once optimisations are in rhythm, the remaining design team moves on to adapting and extending the E1 experience for new markets and regions — building on the Nexus Design System as the shared foundation.</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /cs-content -->
+
+  <div class="cs-nav rv">
+    <span></span>
+    <a href="../ux-baseline-case-study.html">UX Baseline &rarr;</a>
+  </div>
+
+  <div class="cs-cta rv">
+    <a href="https://app.notion.com/p/Biggest-overhaul-in-the-history-of-Western-Union-260c7e94aa97807b95dccf442d2a0780" target="_blank" rel="noopener" class="cs-cta-btn">
+      View full case study &#8599;
+    </a>
+  </div>
+
+</div><!-- /wrap -->
+</main>
+
+<footer>
+  <span class="fl">Arindam Sanyal &mdash; Product Design Manager</span>
+  <span class="fr">Pune, India &middot; &copy; 2026</span>
+</footer>
+
+<script>
+(function(){
+  /* Scroll reveal */
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.07});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+
+  /* Section nav — show after hero */
+  var sNav=document.getElementById('section-nav');
+  var hero=document.querySelector('.cs-hero');
+  var heroObs=new IntersectionObserver(function(es){
+    es.forEach(function(e){ sNav.classList.toggle('visible',!e.isIntersecting); });
+  },{threshold:0});
+  if(hero) heroObs.observe(hero);
+
+  /* Active section tracking */
+  var sections=document.querySelectorAll('[id^="s-"]');
+  var navLinks=document.querySelectorAll('.section-nav a');
+  var activeObs=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        var id=e.target.getAttribute('id');
+        navLinks.forEach(function(a){
+          a.classList.toggle('sn-active', a.getAttribute('href')==='#'+id);
+        });
+      }
+    });
+  },{rootMargin:'-20% 0px -70% 0px'});
+  sections.forEach(function(s){activeObs.observe(s);});
+
+  /* Smooth scroll offset for sticky navs */
+  document.querySelectorAll('.section-nav a').forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var target=document.querySelector(a.getAttribute('href'));
+      if(target){
+        var offset=target.getBoundingClientRect().top+window.scrollY-120;
+        window.scrollTo({top:offset,behavior:'smooth'});
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>

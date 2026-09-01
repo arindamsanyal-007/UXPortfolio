@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Portfolio Templates — Light &amp; Minimal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#f4f2ee;--fg:#191712;--fg2:#6a665c;--line:#e2ddd2;--ease:cubic-bezier(.16,1,.3,1)}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg);-webkit-font-smoothing:antialiased;line-height:1.5;padding:clamp(24px,5vw,64px)}
+a{text-decoration:none;color:inherit}
+.mono{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg2)}
+header{max-width:1200px;margin:0 auto clamp(28px,4vw,48px)}
+header .mono{margin-bottom:16px}
+header h1{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(30px,5vw,56px);letter-spacing:-.02em;line-height:1.05;max-width:20ch}
+header p{margin-top:16px;color:var(--fg2);max-width:60ch;font-size:clamp(15px,1.6vw,18px)}
+.grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.opt{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.opt:hover{transform:translateY(-4px);box-shadow:0 20px 44px rgba(80,60,30,.12)}
+.opt .preview{aspect-ratio:4/3;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.opt .frame{position:absolute;top:0;left:0;width:200%;height:200%;transform:scale(.5);transform-origin:top left;border:0;pointer-events:none}
+.opt .body{padding:20px 22px 24px;display:flex;flex-direction:column;gap:10px;flex:1}
+.opt .num{color:#b06a3a}
+.opt h2{font-family:'Fraunces',serif;font-weight:400;font-size:23px}
+.opt .desc{font-size:14px;color:var(--fg2);flex:1}
+.opt .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.opt .chips span{font-size:11px;color:var(--fg2);border:1px solid var(--line);border-radius:100px;padding:3px 10px}
+.opt .go{margin-top:8px;display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:#191712}
+.opt .go .ar{transition:transform .3s var(--ease)}
+.opt:hover .go .ar{transform:translateX(4px)}
+footer{max-width:1200px;margin:clamp(28px,4vw,48px) auto 0;color:var(--fg2);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+footer a{border-bottom:1px solid var(--line);padding-bottom:1px}
+@media(max-width:860px){.grid{grid-template-columns:1fr;max-width:460px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="mono">Portfolio — Template Options</div>
+  <h1>Three light, minimal directions for your portfolio.</h1>
+  <p>Same content as your live site — reworked into clean, non-dark layouts. Open each in full, then tell me which one to promote to your homepage (or mix elements between them).</p>
+</header>
+
+<div class="grid">
+  <a class="opt" href="editorial.html">
+    <div class="preview"><iframe class="frame" src="editorial.html" title="Editorial preview" loading="lazy" scrolling="no"></iframe></div>
+    <div class="body">
+      <div class="num mono">Option 01</div>
+      <h2>Editorial</h2>
+      <div class="desc">Warm off-white, large Fraunces serif display, monospace labels, and a numbered work index with a hover thumbnail. Quiet, magazine-like, typography-led.</div>
+      <div class="chips"><span>Serif display</span><span>Whitespace</span><span>Index list</span></div>
+      <span class="go">Open full <span class="ar">→</span></span>
+    </div>
+  </a>
+
+  <a class="opt" href="warm.html">
+    <div class="preview"><iframe class="frame" src="warm.html" title="Warm preview" loading="lazy" scrolling="no"></iframe></div>
+    <div class="body">
+      <div class="num mono">Option 02</div>
+      <h2>Warm Paper</h2>
+      <div class="desc">Cream canvas, soft rounded cards, pill navigation and a single terracotta accent. Friendly and approachable while staying minimal and calm.</div>
+      <div class="chips"><span>Rounded cards</span><span>Terracotta</span><span>Centered</span></div>
+      <span class="go">Open full <span class="ar">→</span></span>
+    </div>
+  </a>
+
+  <a class="opt" href="swiss.html">
+    <div class="preview"><iframe class="frame" src="swiss.html" title="Swiss preview" loading="lazy" scrolling="no"></iframe></div>
+    <div class="body">
+      <div class="num mono">Option 03</div>
+      <h2>Swiss Grid</h2>
+      <div class="desc">Crisp white with visible hairline grid, bold uppercase Inter, mono metadata and one red accent. Structured, confident, systems-designer energy.</div>
+      <div class="chips"><span>Grid lines</span><span>Red accent</span><span>Uppercase</span></div>
+      <span class="go">Open full <span class="ar">→</span></span>
+    </div>
+  </a>
+</div>
+
+<footer>
+  <span>Swiss Grid is now live at <a href="../index.html">../index.html</a> · dark version backed up at <a href="../index-dark.html">../index-dark.html</a></span>
+  <span>Pune, India · © 2026</span>
+</footer>
+</body>
+</html>

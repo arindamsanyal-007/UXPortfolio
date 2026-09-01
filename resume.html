@@ -3,148 +3,256 @@
 <head>
 <meta charset="UTF-8">
 <title>Arindam Sanyal — Resume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-@page{size:A4;margin:14mm 16mm}
-*{box-sizing:border-box}
+@page{size:A4;margin:18mm}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#141414;--gray:#4c4c4c;--gray2:#7a7a7a;--line:#111;--rule:#e0e0e0;--dot:#d0d0d0;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+}
 html,body{margin:0}
-body{font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;color:#1b1b1b;font-size:10.3pt;line-height:1.45;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-h1{font-size:21pt;font-weight:800;letter-spacing:.01em;margin:0 0 5pt}
-.role{font-weight:700;font-size:10.5pt;margin:0 0 3pt}
-.contact{color:#555;font-size:9pt;margin:0}
-.contact a{color:#555;text-decoration:none}
-hr{border:0;border-top:1px solid #d6d6d6;margin:12pt 0}
-h2{font-size:9pt;font-weight:800;letter-spacing:.09em;text-transform:uppercase;margin:0 0 8pt;color:#111}
-p.summary{margin:0}
-.job{margin-bottom:11pt}
-.job:last-child{margin-bottom:0}
-.job h3{font-size:10.6pt;font-weight:700;margin:0}
-.job .meta{font-weight:700;font-size:8.8pt;color:#444;margin:2pt 0 5pt}
-ul{margin:0;padding-left:15pt}
-li{margin-bottom:3pt}
-.roles-compact p{font-weight:700;font-size:10pt;margin:0 0 5pt}
-.roles-compact p:last-child{margin-bottom:0}
-.roles-compact span{font-weight:400;color:#555;font-size:9pt}
-.projects li b{font-weight:700}
-.skills{columns:2;column-gap:24pt;margin:0;padding-left:15pt}
-.skills li{margin-bottom:3pt;break-inside:avoid}
-.edu h3{font-size:10.5pt;font-weight:700;margin:0}
-.edu p{margin:2pt 0 0;color:#555;font-size:9pt}
+body{font-family:var(--sans);color:var(--ink);font-size:9.5pt;line-height:1.42;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+b,strong{font-weight:700;color:var(--ink)}
+em{font-style:italic}
+
+.grid{display:grid;grid-template-columns:1fr 258px;gap:0;align-items:start}
+.main{padding-right:26px}
+.side{border-left:1px solid var(--rule);padding-left:24px}
+
+/* section label chip */
+.chip{display:inline-block;font-family:var(--mono);font-size:8.6pt;font-weight:500;letter-spacing:1.4px;text-transform:uppercase;border:1.2px solid var(--line);padding:5px 11px;color:var(--ink)}
+
+/* HEADER */
+.head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.name{font-family:var(--serif);font-weight:600;font-size:29pt;line-height:1.02;letter-spacing:-.5px;margin:8px 0 0}
+.avatar{width:70px;height:70px;border-radius:50%;border:1px solid var(--line);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:20pt;font-weight:600;margin-top:8px}
+.intro{margin-top:11px;font-size:9.5pt;line-height:1.5;color:var(--gray)}
+.intro .lead{color:var(--ink)}
+.expertise{margin-top:8px;font-size:9.3pt;line-height:1.55;color:var(--gray)}
+.closing{margin-top:8px;font-size:9.5pt;line-height:1.5;color:var(--gray)}
+.rule{height:1px;background:var(--rule);margin:13px 0}
+
+/* EXPERIENCE */
+.xhead{font-family:var(--serif);font-weight:600;font-size:20pt;letter-spacing:-.3px;margin:0 0 12px}
+.xp{display:grid;grid-template-columns:22px 1fr;gap:16px;padding-bottom:11px}
+.xp-rail{display:flex;flex-direction:column;align-items:center}
+.xp-year{writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--mono);font-size:7.8pt;font-weight:500;letter-spacing:1.5px;color:var(--gray);white-space:nowrap;margin-bottom:8px}
+.xp-line{flex:1;width:1px;background:var(--line);min-height:16px}
+.xp-co{font-family:var(--sans);font-size:9.6pt;font-weight:700;letter-spacing:.4px;text-transform:uppercase;line-height:1.25}
+.xp-tag{font-style:italic;font-size:9.2pt;color:var(--gray);margin:1px 0 1px}
+.xp-role{font-size:9.4pt;font-weight:700;margin-bottom:4px}
+.xp-scope{font-size:9.2pt;color:var(--gray);line-height:1.48;margin-bottom:5px}
+.kicker{font-size:8.4pt;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--ink);margin-bottom:3px}
+.kv{font-size:9.1pt;color:var(--gray);line-height:1.46;margin-bottom:3px}
+.kv:last-child{margin-bottom:0}
+.kv b{color:var(--ink)}
+.earlier{font-size:9.2pt;color:var(--gray);line-height:1.7}
+.earlier b{color:var(--ink)}
+
+/* PROJECTS */
+.proj{font-size:9.2pt;color:var(--gray);line-height:1.5;margin-bottom:7px}
+.proj:last-child{margin-bottom:0}
+.proj b{color:var(--ink)}
+.sproj{font-size:8.9pt;color:var(--gray);line-height:1.45;margin-bottom:7px}
+.sproj:last-child{margin-bottom:0}
+.sproj b{color:var(--ink)}
+
+/* SIDEBAR */
+.sblock{margin-bottom:20px}
+.sblock:last-child{margin-bottom:0}
+.schip{margin-bottom:12px}
+.c-line{font-size:9.2pt;line-height:1.65;color:var(--gray)}
+.c-line .k{color:var(--ink);font-weight:600}
+.edu-yr{font-family:var(--mono);font-size:8pt;font-weight:500;letter-spacing:.5px;color:var(--gray);margin-bottom:2px}
+.edu-t{font-size:9.4pt;font-weight:700;color:var(--ink);line-height:1.3}
+.edu-s{font-size:9pt;color:var(--gray);line-height:1.4;margin-top:1px}
+.slist{list-style:none}
+.slist li{font-size:9.2pt;color:var(--gray);line-height:1.4;padding:4px 0 4px 12px;position:relative;border-bottom:1px solid var(--rule)}
+.slist li:last-child{border-bottom:none}
+.slist li::before{content:'';position:absolute;left:0;top:9px;width:4px;height:4px;background:var(--ink);border-radius:50%}
+.trow{display:flex;align-items:center;justify-content:space-between;padding:5px 0}
+.trow+.trow{border-top:1px solid var(--rule)}
+.tname{font-size:9pt;color:var(--gray)}
+.rate{display:inline-flex;gap:3px}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--dot);display:inline-block}
+.dot.on{background:var(--ink)}
+.tagcloud{display:flex;flex-wrap:wrap;gap:6px}
+.tagcloud span{font-size:8.6pt;color:var(--gray);border:1px solid var(--rule);border-radius:100px;padding:3px 10px}
+.follow{font-size:9.2pt;color:var(--gray);line-height:1.7}
+.follow .k{color:var(--ink);font-weight:600}
+
 .avoid{break-inside:avoid}
+
+/* A4 sheet framing */
+@media screen{
+  html,body{background:#e9e9ea}
+  body{padding:32px 16px}
+  .sheet{width:210mm;min-height:297mm;margin:0 auto;background:#fff;box-shadow:0 8px 40px rgba(0,0,0,.18);padding:18mm;border-radius:2px}
+}
+@media print{
+  html,body{background:#fff}
+  .sheet{width:auto;min-height:0;margin:0;padding:0;box-shadow:none;border-radius:0}
+}
 </style>
 </head>
 <body>
+<div class="sheet">
+<div class="grid">
 
-<header>
-  <h1>Arindam Sanyal</h1>
-  <p class="role">Manager, UX Design | UX Design Leader (Fintech &amp; Enterprise Products)</p>
-  <p class="contact">Pune, India &nbsp;|&nbsp; +91 90965 80834 &nbsp;|&nbsp; asanyal88@gmail.com &nbsp;|&nbsp; linkedin.com/in/arindam-sanyal</p>
-</header>
+  <!-- ================= MAIN ================= -->
+  <main class="main">
+    <div class="chip">UX &times; Product &times; Leadership</div>
+    <div class="head">
+      <h1 class="name">Hello, I am<br>Arindam Sanyal.</h1>
+      <div class="avatar">AS</div>
+    </div>
 
-<hr>
+    <p class="intro"><span class="lead"><b>UX design leader</b> with <b>14+ years</b> building and scaling <b>fintech and enterprise</b> products at global scale.</span> Currently <b>Manager, UX Design at Western Union</b>, leading UX for regulated, global platforms including the Western Union Canada mobile app.</p>
 
-<section class="avoid">
-  <h2>Summary</h2>
-  <p class="summary">UX design leader with 14+ years of experience building and scaling fintech and enterprise products. Currently Manager, UX Design at Western Union, leading UX for global, regulated platforms including the Western Union Canada mobile app. Brings a strong mix of UX strategy, accessibility (WCAG), and hands-on execution, with a focus on simplifying complex workflows, building effective design teams, and working closely with Product and Engineering to deliver scalable, real-world outcomes.</p>
-</section>
+    <p class="expertise"><b>Core expertise:</b> UX Strategy &amp; Leadership &bull; Design Systems &amp; Design Ops &bull; Accessibility (WCAG) &bull; Complex Workflows &bull; Team Building &bull; Fintech &amp; Regulated Products &bull; Stakeholder Management</p>
 
-<hr>
+    <p class="closing">I focus on <b>simplifying complex, compliance-heavy workflows</b>, building effective design teams, and partnering closely with Product and Engineering to ship <b>scalable, real-world outcomes</b>. Open to <b>senior design leadership</b> roles &mdash; onsite, hybrid, or remote.</p>
 
-<section>
-  <h2>Experience</h2>
+    <div class="rule"></div>
 
-  <div class="job avoid">
-    <h3>Manager, UX Design — Western Union</h3>
-    <div class="meta">Pune &nbsp;|&nbsp; Sep 2023 – Present</div>
-    <ul>
-      <li>Own end-to-end UX for the Western Union Canada mobile app, covering onboarding, money transfers, error handling, and accessibility-critical flows.</li>
-      <li>Simplified onboarding journeys by removing redundant steps and clarifying compliance-driven interactions, contributing to a ~5% reduction in early-stage drop-offs.</li>
-      <li>Addressed accessibility requirements early in design, ensuring WCAG compliance without slowing delivery timelines.</li>
-      <li>Partner closely with Product and Engineering to align user needs with regulatory and business constraints, reducing design-to-development handoff time by ~20%.</li>
-      <li>Introduced lightweight design reviews and earlier stakeholder alignment, cutting late-stage design changes by ~25%.</li>
-      <li>Improved in-app guidance and error handling, helping reduce customer support issues by ~8%.</li>
-      <li>Manage and mentor a team of UX designers, supporting career development, performance reviews, and consistent design quality.</li>
-      <li>Standardized UX processes across wireframing, prototyping, and usability testing to improve delivery consistency across teams.</li>
-    </ul>
-  </div>
+    <h2 class="xhead">Experience</h2>
 
-  <div class="job avoid">
-    <h3>Principal UX Designer — Searce Inc</h3>
-    <div class="meta">Pune &nbsp;|&nbsp; Oct 2020 – Jul 2023</div>
-    <ul>
-      <li>Owned UX strategy and end-to-end design delivery for HappierWork, an enterprise HR management platform.</li>
-      <li>Led design from discovery and research through ideation, POCs, demos, and production-ready designs.</li>
-      <li>Worked closely with Product and Engineering leadership on roadmap planning, feature prioritization, and trade-off discussions.</li>
-      <li>Established organization-wide UX standards and best practices, improving consistency across features and releases.</li>
-      <li>Mentored designers and strengthened integration of design into the SDLC, reducing rework and improving development efficiency.</li>
-    </ul>
-  </div>
+    <div class="xp">
+      <div class="xp-rail"><div class="xp-year">2023 &mdash; Now</div><div class="xp-line"></div></div>
+      <div class="xp-body">
+        <div class="xp-co">Western Union</div>
+        <div class="xp-tag">Global money movement &amp; regulated fintech</div>
+        <div class="xp-role">Manager, UX Design</div>
+        <p class="xp-scope">Own end-to-end UX for the Western Union Canada mobile app &mdash; onboarding, money transfers, error handling, and accessibility-critical flows &mdash; while managing and mentoring a team of UX designers.</p>
+        <div class="kicker">Key Accomplishments</div>
+        <p class="kv"><b>Onboarding simplification:</b> Removed redundant steps and clarified compliance-driven interactions, contributing to a ~5% reduction in early-stage drop-offs.</p>
+        <p class="kv"><b>Accessibility by default:</b> Embedded WCAG compliance early in design without slowing delivery timelines.</p>
+        <p class="kv"><b>Faster delivery:</b> Aligned user needs with regulatory and business constraints, cutting design-to-development handoff time ~20% and late-stage changes ~25%.</p>
+        <p class="kv"><b>Support impact:</b> Improved in-app guidance and error handling, reducing customer support issues ~8%.</p>
+        <p class="kv"><b>Team &amp; process:</b> Standardized wireframing, prototyping, and usability testing for consistent quality across squads.</p>
+      </div>
+    </div>
 
-  <div class="job avoid">
-    <h3>Senior UX Architect — EY</h3>
-    <div class="meta">Pune &nbsp;|&nbsp; Jan 2019 – Sep 2020</div>
-    <ul>
-      <li>Led end-to-end UX engagements across fintech, e-commerce, manufacturing, and F&amp;B domains.</li>
-      <li>Managed client delivery including effort estimation, resourcing, timelines, and stakeholder communication.</li>
-      <li>Contributed to RFPs, proposals, pitches, and client innovation workshops.</li>
-      <li>Mentored designers, conducted internal training sessions, and maintained UX quality standards.</li>
-      <li>Applied Agile and Lean UX practices on large-scale enterprise transformation programs.</li>
-    </ul>
-  </div>
+    <div class="xp">
+      <div class="xp-rail"><div class="xp-year">2020 &mdash; 2023</div><div class="xp-line"></div></div>
+      <div class="xp-body">
+        <div class="xp-co">Searce Inc</div>
+        <div class="xp-tag">Enterprise HR platform &mdash; HappierWork</div>
+        <div class="xp-role">Principal UX Designer</div>
+        <p class="xp-scope">Owned UX strategy and end-to-end delivery for HappierWork, an enterprise HR management platform &mdash; from discovery and research through POCs, demos, and production-ready design.</p>
+        <div class="kicker">Key Accomplishments</div>
+        <p class="kv"><b>Roadmap partnership:</b> Worked with Product and Engineering leadership on prioritization and trade-off decisions.</p>
+        <p class="kv"><b>UX standards:</b> Established organization-wide standards and best practices, improving consistency across features and releases.</p>
+        <p class="kv"><b>SDLC integration:</b> Mentored designers and strengthened design's role in the SDLC, reducing rework and improving efficiency.</p>
+      </div>
+    </div>
 
-  <div class="job avoid">
-    <h3>UX Design Lead — Mobikon</h3>
-    <div class="meta">Pune &nbsp;|&nbsp; Jun 2016 – Dec 2018</div>
-    <ul>
-      <li>Led UX for an AI-driven customer engagement and predictive analytics platform.</li>
-      <li>Designed dashboards, workflows, and data visualizations for operational and marketing users.</li>
-      <li>Translated complex data into actionable insights through intuitive analytics experiences.</li>
-      <li>Managed designers and partnered closely with engineering to ensure high-quality execution.</li>
-    </ul>
-  </div>
+    <div class="xp">
+      <div class="xp-rail"><div class="xp-year">2019 &mdash; 2020</div><div class="xp-line"></div></div>
+      <div class="xp-body">
+        <div class="xp-co">EY</div>
+        <div class="xp-tag">Enterprise UX consulting</div>
+        <div class="xp-role">Senior UX Architect</div>
+        <p class="xp-scope">Led end-to-end UX engagements across fintech, e-commerce, manufacturing, and F&amp;B &mdash; managing delivery, estimation, resourcing, and stakeholder communication.</p>
+        <div class="kicker">Key Accomplishments</div>
+        <p class="kv"><b>Client delivery:</b> Contributed to RFPs, proposals, pitches, and client innovation workshops.</p>
+        <p class="kv"><b>Quality &amp; mentorship:</b> Mentored designers, ran internal training, and maintained UX quality standards.</p>
+        <p class="kv"><b>Ways of working:</b> Applied Agile and Lean UX on large-scale enterprise transformation programs.</p>
+      </div>
+    </div>
 
-  <div class="roles-compact avoid">
-    <p>Senior UX/UI Designer — iCare Life India <span>&nbsp;·&nbsp; Pune · 2015 – 2016</span></p>
-    <p>Senior UX Designer — Fortune Cookie <span>&nbsp;·&nbsp; Pune · 2013 – 2015</span></p>
-    <p>Senior UX Designer — Fab.com <span>&nbsp;·&nbsp; Pune · 2010 – 2013</span></p>
-  </div>
-</section>
+    <div class="xp">
+      <div class="xp-rail"><div class="xp-year">2016 &mdash; 2018</div><div class="xp-line"></div></div>
+      <div class="xp-body">
+        <div class="xp-co">Mobikon</div>
+        <div class="xp-tag">AI-driven engagement &amp; analytics</div>
+        <div class="xp-role">UX Design Lead</div>
+        <p class="xp-scope">Led UX for an AI-driven customer engagement and predictive analytics platform.</p>
+        <div class="kicker">Key Accomplishments</div>
+        <p class="kv"><b>Data experiences:</b> Designed dashboards, workflows, and data visualizations for operational and marketing users.</p>
+        <p class="kv"><b>Actionable insight:</b> Translated complex data into intuitive analytics experiences.</p>
+        <p class="kv"><b>Delivery:</b> Managed designers and partnered closely with engineering for high-quality execution.</p>
+      </div>
+    </div>
 
-<hr>
+    <div class="xp avoid">
+      <div class="xp-rail"><div class="xp-year">2010 &mdash; 2016</div><div class="xp-line"></div></div>
+      <div class="xp-body">
+        <div class="xp-co">Earlier Roles</div>
+        <p class="earlier">
+          <b>Senior UX/UI Designer</b> &mdash; iCare Life India &middot; Pune &middot; 2015&ndash;2016<br>
+          <b>Senior UX Designer</b> &mdash; Fortune Cookie &middot; Pune &middot; 2013&ndash;2015<br>
+          <b>Senior UX Designer</b> &mdash; Fab.com &middot; Pune &middot; 2010&ndash;2013
+        </p>
+      </div>
+    </div>
 
-<section class="avoid">
-  <h2>Selected Projects</h2>
-  <ul class="projects">
-    <li><b>Western Union App Redesign (2023–2025):</b> Part of the largest redesign initiative in Western Union's history, covering onboarding, transfers, and compliance-heavy flows for global markets.</li>
-    <li><b>Tata Moneyfy Mobile App (2020):</b> Designed the end-to-end mobile experience for a consumer fintech application.</li>
-    <li><b>KATIM Messenger Redesign (2019–2020):</b> Designed a secure communication suite used across India and Abu Dhabi.</li>
-  </ul>
-</section>
+  </main>
 
-<hr>
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="side">
+    <div class="sblock avoid">
+      <div class="schip"><span class="chip">Contact</span></div>
+      <div class="c-line"><span class="k">Pune, India</span><br>+91 90965 80834<br>asanyal88@gmail.com<br>linkedin.com/in/arindam-sanyal</div>
+    </div>
 
-<section class="avoid">
-  <h2>Skills</h2>
-  <ul class="skills">
-    <li>UX Strategy &amp; Leadership</li>
-    <li>Product Design &amp; Complex Workflows</li>
-    <li>Design Systems &amp; Design Operations</li>
-    <li>Accessibility (WCAG)</li>
-    <li>Agile / Lean UX</li>
-    <li>Cross-Functional Collaboration</li>
-    <li>Stakeholder Management</li>
-    <li>Fintech &amp; Regulated Products</li>
-    <li>Figma</li>
-    <li>Data-Informed Design</li>
-  </ul>
-</section>
+    <div class="sblock avoid">
+      <div class="schip"><span class="chip">Education</span></div>
+      <div class="edu-yr">2006 &mdash; 2010</div>
+      <div class="edu-t">B.Design (User Experience Design)</div>
+      <div class="edu-s">Symbiosis Institute of Design, Pune, India</div>
+    </div>
 
-<hr>
+    <div class="sblock avoid">
+      <div class="schip"><span class="chip">Core Skills</span></div>
+      <ul class="slist">
+        <li>UX Strategy &amp; Leadership</li>
+        <li>Product Design &amp; Complex Workflows</li>
+        <li>Design Systems &amp; Design Operations</li>
+        <li>Accessibility (WCAG)</li>
+        <li>Agile / Lean UX</li>
+        <li>Cross-Functional Collaboration</li>
+        <li>Stakeholder Management</li>
+        <li>Data-Informed Design</li>
+      </ul>
+    </div>
 
-<section class="avoid edu">
-  <h2>Education</h2>
-  <h3>Bachelor of Design (User Experience Design)</h3>
-  <p>Symbiosis Institute of Design | Pune, India &nbsp;·&nbsp; Jun 2006 – May 2010</p>
-</section>
+    <div class="sblock avoid">
+      <div class="schip"><span class="chip">Tools</span></div>
+      <div class="trow"><span class="tname">Figma</span><span class="rate"><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i></span></div>
+      <div class="trow"><span class="tname">Design Systems</span><span class="rate"><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i></span></div>
+      <div class="trow"><span class="tname">Prototyping</span><span class="rate"><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot"></i></span></div>
+      <div class="trow"><span class="tname">Dev Handoff (Dev Mode)</span><span class="rate"><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i></span></div>
+      <div class="trow"><span class="tname">User Research</span><span class="rate"><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot"></i></span></div>
+      <div class="trow"><span class="tname">Jira / Notion / Miro</span><span class="rate"><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot"></i></span></div>
+    </div>
 
+    <div class="sblock avoid">
+      <div class="schip"><span class="chip">Industries</span></div>
+      <div class="tagcloud">
+        <span>Fintech</span><span>Enterprise SaaS</span><span>E-commerce</span><span>HR Tech</span><span>Payments</span><span>Regulated Products</span>
+      </div>
+    </div>
+
+    <div class="sblock avoid">
+      <div class="schip"><span class="chip">Selected Projects</span></div>
+      <p class="sproj"><b>WU App Redesign (2023&ndash;25):</b> Part of the largest redesign in Western Union's history &mdash; onboarding, transfers, and compliance-heavy flows.</p>
+      <p class="sproj"><b>Tata Moneyfy (2020):</b> End-to-end mobile experience for a consumer fintech app.</p>
+      <p class="sproj"><b>KATIM Messenger (2019&ndash;20):</b> Secure communication suite used across India &amp; Abu Dhabi.</p>
+    </div>
+
+    <div class="sblock avoid">
+      <div class="schip"><span class="chip">Follow</span></div>
+      <div class="follow"><span class="k">LinkedIn</span> &middot; linkedin.com/in/arindam-sanyal<br><span class="k">Email</span> &middot; asanyal88@gmail.com</div>
+    </div>
+  </aside>
+
+</div>
+</div>
 </body>
 </html>

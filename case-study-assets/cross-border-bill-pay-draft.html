@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cross-Border Bill Pay — Case Study Draft</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+@page{size:A4;margin:16mm}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#141414;--gray:#4c4c4c;--gray2:#7a7a7a;--rule:#e0e0e0;--accent:#bf5a34;--accent-soft:#f6ece5;
+  --serif:'Playfair Display',Georgia,serif;--sans:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace;
+}
+html,body{margin:0}
+body{font-family:var(--sans);color:var(--ink);font-size:9.8pt;line-height:1.55;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+b,strong{font-weight:700}
+.chip{display:inline-block;font-family:var(--mono);font-size:8.4pt;font-weight:500;letter-spacing:1.2px;text-transform:uppercase;border:1.2px solid var(--ink);padding:4px 10px;margin-right:8px;margin-bottom:6px}
+.chip.soft{border-color:var(--accent);color:var(--accent)}
+.eyebrow{font-family:var(--mono);font-size:8.6pt;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+h1{font-family:var(--serif);font-weight:700;font-size:26pt;line-height:1.12;letter-spacing:-.3px;margin-bottom:10px}
+h1 .sub{display:block;font-size:13pt;font-weight:600;color:var(--gray);margin-top:4px}
+.draftnote{font-style:italic;color:var(--gray2);font-size:8.8pt;margin-bottom:18px}
+.rule{height:1px;background:var(--rule);margin:16px 0}
+h2{font-family:var(--serif);font-weight:700;font-size:14.5pt;margin:0 0 8px;letter-spacing:-.2px}
+h2 .num{color:var(--accent);margin-right:6px}
+.role-box{background:var(--accent-soft);border-left:3px solid var(--accent);padding:10px 14px;margin:6px 0 16px;font-size:9.6pt;line-height:1.55}
+.role-box b{color:var(--ink)}
+.summary{font-size:11pt;line-height:1.6;color:var(--ink);margin-bottom:16px}
+p{margin-bottom:9px}
+p:last-child{margin-bottom:0}
+ul{margin:0 0 0 16px}
+li{margin-bottom:5px;font-size:9.5pt;line-height:1.5;color:var(--gray)}
+li b{color:var(--ink)}
+li::marker{color:var(--accent)}
+.section{margin-bottom:16px;break-inside:avoid}
+.approach-item{display:grid;grid-template-columns:20px 1fr;gap:10px;margin-bottom:10px;break-inside:avoid}
+.approach-item .n{font-family:var(--mono);font-weight:700;color:var(--accent);font-size:9.5pt}
+.approach-item .t{font-weight:700;font-size:9.7pt;margin-bottom:2px}
+.approach-item .d{font-size:9.3pt;color:var(--gray);line-height:1.5}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.metric-box{border:1px solid var(--rule);border-radius:6px;padding:10px 12px;margin-bottom:8px}
+.metric-box .m{font-family:var(--serif);font-weight:700;font-size:15pt;color:var(--accent);line-height:1}
+.metric-box .l{font-size:8.6pt;color:var(--gray);margin-top:3px}
+.visuallist li{font-size:9.3pt}
+.footnote{font-size:8.4pt;color:var(--gray2);font-style:italic;line-height:1.5}
+.tag-cloud{margin-top:2px}
+.figlink{font-size:8.8pt;color:var(--accent);word-break:break-all}
+footer{margin-top:20px;padding-top:10px;border-top:1px solid var(--rule);font-size:8pt;color:var(--gray2);display:flex;justify-content:space-between}
+</style>
+</head>
+<body>
+
+<div class="eyebrow">Portfolio Draft &middot; Not Yet Published</div>
+<h1>Cross-Border Bill Pay<span class="sub">Turning remittance into direct, purpose-built bill payments</span></h1>
+<div class="chip">Design Strategist</div><div class="chip">Design Lead</div><div class="chip soft">Fintech</div><div class="chip soft">0&rarr;1 Product</div>
+<p class="draftnote">Draft for portfolio review &mdash; trim and tighten before publishing as a live case-study page.</p>
+
+<div class="rule"></div>
+
+<div class="section">
+  <h2><span class="num">01</span>Summary</h2>
+  <p class="summary">Migrants and expats send ~30% of their remittances toward bills back home &mdash; through indirect, fragmented processes. I led the UX strategy and design for Western Union's first direct <b>Cross-Border Bill Pay</b> experience, replacing a legacy, low-adoption product (Quick Pay) with a modern, biller-network-backed flow &mdash; piloting in the E1 Canada app with a clear path to scale globally.</p>
+</div>
+
+<div class="section">
+  <h2><span class="num">02</span>My Role</h2>
+  <div class="role-box"><b>Design Strategist &amp; Lead</b> &mdash; owned the end-to-end UX strategy and design leadership: framed the opportunity, defined the vision narrative and guiding principles, led the competitive analysis, designed the core flows and high-fidelity prototype, and partnered with Product, partner-integration, Compliance, and Engineering to shape the phased roadmap.</div>
+</div>
+
+<div class="section">
+  <h2><span class="num">03</span>The Problem</h2>
+  <ul>
+    <li><b>Senders</b> had no way to pay a bill directly &mdash; they had to trust receivers to complete payment after funds landed.</li>
+    <li><b>Receivers</b> relied on manual, cash-based, or fragmented local processes, often missing due dates.</li>
+    <li>Neither side had visibility into whether or when a bill was actually paid &mdash; low transparency, low trust.</li>
+    <li>A prior attempt (Quick Pay) failed to scale due to a cumbersome biller-setup process and weak UX.</li>
+  </ul>
+  <p style="margin-top:8px;font-size:9.3pt;color:var(--gray)"><b>Opportunity:</b> ~$170B in addressable transaction volume globally, ~$25&ndash;30M in annual revenue potential &mdash; concentrated in corridors like US&rarr;Mexico, US&rarr;India, and UAE&rarr;Philippines.</p>
+</div>
+
+<div class="section">
+  <h2><span class="num">03b</span>Business Goals</h2>
+  <p class="footnote" style="margin-bottom:6px">From the presentation deck</p>
+  <ul>
+    <li>Capture a $25&ndash;$30M annual revenue opportunity (2-year projection)</li>
+    <li>Position Western Union as a market leader in cross-border bill pay</li>
+    <li>Deliver a secure &amp; transparent, end-to-end bill pay experience</li>
+    <li>Position bill pay as a high-frequency, essential service &mdash; not a one-off transaction</li>
+    <li>Build a scalable, global bill pay capability</li>
+    <li>Drive organic revenue growth</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2><span class="num">04</span>My Approach</h2>
+
+  <div class="approach-item"><div class="n">1</div><div><div class="t">Reframed the problem as a strategist</div><div class="d">Treated bill pay as its own first-class journey &mdash; "pay the bill directly," not "send money and hope" &mdash; anchoring every downstream design decision.</div></div></div>
+
+  <div class="approach-item"><div class="n">2</div><div><div class="t">Competitive &amp; experience benchmarking</div><div class="d">Teardown across global players (Wise, Xoom by PayPal, Careem Pay, Comera Pay) and Canada-specific products (PaySimply, Beacon) to define "best-in-class": global biller coverage, a simple/fast/trusted experience, low cost &amp; risk, localized payment options, simpler biller onboarding, robust reconciliation, and compliance built into the flow.</div></div></div>
+
+  <div class="approach-item"><div class="n">3</div><div><div class="t">Grounded the vision in real personas</div><div class="d">Built 5 scenario narratives (migrant worker, student abroad, supporting sibling, busy professional, underbanked receiver) to pressure-test design against real friction.</div></div></div>
+
+  <div class="approach-item"><div class="n">4</div><div><div class="t">Defined 4 design principles for a scalable platform</div><div class="d"><b>Radical transparency</b> &middot; <b>Purpose-built flows</b> &middot; <b>Sender&ndash;receiver collaboration</b> &middot; <b>Built to scale, tailored locally</b> &mdash; used as the north star for engineering and compliance throughout build.</div></div></div>
+
+  <div class="approach-item"><div class="n">5</div><div><div class="t">Designed the core end-to-end flow</div><div class="d">Led wireframes and a high-fidelity prototype across two journeys &mdash; the <b>first-time user</b> (never paid via WU) and the <b>returning user</b> (has paid before) &mdash; covering biller selection, bill discovery &amp; linking, transparent fee/FX breakdown, localized pay-in, and confirmation/reminders.</div></div></div>
+
+  <div class="approach-item"><div class="n">6</div><div><div class="t">Partnered across the org</div><div class="d">Worked with Product on objectives/hypotheses, partner teams on biller-catalog integration, Compliance on corridor/biller whitelisting, and Engineering on a phased delivery roadmap.</div></div></div>
+</div>
+
+<div class="section">
+  <h2><span class="num">05</span>Key Design Decisions</h2>
+  <ul>
+    <li><b>Transparency-first checkout:</b> every screen shows bill due amount, FX rate, fee breakdown, and total before commit.</li>
+    <li><b>Progressive biller discovery:</b> search/filter by country, category, and name &mdash; scales to thousands of billers.</li>
+    <li><b>Two tailored onboarding paths:</b> distinct flows for first-time vs. returning users, so repeat payers skip steps they've already done.</li>
+    <li><b>Design for the underbanked, not just digital-native:</b> OCR "photograph your bill" path for less tech-savvy users.</li>
+    <li><b>Compliance embedded, not bolted on:</b> corridors/biller types filtered at the front end per Risk &amp; Compliance rules &mdash; invisible to users, critical to architecture.</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2><span class="num">05b</span>Phased Roadmap</h2>
+  <p class="footnote" style="margin-bottom:6px">From the presentation deck</p>
+  <p style="font-size:9.3pt;color:var(--ink);font-weight:700;margin-bottom:4px">Phase 1 &mdash; Baseline experience</p>
+  <ul>
+    <li>Pay a new bill, for new &amp; existing users</li>
+    <li>Bill Pay homepage; bill search, selection, fetch &amp; pay (domestic &amp; cross-border)</li>
+    <li>Transaction history, track a transfer, FAQs, loyalty program</li>
+  </ul>
+  <p style="font-size:9.3pt;color:var(--ink);font-weight:700;margin:10px 0 4px">Phase 2 &mdash; Advanced bill management</p>
+  <ul>
+    <li>Auto-fetch new bills for existing users based on prior payment details, with proactive notification</li>
+    <li>AutoPay &mdash; invoke users to set up recurring payments</li>
+    <li>Gmail/SMS read access (one-time consent) to auto-fetch bills from issuer emails</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2><span class="num">06</span>Outcomes / What Success Looks Like</h2>
+  <p class="footnote" style="margin-bottom:8px">Framed as hypotheses at time of writing &mdash; replace with real metrics post-launch.</p>
+  <div class="two-col">
+    <div>
+      <div class="metric-box"><div class="m">&ge;10%</div><div class="l">Eligible users complete a bill payment within 90 days of onboarding</div></div>
+      <div class="metric-box"><div class="m">&ge;40%</div><div class="l">Increase in repeat bill payments via saved billers</div></div>
+    </div>
+    <div>
+      <div class="metric-box"><div class="m">&gt;25%</div><div class="l">Improvement in repeat payment rate via predictive reminders &amp; autopay</div></div>
+      <div class="metric-box"><div class="m">&#9733;</div><div class="l">North Star: number of bills paid per month (domestic + international)</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2><span class="num">07</span>Visuals to Pull from Figma</h2>
+  <ul class="visuallist">
+    <li>Vision/scenario board (the 5 personas) &mdash; strong storytelling opener</li>
+    <li>Competitive benchmarking snapshot &mdash; shows strategic rigor</li>
+    <li>Core flow: biller search &rarr; selection &rarr; bill fetch &rarr; fee breakdown &rarr; confirmation</li>
+    <li>Guiding principles summary slide (if visual)</li>
+  </ul>
+  <p class="figlink">Source: UXD-2261 | Global E1 | Cross-Border &amp; Domestic Bill Pay (FigJam)</p>
+</div>
+
+<div class="section">
+  <h2><span class="num">08</span>Notes for Final Case Study Page</h2>
+  <ul>
+    <li>Keep to 4&ndash;5 sections max: Problem &rarr; My Role/Approach &rarr; Key Decisions &rarr; Outcomes (matches existing case-study template)</li>
+    <li>Lead with the "Ravi" or "Ana" scenario as a 2-line human hook before the metrics</li>
+    <li>Emphasize <b>strategist + lead</b> framing explicitly &mdash; this is a stronger "strategy" story than the execution-heavy case studies</li>
+    <li>Strip internal codenames and any Jira/BRD links before publishing publicly</li>
+  </ul>
+</div>
+
+<footer><span>Arindam Sanyal &mdash; Portfolio Draft</span><span>Cross-Border Bill Pay Case Study &middot; v0.1</span></footer>
+
+</body>
+</html>

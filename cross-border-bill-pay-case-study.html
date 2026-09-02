@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cross-Border Bill Pay &mdash; Arindam Sanyal</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#ffffff;--s1:#fafafa;
+  --fg:#0c0c0c;--fg2:#5c5c5c;--fg3:#8f8f8f;
+  --border:#e4e4e4;
+  --accent:#e5261f;--accent2:#e5261f;
+  --px:48px;--mw:1100px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+nav{position:fixed;inset:0 0 auto;z-index:99;padding:16px var(--px);display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:14px;letter-spacing:-.2px;color:var(--fg)}
+.logo .sq{width:10px;height:10px;background:var(--accent)}
+.nav-links{display:flex;align-items:center;gap:26px}
+.nav-links a{font-size:13px;color:var(--fg2);transition:color .2s}
+.nav-links a:hover{color:var(--fg)}
+.nav-links a.cta{color:var(--accent);font-weight:600}
+.wrap{max-width:calc(var(--mw)+96px);margin:0 auto;padding:0 var(--px)}
+.cs-hero{padding:120px 0 64px;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.cs-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--accent);margin-bottom:24px}
+.cs-title{font-size:clamp(42px,6vw,80px);font-weight:700;letter-spacing:-3px;line-height:1;margin-bottom:24px;position:relative;z-index:1}
+.cs-role-chip{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--fg2);border:1px solid var(--border);padding:8px 16px;border-radius:100px}
+.cs-about{padding:64px 0;border-bottom:1px solid var(--border)}
+.cs-about-text{font-size:clamp(18px,2.2vw,24px);font-weight:500;font-style:italic;line-height:1.55;color:var(--fg);max-width:820px}
+.cs-impact{display:grid;grid-template-columns:120px 1fr 1fr 1fr;gap:48px;padding:48px 0;border-bottom:1px solid var(--border)}
+.ci-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--accent);margin-bottom:10px}
+.ci-val{font-size:14px;font-weight:600;color:var(--fg);line-height:1.4}
+.ci-items{display:flex;flex-direction:column;gap:8px}
+.ci-item{font-size:13px;color:var(--fg2);display:flex;gap:8px;line-height:1.5}
+.ci-item::before{content:'\2937';color:var(--accent2);flex-shrink:0;font-size:12px;margin-top:1px}
+.cs-content{padding:0}
+.cs-section{
+  margin-bottom:0;padding:56px 0;border-bottom:1px solid var(--border);
+  display:grid;grid-template-columns:220px 1fr;gap:48px;align-items:start;
+}
+.cs-section:last-child{border-bottom:none}
+.cs-sec-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--accent);margin-bottom:0;padding-top:4px}
+.cs-section img{width:100%;max-width:280px;border-radius:12px;display:block;background:var(--s1);border:1px solid var(--border)}
+.cs-caption{font-size:14px;color:var(--fg2);line-height:1.7;margin-top:16px}
+.cs-img-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;max-width:560px}
+.cs-img-grid img{width:100%;max-width:none}
+.cs-list{font-size:15px;color:var(--fg2);line-height:1.8;padding-left:18px;margin-top:8px}
+.cs-list li{margin-bottom:6px}
+.cs-list b{color:var(--fg)}
+.cs-process{
+  padding:56px 0;border-top:1px solid var(--border);
+  display:grid;grid-template-columns:220px 1fr;gap:48px;align-items:start;
+}
+.cs-process-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--accent);margin-bottom:0;padding-top:4px}
+.cs-process-text{font-size:15px;color:var(--fg2);line-height:1.8}
+.cs-process-text p{margin-bottom:16px}
+.cs-process-text p:last-child{margin-bottom:0}
+.cs-principles{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:20px}
+.principle{border:1px solid var(--border);border-radius:10px;padding:18px 20px}
+.principle .n{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:8px}
+.principle .t{font-size:15px;font-weight:700;color:var(--fg)}
+.cs-nav{display:flex;align-items:center;justify-content:space-between;padding:40px 0;border-top:1px solid var(--border)}
+.cs-nav a{font-size:13px;color:var(--fg2);font-weight:500;display:flex;align-items:center;gap:6px;transition:color .2s}
+.cs-nav a:hover{color:var(--fg)}
+footer{padding:22px var(--px);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--s1)}
+.fl,.fr{font-size:12px;color:var(--fg3)}
+.cs-label,.cs-sec-lbl,.ci-lbl,.cs-process-lbl,.principle .n{font-family:'JetBrains Mono',ui-monospace,monospace;font-weight:500}
+@media(max-width:880px){
+  :root{--px:24px}
+  .cs-title{letter-spacing:-2px}
+  .cs-impact{grid-template-columns:1fr 1fr;gap:28px}
+  .cs-img-grid{grid-template-columns:1fr;max-width:280px}
+  .cs-section,.cs-process{grid-template-columns:1fr}
+  .cs-principles{grid-template-columns:1fr}
+  .nav-links a:not(.cta){display:none}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="logo"><span class="sq"></span> ARINDAM SANYAL</a>
+  <div class="nav-links">
+    <a href="index.html#work">Work</a>
+    <a href="index.html#about">About</a>
+    <a href="Arindam-Sanyal-Resume.pdf" download>Resume &darr;</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="mailto:asanyal88@gmail.com" class="cta">Book an Intro &#8599;</a>
+  </div>
+</nav>
+<main>
+<div class="wrap">
+
+<div class="cs-hero">
+  <div class="cs-label">Case Study</div>
+  <h1 class="cs-title">Cross-Border Bill Pay</h1>
+  <span class="cs-role-chip">Design Strategist &amp; Lead &middot; Fintech &middot; 0&rarr;1 Product</span>
+</div>
+
+<div class="cs-about"><p class="cs-about-text">Migrants and expats send ~30% of their remittances toward bills back home &mdash; through indirect, fragmented processes. I led the UX strategy and design for Western Union's first direct Cross-Border Bill Pay experience, replacing a legacy, low-adoption product with a modern, biller-network-backed flow &mdash; piloting in the E1 Canada app with a clear path to scale globally.</p></div>
+
+<div class="cs-impact">
+  <div><div class="ci-lbl">Year</div><div class="ci-val">2025 &ndash; Present</div></div>
+  <div><div class="ci-lbl">Business Goals</div><div class="ci-items">
+    <div class="ci-item">$25&ndash;30M annual revenue opportunity (2-yr projection)</div>
+    <div class="ci-item">Position WU as a market leader in bill pay</div>
+    <div class="ci-item">High-frequency, essential service &mdash; not a one-off</div>
+  </div></div>
+  <div><div class="ci-lbl">Collaborators</div><div class="ci-items">
+    <div class="ci-item">Product Management</div>
+    <div class="ci-item">Partner Integration (biller network)</div>
+    <div class="ci-item">Risk &amp; Compliance</div>
+    <div class="ci-item">Engineering</div>
+  </div></div>
+  <div><div class="ci-lbl">My Role</div><div class="ci-items">
+    <div class="ci-item">Design Strategist &amp; Lead</div>
+    <div class="ci-item">Competitive &amp; Vision Strategy</div>
+    <div class="ci-item">End-to-End UX Design</div>
+    <div class="ci-item">Cross-Functional Partnership</div>
+  </div></div>
+</div>
+
+<div class="cs-content">
+
+  <div class="cs-section">
+    <div class="cs-sec-lbl">The Problem</div>
+    <div>
+      <ul class="cs-list">
+        <li><b>Senders</b> had no way to pay a bill directly &mdash; they had to trust receivers to complete payment after funds landed.</li>
+        <li><b>Receivers</b> relied on manual, cash-based, or fragmented local processes, often missing due dates.</li>
+        <li>Neither side had visibility into whether or when a bill was actually paid &mdash; low transparency, low trust.</li>
+        <li>A prior attempt (Quick Pay) failed to scale due to a cumbersome biller-setup process and weak UX.</li>
+      </ul>
+      <p class="cs-caption"><b>Opportunity:</b> ~$170B in addressable transaction volume globally, concentrated in corridors like US&rarr;Mexico, US&rarr;India, and UAE&rarr;Philippines.</p>
+    </div>
+  </div>
+
+  <div class="cs-section">
+    <div class="cs-sec-lbl">Discovery &amp; Entry</div>
+    <div>
+      <img src="case-study-assets/billpay-01-home.png" alt="Bill Pay entry point on the home page">
+      <p class="cs-caption">Bill Pay is surfaced directly on the E1 home page as a first-class quick action &mdash; not buried inside remittance flows &mdash; reframing bill pay as its own journey rather than a downstream use of sending money.</p>
+    </div>
+  </div>
+
+  <div class="cs-section">
+    <div class="cs-sec-lbl">Bill Discovery &amp; Linking</div>
+    <div>
+      <img src="case-study-assets/billpay-02-bill-details.png" alt="Bill details screen showing a fetched electricity bill">
+      <p class="cs-caption">Once a biller is selected, the latest bill is fetched and linked to the user's profile automatically &mdash; surfacing amount due and status (e.g. overdue) at a glance, before any payment details are entered.</p>
+    </div>
+  </div>
+
+  <div class="cs-section">
+    <div class="cs-sec-lbl">Transparency-First Checkout</div>
+    <div>
+      <img src="case-study-assets/billpay-03-review-payment.png" alt="Review payment screen showing bill amount, FX rate, fees, and total">
+      <p class="cs-caption">The core design principle made tangible: bill amount, live FX rate, converted local amount, fee breakdown (with promo code net-off), and the final total &mdash; all visible before the user commits. No hidden costs, no surprises at settlement.</p>
+    </div>
+  </div>
+
+  <div class="cs-section">
+    <div class="cs-sec-lbl">Tracking &amp; History</div>
+    <div>
+      <img src="case-study-assets/billpay-04-transaction-history.png" alt="Bill pay transaction history empty state">
+      <p class="cs-caption">A dedicated Bills tab (alongside Transfers) gives users a single place to track payment status and history &mdash; with a clear, encouraging empty state for first-time users.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="cs-process">
+  <div class="cs-process-lbl">Approach</div>
+  <div class="cs-process-text">
+    <p>I reframed the problem as its own first-class journey &mdash; "pay the bill directly," not "send money and hope" &mdash; anchoring every downstream decision. To ground that vision, I ran a structured competitive teardown across global players (Wise, Xoom by PayPal, Careem Pay, Comera Pay) and Canada-specific products (PaySimply, Beacon), synthesizing what "best-in-class" bill pay requires: comprehensive biller coverage, a simple/fast/trusted experience, low cost and risk, localized payment options, simpler biller onboarding, robust reconciliation, and compliance built into the flow rather than bolted on.</p>
+    <p>From there, I defined four design principles used as the north star for engineering and compliance throughout build:</p>
+    <div class="cs-principles">
+      <div class="principle"><div class="n">01</div><div class="t">Radical transparency</div></div>
+      <div class="principle"><div class="n">02</div><div class="t">Purpose-built flows</div></div>
+      <div class="principle"><div class="n">03</div><div class="t">Sender&ndash;receiver collaboration</div></div>
+      <div class="principle"><div class="n">04</div><div class="t">Built to scale, tailored locally</div></div>
+    </div>
+    <p style="margin-top:20px">I led the wireframes and high-fidelity prototype across two core journeys &mdash; the first-time user (never paid via WU) and the returning user (has paid before) &mdash; and partnered with Product on objectives and hypotheses, partner teams on biller-catalog integration, Risk &amp; Compliance on corridor/biller whitelisting, and Engineering on a phased delivery roadmap: <b>Phase 1</b> shipped the baseline experience (homepage, search/select/fetch/pay, transaction history, tracking); <b>Phase 2</b> adds advanced bill management (auto-fetch, AutoPay, and Gmail/SMS-based bill capture).</p>
+  </div>
+</div>
+
+<div class="cs-nav">
+  <a href="ux-baseline-case-study.html">&larr; UX Baseline</a>
+  <a href="content-network-case-study.html">Content Network &rarr;</a>
+</div>
+
+</div>
+</main>
+<footer>
+  <span class="fl">Arindam Sanyal &mdash; Product Design Leader</span>
+  <span class="fr">Pune, India &middot; &copy; 2026</span>
+</footer>
+</body>
+</html>

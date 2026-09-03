@@ -55,10 +55,6 @@ nav{position:fixed;inset:0 0 auto;z-index:99;padding:16px var(--px);display:flex
 .phone-frame::before{content:'';position:absolute;top:10px;left:50%;transform:translateX(-50%);width:76px;height:18px;background:#0c0c0c;border-radius:0 0 12px 12px;z-index:2}
 .phone-screen{width:100%;height:100%;border-radius:26px;overflow:hidden;background:#fff}
 .phone-screen img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:top center;border-radius:0;border:0}
-.cs-shot{display:flex;gap:32px;align-items:flex-start;flex-wrap:wrap}
-.cs-shot-desc{flex:1;min-width:220px;padding-top:8px}
-.cs-shot-desc .k{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);margin-bottom:10px}
-.cs-shot-desc p{font-size:15px;color:var(--fg2);line-height:1.7}
 .cs-list{font-size:15px;color:var(--fg2);line-height:1.8;padding-left:18px;margin-top:8px}
 .cs-list li{margin-bottom:6px}
 .cs-list b{color:var(--fg)}
@@ -87,7 +83,6 @@ footer{padding:22px var(--px);border-top:1px solid var(--border);display:flex;al
   .cs-img-grid{grid-template-columns:1fr;max-width:280px}
   .cs-section,.cs-process{grid-template-columns:1fr}
   .cs-principles{grid-template-columns:1fr}
-  .cs-shot{gap:20px}
   .phone,.phone-frame{width:180px}
   .phone-frame{height:368px}
   .nav-links a:not(.cta){display:none}
@@ -154,33 +149,33 @@ footer{padding:22px var(--px);border-top:1px solid var(--border);display:flex;al
 
   <div class="cs-section">
     <div class="cs-sec-lbl">Discovery &amp; Entry</div>
-    <div class="cs-shot">
+    <div>
       <div class="phone"><div class="phone-frame"><div class="phone-screen"><img src="case-study-assets/billpay-v2-01-home.png" alt="Bill Pay entry point, showing partnered billers and a call to pay your first bill"></div></div></div>
-      <div class="cs-shot-desc"><div class="k">Home &mdash; First-time user</div><p>New users land on a dedicated Bill Pay home that leads with trust signals &mdash; partnered billers and a "5000+ users paid bills with us" banner &mdash; before a single, clear call to action: pay your first bill. Bill Pay is framed as its own destination, not a byproduct of sending money.</p></div>
+      <p class="cs-caption">New users land on a dedicated Bill Pay home that leads with trust signals &mdash; partnered billers and a "5000+ users paid bills with us" banner &mdash; before a single, clear call to action: pay your first bill. Bill Pay is framed as its own destination, not a byproduct of sending money.</p>
     </div>
   </div>
 
   <div class="cs-section">
     <div class="cs-sec-lbl">Bill Discovery &amp; Linking</div>
-    <div class="cs-shot">
+    <div>
       <div class="phone"><div class="phone-frame"><div class="phone-screen"><img src="case-study-assets/billpay-v2-02-select-biller.png" alt="Select biller screen with search, category filters, and popular billers"></div></div></div>
-      <div class="cs-shot-desc"><div class="k">Select Biller</div><p>Search, filter by category (Water, Gas, DTH), and browse popular billers by country &mdash; built to scale to thousands of billers without adding friction. A visible step tracker keeps users oriented across the multi-step flow.</p></div>
+      <p class="cs-caption">Search, filter by category (Water, Gas, DTH), and browse popular billers by country &mdash; built to scale to thousands of billers without adding friction. A visible step tracker keeps users oriented across the multi-step flow.</p>
     </div>
   </div>
 
   <div class="cs-section">
     <div class="cs-sec-lbl">Transparency-First Checkout</div>
-    <div class="cs-shot">
+    <div>
       <div class="phone"><div class="phone-frame"><div class="phone-screen"><img src="case-study-assets/billpay-v2-03-pay-bill.png" alt="Pay bill screen showing amount due, payment method, rewards, and total"></div></div></div>
-      <div class="cs-shot-desc"><div class="k">Pay Bill</div><p>The core design principle made tangible: amount due, editable payment method, reward-points redemption, and a promo code field &mdash; all visible above a single, unambiguous total before the user commits. No hidden costs, no surprises at settlement.</p></div>
+      <p class="cs-caption">The core design principle made tangible: amount due, editable payment method, reward-points redemption, and a promo code field &mdash; all visible above a single, unambiguous total before the user commits. No hidden costs, no surprises at settlement.</p>
     </div>
   </div>
 
   <div class="cs-section">
     <div class="cs-sec-lbl">Tracking &amp; History</div>
-    <div class="cs-shot">
+    <div>
       <div class="phone"><div class="phone-frame"><div class="phone-screen"><img src="case-study-assets/billpay-v2-04-all-bills.png" alt="All bills screen showing overdue, due, in-progress, and completed bills"></div></div></div>
-      <div class="cs-shot-desc"><div class="k">All Bills</div><p>A single, filterable list surfaces every bill by urgency &mdash; overdue, due soon, in progress, completed &mdash; grouped with clear date context, so returning users can act on what matters most at a glance instead of hunting through history.</p></div>
+      <p class="cs-caption">A single, filterable list surfaces every bill by urgency &mdash; overdue, due soon, in progress, completed &mdash; grouped with clear date context, so returning users can act on what matters most at a glance instead of hunting through history.</p>
     </div>
   </div>
 

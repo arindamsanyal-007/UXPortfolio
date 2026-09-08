@@ -81,6 +81,17 @@ nav{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var
 .resume-btn:hover{background:var(--fg);color:#fff}
 .resume-btn span{font-size:15px;line-height:1}
 
+/* PUBLICATIONS */
+.pubs{border-bottom:1px solid var(--line)}
+.pub{display:flex;align-items:center;gap:20px;padding:20px var(--px);border-bottom:1px solid var(--line);transition:background .2s}
+.pub:last-child{border-bottom:none}
+.pub:hover{background:#fafafa}
+.pub-thumb{width:88px;height:64px;border-radius:6px;overflow:hidden;flex-shrink:0;background:var(--s1,#f2f2f2)}
+.pub-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.pub-t{font-size:16px;font-weight:600;letter-spacing:-.01em;line-height:1.35;flex:1}
+.pub-arrow{font-size:18px;color:var(--fg3);flex-shrink:0;transition:transform .3s var(--ease),color .2s}
+.pub:hover .pub-arrow{transform:translate(3px,-3px);color:var(--accent)}
+
 /* CONTACT */
 .contact{padding:clamp(44px,7vw,96px) var(--px)}
 .contact h2{font-size:clamp(30px,6vw,76px);font-weight:800;line-height:.98;letter-spacing:-.03em;text-transform:uppercase}
@@ -99,6 +110,8 @@ footer{padding:16px var(--px);display:flex;justify-content:space-between;color:v
   .stat:nth-child(2){border-right:0}
 }
 @media(max-width:600px){
+  .pub-thumb{width:64px;height:48px}
+  .pub-t{font-size:14px}
   .nav-links a:not(.cta){display:none}
   .work{grid-template-columns:1fr}
   .wc{border-right:0}
@@ -113,6 +126,7 @@ footer{padding:16px var(--px);display:flex;justify-content:space-between;color:v
     <div class="nav-links">
       <a href="#work">Work</a>
       <a href="#about">About</a>
+      <a href="#publications">Publications</a>
       <a href="Arindam-Sanyal-Resume.pdf" download>Resume ↓</a>
       <a href="#contact">Contact</a>
       <a href="mailto:asanyal88@gmail.com" class="cta">Book an Intro ↗</a>
@@ -167,6 +181,27 @@ footer{padding:16px var(--px);display:flex;justify-content:space-between;color:v
       <p>I then moved into leadership, coaching teams and managing people, projects and culture through respectful and empathetic collaboration.</p>
       <p>Today, I craft thought leadership exploring <span class="ac">AI</span>, design and the future of product experiences.</p>
       <a class="resume-btn" href="Arindam-Sanyal-Resume.pdf" download>Download Resume <span aria-hidden="true">↓</span></a>
+    </div>
+  </section>
+
+  <section id="publications">
+    <div class="band rv"><div class="l"><span class="idx mono">03</span><span class="ttl">Publications</span></div><a class="mono" href="https://medium.com/@arindamsanyal" target="_blank" rel="noopener noreferrer">View all &#8599;</a></div>
+    <div class="pubs">
+      <a class="pub rv" href="https://medium.com/@arindamsanyal/the-ux-baseline-why-every-global-product-team-needs-a-common-starting-point-dd9add98720d" target="_blank" rel="noopener noreferrer">
+        <div class="pub-thumb"><img src="https://miro.medium.com/v2/resize:fit:720/format:webp/0*4w4VOE8qgCPuMWGD" alt="" loading="lazy"></div>
+        <div class="pub-t">The UX Baseline: Why Every Global Product Team Needs a Common Starting Point</div>
+        <span class="pub-arrow">&#8599;</span>
+      </a>
+      <a class="pub rv" href="https://medium.com/@arindamsanyal/ux-pov-the-world-of-remittance-c936f7d1da4a" target="_blank" rel="noopener noreferrer">
+        <div class="pub-thumb"><img src="https://miro.medium.com/v2/resize:fit:720/format:webp/0*8cc4h-BEPTiZQmZj" alt="" loading="lazy"></div>
+        <div class="pub-t">UX POV: The World of Remittance</div>
+        <span class="pub-arrow">&#8599;</span>
+      </a>
+      <a class="pub rv" href="https://medium.com/@arindamsanyal/product-ux-design-from-a-gaming-enthusiasts-pov-772b1e746fb4" target="_blank" rel="noopener noreferrer">
+        <div class="pub-thumb" style="background:linear-gradient(135deg,#1a1a1a,#3a3a3a);display:flex;align-items:center;justify-content:center;color:#fff;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.05em">UX&nbsp;&times;&nbsp;GAMING</div>
+        <div class="pub-t">Product UX Design from a Gaming Enthusiast's POV</div>
+        <span class="pub-arrow">&#8599;</span>
+      </a>
     </div>
   </section>
 

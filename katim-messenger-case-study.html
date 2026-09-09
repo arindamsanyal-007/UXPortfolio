@@ -193,7 +193,6 @@ footer{padding:24px var(--px);border-top:1px solid var(--border);display:flex;al
   <div class="sn-inner">
     <a href="#s-problem">The Problem</a>
     <a href="#s-role">My Role</a>
-    <a href="#s-process">Design Process</a>
     <a href="#s-decisions">Key Decisions</a>
     <a href="#s-design-system">Design System</a>
     <a href="#s-outcomes">Outcomes</a>
@@ -222,7 +221,9 @@ footer{padding:24px var(--px);border-top:1px solid var(--border);display:flex;al
 <section class="cs-context">
   <div class="cs-context-inner rv">
     <div class="cs-context-label">Overview</div>
-    <p class="cs-context-text">KATIM&reg; Application Suite keeps sensitive data secure, private, and trusted at all times &mdash; in transit, at rest, and everywhere in between &mdash; for the most security-sensitive organisations. My mandate was to modernise its messaging, voice, and video experience without ever compromising the sovereign-grade security it was built for.</p>
+    <div>
+      <p class="cs-context-text">KATIM&reg; Application Suite keeps sensitive data secure, private, and trusted at all times &mdash; in transit, at rest, and everywhere in between &mdash; for the most security-sensitive organisations. My mandate was to modernise its messaging, voice, and video experience without ever compromising the sovereign-grade security it was built for.</p>
+    </div>
   </div>
 </section>
 
@@ -261,6 +262,10 @@ footer{padding:24px var(--px);border-top:1px solid var(--border);display:flex;al
     <div class="cs-sec-label">The Problem</div>
     <div>
       <p class="cs-intro">The existing messenger had shipped years earlier, designed for a single device and a single visual language. As KATIM expanded to gov&amp;defense clients across iOS, Android, Web, and its own hardware, the app's navigation, iconography, and information architecture hadn't kept pace &mdash; and there was still no light theme, no dark theme discipline, and no shared design system to keep three engineering teams in sync.</p>
+      <figure style="margin:18px 0 28px; border:1px solid var(--border); border-radius:12px; overflow:hidden; background:var(--s1);">
+        <img src="case-study-assets/katim-pdf-extract/page_3_visual.png" alt="Before-and-after KATIM messenger screens" style="display:block;width:100%;height:auto;">
+        <figcaption style="padding:14px 18px;font-family:var(--sans);font-size:13px;color:var(--fg2);line-height:1.6;">Legacy Timeline screens were replaced with clearer Messages and Calls entry points, reducing ambiguity and streamlining the most common task paths.</figcaption>
+      </figure>
       <div class="cs-impact-row">
         <div class="cs-impact-item"><span class="cs-impact-tag high">High impact</span><span class="cs-impact-desc">Tab bar navigation icons were too small; inactive icons looked disabled, and the icon competed visually with its own notification bubble.</span></div>
         <div class="cs-impact-item"><span class="cs-impact-tag med">Medium impact</span><span class="cs-impact-desc">Icons and their supporting status text weren't in close proximity, creating ambiguity and cluttering the layout (e.g. the outgoing-call icon and its label).</span></div>
@@ -280,21 +285,6 @@ footer{padding:24px var(--px);border-top:1px solid var(--border);display:flex;al
     </div>
   </div>
 
-  <div class="cs-section rv" id="s-process">
-    <div class="cs-sec-label">Design Process</div>
-    <div>
-      <p class="cs-intro">We followed a 6D process &mdash; Discover, Define, Dream, Design, Develop, Deliver &mdash; moving from research and audit through to typeface-accurate production screens.</p>
-      <div class="cs-process-strip" role="list" aria-label="6D design process">
-        <div class="cs-process-step active" role="listitem"><div class="cs-process-num">01</div><div class="cs-process-name">Discover</div></div>
-        <div class="cs-process-step active" role="listitem"><div class="cs-process-num">02</div><div class="cs-process-name">Define</div></div>
-        <div class="cs-process-step" role="listitem"><div class="cs-process-num">03</div><div class="cs-process-name">Dream</div></div>
-        <div class="cs-process-step active" role="listitem"><div class="cs-process-num">04</div><div class="cs-process-name">Design</div></div>
-        <div class="cs-process-step" role="listitem"><div class="cs-process-num">05</div><div class="cs-process-name">Develop</div></div>
-        <div class="cs-process-step active" role="listitem"><div class="cs-process-num">06</div><div class="cs-process-name">Deliver</div></div>
-      </div>
-      <p class="cs-intro" style="margin-bottom:0">Discover mapped and categorised existing task flows by impact. Define built personas (an Army Officer persona and a VVIP persona), journey maps, and a streamlined information architecture. Design turned that architecture into wireframes, a dual-theme style guide, and the Sketch design system. Develop and Deliver shipped a six-scale icon library (28&ndash;60px) and pixel-matched production screens across all three typefaces.</p>
-    </div>
-  </div>
 
   <div class="cs-section rv" id="s-decisions">
     <div class="cs-sec-label">Key Decisions</div>
@@ -339,6 +329,10 @@ footer{padding:24px var(--px);border-top:1px solid var(--border);display:flex;al
     <div class="cs-sec-label">Design System</div>
     <div>
       <p class="cs-intro">Two complete design systems &mdash; Light and Dark &mdash; had to hold up across three rendering environments with three different native typefaces, without ever drifting apart visually.</p>
+      <figure style="margin:18px 0 24px; border:1px solid var(--border); border-radius:12px; overflow:hidden; background:var(--s1);">
+        <img src="case-study-assets/katim-pdf-extract/page_10_visual.png" alt="KATIM design system typography and component samples" style="display:block;width:100%;height:auto;">
+        <figcaption style="padding:14px 18px;font-family:var(--sans);font-size:13px;color:var(--fg2);line-height:1.6;">The design system documentation covered light and dark modes, platform-specific typefaces, and the core interaction patterns that enabled consistent delivery across Android, iOS, and KATIM devices.</figcaption>
+      </figure>
       <table class="cs-plat-table" aria-label="Design system platform and typeface coverage">
         <thead><tr><th scope="col">Platform</th><th scope="col">Typeface</th><th scope="col">Light theme</th><th scope="col">Dark theme</th><th scope="col">Elements documented</th></tr></thead>
         <tbody>
